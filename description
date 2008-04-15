@@ -1,0 +1,9 @@
+Name: QArithSternBrocot
+Title: Binary Rational Numbers.
+Author: Milad Niqui
+Institution: University of Nijmegen
+Author: Yves Bertot
+Institution: INRIA Sophia-Antipolis
+Date: 2003
+Description: Developement of rational numbers as finite binary lists and defining field operations on them in two different ways: strict and lazy. 
+Keywords: Rational Exact Field Binary Quadratic Homographic Lazy Stern-Brocot 

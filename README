@@ -1,0 +1,36 @@
+This contribution contains a rational arithmetic library for Coq. 
+This includes:
+
+ * A binary representation for positive rational numbers [Qpositive] and its 
+   extension to [Q] by adding sign bit (also known as Stern-Brocot 
+   tree encoding).
+ * Arithmetic operations on [Qpositive] and [Q] defined in an strict way.
+ * More efficient arithmetic operations on [Q] defined lazily using homographic
+   and quadratic algorithms for this binary representation (exact rational
+   arithmetic).
+ * Proof of the correctness of the homographic and quadratic algorithms using
+   the strict operations.
+ * The files enable the user to use Coq Field tactic on [Q] with two 
+   different field structures (using strict or lazy operations).
+ * The Haskell extraction of the lazy algorithms (quadratic.hs).  
+ * A syntax for using the rational numbers as pair of integers, and writing 
+   simple arithmetic operations on them.
+ * A proof of irrationality of the square root of 2.
+ * A proof that [Q] is Archimedean.
+ * A proof that [Q] is denumerable.
+
+ The files are compiled using Coq version 7.4CVS or higher (as they use 
+Pierre Courtieu's "Functional Induction" tactic). There is a makefile included. 
+In order to compile the files do the following:
+
+$ touch .depend
+$ make depend
+$ make
+
+Authors: Milad Niqui (University of Nijmegen) <milad@cs.kun.nl>
+         Yves Bertot (INRIA Sophia-Antipolis) <Yves.Bertot@sophia.inria.fr>
+
+License: LGPL (GNU Lesser General Public License Version 2.1)
+
+Date: 2003
+
