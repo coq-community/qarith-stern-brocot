@@ -6,6 +6,6 @@ Author: Yves Bertot
 Institution: INRIA Sophia-Antipolis
 Date: 2003
 Description: Developement of rational numbers as finite binary lists and defining field operations on them in two different ways: strict and lazy. 
-Keywords: Rational Exact Field Binary Quadratic Homographic Lazy Stern-Brocot 
+Keywords: rational numbers, arithmetic, field tactic, binary lists, Stern-Brocot 
 Category: Mathematics/Arithmetic and Number Theory/Rational numbers
 Category: Miscellaneous/Extracted Programs/Arithmetic
