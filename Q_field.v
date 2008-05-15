@@ -72,7 +72,8 @@ Definition Qplus (x y : Q) :=
           end
       | right h => Qneg (Qpositive_sub x' y')
       end
-  | x, Zero => x
+  | Qneg x', Zero => Qneg x'
+  | Qpos x', Zero => Qpos x'
   | Zero, x => x
   end.
  
