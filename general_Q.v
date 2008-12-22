@@ -333,7 +333,6 @@ Proof.
  unfold Qpositive_c at 2;fold Qpositive_c.
   
  rewrite e0.
- rewrite e0 in IHq.
  rewrite (IHq p'x);try omega.
  reflexivity.
 Defined.
