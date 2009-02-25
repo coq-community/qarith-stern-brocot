@@ -3,7 +3,7 @@
 (* This file is distributed under the terms of the                      *)
 (* GNU Lesser General Public License Version 2.1                        *)
 (* A copy of the license can be found at                                *)
-(*                  <http://www.gnu.org/licenses/gpl.txt>               *)
+(*                  <http://www.gnu.org/licenses/lgpl-2.1.thml>               *)
 (************************************************************************)
 
 (* This file contains properties of the injection from Q into R. *)

@@ -3,7 +3,7 @@
 (* This file is distributed under the terms of the                      *)
 (* GNU Lesser General Public License Version 2.1                        *)
 (* A copy of the license can be found at                                *)
-(*                  <http://www.gnu.org/licenses/gpl.txt>               *)
+(*                  <http://www.gnu.org/licenses/lgpl-2.1.thml>               *)
 (************************************************************************)
 
 Require Export Qsyntax.
@@ -150,4 +150,59 @@ Qed.
 Lemma Qmax4_Qlt_upper_bound:forall p q1 q2 q3 q4, p<q1 -> p<q2 -> p<q3 -> p<q4 -> p < Qmax4 q1 q2 q3 q4.
 Proof.
  intros p q1 q2 q3 q4 H1 H2 H3 H4; unfold Qmax4; repeat apply Qmax_Qlt_upper_bound; assumption.
+Qed.
+
+Lemma Qlt_Qmin_upper_bound: forall p q1 q2 : Q, p < Qmin q1 q2 -> p < q1 /\ p < q2.
+Proof.
+ intros p q1 q2; split; apply Qlt_le_trans with (Qmin q1 q2); trivial; [apply Qle_min_l|apply Qle_min_r].
+Qed.
+
+Definition Qlt_Qmin_upper_bound_l p q1 q2 (hyp:p < Qmin q1 q2) : p < q1 :=proj1 (Qlt_Qmin_upper_bound p q1 q2 hyp).
+Definition Qlt_Qmin_upper_bound_r p q1 q2 (hyp:p < Qmin q1 q2) : p < q2 :=proj2 (Qlt_Qmin_upper_bound p q1 q2 hyp).
+
+Lemma Qmax_Qlt_lower_bound: forall p q1 q2 : Q, q1 < p  -> q2 < p -> Qmax q1 q2 < p.
+Proof.
+ intros p q1 q2 H1 H2; unfold Qmax; destruct (Q_le_lt_dec q1 q2); trivial.
+Qed.
+
+Lemma Qlt_Qmax_lower_bound: forall p q1 q2 : Q, Qmax q1 q2 < p -> q1 < p /\ q2 < p.
+Proof.
+ intros p q1 q2; split; apply Qle_lt_trans with (Qmax q1 q2); trivial; [apply Qle_max_l|apply Qle_max_r].
+Qed.
+
+Definition Qlt_Qmax_lower_bound_l p q1 q2 (hyp:Qmax q1 q2 < p) := proj1 (Qlt_Qmax_lower_bound p q1 q2 hyp).
+Definition Qlt_Qmax_lower_bound_r p q1 q2 (hyp:Qmax q1 q2 < p) := proj2 (Qlt_Qmax_lower_bound p q1 q2 hyp).
+
+Lemma Qmin_involutive : forall q, Qmin q q = q.
+Proof.
+ intros q; destruct (Qmin_or_informative q q); trivial.
+Qed.
+
+Lemma Qmax_involutive : forall q, Qmax q q = q.
+Proof.
+ intros q; destruct (Qmax_or_informative q q); trivial.
+Qed.
+
+Definition Qmean (x y:Q):Q := (x+y) / (Qone + Qone).
+
+Lemma Qmean_property:forall (x y:Q), x < y -> x < Qmean x y /\ Qmean x y < y.
+Proof.
+ intros x y H; split; unfold Qmean.
+  apply Qmult_pos_Qlt_Qdiv; auto; stepl (x+x); auto; ring.  
+  apply Qmult_pos_Qdiv_Qlt; auto; stepr (y+y); auto; ring.
+Qed.
+
+Definition Qmean_property_l x y (hyp:x<y) := proj1 (Qmean_property x y hyp).
+Definition Qmean_property_r x y (hyp:x<y) := proj2 (Qmean_property x y hyp).
+
+Lemma Qmean_incr: forall x1 x2 y1 y2, x1< x2 -> y1 < y2 ->  Qmean x1 y1 < Qmean x2 y2.
+Proof.
+ intros x1 x2 y1 y2 Hx Hy; unfold Qmean;
+ apply Qmult_Qdiv_pos; auto;
+ (stepl (x1 + x1 + y1 + y1) by ring); stepr (x2 + x2 + y2 + y2) ; auto; ring. 
+Qed.
+
+Theorem Q_is_dense:forall x y, x<y -> {z:Q | x<z /\ z<y}.
+Proof.
+ intros x y Hxy; exists (Qmean x y); apply Qmean_property; trivial.
 Qed.
