@@ -18,7 +18,7 @@ that are imported here, except Q_to_R.  *)
 Require Export Qsyntax.
 Require Export Field_Theory_Q.
 Require Export Q_ordered_field_properties.
-Require Export Qabs. 
+Require Export QArithSternBrocot.Qabs.
 Require Export Qmax_min.
 Require Export Q_Archimedean.
 Require Export Q_denumerable.
