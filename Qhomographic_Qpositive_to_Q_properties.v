@@ -398,8 +398,8 @@ generalize
  intros [Hc| Hd].
 
  rewrite
-  (Qhomographic_Qpositive_to_Q_0 a b c d p H_Qhomographic_sg_denom_nonzero2
-     Hc _x d_eq_zero).
+  (Qhomographic_Qpositive_to_Q_0 a b c 0 p H_Qhomographic_sg_denom_nonzero2
+     Hc _x (refl_equal 0%Z)).
  apply fraction_encoding_equal.
  Falsum.
 generalize
@@ -408,8 +408,8 @@ generalize
  intros [Hc| Hd].
 
  rewrite
-  (Qhomographic_Qpositive_to_Q_0 a b c d p H_Qhomographic_sg_denom_nonzero2
-     Hc _x d_eq_zero).
+  (Qhomographic_Qpositive_to_Q_0 a b c 0 p H_Qhomographic_sg_denom_nonzero2
+     Hc _x (refl_equal 0%Z)).
  apply fraction_encoding_equal.
  Falsum.
 

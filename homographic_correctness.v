@@ -617,8 +617,6 @@ Proof.
   (Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero).
  (* (nR1) : b=0 & d=0  *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *.
- rewrite _x.
- rewrite _x0.
  simpl in |- *.
  transitivity
   (Qsgn (Qmult (Qmult a (Qpos (nR q))) (Qinv (Qmult c (Qpos (nR q)))))).
@@ -634,12 +632,12 @@ Proof.
   discriminate.
   intro;
   generalize
-   (Qhomographic_sg_denom_nonzero_nonzero_3 c d (nR q)
+   (Qhomographic_sg_denom_nonzero_nonzero_3 c 0 (nR q)
       H_Qhomographic_sg_denom_nonzero); intros [H_| H_]; 
-  apply H_; clear H_; [ apply eq_Z_to_Q; assumption | assumption].
+  apply H_; clear H_; [ apply eq_Z_to_Q; assumption | reflexivity].
  (* (nR2) : b=0 & d<>0 & 0<o2  *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *.
-  clear e2 e0 e1; subst b; simpl in |- *.
+  clear e2 e0 e1; simpl in |- *.
  transitivity
   (Qsgn
      (Qmult (Qmult a (Qpos (nR q))) (Qinv (Qplus (Qmult c (Qpos (nR q))) d)))).
@@ -668,7 +666,7 @@ Proof.
 
  (* (nR3) : b=0 & d<>0 & ~0<o2 & o2<0  *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *;
-  clear e3 e0 e1 e2; rewrite _x; 
+  clear e3 e0 e1 e2; 
   simpl in |- *.
  transitivity
   (Qsgn
@@ -702,7 +700,6 @@ Proof.
  (* (nR5) : b<>0 & d=0 & 0<o1  *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *;
   clear e2 e0 e1.
- rewrite _x0.
  simpl in |- *.
  transitivity
   (Qsgn
@@ -734,7 +731,7 @@ Proof.
 
  (* (nR6) : b<>0 & d=0 & ~0<o1 & o1<0  *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *;
-  clear e3 e0 e1 e2; rewrite _x0; 
+  clear e3 e0 e1 e2;
   simpl in |- *.
  transitivity
   (Qsgn
@@ -901,8 +898,6 @@ Proof.
     spec_Qhomographic_Qpositive_to_Q_dL instead of spec_Qhomographic_Qpositive_to_Q_nR  (cases nR4,nR7,nR10 above) *)
  (* (dL1) : b=0 & d=0  *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *; clear e1 e0.
- rewrite _x.
- rewrite _x0.
  simpl in |- *.
  transitivity
   (Qsgn (Qmult (Qmult a (Qpos (dL q))) (Qinv (Qmult c (Qpos (dL q)))))).
@@ -918,12 +913,12 @@ Proof.
   discriminate. 
   intro;
   generalize
-   (Qhomographic_sg_denom_nonzero_nonzero_3 c d (dL q)
+   (Qhomographic_sg_denom_nonzero_nonzero_3 c 0 (dL q)
       H_Qhomographic_sg_denom_nonzero); intros [H_| H_]; 
-  apply H_; clear H_; [ apply eq_Z_to_Q; assumption | assumption].
+  apply H_; clear H_; [ apply eq_Z_to_Q; assumption | reflexivity].
  (* (dL2) : b=0 & d<>0 & 0<o2  *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *.
-  clear e2 e0 e1; subst b; simpl in |- *.
+  clear e2 e0 e1; simpl in |- *.
  transitivity
   (Qsgn
      (Qmult (Qmult a (Qpos (dL q))) (Qinv (Qplus (Qmult c (Qpos (dL q))) d)))).
@@ -952,7 +947,7 @@ Proof.
 
  (* (dL3) : b=0 & d<>0 & ~0<o2 & o2<0  *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *;
-  clear e3 e0 e1 e2; rewrite _x; 
+  clear e3 e0 e1 e2;
   simpl in |- *.
  transitivity
   (Qsgn
@@ -986,7 +981,6 @@ Proof.
  (* (dL5) : b<>0 & d=0 & 0<o1  *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *;
   clear e2 e0 e1 .
- rewrite _x0.
  simpl in |- *.
  transitivity
   (Qsgn
@@ -1018,7 +1012,7 @@ Proof.
 
  (* (dL6) : b<>0 & d=0 & ~0<o1 & o1<0  *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *;
-  clear e3 e0 e1 e2; rewrite _x0; 
+  clear e3 e0 e1 e2;
   simpl in |- *.
  transitivity
   (Qsgn
@@ -1645,11 +1639,11 @@ Proof.
  rename _x into ad_eq_bc;
    rewrite coding_Q.
  assert (b0_eq_zero : b = 0%Z).
- rewrite d_eq_zero in Hc0;rewrite d_eq_zero in ad_eq_bc. rewrite Zmult_0_r in ad_eq_bc.
+ rewrite Zmult_0_r in ad_eq_bc.
         apply Zmult_integral_l with c;assumption || symmetry  in |- *;
         assumption.
 
-	rewrite b0_eq_zero;rewrite d_eq_zero.
+	rewrite b0_eq_zero.
 	simpl in *.
         unfold spec_fraction_encoding in |- *;
         repeat rewrite Qplus_zero_right;
@@ -1663,11 +1657,11 @@ Proof.
  rename _x into ad_eq_bc;
    rewrite coding_Q.
  assert (b0_eq_zero : b = 0%Z).
- rewrite d_eq_zero in ad_eq_bc. rewrite Zmult_0_r in ad_eq_bc.
+ rewrite Zmult_0_r in ad_eq_bc.
         apply Zmult_integral_l with c;assumption || symmetry  in |- *;
         assumption.
 
-	rewrite b0_eq_zero;rewrite d_eq_zero.
+	rewrite b0_eq_zero.
 	simpl in *.
         unfold spec_fraction_encoding in |- *;
         repeat rewrite Qplus_zero_right;
