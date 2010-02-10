@@ -15,7 +15,7 @@
 
 
 Require Export Qhomographic_sign.
-Require Import ZArithRing.
+Require Import ZArithRing Zaux.
 
 Lemma sg_tuple_equal :
  forall (l1 a1 b1 c1 d1 : Z) (p1 : Qpositive) (l2 a2 b2 c2 d2 : Z)

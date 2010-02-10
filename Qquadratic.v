@@ -29,7 +29,7 @@ Qminus_lazy = Qquadratic 0 1 (-1) 0 0 0 0 1
 
 Require Export Qhomographic.
 Require Export quadraticAcc_Qquadratic_sign.
-Require Import general_Q.
+Require Import general_Q Zaux.
 
 
 Lemma Qquadratic_sg_denom_nonzero_always :

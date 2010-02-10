@@ -17,7 +17,7 @@
 
 Require Import ZArithRing.
 Require Import Qhomographic_sign.
-
+Require Import Zaux.
 
 
 Definition outside_square (a b c d : Z) :=
