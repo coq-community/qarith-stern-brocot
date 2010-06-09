@@ -1507,7 +1507,7 @@ Proof.
   | rewrite <- H1; reflexivity ].
 Defined. 
 
-Definition pred_nat (x : Z) (Hx : (0 < x)%Z) : nat.
+Definition pred_nat : forall (x : Z) (Hx : (0 < x)%Z), nat.
 intros [| px| px] Hx; try abstract discriminate Hx.
 exact (pred (nat_of_P px)).
 Defined.

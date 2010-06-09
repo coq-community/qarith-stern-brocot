@@ -59,7 +59,6 @@ Defined.
 
 Definition Qhomographic_Qpositive_to_Q (a b c d : Z) 
   (p : Qpositive) (H_hsign : Qhomographic_sg_denom_nonzero c d p) : Q.
-intros a b c d p H_hsign.
 case (Z_eq_dec (a * d) (b * c)).
  (* a d = b c *)
  intro ad_eq_bc.
@@ -196,7 +195,6 @@ Defined.
 
 Definition Qhomographic (a b c d : Z) (s : Q)
   (H_Qhomographic_denom_nonzero : Qhomographic_denom_nonzero c d s) : Q.
-intros a b c d s H_Qhomographic_denom_nonzero.
 destruct s as [| p| p].
 refine (fraction_encoding b d _).
 apply Qhomographic_denom_nonzero_0 with c; assumption.

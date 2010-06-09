@@ -290,16 +290,14 @@ Proof.
  assumption.
 Defined.
 
-Definition Qquadratic_sign (a b c d e f g h : Z) (p1 p2 : Qpositive)
-  (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2) :
+Fixpoint Qquadratic_sign (a b c d e f g h : Z) (p1 p2 : Qpositive) {struct p1} :
+  forall (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2),
   Z * (Z * (Z * (Z * Z)) * (Z * (Z * (Z * Z))) * (Qpositive * Qpositive)).
-fix 9.
-intros a b c d e f g h.
 set (o1 := outside_square a b c d) in *.
 set (o2 := outside_square e f g h) in *.
-intros [xs| xs| ].
+destruct p1 as [xs| xs| ].
  (* p1=(nR xs) *)
- intros [ys| ys| ] H_Qquadratic_sg_denom_nonzero.
+ destruct p2 as [ys| ys| ]; intro H_Qquadratic_sg_denom_nonzero.
   (* p2=(nR xs) *)
   case (three_integers_dec_inf b c d).  
    (* `b = 0`/\`c = 0`/\`d = 0` *)
@@ -453,7 +451,7 @@ intros [xs| xs| ].
   exact (l1, (0%Z, (na, (0%Z, nb)), (0%Z, (nc, (0%Z, nd))), (l3, One))).
 
  (* p1=(dL xs) *)
- intros [ys| ys| ] H_Qquadratic_sg_denom_nonzero.
+ destruct p2 as [ys| ys| ]; intro H_Qquadratic_sg_denom_nonzero.
   (* p2=(nR xs) *)
   case (three_integers_dec_inf b c d).  
    (* `b = 0`/\`c = 0`/\`d = 0` *)
@@ -607,7 +605,7 @@ intros [xs| xs| ].
   exact (l1, (0%Z, (na, (0%Z, nb)), (0%Z, (nc, (0%Z, nd))), (l3, One))).
  
  (* p1=One  *)
- intros p2 H_Qquadratic_sg_denom_nonzero.
+ intros H_Qquadratic_sg_denom_nonzero.
  generalize (Qquadratic_signok_0 _ _ _ _ _ H_Qquadratic_sg_denom_nonzero).
  intros H_Qhomographic_sg_denom_nonzero.
  set

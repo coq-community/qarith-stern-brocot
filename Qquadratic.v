@@ -463,7 +463,6 @@ Defined.
 Definition Qquadratic_Qpositive_to_Q (a b c d e f g h : Z)
   (p1 p2 : Qpositive) (H_qsign : Qquadratic_sg_denom_nonzero e f g h p1 p2) :
   Q.
-intros a b c d e f g h p1 p2 H_qsign.
 case (same_ratio_dec_inf a b c d e f g h);
  [ intros _;
     case (Qquadratic_sg_denom_nonzero_nonzero_inf e f g h p1 p2 H_qsign);
