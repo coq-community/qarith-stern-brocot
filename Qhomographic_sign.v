@@ -123,11 +123,9 @@ Defined.
 
 
 
-Definition Qhomographic_sign (a b c d : Z) (p : Qpositive)
-  (H_Qhomographic_sg_denom_nonzero : Qhomographic_sg_denom_nonzero c d p) :
+Fixpoint Qhomographic_sign (a b c d : Z) (p : Qpositive) {struct p} :
+  forall (H_Qhomographic_sg_denom_nonzero : Qhomographic_sg_denom_nonzero c d p),
   Z * (Z * (Z * (Z * Z)) * Qpositive).
-fix 5.
-intros a b c d p.
 set (o1 := outside_interval a b) in *.
 set (o2 := outside_interval c d) in *.
 destruct p as [q| q| ]; intros H_Qhomographic_sg_denom_nonzero.
