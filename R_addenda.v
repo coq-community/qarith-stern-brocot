@@ -10,6 +10,7 @@
 
 Require Import Reals.
 Require Import Fourier.
+Require Import Euclid. 
 
 
 Lemma Rlt_stepl:forall x y z, Rlt x y -> x=z -> Rlt z y.
@@ -395,6 +396,70 @@ Qed.
 Lemma Req_Ropp_Rdiv_minus_Rone:forall x y, y<>0 -> x=-y -> x/y =-1.
 Proof.
  intros x y Hy Hxy; subst x; unfold Rdiv; field; assumption.
+Qed.
+
+Lemma Rmax_involutive: forall q, Rmax q q = q.
+Proof.
+ intros q; unfold Rmax; destruct (Rle_dec q q); trivial.
+Qed.
+
+Lemma Rabs_Rle: forall q p : R, (- p <= q)%R -> (q <= p)%R -> (Rabs q <= p)%R.
+Proof.
+ intros q p H1 H2; assert (H_p: 0<= p); [fourier|];
+ stepr (Rmax (Rabs (-p)) (Rabs p));
+ [ apply RmaxAbs; trivial
+ | rewrite Rabs_Ropp; rewrite Rmax_involutive; apply Rabs_pos_eq; assumption].
+Qed.
+
+Lemma Rabs_Rle_1: forall q, (- 1 <= q)%R -> (q <= 1)%R -> (Rabs q <= 1)%R.
+Proof.
+ intros q H1 H2; apply Rabs_Rle; trivial.
+Qed.
+
+Lemma pow_Rle_r : forall (x y : R) (n : nat),  - x <= y -> y <= x -> pow y n <= pow x n.
+Proof.
+ intros x y n H1 H2; apply pow_maj_Rabs; apply Rabs_Rle; assumption.
+Qed.
+
+
+Lemma pow_Rle_r_1 : forall (y: R) (n : nat),  - 1 <= y -> y <= 1 -> pow y n <= 1.
+Proof.
+ intros y n H1 H2; rewrite <- pow1 with n; apply pow_Rle_r; assumption.
+Qed.
+
+Lemma pow_even_nonneg:forall (y: R) (n : nat), 0 <= pow y (2*n)%nat.
+Proof.
+ induction n; simpl.
+  auto with real.
+  replace (n + S (n + 0))%nat with (S (2*n)%nat); [|omega].
+  simpl.
+  stepr ((y*y)*(pow y (2*n)%nat)); [|simpl;ring].
+  apply Rle_mult_nonneg_nonneg; [apply Rmult_mult_nonneg|apply IHn].
+Qed.
+
+Lemma pow_Rle_l_1 : forall (y: R) (n : nat),  - 1 <= y -> y <= 1 -> -1 <= pow y n.
+Proof.
+ intros y n.
+ assert (H2:(2 > 0)%nat); [omega|].
+ destruct (modulo 2 H2 n) as [[|[|r]] [k [Hk1 Hk2]]]; intros hyp1 hyp2.
+ 3: inversion Hk2; inversion H0; contradict H3;auto with arith.
+  rewrite Hk1.
+  replace (k * 2 + 0)%nat with (2*k)%nat; [|omega].
+  apply Rle_trans with 0; [ fourier | apply pow_even_nonneg].
+
+  rewrite Hk1.
+  replace (k * 2 + 1)%nat with (S(2*k)%nat);[|omega].
+  generalize (pow_even_nonneg y k).
+  simpl.
+  intros hyp3.
+  destruct (Rtrichotomy_inf y 0) as [[H|H]|H].
+   apply Rle_trans with (- (pow y (k + (k + 0)))).
+    apply Ropp_le_contravar; apply pow_Rle_r_1; assumption.
+    stepl ((-1)  * (pow y (k + (k + 0)))); [apply Rmult_le_compat_r; assumption|ring].
+
+   subst y; stepr 0; [fourier |ring].
+   stepr (pow y (S(2*k)%nat)); trivial.
+   apply Rle_trans with 0;[|apply pow_le]; fourier.
 Qed.
 
 Lemma conjL_range_l:forall r, -1 <= r -> -1<= (r-1)/(r+3).
