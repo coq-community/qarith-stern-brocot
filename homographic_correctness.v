@@ -136,10 +136,10 @@ Proof.
  apply f_equal with nat.
  apply pred_nat_equal.
  (* 2 *)
- generalize (Zlt_minus n m z0).
+ generalize (Zlt_minus n m l0).
  intro Hmn.
  rewrite
-  (encoding_algorithm_1 m n Hm Hn (fractionalacc1 m n z z0 f) z0 z Hmn f)
+  (encoding_algorithm_1 m n Hm Hn (fractionalacc1 m n l l0 f) l0 l Hmn f)
   .
  rewrite plus_Sn_m.
  rewrite Qpositive_c_dL.
@@ -148,7 +148,7 @@ Proof.
  rewrite
   Qpositive_c_equal with (p' := S (pred_nat m Hm) + S (pred_nat (n - m) Hmn));
   try auto with arith.
- rewrite (encoding_algorithm_equal m (n - m) z Hm Hmn Hmn f f).
+ rewrite (encoding_algorithm_equal m (n - m) l Hm Hmn Hmn f f).
  apply H.
  repeat rewrite absolu_pred_nat.
  replace (pred_nat m Hm) with (Zabs_nat (m - 1)). 
@@ -158,10 +158,10 @@ Proof.
  repeat rewrite absolu_pred_nat.
  apply lt_absolu; try abstract omega.
  (* 3 *)
- generalize (Zlt_minus m n z0).
+ generalize (Zlt_minus m n l0).
  intro Hmn.
  rewrite
-  (encoding_algorithm_2 m n Hm Hn (fractionalacc2 m n z z0 f) z0 Hmn z f)
+  (encoding_algorithm_2 m n Hm Hn (fractionalacc2 m n l l0 f) l0 Hmn l f)
   .
  rewrite plus_Sn_m.
  rewrite Qpositive_c_nR.
@@ -170,7 +170,7 @@ Proof.
  rewrite
   Qpositive_c_equal with (p' := S (pred_nat (m - n) Hmn) + S (pred_nat n Hn));
   try auto with arith.
- rewrite (encoding_algorithm_equal (m - n) n Hmn Hmn z Hn f f).
+ rewrite (encoding_algorithm_equal (m - n) n Hmn Hmn l Hn f f).
  apply H.
  repeat rewrite absolu_pred_nat.
  replace (pred_nat m Hm) with (Zabs_nat (m - 1)). 

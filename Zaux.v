@@ -345,7 +345,7 @@ Lemma quadro_leq_inf :
 Proof.
  intros.
  case (Z_lt_le_dec a c).
- intro.
+ intro z.
  right.
  intro. 
  elim H.
@@ -355,7 +355,7 @@ Proof.
  assumption.
  intro.
  case (Z_lt_le_dec b d).
- intro.
+ intro z0.
  right. 
  intro. 
  elim H.
@@ -1501,7 +1501,7 @@ Proof.
   [ replace (Zabs_nat x) with (Zabs_nat (x - 1 + 1));
      [ idtac | apply f_equal with Z; abstract auto with zarith ];
      rewrite absolu_plus;
-     [ unfold Zabs_nat at 2, nat_of_P, Pmult_nat in |- *; abstract omega
+     [ unfold Zabs_nat at 2, nat_of_P, Piter_op in |- *; abstract omega
      | abstract auto with zarith
      | intro; discriminate ]
   | rewrite <- H1; reflexivity ].
@@ -2866,7 +2866,7 @@ Proof.
  case (Z_lt_ge_dec n m).
  unfold Zmin in |- *.
  unfold Zlt in |- *.
- intro.
+ intro z.
  rewrite z.
  left.
  reflexivity.
@@ -2874,7 +2874,7 @@ Proof.
  cut ({(n > m)%Z} + {n = m :>Z}).
  intro.
  case H.
- intros.
+ intros z0.
  unfold Zmin in |- *.
  unfold Zgt in z0.
  rewrite z0.

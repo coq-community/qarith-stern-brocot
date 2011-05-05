@@ -186,7 +186,7 @@ set (s := (Zsgn m * Zsgn n)%Z) in *.
 case (Z_dec s 0).
  intro.  
  case s0. 
-  intro.
+  intro z.
   refine (Qneg (positive_fraction_encoding (Zabs m) (Zabs n) _ _)). 
   apply Zabs_11.
   generalize (Zorder.Zlt_not_eq _ _ z).
@@ -200,7 +200,7 @@ case (Z_dec s 0).
   apply Zabs_11.
   assumption.
  
-  intro.
+  intro z.
   refine (Qpos (positive_fraction_encoding (Zabs m) (Zabs n) _ _)).  
   apply Zabs_11.
   generalize (Zgt_not_eq _ _ z).
