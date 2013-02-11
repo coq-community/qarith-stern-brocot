@@ -44,9 +44,7 @@ Proof.
   | idtac ]; intro H'; try intros; right;
   intros (Hafbe, (Hbgcf, (Hchgd, (Hagce, (Hahde, Hbhdf))))); 
   apply H'; assumption.
-Defined.  
-
-
+Qed.
 
 Lemma Qquadratic_sign_tuple_equal :
  forall (l1 a1 b1 c1 d1 e1 f1 g1 h1 : Z) (x1 y1 : Qpositive)
@@ -60,125 +58,121 @@ Lemma Qquadratic_sign_tuple_equal :
 Proof.
  intros.
  inversion H; (repeat split; reflexivity).
-Defined. 
-
+Qed.
 
 (* Proof by case analysis: 81 cases in 6 line :-) *)
 
 Lemma outside_square_1 :
  forall a b c d : Z, (2 < outside_square a b c d)%Z -> (0 < a + b + c + d)%Z.
 Proof.
- abstract (intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
+intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
             repeat rewrite Zplus_0_r; repeat rewrite Zplus_0_l; 
-            intro H; first [ discriminate H | repeat constructor ]).
-Defined.
+            intro H; first [ discriminate H | repeat constructor ].
+Qed.
 
 Lemma outside_square_2 :
  forall a b c d : Z, (outside_square a b c d < -2)%Z -> (a + b + c + d < 0)%Z.
 Proof.
- abstract (intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
+intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
             repeat rewrite Zplus_0_r; repeat rewrite Zplus_0_l; 
-            intro H; first [ discriminate H | repeat constructor ]).
-Defined.
-
+            intro H; first [ discriminate H | repeat constructor ].
+Qed.
 
 Lemma outside_square_3 :
  forall a b c d : Z, (2 < outside_square a b c d)%Z -> (0 <= a)%Z.
 Proof.
- abstract (intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
+intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
             repeat rewrite Zplus_0_r; repeat rewrite Zplus_0_l; 
             intro H; first
             [ intro H_discriminate_me; discriminate H_discriminate_me
             | discriminate H
             | repeat constructor
-            | apply Zero_le_Qpos ]).
-Defined.
+            | apply Zero_le_Qpos ].
+Qed.
 
 Lemma outside_square_4 :
  forall a b c d : Z, (2 < outside_square a b c d)%Z -> (0 <= b)%Z.
 Proof.
- abstract (intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
+intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
             repeat rewrite Zplus_0_r; repeat rewrite Zplus_0_l; 
             intro H; first
             [ intro H_discriminate_me; discriminate H_discriminate_me
             | discriminate H
             | repeat constructor
-            | apply Zero_le_Qpos ]).
-Defined.
+            | apply Zero_le_Qpos ].
+Qed.
 
 Lemma outside_square_5 :
  forall a b c d : Z, (2 < outside_square a b c d)%Z -> (0 <= c)%Z.
 Proof.
- abstract (intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
+intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
             repeat rewrite Zplus_0_r; repeat rewrite Zplus_0_l; 
             intro H; first
             [ intro H_discriminate_me; discriminate H_discriminate_me
             | discriminate H
             | repeat constructor
-            | apply Zero_le_Qpos ]).
-Defined.
+            | apply Zero_le_Qpos ].
+Qed.
 
 Lemma outside_square_6 :
  forall a b c d : Z, (2 < outside_square a b c d)%Z -> (0 <= d)%Z.
 Proof.
- abstract (intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
+intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
             repeat rewrite Zplus_0_r; repeat rewrite Zplus_0_l; 
             intro H; first
             [ intro H_discriminate_me; discriminate H_discriminate_me
             | discriminate H
             | repeat constructor
-            | apply Zero_le_Qpos ]).
-Defined.
+            | apply Zero_le_Qpos ].
+Qed.
 
 Lemma outside_square_7 :
  forall a b c d : Z, (outside_square a b c d < -2)%Z -> (a <= 0)%Z.
 Proof.
- abstract (intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
+intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
             repeat rewrite Zplus_0_r; repeat rewrite Zplus_0_l; 
             intro H; first
             [ intro H_discriminate_me; discriminate H_discriminate_me
             | discriminate H
             | repeat constructor
-            | apply Zero_le_Qpos ]).
-Defined.
+            | apply Zero_le_Qpos ].
+Qed.
 
 Lemma outside_square_8 :
  forall a b c d : Z, (outside_square a b c d < -2)%Z -> (b <= 0)%Z.
 Proof.
- abstract (intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
+intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
             repeat rewrite Zplus_0_r; repeat rewrite Zplus_0_l; 
             intro H; first
             [ intro H_discriminate_me; discriminate H_discriminate_me
             | discriminate H
             | repeat constructor
-            | apply Zero_le_Qpos ]).
-Defined.
+            | apply Zero_le_Qpos ].
+Qed.
 
 Lemma outside_square_9 :
  forall a b c d : Z, (outside_square a b c d < -2)%Z -> (c <= 0)%Z.
 Proof.
- abstract (intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
+intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
             repeat rewrite Zplus_0_r; repeat rewrite Zplus_0_l; 
             intro H; first
             [ intro H_discriminate_me; discriminate H_discriminate_me
             | discriminate H
             | repeat constructor
-            | apply Zero_le_Qpos ]).
-Defined.
+            | apply Zero_le_Qpos ].
+Qed.
 
 Lemma outside_square_10 :
  forall a b c d : Z, (outside_square a b c d < -2)%Z -> (d <= 0)%Z.
 Proof.
- abstract (intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
+intros [| pa| pa] [| pb| pb] [| pc| pc] [| pd| pd];
             repeat rewrite Zplus_0_r; repeat rewrite Zplus_0_l; 
             intro H; first
             [ intro H_discriminate_me; discriminate H_discriminate_me
             | discriminate H
             | repeat constructor
-            | apply Zero_le_Qpos ]).
-Defined.
-
-
+            | apply Zero_le_Qpos ].
+Qed.
 
 Lemma inside_square_1_inf :
  forall o1 o2 : Z,
@@ -186,7 +180,7 @@ Lemma inside_square_1_inf :
  {(2 < o1)%Z /\ (2 < o2)%Z} + {(o1 < -2)%Z /\ (o2 < -2)%Z}.
 Proof.
  intros o1 o2 H.
- abstract (case (Z_lt_dec 2 o1); intros Ho1;
+ case (Z_lt_dec 2 o1); intros Ho1;
             [ case (Z_lt_dec 2 o2); intros Ho2;
                [ left; split; assumption | idtac ]
             | case (Z_lt_dec o1 (-2)); intros Ho1';
@@ -204,9 +198,8 @@ Proof.
                     apply Zlt_trans with (Zneg X1);
                     constructor || apply Zlt_trans with X2; 
                     assumption
-               end).
-Defined.       
-   
+               end.
+Qed.
 
 Lemma inside_square_2_inf :
  forall o1 o2 : Z,
@@ -214,7 +207,7 @@ Lemma inside_square_2_inf :
  {(2 < o1)%Z /\ (o2 < -2)%Z} + {(o1 < -2)%Z /\ (2 < o2)%Z}.
 Proof.
  intros o1 o2 H.
- abstract (case (Z_lt_dec 2 o1); intros Ho1;
+ case (Z_lt_dec 2 o1); intros Ho1;
             [ case (Z_lt_dec o2 (-2)); intros Ho2;
                [ left; split; assumption | idtac ]
             | case (Z_lt_dec o1 (-2)); intros Ho1';
@@ -232,9 +225,8 @@ Proof.
                     apply Zlt_trans with (Zneg X1);
                     constructor || apply Zlt_trans with X2; 
                     assumption
-               end).
-Defined.       
-   
+               end.
+Qed.
 
 Lemma Qquadratic_sign_pos_1 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1790,7 +1782,7 @@ Proof.
        H_Qhomographic_sg_denom_nonzero na_ nb_ nc_ nd_ l3); 
    rewrite hl; fold L3 in |- *; repeat (apply pair_2; try reflexivity);
    discriminate || reflexivity.
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_pos_2 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -4021,7 +4013,7 @@ Proof.
   intros [[(H_a, (H_b, (H_c, H_d)))| (H_a, (H_b, (H_c, H_d)))]| H_l3]; left;
    left; [ left; left; right | left; right | right ]; 
    repeat split; assumption.
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_neg_1 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -5584,10 +5576,7 @@ Proof.
        H_Qhomographic_sg_denom_nonzero na_ nb_ nc_ nd_ l3); 
    rewrite hl; fold L3 in |- *; repeat (apply pair_2; try reflexivity);
    discriminate || reflexivity.
-Defined.
-
-
-
+Qed.
 
 Lemma Qquadratic_sign_neg_2 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -7820,4 +7809,4 @@ Proof.
   intros [[(H_a, (H_b, (H_c, H_d)))| (H_a, (H_b, (H_c, H_d)))]| H_l3]; left;
    left; [ left; left; right | left; right | right ]; 
    repeat split; assumption.
-Defined.
+Qed.

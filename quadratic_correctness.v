@@ -74,7 +74,7 @@ Proof.
  unfold spec_Qquadratic_Qpositive_to_Q in |- *. 
  abstract (apply f_equal2 with Q Q; solve
             [ ring | apply f_equal with Q; ring ]).
-Defined. 
+Qed. 
 
 Lemma spec_Qquadratic_Qpositive_to_Qpositive2_commut :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive),
@@ -86,7 +86,7 @@ Proof.
  abstract (apply f_equal2 with Qpositive Qpositive;
             try apply f_equal with Qpositive; apply f_equal with Q; 
             ring). 
-Defined. 
+Qed. 
 
 
 Lemma spec_Qquadratic_Qpositive_to_Q_p_One :
@@ -98,7 +98,7 @@ Proof.
   unfold spec_Qhomographic_Qpositive_to_Q, spec_Qquadratic_Qpositive_to_Q
    in |- *; repeat rewrite Z_to_Qplus; apply f_equal2 with Q Q;
   [ ring | apply f_equal with Q; ring ].
-Defined.
+Qed.
 
 
 Lemma spec_Qquadratic_Qpositive_to_Q_p_One_unfolded :
@@ -126,7 +126,7 @@ Proof.
   unfold spec_Qhomographic_Qpositive_to_Q, spec_Qquadratic_Qpositive_to_Q
    in |- *; repeat rewrite Z_to_Qplus; apply f_equal2 with Q Q;
   [ ring | apply f_equal with Q; ring ].
-Defined.
+Qed.
 
 
 Lemma spec_Qquadratic_Qpositive_to_Q_One_p_unfolded :
@@ -162,7 +162,7 @@ Proof.
  abstract ring.
  apply f_equal with Q.
  abstract ring.
-Defined.
+Qed.
 
 Lemma spec_Qquadratic_Qpositive_to_Q_nR_nR_unfolded :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive),
@@ -207,7 +207,7 @@ Opaque Qmult Qplus Qinv Qone.
             rewrite Qpos_dL; apply f_equal2 with Q Q;
             [ field | apply f_equal with Q; field ]; 
             discriminate).
-Defined.
+Qed.
 
 
 Lemma spec_Qquadratic_Qpositive_to_Q_nR_dL_unfolded :
@@ -252,7 +252,7 @@ Proof.
             [ replace (e + f + g + h)%Z with (e + g + f + h)%Z;
                [ reflexivity | ring ]
             | ring ]).
-Defined.
+Qed.
 
 
 Lemma spec_Qquadratic_Qpositive_to_Q_dL_nR_unfolded :
@@ -302,7 +302,7 @@ Proof.
             repeat rewrite Z_to_Qplus; do 2 rewrite Qpos_dL;
             apply f_equal2 with Q Q; [ field | apply f_equal with Q; field ];
             split; discriminate).
-Defined.
+Qed.
 
 
 Lemma spec_Qquadratic_Qpositive_to_Q_dL_dL_unfolded :
@@ -343,7 +343,7 @@ Proof.
             apply f_equal2 with Qpositive Qpositive;
             try apply f_equal with Qpositive; apply f_equal with Q;
             abstract ring).
-Defined.
+Qed.
 
 
 Lemma spec_Qquadratic_Qpositive_to_Qpositive2_nR_dL :
@@ -387,7 +387,7 @@ Proof.
             apply f_equal with Q; apply f_equal2 with Q Q;
             [ field | apply f_equal with Q; field ]; 
             discriminate).
-Defined.  
+Qed.  
 
 
 
@@ -417,7 +417,7 @@ Proof.
   replace (a + b + c + d)%Z with (a + c + b + d)%Z;
   [ replace (e + f + g + h)%Z with (e + g + f + h)%Z; [ reflexivity | ring ]
   | ring ].
-Defined.
+Qed.
 
 
 Lemma spec_Qquadratic_Qpositive_to_Qpositive2_dL_dL :
@@ -471,7 +471,7 @@ Proof.
             apply f_equal with Q; apply f_equal2 with Q Q;
             [ field | apply f_equal with Q; field ]; 
             split; discriminate).
-Defined.
+Qed.
 
 
 Lemma spec_Qquadratic_Qpositive_to_Qpositive2_nR_emission :
@@ -515,7 +515,7 @@ Proof.
  abstract (field; assumption).
  apply Qlt_mult_pos_pos; try apply Qinv_pos; assumption.
  apply Qlt_zero_one.
-Defined.
+Qed.
 
 
 Lemma spec_Qquadratic_Qpositive_to_Qpositive2_dL_emission :
@@ -604,7 +604,7 @@ Proof.
  assumption.
 
  abstract (field; repeat rewrite Z_to_Qminus in Habcdefgh'; assumption).
-Defined.
+Qed.
 
 
 Lemma outside_square_correct_1 :
@@ -648,7 +648,7 @@ Proof.
             try (repeat apply Qle_mult_nonneg_nonneg; try auto with *);
             replace Zero with (Z_to_Q 0); trivial;
             apply Z_to_Qle || apply Z_to_Qlt; assumption).
-Defined.
+Qed.
 
 Lemma outside_square_correct_2 :
  forall (a b c d : Z) (p1 p2 : Qpositive),
@@ -693,7 +693,7 @@ Proof.
             try (repeat apply Qle_mult_nonpos_nonneg; try auto with *);
             replace Zero with (Z_to_Q 0); trivial;
             apply Z_to_Qle || apply Z_to_Qlt; assumption).
-Defined.
+Qed.
 
 
 Ltac Inside_Square_Qsgn_ p1 p2 :=
@@ -1625,7 +1625,7 @@ Qquadratic_signok_3 with Qquadratic_signok_4
       H_Qhomographic_sg_denom_nonzero).
   reflexivity.
 (* End CHUNK 7 *)
-Defined.
+Qed.
 
 
 
@@ -1877,7 +1877,7 @@ Proof.
             split; apply Qlt_mult_pos_pos; try assumption; 
             apply Qinv_pos; apply Qlt_mult_pos_pos; 
             apply Qlt_plus_pos_pos; abstract auto with *).
-Defined. 
+Qed. 
 
 Lemma quadraticAcc_positive_numerator :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive),
@@ -1889,7 +1889,7 @@ Lemma quadraticAcc_positive_numerator :
          (Qmult c (Qpos p2))) d).
 Proof.
  intros; elim (quadraticAcc_positive _ _ _ _ _ _ _ _ _ _ H); trivial.
-Defined.
+Qed.
 
 Lemma quadraticAcc_positive_denominator :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive),
@@ -1901,7 +1901,7 @@ Lemma quadraticAcc_positive_denominator :
          (Qmult g (Qpos p2))) h).
 Proof.
  intros; elim (quadraticAcc_positive _ _ _ _ _ _ _ _ _ _ H); trivial.
-Defined.
+Qed.
 
 Lemma quadratic_output_bit :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1999,7 +1999,7 @@ Proof.
   rewrite spec_Qquadratic_Qpositive_to_Qpositive2_dL_dL;
   reflexivity || apply Qlt_not_eq; repeat rewrite <- Z_to_Qplus; 
   assumption.
-Defined.
+Qed.
 
 
 Lemma
@@ -2030,7 +2030,7 @@ Proof.
  rewrite H_absurd in H.
  rewrite Qmult_sym in H.
  discriminate H.
-Defined.
+Qed.
 
 (** We use this when (Zsgn a+b+c+d)<0 *)
 Lemma
@@ -2078,7 +2078,7 @@ Proof.
  rewrite H_absurd in H.
  rewrite Qmult_sym in H.
  discriminate H.
-Defined.
+Qed.
 
 (** We use this when 0<=(Zsgn a+b+c+d) *)
 Lemma
@@ -2134,7 +2134,7 @@ Proof.
  rewrite H_absurd in H.
  rewrite Qmult_sym in H.
  discriminate H.
-Defined.
+Qed.
 
 (** Here we don't require that ap1p2+bp1+cp2+d<>0, maybe we should! but the lemma is true anyway! *) 
 Lemma spec_Qquadratic_Qpositive_to_Q_Zopp :
@@ -2150,7 +2150,7 @@ Proof.
  repeat rewrite <- Qopp_plus.
  rewrite Qinv_Qopp.
  abstract ring.
-Defined. 
+Qed. 
 
 
 (** Here we don't require that ap1p2+bp1+cp2+d<>0, maybe we should! but the lemma is true anyway! *) 
@@ -2165,7 +2165,7 @@ Proof.
  repeat rewrite Qmult_Qopp_left.
  repeat rewrite <- Qopp_plus.
  apply Qmult_Qopp_left.
-Defined.
+Qed.
  
 Lemma spec_Qquadratic_Qpositive_to_Q_Zopp_3 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive),
@@ -2176,7 +2176,7 @@ Proof.
   repeat rewrite Z_to_Qopp; repeat rewrite Qmult_Qopp_left;
   repeat rewrite <- Qopp_plus; rewrite Qinv_Qopp; rewrite Qmult_sym;
   rewrite Qmult_Qopp_left; rewrite Qmult_sym; reflexivity.
-Defined.
+Qed.
 
 
 Lemma Qquadratic_sign_pres_fraction :
@@ -2879,7 +2879,7 @@ Qquadratic_signok_3 with Qquadratic_signok_4
   clear L3 l1 l2 l3 na nb nc nd; apply f_equal2 with Q Q;
    try apply f_equal with Q; abstract ring.
 (* End CHUNK 7 *)
-Defined.
+Qed.
 
 
 Lemma Qquadratic_sg_denom_nonzero_correct_1 :
@@ -2939,7 +2939,7 @@ Proof.
                  (Qinv (Qmult (Qplus (Qpos p1) Qone) (Qplus (Qpos p2) Qone)))
                  IHH_Qquadratic_sg_denom_nonzero);
              [ discriminate | rewrite <- H; field; split; discriminate ]).
-Defined.
+Qed.
 
 Lemma Qquadratic_sg_denom_nonzero_correct_2 :
  forall (e f g h : Z) (p1 p2 : Qpositive),
@@ -3039,7 +3039,7 @@ Proof.
   intro H'; apply H.
   rewrite <- H'.
   abstract ring.
-Defined.
+Qed.
 
 
 Lemma a_field_equality_2 :
@@ -3080,7 +3080,7 @@ Proof.
    rewrite H4; ring.
  replace (Qmult (Qmult f p1) a) with (Qmult (Qmult a f) p1) by ring;
    rewrite H1; ring.
-Defined.
+Qed.
 
 
 Lemma a_field_equality_3 :
@@ -3121,7 +3121,7 @@ Proof.
  replace (Qmult (Qmult g p2) b) with (Qmult (Qmult b g) p2) by ring;
    rewrite H2; ring.
  ring.
-Defined.
+Qed.
 
 
 Lemma a_field_equality_4 :
@@ -3162,7 +3162,7 @@ Proof.
  ring.
  replace (Qmult (Qmult f p1) c) with (Qmult (Qmult c f) p1) by ring;
    rewrite <- H3; ring.
-Defined.
+Qed.
 
 
 Lemma a_field_equality_5 :
@@ -3203,7 +3203,7 @@ Proof.
    rewrite <- H3; ring.
  replace (Qmult (Qmult f p1) d) with (Qmult (Qmult d f) p1) by ring;
    rewrite <- H6; ring.
-Defined.
+Qed.
 
 
 Lemma quadratic_positive_input :
@@ -3353,7 +3353,7 @@ Proof.
      rewrite <-
       (quadratic_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero)
       ; assumption ].
-Defined.
+Qed.
 
 
 Lemma quadratic :
@@ -3425,7 +3425,7 @@ Proof.
  apply f_equal2 with Q Q; [ idtac | apply f_equal with Q ];
   apply f_equal2 with Q Q; trivial; repeat rewrite Z_to_Qopp;
   repeat rewrite <- Qmult_neg; abstract ring.
-Defined.
+Qed.
 
 
 
@@ -3511,7 +3511,7 @@ Proof.
  repeat rewrite Z_to_Qopp.
  repeat rewrite Qopp_Qpos.
  abstract ring.
-Defined. 
+Qed. 
 
 Lemma Qquadratic_denom_nonzero_correct_2 :
  forall (e f g h : Z) (q1 q2 : Q),
@@ -3603,7 +3603,7 @@ Proof.
  repeat rewrite <- Qmult_neg.
  rewrite <- H.
  abstract ring.
-Defined. 
+Qed. 
 
  
 Theorem quadratic_algorithm_is_correct :
@@ -3623,4 +3623,4 @@ Proof.
   apply
    (quadratic a b c d e f g h q1 q2
       (Qquadratic_denom_nonzero_correct_2 e f g h q1 q2 H_denom)).
-Defined.
+Qed.

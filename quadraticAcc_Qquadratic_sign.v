@@ -374,7 +374,7 @@ Proof.
        | discriminate H_discriminate_me ] ].
    (* np2 = One *)
    apply homographicacc0; reflexivity || omega. 
-Defined.
+Qed.
 
 
 
@@ -635,7 +635,7 @@ Proof.
        | discriminate H_discriminate_me ] ].
    (* np2 = One *)
    apply homographicacc0; reflexivity || omega. 
-Defined.
+Qed.
 
 
 Lemma Qquadratic_Qpositive_to_Q_quadraticAcc_neg_1 :
@@ -858,7 +858,7 @@ Proof.
     |  (* Here we use the third clause in Qquadratic_sign_neg_2:  p1=One /\ .... *) 
        (* np2 = One *)
        apply homographicacc0; reflexivity || omega ]). 
-Defined.
+Qed.
 
 
 
@@ -1083,4 +1083,4 @@ Proof.
     |  (* Here we use the third clause in Qquadratic_sign_neg_2:  p1=One /\ .... *) 
        (* np2 = One *)
        apply homographicacc0; reflexivity || omega ]). 
-Defined.
+Qed.

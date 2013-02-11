@@ -38,7 +38,7 @@ Proof.
   | intro; right; intros (H, (H1, H2)); Falsum ].
  intro; right; intros (H, (H1, H2)); Falsum.
  intro; right; intros (H, (H1, H2)); Falsum.
-Defined. 
+Defined.
 
 
 Definition inside_square_1 (o1 o2 : Z) :=
@@ -109,7 +109,7 @@ Proof.
  assumption.
  intros (H1, H2).
  assumption.
-Defined.
+Qed.
 
 Lemma inside_square_2_dec_inf :
  forall o1 o2 : Z, {inside_square_2 o1 o2} + {~ inside_square_2 o1 o2}.
@@ -173,7 +173,7 @@ Proof.
  assumption.
  intros (H1, H2).
  assumption.
-Defined.
+Qed.
 
 
 Inductive Qquadratic_sg_denom_nonzero :
@@ -620,7 +620,7 @@ destruct p1 as [xs| xs| ].
  set (nc := fst (snd (snd l2))) in *.
  set (nd := snd (snd (snd l2))) in *.
  exact (l1, (0%Z, (0%Z, (na, nb)), (0%Z, (0%Z, (nc, nd))), (One, l3))).
-Defined. 
+Defined.
 
 Scheme Qquadratic_sg_denom_nonzero_inv_dep :=
   Induction for Qquadratic_sg_denom_nonzero Sort Prop.
@@ -711,7 +711,7 @@ Proof.
   simpl in |- *.
   rewrite H.
   reflexivity.
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_equal_strong :
  forall (a1 a2 b1 b2 c1 c2 d1 d2 e1 e2 f1 f2 g1 g2 h1 h2 : Z)
@@ -736,7 +736,7 @@ Proof.
    match goal with
    | id1:(?X1 = ?X2) |- ?X3 => rewrite <- id1; clear id1
    end; intro; apply Qquadratic_sign_equal.
-Defined.
+Qed.
 
 
 Lemma Qquadratic_sign_One_y :
@@ -764,7 +764,7 @@ Proof.
                          (H2 := H_Qhomographic_sg_denom_nonzero).
  rewrite <- H.
  reflexivity.
-Defined.
+Qed.
 
 
 Lemma Qquadratic_sign_nRdL_One :
@@ -806,7 +806,7 @@ Proof.
  rewrite <- H.
  reflexivity.
  Falsum.
-Defined.  
+Qed.  
 
 Lemma Qquadratic_sign_nR_One_1 :
  forall (a b c d e f g h : Z) (p1 xs p2 : Qpositive)
@@ -838,7 +838,7 @@ Proof.
                          (H2 := H_Qhomographic_sg_denom_nonzero0).
  rewrite <- H2.
  reflexivity.
-Defined.  
+Qed.  
 
 Lemma Qquadratic_sign_nR_One_2 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -868,7 +868,7 @@ Proof.
                          (H2 := H_Qhomographic_sg_denom_nonzero).
  rewrite <- H.
  reflexivity.
-Defined.  
+Qed.  
 
 Lemma Qquadratic_sign_dL_One_1 :
  forall (a b c d e f g h : Z) (p1 xs p2 : Qpositive)
@@ -900,7 +900,7 @@ Proof.
                          (H2 := H_Qhomographic_sg_denom_nonzero0).
  rewrite <- H2.
  reflexivity.
-Defined.  
+Qed.  
 
 Lemma Qquadratic_sign_dL_One_2 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -930,7 +930,7 @@ Proof.
                          (H2 := H_Qhomographic_sg_denom_nonzero).
  rewrite <- H.
  reflexivity.
-Defined.  
+Qed.  
 
 Lemma Qquadratic_sign_nRdL_nRdL_1 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -951,7 +951,7 @@ Proof.
           [ intro; reflexivity | intro H3; Falsum ]
        | intro H3; Falsum ]) in
     (destruct p2 as [q0| q0| ]; [ T_local | T_local | Falsum ]).
-Defined. 
+Qed. 
 
 Lemma Qquadratic_sign_nRdL_nRdL_2 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -975,7 +975,7 @@ Proof.
              [ intro; reflexivity | intro H4; Falsum ] ]
        | intro H4; Falsum ]) in
     (destruct p2 as [q0| q0| ]; [ T_local | T_local | Falsum ]).
-Defined.
+Qed.
 
 
 Lemma Qquadratic_sign_nRdL_nRdL_3 :
@@ -1003,7 +1003,7 @@ Proof.
                 [ intro; reflexivity | intro H5; Falsum ] ] ]
        | intro H5; Falsum ]) in
     (destruct p2 as [q0| q0| ]; [ T_local | T_local | Falsum ]).
-Defined.
+Qed.
 
 
 Lemma Qquadratic_sign_nR_nR_4 :
@@ -1046,7 +1046,7 @@ Proof.
        apply Qquadratic_sign_equal.
   intro H5.
   Falsum.
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_nR_dL_4 :
  forall (a b c d e f g h : Z) (p1 xs p2 ys : Qpositive)
@@ -1089,7 +1089,7 @@ Proof.
        apply Qquadratic_sign_equal.
   intro H5.
   Falsum.
-Defined.
+Qed.
 
 
 Lemma Qquadratic_sign_dL_nR_4 :
@@ -1132,7 +1132,7 @@ Proof.
        apply Qquadratic_sign_equal.
   intro H5.
   Falsum.
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_dL_dL_4 :
  forall (a b c d e f g h : Z) (p1 xs p2 ys : Qpositive)
@@ -1174,7 +1174,7 @@ Proof.
        apply Qquadratic_sign_equal.
   intro H5.
   Falsum.
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_nRdL_nRdL_5 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1198,7 +1198,7 @@ Proof.
              [ reflexivity | Falsum ]
           | Falsum ] ]) in
     (destruct p2 as [q0| q0| ]; [ T_local | T_local | Falsum ]).
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_nRdL_nRdL_6 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1225,7 +1225,7 @@ Proof.
                 [ reflexivity | Falsum ] ]
           | Falsum ] ]) in
     (destruct p2 as [q0| q0| ]; [ T_local | T_local | Falsum ]).
-Defined.
+Qed.
 
 
 Lemma Qquadratic_sign_nR_nR_7 :
@@ -1255,7 +1255,7 @@ Proof.
         | case (Z_lt_dec (outside_square a b c d) (-2)); intro Ho1';
            [ Falsum | apply Qquadratic_sign_equal ] ]
      | Falsum ] ].
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_nR_dL_7 :
  forall (a b c d e f g h : Z) (p1 xs p2 ys : Qpositive)
@@ -1285,7 +1285,7 @@ Proof.
         | case (Z_lt_dec (outside_square a b c d) (-2)); intro Ho1';
            [ Falsum | apply Qquadratic_sign_equal ] ]
      | Falsum ] ].
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_dL_nR_7 :
  forall (a b c d e f g h : Z) (p1 xs p2 ys : Qpositive)
@@ -1314,7 +1314,7 @@ Proof.
         | case (Z_lt_dec (outside_square a b c d) (-2)); intro Ho1';
            [ Falsum | apply Qquadratic_sign_equal ] ]
      | Falsum ] ].
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_dL_dL_7 :
  forall (a b c d e f g h : Z) (p1 xs p2 ys : Qpositive)
@@ -1343,7 +1343,7 @@ Proof.
         | case (Z_lt_dec (outside_square a b c d) (-2)); intro Ho1';
            [ Falsum | apply Qquadratic_sign_equal ] ]
      | Falsum ] ].
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_nRdL_nRdL_8 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1369,7 +1369,7 @@ Proof.
                 (outside_square e f g h)); intro H_inside_1;
              [ reflexivity | Falsum ] ] ]) in
     (destruct p2 as [q0| q0| ]; [ T_local | T_local | Falsum ]).
-Defined.
+Qed.
 
 
 
@@ -1402,7 +1402,7 @@ Proof.
                    (outside_square e f g h)); intro H_inside_2;
                 [ reflexivity | Falsum ] ] ] ]) in
     (destruct p2 as [q0| q0| ]; [ T_local | T_local | Falsum ]).
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_nR_nR_10 :
  forall (a b c d e f g h : Z) (p1 xs p2 ys : Qpositive)
@@ -1435,7 +1435,7 @@ Proof.
            (inside_square_2_dec_inf (outside_square a b c d)
               (outside_square e f g h)); intro H_inside_2;
            [ Falsum | apply Qquadratic_sign_equal ] ] ] ].
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_nR_dL_10 :
  forall (a b c d e f g h : Z) (p1 xs p2 ys : Qpositive)
@@ -1469,7 +1469,7 @@ Proof.
            (inside_square_2_dec_inf (outside_square a b c d)
               (outside_square e f g h)); intro H_inside_2;
            [ Falsum | apply Qquadratic_sign_equal ] ] ] ].
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_dL_nR_10 :
  forall (a b c d e f g h : Z) (p1 xs p2 ys : Qpositive)
@@ -1502,7 +1502,7 @@ Proof.
            (inside_square_2_dec_inf (outside_square a b c d)
               (outside_square e f g h)); intro H_inside_2;
            [ Falsum | apply Qquadratic_sign_equal ] ] ] ].
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_dL_dL_10 :
  forall (a b c d e f g h : Z) (p1 xs p2 ys : Qpositive)
@@ -1535,7 +1535,7 @@ Proof.
            (inside_square_2_dec_inf (outside_square a b c d)
               (outside_square e f g h)); intro H_inside_2;
            [ Falsum | apply Qquadratic_sign_equal ] ] ] ].
-Defined.
+Qed.
 
 Lemma Qquadratic_sign_sign :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -2165,7 +2165,7 @@ Proof.
    | fold L3 in |- *; repeat (apply pair_2; try reflexivity);
       discriminate || reflexivity
    | reflexivity ].
-Defined.
+Qed.
 
 Definition q_sign (a b c d e f g h : Z) (p1 p2 : Qpositive)
   (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2) :=
@@ -2187,4 +2187,4 @@ Proof.
  case (Qquadratic_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero).
  intros l1 L2.
  trivial.
-Defined.
+Qed.

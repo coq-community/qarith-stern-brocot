@@ -36,12 +36,12 @@ Ltac Falsum :=
 
 Ltac Step_l a :=
   match goal with
-  |  |- (?X1 < ?X2)%Z => replace X1 with a; [ idtac | try abstract ring ]
+  |  |- (?X1 < ?X2)%Z => replace X1 with a; [ idtac | try ring ]
   end. 
 
 Ltac Step_r a :=
   match goal with
-  |  |- (?X1 < ?X2)%Z => replace X2 with a; [ idtac | try abstract ring ]
+  |  |- (?X1 < ?X2)%Z => replace X2 with a; [ idtac | try ring ]
   end. 
 
 Ltac CaseEq formula :=
@@ -56,7 +56,7 @@ Proof.
  intros. 
  simpl in |- *.
  reflexivity.
-Defined.
+Qed.
 
 Lemma pair_2 :
  forall (A B : Set) (H1 H2 : A * B),
@@ -70,7 +70,7 @@ Proof.
  rewrite H.
  rewrite H0.
  reflexivity.
-Defined.
+Qed.
 
 
 Section projection.   
@@ -134,42 +134,42 @@ Lemma not_O_S : forall n : nat, n <> 0 -> {p : nat | n = S p}.
 Proof. 
  intros [| np] Hn; [ exists 0; apply False_ind; apply Hn | exists np ];
   reflexivity. 
-Defined.
+Qed.
   
 
 Lemma lt_minus_neq : forall m n : nat, m < n -> n - m <> 0.
 Proof.
  intros.
- abstract omega.
-Defined.
+ omega.
+Qed.
 
 Lemma lt_minus_eq_0 : forall m n : nat, m < n -> m - n = 0.
 Proof.
  intros.
- abstract omega.
-Defined.
+ omega.
+Qed.
 
 Lemma le_plus_Sn_1_SSn : forall n : nat, S n + 1 <= S (S n).
 Proof.
  intros.
- abstract omega.
-Defined.
+ omega.
+Qed.
 
 Lemma le_plus_O_l : forall p q : nat, p + q <= 0 -> p = 0.
 Proof. 
- intros; abstract omega.
-Defined.
+ intros; omega.
+Qed.
 
 Lemma le_plus_O_r : forall p q : nat, p + q <= 0 -> q = 0.
 Proof. 
- intros; abstract omega.
-Defined.
+ intros; omega.
+Qed.
 
 Lemma minus_pred : forall m n : nat, 0 < n -> pred m - pred n = m - n.
 Proof.
  intros.
- abstract omega.
-Defined.
+ omega.
+Qed.
 
 
 (*###########################################################################*)
@@ -232,7 +232,7 @@ Proof.
  apply Zge_le.
  assumption.
  assumption.
-Defined.
+Qed.
 
 Lemma Zlt_cotrans_pos :
  forall x y : Z, (0 < x + y)%Z -> {(0 < x)%Z} + {(0 < y)%Z}.
@@ -247,7 +247,7 @@ Proof.
  apply Zplus_lt_reg_l with (p := x).
  rewrite Zplus_0_r.
  assumption.
-Defined.
+Qed.
 
 
 Lemma Zlt_cotrans_neg :
@@ -256,7 +256,7 @@ Proof.
  intros x y H; case (Zlt_cotrans (x + y) 0 H x); intro Hxy;
   [ right; apply Zplus_lt_reg_l with (p := x); rewrite Zplus_0_r | left ];
   assumption.
-Defined.
+Qed.
 
 
 
@@ -279,7 +279,7 @@ Proof.
  apply H.
  symmetry  in |- *.
  assumption.
-Defined.
+Qed.
 
 Lemma Z_dec : forall x y : Z, {(x < y)%Z} + {(x > y)%Z} + {x = y}.
 Proof.
@@ -302,7 +302,7 @@ Proof.
  right.
  symmetry  in |- *.
  assumption.
-Defined.
+Qed.
  
 
 Lemma Z_dec' : forall x y : Z, {(x < y)%Z} + {(y < x)%Z} + {x = y}.
@@ -310,7 +310,7 @@ Proof.
  intros x y.
  case (Z_eq_dec x y); intro H;
   [ right; assumption | left; apply (not_Zeq_inf _ _ H) ].
-Defined.
+Qed.
 
 Lemma Z_lt_le_dec : forall x y : Z, {(x < y)%Z} + {(y <= x)%Z}.
 Proof.
@@ -323,12 +323,12 @@ Proof.
  right.
  apply Zge_le.
  assumption.
-Defined.
+Qed.
 
 Lemma Z_le_lt_dec : forall x y : Z, {(x <= y)%Z} + {(y < x)%Z}.
 Proof.
  intros; case (Z_lt_le_dec y x); [ right | left ]; assumption.
-Defined.
+Qed.
 
 Lemma Z_lt_lt_S_eq_dec :
  forall x y : Z, (x < y)%Z -> {(x + 1 < y)%Z} + {(x + 1)%Z = y}.
@@ -337,7 +337,7 @@ Proof.
  generalize (Zlt_le_succ _ _ H).
  unfold Zsucc in |- *.
  apply Z_le_lt_eq_dec.
-Defined.
+Qed.
 
 Lemma quadro_leq_inf :
  forall a b c d : Z,
@@ -368,7 +368,7 @@ Proof.
  split.
  assumption.
  assumption. 
-Defined.
+Qed.
 
 (*###########################################################################*)
 (** General auxiliary lemmata                                                *)
@@ -382,7 +382,7 @@ Proof.
  unfold Zminus in H.
  rewrite Zplus_comm.
  assumption.
-Defined.
+Qed.
 
 Lemma Zlt_minus : forall a b : Z, (b < a)%Z -> (0 < a - b)%Z.
 Proof.
@@ -396,7 +396,7 @@ Proof.
  simpl in |- *. 
  rewrite <- Zplus_0_r_reverse. 
  assumption.
-Defined.
+Qed.
 
 
 Lemma Zle_minus : forall a b : Z, (b <= a)%Z -> (0 <= a - b)%Z.
@@ -411,7 +411,7 @@ Proof.
  simpl in |- *. 
  rewrite <- Zplus_0_r_reverse. 
  assumption.
-Defined.
+Qed.
 
 Lemma Zlt_plus_plus :
  forall m n p q : Z, (m < n)%Z -> (p < q)%Z -> (m + p < n + q)%Z.
@@ -424,7 +424,7 @@ Proof.
  assumption.
  apply Zplus_lt_compat_l.
  assumption.
-Defined.
+Qed.
 
 Lemma Zgt_plus_plus :
  forall m n p q : Z, (m > n)%Z -> (p > q)%Z -> (m + p > n + q)%Z.
@@ -436,7 +436,7 @@ Lemma Zgt_plus_plus :
  assumption.
  apply Zplus_gt_compat_l.
  assumption.
-Defined.
+Qed.
 
 Lemma Zle_lt_plus_plus :
  forall m n p q : Z, (m <= n)%Z -> (p < q)%Z -> (m + p < n + q)%Z.
@@ -452,7 +452,7 @@ Proof.
  rewrite H1.
  apply Zplus_lt_compat_l.
  assumption.
-Defined.
+Qed.
 
 Lemma Zge_gt_plus_plus :
  forall m n p q : Z, (m >= n)%Z -> (p > q)%Z -> (m + p > n + q)%Z.
@@ -470,7 +470,7 @@ Proof.
  rewrite H1.
  apply Zplus_gt_compat_l.
  assumption.
-Defined.
+Qed.
 
 Lemma Zgt_ge_plus_plus :
  forall m n p q : Z, (m > n)%Z -> (p >= q)%Z -> (m + p > n + q)%Z.
@@ -482,14 +482,14 @@ Proof.
  assumption.
  assumption.
  apply Zplus_comm.
-Defined.
+Qed.
 
 Lemma Zlt_resp_pos : forall x y : Z, (0 < x)%Z -> (0 < y)%Z -> (0 < x + y)%Z.
 Proof.
  intros.
  rewrite <- Zplus_0_r with 0%Z.
  apply Zlt_plus_plus; assumption.
-Defined.
+Qed.
 
 
 Lemma Zle_resp_neg :
@@ -498,7 +498,7 @@ Proof.
  intros.
  rewrite <- Zplus_0_r with 0%Z.
  apply Zplus_le_compat; assumption.
-Defined.
+Qed.
 
 
 Lemma Zlt_pos_opp : forall x : Z, (0 < x)%Z -> (- x < 0)%Z.
@@ -508,7 +508,7 @@ Proof.
  rewrite Zplus_opp_r.
  rewrite Zplus_0_r.
  assumption.
-Defined.
+Qed.
 
 Lemma Zlt_neg_opp : forall x : Z, (x < 0)%Z -> (0 < - x)%Z.
 Proof.
@@ -517,7 +517,7 @@ Proof.
  rewrite Zplus_opp_r.
  rewrite Zplus_0_r.
  assumption.
-Defined.
+Qed.
 
 
 Lemma Zle_neg_opp : forall x : Z, (x <= 0)%Z -> (0 <= - x)%Z.
@@ -527,7 +527,7 @@ Proof.
  rewrite Zplus_opp_r.
  rewrite Zplus_0_r.
  assumption.
-Defined.
+Qed.
 
 Lemma Zle_pos_opp : forall x : Z, (0 <= x)%Z -> (- x <= 0)%Z.
 Proof. 
@@ -536,7 +536,7 @@ Proof.
  rewrite Zplus_opp_r.
  rewrite Zplus_0_r.
  assumption.
-Defined.
+Qed.
 
 
 Lemma Zge_opp : forall x y : Z, (x <= y)%Z -> (- x >= - y)%Z.
@@ -546,7 +546,7 @@ Proof.
  apply Zplus_le_reg_l with (p := (x + y)%Z).
  ring_simplify (x + y + - y)%Z (x + y + - x)%Z.
  assumption.
-Defined.
+Qed.
 
 
 
@@ -554,22 +554,22 @@ Defined.
 Lemma Zmult_pos_pos : forall x y : Z, (0 < x)%Z -> (0 < y)%Z -> (0 < x * y)%Z.
 Proof.
  intros [| px| px] [| py| py] Hx Hy; trivial || constructor.
-Defined.
+Qed.
 
 Lemma Zmult_neg_neg : forall x y : Z, (x < 0)%Z -> (y < 0)%Z -> (0 < x * y)%Z.
 Proof.
  intros [| px| px] [| py| py] Hx Hy; trivial || constructor.
-Defined.
+Qed.
 
 Lemma Zmult_neg_pos : forall x y : Z, (x < 0)%Z -> (0 < y)%Z -> (x * y < 0)%Z.
 Proof.
  intros [| px| px] [| py| py] Hx Hy; trivial || constructor.
-Defined.
+Qed.
 
 Lemma Zmult_pos_neg : forall x y : Z, (0 < x)%Z -> (y < 0)%Z -> (x * y < 0)%Z.
 Proof.
  intros [| px| px] [| py| py] Hx Hy; trivial || constructor.
-Defined.
+Qed.
 
 
 
@@ -590,7 +590,7 @@ Proof.
  apply Zle_left.
  assumption.
  ring.
-Defined.
+Qed.
 
 Lemma Zsimpl_plus_l_dep :
  forall x y m n : Z, (x + m)%Z = (y + n)%Z -> x = y -> m = n.
@@ -599,7 +599,7 @@ Proof.
  apply Zplus_reg_l with x.
  rewrite <- H0 in H.
  assumption.
-Defined.
+Qed.
 
 
 Lemma Zsimpl_plus_r_dep :
@@ -611,7 +611,7 @@ Proof.
  rewrite Zplus_comm with x n.
  rewrite <- H0 in H.
  assumption.
-Defined.
+Qed.
 
 Lemma Zmult_simpl :
  forall n m p q : Z, n = m -> p = q -> (n * p)%Z = (m * q)%Z.
@@ -620,7 +620,7 @@ Proof.
  rewrite H.
  rewrite H0.
  reflexivity.
-Defined.
+Qed.
  
 Lemma Zsimpl_mult_l :
  forall n m p : Z, n <> 0%Z -> (n * m)%Z = (n * p)%Z -> m = p.
@@ -635,7 +635,7 @@ Proof.
  assumption.
  ring.
  ring.
-Defined.
+Qed.
 
 Lemma Zlt_reg_mult_l :
  forall x y z : Z, (x > 0)%Z -> (y < z)%Z -> (x * y < x * z)%Z. (*QA*)
@@ -660,7 +660,7 @@ Proof.
  simpl in |- *.
  apply (sym_eq (A:=Z)).
  exact (Zplus_0_r x).
-Defined.
+Qed.
 
 
 Lemma Zlt_opp : forall x y : Z, (x < y)%Z -> (- x > - y)%Z. (*QA*)
@@ -676,7 +676,7 @@ Proof.
  exact (Zcompare_opp y x).
  apply sym_eq.
  exact (Zlt_gt x y H).
-Defined.
+Qed.
 
 
 Lemma Zlt_conv_mult_l :
@@ -718,7 +718,7 @@ Proof.
  exact (Zlt_opp (- x * y) (- x * z) H2).
  exact (Zlt_reg_mult_l (- x) y z H1 H0).
  exact (Zlt_opp x 0 H).
-Defined.
+Qed.
 
 Lemma Zgt_not_eq : forall x y : Z, (x > y)%Z -> x <> y.   (*QA*)
 Proof.
@@ -736,7 +736,7 @@ Proof.
  exact (sym_eq H2).
  exact (Zorder.Zlt_not_eq y x H0).
  exact (Zgt_lt x y H).
-Defined.
+Qed.
 
 Lemma Zmult_resp_nonzero :
  forall x y : Z, x <> 0%Z -> y <> 0%Z -> (x * y)%Z <> 0%Z.
@@ -744,7 +744,7 @@ Proof.
  intros x y Hx Hy Hxy.
  apply Hx. 
  apply Zmult_integral_l with y; assumption.
-Defined.
+Qed.
 
 
 Lemma Zopp_app : forall y : Z, y <> 0%Z -> (- y)%Z <> 0%Z.
@@ -757,7 +757,7 @@ Proof.
  rewrite H0.
  simpl in |- *.
  reflexivity.
-Defined.
+Qed.
 
 
 Lemma Zle_neq_Zlt : forall a b : Z, (a <= b)%Z -> b <> a -> (a < b)%Z.
@@ -765,17 +765,17 @@ Proof.
  intros a b H H0.
  case (Z_le_lt_eq_dec _ _ H); trivial.
  intro; apply False_ind; apply H0; symmetry  in |- *; assumption.
-Defined.
+Qed.
 
 Lemma not_Zle_lt : forall x y : Z, ~ (y <= x)%Z -> (x < y)%Z.
 Proof.
  intros; apply Zgt_lt; apply Znot_le_gt; assumption.
-Defined.
+Qed.
 
 Lemma not_Zlt : forall x y : Z, ~ (y < x)%Z -> (x <= y)%Z.
 Proof.
  intros x y H1 H2; apply H1; apply Zgt_lt; assumption.
-Defined.
+Qed.
 
 
 Lemma Zmult_absorb :
@@ -850,7 +850,7 @@ Proof.
  intro.
  exact (Zlt_reg_mult_l x z y H4 H2).
  exact (Zlt_gt 0 x H3).
-Defined.
+Qed.
 
 Lemma Zlt_mult_mult :
  forall a b c d : Z,
@@ -866,7 +866,7 @@ Proof.
  apply Zlt_reg_mult_l.
  Flip.
  assumption.
-Defined.
+Qed.
 
 Lemma Zgt_mult_conv_absorb_l :
  forall a x y : Z, (a < 0)%Z -> (a * x > a * y)%Z -> (x < y)%Z. (*QC*)
@@ -894,7 +894,7 @@ Proof.
  apply Zlt_conv_mult_l.
  assumption.
  assumption.
-Defined.
+Qed.
 
 Lemma Zgt_mult_reg_absorb_l :
  forall a x y : Z, (a > 0)%Z -> (a * x > a * y)%Z -> (x > y)%Z. (*QC*)
@@ -922,7 +922,7 @@ Proof.
  simpl in |- *.
  rewrite Zopp_involutive.
  assumption.
-Defined.
+Qed.
 
 Lemma Zopp_Zlt : forall x y : Z, (y < x)%Z -> (- x < - y)%Z.
 Proof.
@@ -932,9 +932,9 @@ Proof.
  replace (-1 * - y)%Z with y.
  replace (-1 * - x)%Z with x.
  Flip.
- abstract ring.
- abstract ring.
-Defined.
+ ring.
+ ring.
+Qed.
 
 
 Lemma Zmin_cancel_Zlt : forall x y : Z, (- x < - y)%Z -> (y < x)%Z.
@@ -948,7 +948,7 @@ Proof.
  assumption.
  ring.
  ring.
-Defined.
+Qed.
 
 
 Lemma Zmult_cancel_Zle :
@@ -967,7 +967,7 @@ Proof.
  assumption.
  apply Zgt_lt.
  assumption.
-Defined.
+Qed.
 
 Lemma Zlt_mult_cancel_l :
  forall x y z : Z, (0 < x)%Z -> (x * y < x * z)%Z -> (y < z)%Z.
@@ -979,7 +979,7 @@ Proof.
  assumption. 
  apply Zlt_gt.
  assumption.
-Defined.
+Qed.
  
 
 Lemma Zmin_cancel_Zle : forall x y : Z, (- x <= - y)%Z -> (y <= x)%Z.
@@ -992,7 +992,7 @@ Proof.
  assumption.
  ring.
  ring.
-Defined.
+Qed.
 
 
 
@@ -1012,7 +1012,7 @@ Proof.
  assumption.
  apply Zgt_lt.
  assumption.
-Defined.
+Qed.
 
 Lemma Zopp_Zle : forall x y : Z, (y <= x)%Z -> (- x <= - y)%Z.
 Proof. 
@@ -1022,9 +1022,9 @@ Proof.
  replace (-1 * - y)%Z with y.
  replace (-1 * - x)%Z with x.
  assumption.
- clear y H; abstract ring.
- clear x H; abstract ring.
-Defined.
+ clear y H; ring.
+ clear x H; ring.
+Qed.
 
  
 Lemma Zle_lt_eq_S : forall x y : Z, (x <= y)%Z -> (y < x + 1)%Z -> y = x.
@@ -1042,7 +1042,7 @@ Proof.
  intro H1.
  symmetry  in |- *.
  assumption.
-Defined.
+Qed.
 
 Lemma Zlt_le_eq_S :
  forall x y : Z, (x < y)%Z -> (y <= x + 1)%Z -> y = (x + 1)%Z.
@@ -1058,7 +1058,7 @@ Proof.
  assumption.
  reflexivity.
  trivial.
-Defined.
+Qed.
 
 
 Lemma double_not_equal_zero :
@@ -1073,19 +1073,19 @@ Proof.
  intro.
  apply H; repeat split; assumption.
  intro; right; assumption.
-Defined.
+Qed.
 
 Lemma triple_not_equal_zero :
  forall a b c : Z,
  ~ (a = 0%Z /\ b = 0%Z /\ c = 0%Z) -> a <> 0%Z \/ b <> 0%Z \/ c <> 0%Z.
 Proof.
- abstract (intros a b c H; case (Z_zerop a); intro Ha;
+ intros a b c H; case (Z_zerop a); intro Ha;
             [ case (Z_zerop b); intro Hb;
                [ case (Z_zerop c); intro Hc;
                   [ apply False_ind; apply H; repeat split | right; right ]
                | right; left ]
-            | left ]; assumption).
-Defined. 
+            | left ]; assumption.
+Qed. 
 
 Lemma mediant_1 :
  forall m n m' n' : Z, (m' * n < m * n')%Z -> ((m + m') * n < m * (n + n'))%Z.
@@ -1095,7 +1095,7 @@ Proof.
  rewrite Zmult_plus_distr_l.
  apply Zplus_lt_compat_l.
  assumption.
-Defined.
+Qed.
  
 Lemma mediant_2 :
  forall m n m' n' : Z,
@@ -1106,7 +1106,7 @@ Proof.
  rewrite Zmult_plus_distr_r.
  apply Zplus_lt_compat_r.
  assumption.
-Defined.
+Qed.
 
 
 Lemma mediant_3 :
@@ -1121,7 +1121,7 @@ Proof.
  assumption.
  assumption.
  ring.
-Defined. 
+Qed. 
 
 Lemma fraction_lt_trans :
  forall a b c d e f : Z,
@@ -1150,13 +1150,13 @@ Proof.
  assumption.
  ring.
  ring.
-Defined.
+Qed.
 
 
 Lemma square_pos : forall a : Z, a <> 0%Z -> (0 < a * a)%Z.
 Proof.
  intros [| p| p]; intros; [ Falsum | constructor | constructor ].
-Defined.
+Qed.
  
 Hint Resolve square_pos: zarith.
 
@@ -1199,7 +1199,7 @@ Proof.
  apply f_equal with (f := P_of_succ_nat).
  assumption.
  apply ZL4.
-Defined.
+Qed.
 
 Coercion Z_of_nat : nat >-> Z.
 
@@ -1207,7 +1207,7 @@ Lemma ZERO_lt_POS : forall p : positive, (0 < Zpos p)%Z.
 Proof.
  intros.
  constructor.
-Defined.
+Qed.
 
 
 Lemma POS_neq_ZERO : forall p : positive, Zpos p <> 0%Z.
@@ -1216,7 +1216,7 @@ Proof.
  apply sym_not_eq.
  apply Zorder.Zlt_not_eq.
  apply ZERO_lt_POS.
-Defined.
+Qed.
 
 Lemma NEG_neq_ZERO : forall p : positive, Zneg p <> 0%Z.
 Proof.
@@ -1224,7 +1224,7 @@ Proof.
  apply Zorder.Zlt_not_eq.
  unfold Zlt in |- *.
  constructor.
-Defined.
+Qed.
 
 
 Lemma POS_resp_eq : forall p0 p1 : positive, Zpos p0 = Zpos p1 -> p0 = p1.
@@ -1232,7 +1232,7 @@ Proof.
  intros.
  injection H.
  trivial.
-Defined.
+Qed.
 
 Lemma nat_nat_pos : forall m n : nat, ((m + 1) * (n + 1) > 0)%Z. (*QF*)
 Proof.
@@ -1261,7 +1261,7 @@ Proof.
  change (Z_of_nat 0 <= Z_of_nat m)%Z in |- *.
  apply Znat.inj_le.
  apply le_O_n.
-Defined.
+Qed.
  
  
 Theorem S_predn : forall m : nat, m <> 0 -> S (pred m) = m. (*QF*)
@@ -1279,7 +1279,7 @@ Proof.
  apply H.
  apply sym_eq.
  assumption.
-Defined.
+Qed.
 
 Lemma absolu_1 : forall x : Z, Zabs_nat x = 0 -> x = 0%Z. (*QF*)
 Proof.
@@ -1378,7 +1378,7 @@ Proof.
  assumption.
  apply not_Zeq.
  assumption.
-Defined.
+Qed.
 
 Lemma absolu_2 : forall x : Z, x <> 0%Z -> Zabs_nat x <> 0. (*QF*)
 Proof.
@@ -1387,7 +1387,7 @@ Proof.
  apply H.
  apply absolu_1.
  assumption.
-Defined.
+Qed.
 
 
 
@@ -1398,7 +1398,7 @@ Proof.
  reflexivity.
  intros.
  apply nat_of_P_o_P_of_succ_nat_eq_succ.
-Defined.
+Qed.
 
 
 Lemma eq_inj : forall m n : nat, m = n :>Z -> m = n.
@@ -1409,19 +1409,19 @@ Proof.
  rewrite (absolu_inject_nat m) in H0.
  rewrite (absolu_inject_nat n) in H0.
  assumption.
-Defined.
+Qed.
 
 Lemma lt_inj : forall m n : nat, (m < n)%Z -> m < n.
 Proof.
  intros.
- abstract omega.
-Defined.
+ omega.
+Qed.
 
 Lemma le_inj : forall m n : nat, (m <= n)%Z -> m <= n.
 Proof.
  intros.
- abstract omega.
-Defined.
+ omega.
+Qed.
 
 
 Lemma inject_nat_S_inf : forall x : Z, (0 < x)%Z -> {n : nat | x = S n}.
@@ -1431,8 +1431,8 @@ Proof.
  rewrite S_predn.
  symmetry  in |- *; apply ZL9.
  clear Hp;
-  abstract (apply sym_not_equal; apply lt_O_neq; apply lt_O_nat_of_P).
-Defined.
+  apply sym_not_equal; apply lt_O_neq; apply lt_O_nat_of_P.
+Qed.
 
 
 
@@ -1455,7 +1455,7 @@ Proof.
  apply le_inj.
  do 2 rewrite ZL9.
  assumption.
-Defined.
+Qed.
 
 Lemma lt_absolu :
  forall x y : Z,
@@ -1472,7 +1472,7 @@ Proof.
        apply False_ind; apply id1; constructor
    end; simpl in |- *; apply lt_inj; repeat rewrite ZL9; 
   assumption.
-Defined.
+Qed.
 
 Lemma absolu_plus :
  forall x y : Z,
@@ -1491,7 +1491,7 @@ Proof.
  rewrite <- BinInt.Zpos_plus_distr.
  unfold Zabs_nat in |- *.
  apply nat_of_P_plus_morphism.
-Defined.
+Qed.
 
 Lemma pred_absolu :
  forall x : Z, (0 < x)%Z -> pred (Zabs_nat x) = Zabs_nat (x - 1).
@@ -1499,53 +1499,53 @@ Proof.
  intros x Hx.
  generalize (Z_lt_lt_S_eq_dec 0 x Hx); simpl in |- *; intros [H1| H1];
   [ replace (Zabs_nat x) with (Zabs_nat (x - 1 + 1));
-     [ idtac | apply f_equal with Z; abstract auto with zarith ];
+     [ idtac | apply f_equal with Z; auto with zarith ];
      rewrite absolu_plus;
-     [ unfold Zabs_nat at 2, nat_of_P, Piter_op in |- *; abstract omega
-     | abstract auto with zarith
+     [ unfold Zabs_nat at 2, nat_of_P, Piter_op in |- *; omega
+     | auto with zarith
      | intro; discriminate ]
   | rewrite <- H1; reflexivity ].
-Defined. 
+Qed. 
 
 Definition pred_nat : forall (x : Z) (Hx : (0 < x)%Z), nat.
-intros [| px| px] Hx; try abstract discriminate Hx.
+intros [| px| px] Hx; try abstract (discriminate Hx).
 exact (pred (nat_of_P px)).
 Defined.
 
 Lemma pred_nat_equal :
  forall (x : Z) (Hx1 Hx2 : (0 < x)%Z), pred_nat x Hx1 = pred_nat x Hx2.
 Proof.
- intros [| px| px] Hx1 Hx2; try discriminate Hx1; trivial.
-Defined.
+ intros [| px| px] Hx1 Hx2; try (discriminate Hx1); trivial.
+Qed.
 
 Lemma pred_nat_unfolded :
  forall (x : Z) (Hx : (0 < x)%Z), x = S (pred_nat x Hx).
 Proof.
- intros [| px| px] Hx; try discriminate Hx. 
+ intros [| px| px] Hx; try discriminate Hx.
  unfold pred_nat in |- *.
  rewrite S_predn.
  symmetry  in |- *; apply ZL9.
  clear Hx;
   abstract (apply sym_not_equal; apply lt_O_neq; apply lt_O_nat_of_P).
-Defined.  
+Qed.
 
 Lemma absolu_pred_nat :
  forall (m : Z) (Hm : (0 < m)%Z), S (pred_nat m Hm) = Zabs_nat m.
 Proof.
- intros [| px| px] Hx; try abstract discriminate Hx.
+ intros [| px| px] Hx; try discriminate Hx.
  unfold pred_nat in |- *.
  rewrite S_predn.
  reflexivity.
  apply pred_nat_unfolded_subproof.
-Defined.
+Qed.
 
 Lemma pred_nat_absolu :
  forall (m : Z) (Hm : (0 < m)%Z), pred_nat m Hm = Zabs_nat (m - 1).
 Proof.
- intros [| px| px] Hx; try abstract discriminate Hx.
+ intros [| px| px] Hx; try discriminate Hx.
  unfold pred_nat in |- *.
  rewrite <- pred_absolu; reflexivity || assumption.
-Defined.
+Qed.
 
 Lemma minus_pred_nat :
  forall (n m : Z) (Hn : (0 < n)%Z) (Hm : (0 < m)%Z) (Hnm : (0 < n - m)%Z),
@@ -1553,8 +1553,8 @@ Lemma minus_pred_nat :
 Proof.
  intros.
  simpl in |- *.  
- destruct n; try abstract discriminate Hn.
- destruct m; try abstract discriminate Hm.
+ destruct n; try discriminate Hn.
+ destruct m; try discriminate Hm.
  unfold pred_nat at 1 2 in |- *.
  rewrite minus_pred; try apply lt_O_nat_of_P.
  apply eq_inj.
@@ -1567,7 +1567,7 @@ Proof.
  repeat rewrite ZL9.
  apply Zlt_O_minus_lt.
  assumption.
-Defined.
+Qed.
 
 
 (*###########################################################################*)
@@ -1593,13 +1593,13 @@ Proof.
  right.
  simpl in |- *.
  reflexivity.
-Defined.
+Qed.
 
 
 Lemma Zsgn_2 : forall x : Z, Zsgn x = 0%Z -> x = 0%Z.   (*QF*)
 Proof.
  intros [| p1| p1]; simpl in |- *; intro H; constructor || discriminate H.
-Defined.
+Qed.
 
 
 Lemma Zsgn_3 : forall x : Z, x <> 0%Z -> Zsgn x <> 0%Z.   (*QF*)
@@ -1616,7 +1616,7 @@ Proof.
  intros.
  simpl in |- *.
  discriminate.
-Defined.
+Qed.
 
 
 
@@ -1638,7 +1638,7 @@ Proof.
  unfold Zabs_nat in |- *.
  rewrite ZL9.
  constructor.
-Defined.
+Qed.
 
 
 Theorem Zsgn_5 :
@@ -1734,7 +1734,7 @@ Proof.
  ring.
  rewrite <- H1.
  ring.
-Defined.
+Qed.
 
 Lemma Zsgn_6 : forall x : Z, x = 0%Z -> Zsgn x = 0%Z.
 Proof.
@@ -1742,7 +1742,7 @@ Proof.
  rewrite H.
  simpl in |- *.
  reflexivity.
-Defined.
+Qed.
 
 
 Lemma Zsgn_7 : forall x : Z, (x > 0)%Z -> Zsgn x = 1%Z.
@@ -1762,13 +1762,13 @@ Proof.
  apply Zlt_trans with 0%Z.
  constructor.
  Flip.
-Defined.
+Qed.
 
 
 Lemma Zsgn_7' : forall x : Z, (0 < x)%Z -> Zsgn x = 1%Z.
 Proof.
  intros; apply Zsgn_7; Flip.
-Defined.
+Qed.
 
 
 Lemma Zsgn_8 : forall x : Z, (x < 0)%Z -> Zsgn x = (-1)%Z.
@@ -1788,7 +1788,7 @@ Proof.
  intros.
  simpl in |- *.
  reflexivity.
-Defined.
+Qed.
 
 Lemma Zsgn_9 : forall x : Z, Zsgn x = 1%Z -> (0 < x)%Z.
 Proof.
@@ -1803,7 +1803,7 @@ Proof.
  intros.
  apply False_ind.
  discriminate.
-Defined.
+Qed.
  
 Lemma Zsgn_10 : forall x : Z, Zsgn x = (-1)%Z -> (x < 0)%Z.
 Proof.
@@ -1817,7 +1817,7 @@ Proof.
  discriminate.
  intros.
  constructor.
-Defined. 
+Qed. 
 
 Lemma Zsgn_11 : forall x : Z, (Zsgn x < 0)%Z -> (x < 0)%Z.
 Proof.
@@ -1837,7 +1837,7 @@ Proof.
  intro.
  discriminate.
  trivial.
-Defined. 
+Qed. 
 
 Lemma Zsgn_12 : forall x : Z, (0 < Zsgn x)%Z -> (0 < x)%Z.
 Proof.
@@ -1860,7 +1860,7 @@ Proof.
  intro.
  apply False_ind.
  discriminate.
-Defined.   
+Qed.   
 
 Lemma Zsgn_13 : forall x : Z, (0 <= Zsgn x)%Z -> (0 <= x)%Z.
 Proof.
@@ -1877,7 +1877,7 @@ Proof.
  assumption.
  rewrite H0.
  apply Zle_refl.
-Defined.
+Qed.
 
 Lemma Zsgn_14 : forall x : Z, (Zsgn x <= 0)%Z -> (x <= 0)%Z.
 Proof.
@@ -1893,12 +1893,12 @@ Proof.
  assumption.
  rewrite H0.
  apply Zle_refl.
-Defined.
+Qed.
 
 Lemma Zsgn_15 : forall x y : Z, Zsgn (x * y) = (Zsgn x * Zsgn y)%Z.
 Proof.
  intros [y| p1 [| p2| p2]| p1 [| p2| p2]]; simpl in |- *; constructor.
-Defined.
+Qed.
 
 Lemma Zsgn_16 :
  forall x y : Z,
@@ -1906,7 +1906,7 @@ Lemma Zsgn_16 :
 Proof.
  intros [y| p1 [| p2| p2]| p1 [| p2| p2]]; simpl in |- *; intro H;
   try discriminate H; [ left | right ]; repeat split.
-Defined. 
+Qed. 
 
 Lemma Zsgn_17 :
  forall x y : Z,
@@ -1914,13 +1914,13 @@ Lemma Zsgn_17 :
 Proof.
  intros [y| p1 [| p2| p2]| p1 [| p2| p2]]; simpl in |- *; intro H;
   try discriminate H; [ left | right ]; repeat split.
-Defined. 
+Qed. 
 
 Lemma Zsgn_18 : forall x y : Z, Zsgn (x * y) = 0%Z -> {x = 0%Z} + {y = 0%Z}.
 Proof.
  intros [y| p1 [| p2| p2]| p1 [| p2| p2]]; simpl in |- *; intro H;
   try discriminate H; [ left | right | right ]; constructor.
-Defined. 
+Qed. 
 
 
 
@@ -1929,56 +1929,56 @@ Proof.
  Proof.
  intros [y| p1 [| p2| p2]| p1 [| p2| p2]]; simpl in |- *; intro H;
   discriminate H || (constructor || apply Zsgn_12; assumption).
-Defined.
+Qed.
 
 Lemma Zsgn_20 : forall x y : Z, (Zsgn x + Zsgn y < 0)%Z -> (x + y < 0)%Z.
 Proof.
  Proof.
  intros [y| p1 [| p2| p2]| p1 [| p2| p2]]; simpl in |- *; intro H;
   discriminate H || (constructor || apply Zsgn_11; assumption).
-Defined.
+Qed.
 
 
 Lemma Zsgn_21 : forall x y : Z, (0 < Zsgn x + Zsgn y)%Z -> (0 <= x)%Z.
 Proof.
  intros [y| p1 [| p2| p2]| p1 [| p2| p2]]; simpl in |- *; intros H H0;
   discriminate H || discriminate H0.
-Defined.
+Qed.
 
 Lemma Zsgn_22 : forall x y : Z, (Zsgn x + Zsgn y < 0)%Z -> (x <= 0)%Z.
 Proof.
  Proof.
  intros [y| p1 [| p2| p2]| p1 [| p2| p2]]; simpl in |- *; intros H H0;
   discriminate H || discriminate H0.
-Defined.
+Qed.
 
 Lemma Zsgn_23 : forall x y : Z, (0 < Zsgn x + Zsgn y)%Z -> (0 <= y)%Z.
 Proof.
  intros [[| p2| p2]| p1 [| p2| p2]| p1 [| p2| p2]]; simpl in |- *;
   intros H H0; discriminate H || discriminate H0.
-Defined.
+Qed.
 
 Lemma Zsgn_24 : forall x y : Z, (Zsgn x + Zsgn y < 0)%Z -> (y <= 0)%Z.
 Proof.
  intros [[| p2| p2]| p1 [| p2| p2]| p1 [| p2| p2]]; simpl in |- *;
   intros H H0; discriminate H || discriminate H0.
-Defined.
+Qed.
 
 Lemma Zsgn_25 : forall x : Z, Zsgn (- x) = (- Zsgn x)%Z.
 Proof.
  intros [| p1| p1]; simpl in |- *; reflexivity.
-Defined.
+Qed.
 
 
 Lemma Zsgn_26 : forall x : Z, (0 < x)%Z -> (0 < Zsgn x)%Z.
 Proof.
  intros [| p| p] Hp; trivial.
-Defined.
+Qed.
 
 Lemma Zsgn_27 : forall x : Z, (x < 0)%Z -> (Zsgn x < 0)%Z.
 Proof.
  intros [| p| p] Hp; trivial.
-Defined.
+Qed.
 
 Hint Resolve Zsgn_1 Zsgn_2 Zsgn_3 Zsgn_4 Zsgn_5 Zsgn_6 Zsgn_7 Zsgn_7' Zsgn_8
   Zsgn_9 Zsgn_10 Zsgn_11 Zsgn_12 Zsgn_13 Zsgn_14 Zsgn_15 Zsgn_16 Zsgn_17
@@ -2042,7 +2042,7 @@ Proof.
  rewrite Zopp_mult_distr_l_reverse with (n := 1%Z). 
  simpl in |- *.
  constructor.
-Defined.
+Qed.
 
 
 Lemma Zabs_2 : forall z p : Z, (Zabs z > p)%Z -> (z > p)%Z \/ (- p > z)%Z.
@@ -2069,7 +2069,7 @@ Proof.
  replace (-1 * Zneg p0)%Z with (Zpos p0).
  assumption.
  reflexivity.
-Defined.
+Qed.
 
 Lemma Zabs_3 : forall z p : Z, (z < p)%Z /\ (- p < z)%Z -> (Zabs z < p)%Z.
 Proof.
@@ -2100,7 +2100,7 @@ Proof.
   ring.  
   simpl in |- *.
   reflexivity.
-Defined.
+Qed.
 
 Lemma Zabs_4 : forall z p : Z, (Zabs z < p)%Z -> (- p < z < p)%Z.
 Proof.
@@ -2112,7 +2112,7 @@ Proof.
  apply proj1 with (B := (- p < z)%Z).
  apply Zabs_1.
  assumption.
-Defined.
+Qed.
  
 
 Lemma Zabs_5 : forall z p : Z, (Zabs z <= p)%Z -> (- p <= z <= p)%Z.
@@ -2132,7 +2132,7 @@ Proof.
  apply Zabs_1.
  apply Zle_lt_succ.
  assumption.
-Defined.
+Qed.
 
 Lemma Zabs_6 : forall z p : Z, (Zabs z <= p)%Z -> (z <= p)%Z.
 Proof.
@@ -2140,7 +2140,7 @@ Proof.
  apply proj2 with (A := (- p <= z)%Z).
  apply Zabs_5.
  assumption.
-Defined.
+Qed.
 
 Lemma Zabs_7 : forall z p : Z, (Zabs z <= p)%Z -> (- p <= z)%Z.
 Proof.
@@ -2148,7 +2148,7 @@ Proof.
  apply proj1 with (B := (z <= p)%Z).
  apply Zabs_5.
  assumption.
-Defined.
+Qed.
 
 Lemma Zabs_8 : forall z p : Z, (- p <= z <= p)%Z -> (Zabs z <= p)%Z.
 Proof.
@@ -2165,7 +2165,7 @@ Proof.
  apply Zlt_opp.
  apply Zlt_succ.
  assumption.
-Defined.
+Qed.
 
 Lemma Zabs_min : forall z : Z, Zabs z = Zabs (- z).
 Proof.
@@ -2179,7 +2179,7 @@ Proof.
  intro.
  simpl in |- *.
  reflexivity.
-Defined.
+Qed.
 
 Lemma Zabs_9 :
  forall z p : Z, (0 <= p)%Z -> (p < z)%Z \/ (z < - p)%Z -> (p < Zabs z)%Z.
@@ -2210,7 +2210,7 @@ Proof.
  apply Zmin_cancel_Zlt.
  ring_simplify (- - z)%Z.
  assumption.
-Defined.
+Qed.
 
 Lemma Zabs_10 : forall z : Z, (0 <= Zabs z)%Z.
 Proof.
@@ -2236,7 +2236,7 @@ Proof.
  simpl in |- *.
  left.
  assumption.
-Defined.
+Qed.
 
 Lemma Zabs_11 : forall z : Z, z <> 0%Z -> (0 < Zabs z)%Z.
 Proof.
@@ -2249,14 +2249,14 @@ Proof.
  apply H.
  symmetry  in |- *.
  assumption.
-Defined.
+Qed.
 
 Lemma Zabs_12 : forall z m : Z, (m < Zabs z)%Z -> {(m < z)%Z} + {(z < - m)%Z}.
 Proof.
  intros [| p| p] m; simpl in |- *; intros H;
   [ left | left | right; apply Zmin_cancel_Zlt; rewrite Zopp_involutive ];
   assumption.
-Defined.
+Qed.
 
 Lemma Zabs_mult : forall z p : Z, Zabs (z * p) = (Zabs z * Zabs p)%Z.
 Proof.
@@ -2283,7 +2283,7 @@ Proof.
  intros.
  simpl in |- *.
  reflexivity.
-Defined.
+Qed.
 
 Lemma Zabs_plus : forall z p : Z, (Zabs (z + p) <= Zabs z + Zabs p)%Z.
 Proof.
@@ -2359,7 +2359,7 @@ Proof.
  intros.
  simpl in |- *.
  apply Zle_refl.
-Defined.
+Qed.
 
 Lemma Zabs_neg : forall z : Z, (z <= 0)%Z -> Zabs z = (- z)%Z.
 Proof.
@@ -2376,7 +2376,7 @@ Proof.
  intros.
  simpl in |- *.
  reflexivity.
-Defined.
+Qed.
 
 Lemma Zle_Zabs: forall z, (z <= Zabs z)%Z.
 Proof.
@@ -2446,7 +2446,7 @@ Proof.
  unfold Zminus in |- *.
  apply Zle_left.
  assumption.
-Defined.
+Qed.
 
 Lemma Zrec :
  forall (P : Z -> Set) (p : Z),
@@ -2505,7 +2505,7 @@ Proof.
  unfold Zminus in |- *.
  apply Zle_left.
  assumption.
-Defined.
+Qed.
 
 Lemma Zrec_down :
  forall (P : Z -> Set) (p : Z),
@@ -2577,7 +2577,7 @@ Proof.
  unfold Zminus in |- *.
  apply Zle_left.
  assumption.
-Defined.
+Qed.
 
 Lemma Zind_down :
  forall (P : Z -> Prop) (p : Z),
@@ -2639,7 +2639,7 @@ Proof.
  unfold Zminus in |- *.
  apply Zle_left.
  assumption.
-Defined.
+Qed.
 
 Lemma Zrec_wf :
  forall (P : Z -> Set) (p : Z),
@@ -2689,7 +2689,7 @@ Proof.
  unfold Zsucc in |- *.
  assumption.
  assumption.
-Defined.
+Qed.
 
 Lemma Zrec_wf2 :
  forall (q : Z) (P : Z -> Set) (p : Z),
@@ -2700,7 +2700,7 @@ Proof.
  apply Zrec_wf with (p := p).
  assumption.
  assumption.
-Defined.
+Qed.
 
 Lemma Zrec_wf_double :
  forall (P : Z -> Z -> Set) (p0 q0 : Z),
@@ -2729,7 +2729,7 @@ Proof.
  assumption.
  assumption.
  assumption.
-Defined.
+Qed.
 
 Lemma Zind_wf :
  forall (P : Z -> Prop) (p : Z),
@@ -2779,7 +2779,7 @@ Proof.
  unfold Zsucc in |- *.
  assumption.
  assumption.
-Defined.
+Qed.
 
 Lemma Zind_wf2 :
  forall (q : Z) (P : Z -> Prop) (p : Z),
@@ -2790,7 +2790,7 @@ Proof.
  apply Zind_wf with (p := p).
  assumption.
  assumption.
-Defined.
+Qed.
 
 Lemma Zind_wf_double :
  forall (P : Z -> Z -> Prop) (p0 q0 : Z),
@@ -2819,7 +2819,7 @@ Proof.
  assumption.
  assumption.
  assumption.
-Defined.
+Qed.
 
 (*###########################################################################*)
 (** Properties of Zmax                                                       *)
@@ -2837,7 +2837,7 @@ Proof.
  change (Zmin (Zsucc n) (Zsucc m) = Zsucc (Zmin n m)) in |- *.
  symmetry  in |- *.
  apply Zmin_SS.
-Defined.
+Qed.
 
 Lemma Zle_max_l : forall n m : Z, (n <= Zmax n m)%Z.
 Proof.
@@ -2847,7 +2847,7 @@ Proof.
  ring_simplify (- n + Zmin n m + n)%Z.
  ring_simplify (- n + Zmin n m + (n + m - Zmin n m))%Z.
  apply Zle_min_r.
-Defined.
+Qed.
 
 Lemma Zle_max_r : forall n m : Z, (m <= Zmax n m)%Z.
 Proof.
@@ -2857,7 +2857,7 @@ Proof.
  ring_simplify (- m + Zmin n m + m)%Z.
  ring_simplify (- m + Zmin n m + (n + m - Zmin n m))%Z.
  apply Zle_min_l.
-Defined.
+Qed.
 
 
 Lemma Zmin_or_informative : forall n m : Z, {Zmin n m = n} + {Zmin n m = m}.
@@ -2898,7 +2898,7 @@ Proof.
  apply Z_le_lt_eq_dec. 
  apply Zge_le.
  assumption.
-Defined.
+Qed.
 
 Lemma Zmax_case : forall (n m : Z) (P : Z -> Set), P n -> P m -> P (Zmax n m).
 Proof.
@@ -2919,7 +2919,7 @@ Proof.
  rewrite H1.
  assumption.
  ring.
-Defined.
+Qed.
  
 Lemma Zmax_or_informative : forall n m : Z, {Zmax n m = n} + {Zmax n m = m}. 
 Proof.
@@ -2934,7 +2934,7 @@ Proof.
  rewrite e.
  left.
  ring.
-Defined.
+Qed.
 
 Lemma Zmax_n_n : forall n : Z, Zmax n n = n.
 Proof.
@@ -2942,7 +2942,7 @@ Proof.
  unfold Zmax in |- *.
  rewrite (Zmin_n_n n).
  ring.
-Defined.
+Qed.
 
 Hint Resolve ZmaxSS Zle_max_r Zle_max_l Zmax_n_n: zarith.
 
@@ -2953,12 +2953,12 @@ Hint Resolve ZmaxSS Zle_max_r Zle_max_l Zmax_n_n: zarith.
 Lemma Zeven_S : forall x : Z, Zeven.Zodd x -> Zeven.Zeven (x + 1).
 Proof.
  exact Zeven.Zeven_Sn.
-Defined.
+Qed.
 
 Lemma Zeven_pred : forall x : Z, Zeven.Zodd x -> Zeven.Zeven (x - 1). 
 Proof.
  exact Zeven.Zeven_pred.
-Defined.
+Qed.
 
 (* This lemma used to be useful since it was mentioned with an unnecessary premise 
    `x>=0` as Z_modulo_2 in ZArith, but the ZArith version has been fixed. *)
@@ -2979,7 +2979,7 @@ Proof.
  rewrite Zplus_comm.
  apply Z_div_mod_eq.
  Flip.
-Defined.
+Qed.
 
 Lemma Z_div_le :
  forall a b c : Z, (0 < c)%Z -> (b <= a)%Z -> (b / c <= a / c)%Z. 
@@ -2987,7 +2987,7 @@ Proof.
  intros.
  apply Zge_le.
  apply Z_div_ge; Flip; assumption.
-Defined.
+Qed.
 
 Lemma Z_div_nonneg :
  forall a b : Z, (0 < b)%Z -> (0 <= a)%Z -> (0 <= a / b)%Z.
@@ -2995,7 +2995,7 @@ Proof.
  intros.
  apply Zge_le.
  apply Z_div_ge0; Flip; assumption.
-Defined.
+Qed.
 
 Lemma Z_div_neg : forall a b : Z, (0 < b)%Z -> (a < 0)%Z -> (a / b < 0)%Z.
 Proof.
@@ -3013,7 +3013,7 @@ Proof.
  assumption.
  Flip.
  Flip.
-Defined.
+Qed.
 
 Hint Resolve Z_div_mod_eq_2 Z_div_le Z_div_nonneg Z_div_neg: zarith.
 
@@ -3024,13 +3024,13 @@ Hint Resolve Z_div_mod_eq_2 Z_div_le Z_div_nonneg Z_div_neg: zarith.
 Lemma Zpower_1 : forall a : Z, (a ^ 1)%Z = a.
 Proof.
  intros; unfold Zpower in |- *; unfold Zpower_pos in |- *; simpl in |- *;
-  abstract auto with zarith.
-Defined.
+  auto with zarith.
+Qed.
 
 Lemma Zpower_2 : forall a : Z, (a ^ 2)%Z = (a * a)%Z.
 Proof.
  intros; unfold Zpower in |- *; unfold Zpower_pos in |- *; simpl in |- *;
-  abstract ring.
-Defined.
+  ring.
+Qed.
 
 Hint Resolve Zpower_1 Zpower_2: zarith.

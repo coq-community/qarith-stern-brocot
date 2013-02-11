@@ -33,7 +33,7 @@ Proof.
  reflexivity.
  replace Zero with (Z_to_Q 0); trivial; apply Z_to_Q_not_eq; assumption.
  replace Zero with (Z_to_Q 0); trivial; apply Z_to_Q_not_eq; assumption.
-Defined.
+Qed.
 
 Functional Scheme Qquadratic_Qpositive_to_Q_ind := 
   Induction for Qquadratic_Qpositive_to_Q Sort Prop.
@@ -99,7 +99,7 @@ Proof.
 	 apply fraction_encoding_reduces; trivial; 
            symmetry  in |- *; assumption
      end.
-Defined.
+Qed.
 
 
 Lemma Qquadratic_Qpositive_to_Q_3 :
@@ -121,7 +121,7 @@ Proof.
           apply fraction_encoding_reduces; trivial; 
             symmetry  in |- *; assumption
       end.
-Defined.
+Qed.
 
 Ltac QSign_mismatch_ :=
   apply False_ind;
@@ -705,7 +705,7 @@ Lemma qnew_g_equal :
  qnew_g a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1 =
  qnew_g a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2.
 Proof.
- abstract (intros a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1
+ intros a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1
             H_Qquadratic_sg_denom_nonzero2; unfold qnew_g in |- *;
             apply f_equal with (Z * Z)%type;
             apply f_equal with (Z * (Z * Z))%type;
@@ -721,8 +721,8 @@ Proof.
               with
                 (Z *
                  (Z * (Z * (Z * Z)) * (Z * (Z * (Z * Z))) *
-                  (Qpositive * Qpositive)))%type; apply Qquadratic_sign_equal).
-Defined.
+                  (Qpositive * Qpositive)))%type; apply Qquadratic_sign_equal.
+Qed.
 
 Lemma qnew_h_equal :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -732,7 +732,7 @@ Lemma qnew_h_equal :
  qnew_h a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1 =
  qnew_h a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2.
 Proof.
- abstract (intros a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1
+ intros a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1
             H_Qquadratic_sg_denom_nonzero2; unfold qnew_h in |- *;
             apply f_equal with (Z * Z)%type;
             apply f_equal with (Z * (Z * Z))%type;
@@ -748,8 +748,8 @@ Proof.
               with
                 (Z *
                  (Z * (Z * (Z * Z)) * (Z * (Z * (Z * Z))) *
-                  (Qpositive * Qpositive)))%type; apply Qquadratic_sign_equal).
-Defined.
+                  (Qpositive * Qpositive)))%type; apply Qquadratic_sign_equal.
+Qed.
 
 Lemma qnew_p1_equal :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -759,7 +759,7 @@ Lemma qnew_p1_equal :
  qnew_p1 a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1 =
  qnew_p1 a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2.
 Proof.
- abstract (intros a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1
+ intros a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1
             H_Qquadratic_sg_denom_nonzero2; unfold qnew_p1 in |- *;
             apply f_equal with (Qpositive * Qpositive)%type;
             apply
@@ -772,8 +772,8 @@ Proof.
               with
                 (Z *
                  (Z * (Z * (Z * Z)) * (Z * (Z * (Z * Z))) *
-                  (Qpositive * Qpositive)))%type; apply Qquadratic_sign_equal).
-Defined.
+                  (Qpositive * Qpositive)))%type; apply Qquadratic_sign_equal.
+Qed.
 
 
 Lemma qnew_p2_equal :
@@ -784,7 +784,7 @@ Lemma qnew_p2_equal :
  qnew_p2 a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1 =
  qnew_p2 a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2.
 Proof.
- abstract (intros a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1
+ intros a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero1
             H_Qquadratic_sg_denom_nonzero2; unfold qnew_p2 in |- *;
             apply f_equal with (Qpositive * Qpositive)%type;
             apply
@@ -797,8 +797,8 @@ Proof.
               with
                 (Z *
                  (Z * (Z * (Z * Z)) * (Z * (Z * (Z * Z))) *
-                  (Qpositive * Qpositive)))%type; apply Qquadratic_sign_equal).
-Defined.
+                  (Qpositive * Qpositive)))%type; apply Qquadratic_sign_equal.
+Qed.
 
 Lemma Qquadratic_Qpositive_to_Q_equal :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1024,4 +1024,4 @@ Proof.
     | apply qnew_h_equal
     | apply qnew_p1_equal
     | apply qnew_p2_equal ].
-Defined.
+Qed.

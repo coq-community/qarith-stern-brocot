@@ -25,7 +25,7 @@ Lemma sg_tuple_equal :
 Proof.
  intros.
  inversion H; (repeat split; reflexivity).
-Defined. 
+Qed.
 
 Lemma inside_interval_1_inf :
  forall o1 o2 : Z,
@@ -33,7 +33,7 @@ Lemma inside_interval_1_inf :
  {(0 < o1)%Z /\ (0 < o2)%Z} + {(o1 < 0)%Z /\ (o2 < 0)%Z}.
 Proof.
  intros o1 o2 H.
- abstract (case (Z_lt_dec 0 o1); intros Ho1;
+ case (Z_lt_dec 0 o1); intros Ho1;
             [ case (Z_lt_dec 0 o2); intros Ho2;
                [ left; split; assumption | idtac ]
             | case (Z_lt_dec o1 0); intros Ho1';
@@ -48,8 +48,8 @@ Proof.
                match goal with
                | id1:(0 < ?X2)%Z,id2:(?X2 < 0)%Z |- ?X3 =>
                    apply (Zlt_irrefl 0); apply Zlt_trans with X2; assumption
-               end).
-Defined.       
+               end.
+Qed.       
    
 
 Lemma inside_interval_2_inf :
@@ -58,7 +58,7 @@ Lemma inside_interval_2_inf :
  {(0 < o1)%Z /\ (o2 < 0)%Z} + {(o1 < 0)%Z /\ (0 < o2)%Z}.
 Proof.
  intros o1 o2 H.
- abstract (case (Z_lt_dec 0 o1); intros Ho1;
+ case (Z_lt_dec 0 o1); intros Ho1;
             [ case (Z_lt_dec o2 0); intros Ho2;
                [ left; split; assumption | idtac ]
             | case (Z_lt_dec o1 0); intros Ho1';
@@ -73,8 +73,8 @@ Proof.
                match goal with
                | id1:(0 < ?X2)%Z,id2:(?X2 < 0)%Z |- ?X3 =>
                    apply (Zlt_irrefl 0); apply Zlt_trans with X2; assumption
-               end).
-Defined.       
+               end.
+Qed.       
    
 
 Lemma sg_pos_1 :
@@ -521,7 +521,7 @@ Proof.
        assumption || symmetry  in |- *; assumption
     | elim (sg_tuple_equal 1 na nb nc nd np (-1) a b c d One H2);
        intros H3 H4; discriminate H3 ].
-Defined.
+Qed.
 
 Lemma sg_pos_2 :
  forall (a b c d : Z) (p : Qpositive)
@@ -1123,7 +1123,7 @@ Proof.
        assumption || symmetry  in |- *; assumption
     | elim (sg_tuple_equal 1 na nb nc nd np (-1) a b c d One H2);
        intro H_discrim; discriminate H_discrim ].
-Defined.
+Qed.
 
 
 Lemma sg_neg_1 :
@@ -1595,7 +1595,7 @@ Proof.
        | apply False_ind; apply Habcd; rewrite Hcd; apply Zsgn_7;
           apply Zlt_gt; apply Zsgn_12
        | rewrite Hcd; constructor ]; assumption ].
-Defined.
+Qed.
 
 
 Lemma sg_neg_2 :
@@ -2211,4 +2211,4 @@ Proof.
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
               end; right; reflexivity ].
-Defined.
+Qed.

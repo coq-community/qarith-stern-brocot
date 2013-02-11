@@ -101,7 +101,7 @@ Proof.
   | repeat apply Zplus_lt_le_compat
   | constructor ]; apply Zle_minus || apply Zaux.Zlt_minus; 
   assumption.
-Defined.
+Qed.
 
 Lemma quadratic_top_more_2 :
  forall a b c d e f g h : Z,
@@ -120,7 +120,7 @@ intros.
      [ apply Zplus_lt_le_compat; [ apply Zplus_le_lt_compat | idtac ]
      | idtac ]
   | repeat apply Zplus_lt_le_compat ]; assumption.
-Defined.
+Qed.
 
 Lemma quadratic_top_more_3 :
  forall a b c d e f g h : Z,
@@ -138,7 +138,7 @@ Proof.
  assumption.
  abstract ring.
  abstract ring.
-Defined.
+Qed.
 
 Lemma quadratic_top_more_4_1 :
  forall a b c d e f g h : Z, quadratic_top_more a b c d e f g h -> (e <= a)%Z.
@@ -150,7 +150,7 @@ Proof.
      [(Hea, (Hfb, (Hgc, Hhd)))|
       [(Hea, (Hfb, (Hgc, Hhd)))| (Hea, (Hfb, (Hgc, Hhd)))]] ];
   assumption || (apply Zlt_le_weak; assumption).
-Defined.
+Qed.
 
 Lemma quadratic_top_more_4_2 :
  forall a b c d e f g h : Z, quadratic_top_more a b c d e f g h -> (f <= b)%Z.
@@ -162,7 +162,7 @@ Proof.
      [(Hea, (Hfb, (Hgc, Hhd)))|
       [(Hea, (Hfb, (Hgc, Hhd)))| (Hea, (Hfb, (Hgc, Hhd)))]] ];
   assumption || (apply Zlt_le_weak; assumption).
-Defined.
+Qed.
 
 Lemma quadratic_top_more_4_3 :
  forall a b c d e f g h : Z, quadratic_top_more a b c d e f g h -> (g <= c)%Z.
@@ -174,7 +174,7 @@ Proof.
      [(Hea, (Hfb, (Hgc, Hhd)))|
       [(Hea, (Hfb, (Hgc, Hhd)))| (Hea, (Hfb, (Hgc, Hhd)))]] ];
   assumption || (apply Zlt_le_weak; assumption).
-Defined.
+Qed.
 
 Lemma quadratic_top_more_4_4 :
  forall a b c d e f g h : Z, quadratic_top_more a b c d e f g h -> (h <= d)%Z.
@@ -186,7 +186,7 @@ Proof.
      [(Hea, (Hfb, (Hgc, Hhd)))|
       [(Hea, (Hfb, (Hgc, Hhd)))| (Hea, (Hfb, (Hgc, Hhd)))]] ];
   assumption || (apply Zlt_le_weak; assumption).
-Defined.
+Qed.
 
 Lemma quadratic_top_more_5 :
  forall a b c d e f g h : Z,
@@ -204,7 +204,7 @@ Proof.
  apply Zplus_le_lt_compat.  
  apply Zle_refl.
  assumption.
-Defined.
+Qed.
 
 Lemma quadratic_top_more_5' :
  forall a b c d e f g h : Z,
@@ -222,7 +222,7 @@ Lemma quadratic_top_more_5' :
  apply Zplus_lt_le_compat.  
  assumption.
  apply Zle_refl.
-Defined.
+Qed.
 
 
 Inductive quadraticAcc :
@@ -559,7 +559,7 @@ Intro Hp1.
       Refine (Qquadratic_Qpositive_to_Qpositive `a+b+c+d` `b+d` `c+d` d `e+f+g+h` `f+h` `g+h` h xs ys ?).
       Apply (quadraticacc_3_OO ?????????? hyp ?? Hxs Hys Habcdefgh Hefghabcd).
       Intro Hp2_; Apply False_rec; Falsum.
-Defined.
+Qed.
 *)
 
 
@@ -671,7 +671,7 @@ Proof.
  unfold octointegral_lt in |- *.
  simpl in |- *.
  apply Zlt_irrefl. 
-Defined.
+Qed.
 
 
 Lemma Z8_lt_is_transitive :
@@ -685,7 +685,7 @@ Proof.
  simpl in |- *.
  intros.
  apply Zlt_trans with (a' + b' + c' + d' + e' + f' + g' + h')%Z; assumption.
-Defined.
+Qed.
 
 
 
@@ -694,7 +694,7 @@ Proof.
  split.
  apply Z8_lt_is_irreflexive.
  apply Z8_lt_is_transitive.
-Defined.
+Qed.
 
 
 Lemma Z8_eq_is_reflexive : forall x : Z8, Z8_eq x x.
@@ -702,7 +702,7 @@ Proof.
  intros ((((a, b), (c, d)), ((e, f), (g, h))), z8prf0).
  unfold Z8_eq in |- *.
  unfold octointegral_eq in |- *; repeat split.
-Defined.
+Qed.
 
 Lemma Z8_eq_is_symmetric : forall x y : Z8, Z8_eq x y -> Z8_eq y x.
 Proof.
@@ -712,7 +712,7 @@ Proof.
  unfold octointegral_eq in |- *.
  intros (H1, (H2, (H3, (H4, (H5, (H6, (H7, H8))))))); repeat split;
   symmetry  in |- *; assumption.
-Defined.
+Qed.
 
 Lemma Z8_eq_is_transitive :
  forall x y z : Z8, Z8_eq x y -> Z8_eq y z -> Z8_eq x z.
@@ -731,7 +731,7 @@ Proof.
   | id12:(?X1 = ?X2),id23:(?X2 = ?X3) |- (?X1 = ?X3) =>
       try apply (trans_eq id12 id23)
   end.
-Defined.
+Qed.
 
  
 Lemma Z8_eq_is_equality : is_equality Z8 Z8_eq.
@@ -741,7 +741,7 @@ Proof.
  split.
  apply Z8_eq_is_symmetric.
  apply Z8_eq_is_transitive.
-Defined.
+Qed.
 
 
 Lemma Z8_lt_is_wf : wf_ind Z8 Z8_lt.
@@ -796,7 +796,7 @@ Proof.
  reflexivity.
  apply H0.
  reflexivity.
-Defined.
+Qed.
 
 Lemma Z8_lt_is_well_def_rht : is_well_def_rht Z8 Z8_lt Z8_eq.
 Proof.
@@ -818,7 +818,7 @@ Proof.
   | id:(?X1 = ?X2) |- _ => try rewrite id in H0; clear id
   end.
  assumption.
-Defined.
+Qed.
 
 
 Definition Z8_as_well_ordering :=
@@ -838,7 +838,7 @@ Proof.
  intros (p1, p2).
  unfold bin2_lt in |- *.
  apply bin_lt_is_irreflexive.
-Defined.
+Qed.
 
 Lemma bin2_lt_is_transitive :
  forall x y z : Qpositive2, bin2_lt x y -> bin2_lt y z -> bin2_lt x z.
@@ -846,21 +846,21 @@ Proof.
  intros (p1_x, p2_x, (p1_y, p2_y), (p1_z, p2_z)).
  unfold bin2_lt in |- *. 
  apply bin_lt_is_transitive.
-Defined.
+Qed.
 
 Lemma bin2_lt_is_order : is_order Qpositive2 bin2_lt.
 Proof.
  split.
  apply bin2_lt_is_irreflexive.
  apply bin2_lt_is_transitive.
-Defined.
+Qed.
 
 Lemma bin2_eq_is_reflexive : forall x : Qpositive2, bin2_eq x x.
 Proof.
  intros (p1, p2).
  unfold bin2_eq in |- *.
  reflexivity.
-Defined.
+Qed.
 
 Lemma bin2_eq_is_symmetric :
  forall x y : Qpositive2, bin2_eq x y -> bin2_eq y x.
@@ -868,7 +868,7 @@ Proof.
  intros (p1_x, p2_x, (p1_y, p2_y)).
  unfold bin2_eq in |- *.
  apply sym_eq.
-Defined.
+Qed.
 
 Lemma bin2_eq_is_transitive :
  forall x y z : Qpositive2, bin2_eq x y -> bin2_eq y z -> bin2_eq x z.
@@ -876,7 +876,7 @@ Proof.
  intros (p1_x, p2_x, (p1_y, p2_y), (p1_z, p2_z)).
  unfold bin2_eq in |- *.
  apply trans_eq.
-Defined.
+Qed.
 
 Lemma bin2_eq_is_equality : is_equality Qpositive2 bin2_eq.
 Proof.
@@ -885,7 +885,7 @@ Proof.
  split.
  apply bin2_eq_is_symmetric.
  apply bin2_eq_is_transitive.
-Defined.
+Qed.
 
 Lemma bin2_lt_is_wf : wf_ind Qpositive2 bin2_lt.
 Proof.
@@ -906,7 +906,7 @@ Proof.
  apply H0.
  unfold bin2_lt in H1.
  assumption.
-Defined.
+Qed.
 
 Lemma bin2_lt_is_well_def_rht : is_well_def_rht Qpositive2 bin2_lt bin2_eq.
 Proof.
@@ -916,7 +916,7 @@ Proof.
  red in H0.
  rewrite <- H0.
  assumption.
-Defined.
+Qed.
 
 Definition Qpositive2_as_well_ordering :=
   Build_well_ordering Qpositive2 bin2_lt bin2_eq bin2_lt_is_order
@@ -989,7 +989,7 @@ Proof.
  right.
  split; assumption.
  assumption.
-Defined.
+Qed.
 
 Lemma quadraticAcc_wf :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive),
@@ -1379,7 +1379,7 @@ Proof.
          (rewrite Zplus_assoc_reverse with (m := g0:Z);
            rewrite Zplus_comm with (n := g0:Z)); rewrite Zplus_assoc);
    assumption.
-Defined.
+Qed.
 
 (** Proof independence of Qquadratic_Qpositive_to_Qpositive: *)
 
@@ -1735,7 +1735,7 @@ Proof.
      let T_local1 := eval compute in (f_equal Qpositive_tail H1) in
      let T_local2 := eval compute in (f_equal Qpositive_tail H2) in
      (rewrite T_local1; rewrite T_local2; apply H0).
-Defined.
+Qed.
 
 
 Lemma Qquadratic_Qpositive_to_Qpositive_equal_strong :
@@ -1757,7 +1757,7 @@ Lemma Qquadratic_Qpositive_to_Qpositive_equal_strong :
  Qquadratic_Qpositive_to_Qpositive a2 b2 c2 d2 e2 f2 g2 h2 x2 y2 hyp2.
 Proof.
  intros; subst; apply Qquadratic_Qpositive_to_Qpositive_equal.
-Defined.
+Qed.
 
 (** Here we expand the fixpoint equations of "Qquadratic_Qpositive_to_Qpositive" function *)
 
@@ -1779,7 +1779,7 @@ Proof.
  apply Qquadratic_Qpositive_to_Qpositive_equal_strong;
   reflexivity || assumption.
  reflexivity.
-Defined.
+Qed.
 
 Lemma Qquadratic_Qpositive_to_Qpositive_0' :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1801,7 +1801,7 @@ Proof.
   reflexivity || assumption.
     unfold Qquadratic_Qpositive_to_Qpositive;fold Qquadratic_Qpositive_to_Qpositive;
   case (Qpositive_dec_One p1); intros Hp1; [ Falsum | idtac ]; reflexivity.
-Defined.
+Qed.
 
 Lemma Qquadratic_Qpositive_to_Qpositive_1 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1828,7 +1828,7 @@ Proof.
    case (quadratic_top_more_informative a b c d e f g h); 
    intros Habcdefgh; [ idtac | Falsum ]; apply f_equal with Qpositive;
    reflexivity.
-Defined.
+Qed.
 
 Lemma Qquadratic_Qpositive_to_Qpositive_2 :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1858,7 +1858,7 @@ Proof.
    case (quadratic_top_more_informative e f g h a b c d); 
    intros Hefghabcd; [ idtac | Falsum ]; apply f_equal with Qpositive;
    reflexivity.
-Defined.
+Qed.
 
 Lemma Qquadratic_Qpositive_to_Qpositive_3_II :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1889,7 +1889,7 @@ Proof.
    intros Habcdefgh; [ Falsum | idtac ];
    case (quadratic_top_more_informative e f g h a b c d); 
    intros Hefghabcd; [ Falsum | idtac ]; reflexivity.
-Defined.
+Qed.
 
 Lemma Qquadratic_Qpositive_to_Qpositive_3_IO :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1920,7 +1920,7 @@ Proof.
    intros Habcdefgh; [ Falsum | idtac ];
    case (quadratic_top_more_informative e f g h a b c d); 
    intros Hefghabcd; [ Falsum | idtac ]; reflexivity.
-Defined.
+Qed.
 
 Lemma Qquadratic_Qpositive_to_Qpositive_3_OI :
  forall (a b c d e f g h : Z) (p1 p2 : Qpositive)
@@ -1951,7 +1951,7 @@ Proof.
    intros Habcdefgh; [ Falsum | idtac ];
    case (quadratic_top_more_informative e f g h a b c d); 
    intros Hefghabcd; [ Falsum | idtac ]; reflexivity.
-Defined.
+Qed.
 
 
 Lemma Qquadratic_Qpositive_to_Qpositive_3_OO :
@@ -1983,4 +1983,4 @@ Proof.
    intros Habcdefgh; [ Falsum | idtac ];
    case (quadratic_top_more_informative e f g h a b c d); 
    intros Hefghabcd; [ Falsum | idtac ]; reflexivity.
-Defined.
+Qed.
