@@ -1483,15 +1483,39 @@ Hint Resolve Qplus_zero_right Qlt_le_reg_pos Qle_lt_reg_pos Qlt_le_reg
   Qle_mult_nonpos_nonneg Qle_mult_nonpos_pos Qle_mult_neg_nonneg
   Qle_reflexive.
 
+Lemma Qpos_not_lt_Zero : forall x, ~ Qlt (Qpos x) Zero.
+Proof.
+intros x Hc; apply (Qlt_irreflexive Zero); apply Qlt_transitive with (Qpos x);trivial.
+Qed.
+
+Lemma Qlt_dec_Qpos : forall x y, {~ Qlt (Qpos y) (Qpos x)} + {Qlt (Qpos y) (Qpos x)}.
+  intros x y; case Qpositive_le_dec with x y; intro; [left;intro; inversion H; contradiction | right;unfold Qlt; constructor; trivial].
+Qed.
+
+Lemma Zero_not_lt_Qneg : forall x, ~ Qlt Zero (Qneg x).
+Proof.
+intros x Hc; apply (Qlt_irreflexive Zero); apply Qlt_transitive with (Qneg x);trivial.
+Qed.
+
+Lemma Qpos_not_lt_Qneg : forall x y, ~ Qlt (Qpos y) (Qneg x).
+Proof.
+intros x y Hc; apply (Qlt_irreflexive (Qneg x)); apply Qlt_transitive with (Qpos y); trivial.
+Qed.
+
+Lemma Qlt_dec_Qneg : forall x y, {~ Qlt (Qneg y) (Qneg x)} + {Qlt (Qneg y) (Qneg x)}.
+Proof.
+intros x y; case Qpositive_le_dec with y x; intro; [left;intro; inversion H; contradiction | right;unfold Qlt; constructor; trivial].
+Qed.
+
 Lemma Q_le_lt_dec:forall (x y:Q), {Qle x y}+{Qlt y x}.
 Proof.
   intros [|x|x] [|y|y]; unfold Qle; try (right; trivial || fail).
   left; apply Qlt_irreflexive.
-  left; abstract (intro; apply (Qlt_irreflexive Zero); apply Qlt_transitive with (Qpos y);trivial) using Qpos_not_lt_Zero.
-  abstract (case Qpositive_le_dec with x y; intro; [left;intro; inversion H; contradiction | right;unfold Qlt; constructor; trivial]) using Qlt_dec_Qpos.
-  left; abstract (intro; apply (Qlt_irreflexive Zero); apply Qlt_transitive with (Qneg x);trivial) using Zero_not_lt_Qneg.
-  left; abstract (intro; apply (Qlt_irreflexive (Qneg x)); apply Qlt_transitive with (Qpos y); trivial) using Qpos_not_lt_Qneg.
-  abstract (case Qpositive_le_dec with y x; intro; [left;intro; inversion H; contradiction | right;unfold Qlt; constructor; trivial]) using Qlt_dec_Qneg.
+  left; apply Qpos_not_lt_Zero.
+  apply Qlt_dec_Qpos.
+  left; apply Zero_not_lt_Qneg.
+  left; apply Qpos_not_lt_Qneg.
+  apply Qlt_dec_Qneg.
 Qed.
 
 Lemma Qle_dec:forall (x y:Q), {Qle x y}+{~(Qle x y)}.
