@@ -1518,6 +1518,12 @@ Proof.
  intros [| px| px] Hx1 Hx2; try (discriminate Hx1); trivial.
 Qed.
 
+Let pred_nat_unfolded_subproof px :
+  Pos.to_nat px <> 0.
+Proof.
+apply sym_not_equal; apply lt_O_neq; apply lt_O_nat_of_P.
+Qed.
+
 Lemma pred_nat_unfolded :
  forall (x : Z) (Hx : (0 < x)%Z), x = S (pred_nat x Hx).
 Proof.
@@ -1525,8 +1531,7 @@ Proof.
  unfold pred_nat in |- *.
  rewrite S_predn.
  symmetry  in |- *; apply ZL9.
- clear Hx;
-  abstract (apply sym_not_equal; apply lt_O_neq; apply lt_O_nat_of_P).
+ clear Hx; apply pred_nat_unfolded_subproof.
 Qed.
 
 Lemma absolu_pred_nat :
