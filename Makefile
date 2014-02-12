@@ -129,9 +129,9 @@ VFILES:=Zaux.v\
 -include $(addsuffix .d,$(VFILES))
 .SECONDARY: $(addsuffix .d,$(VFILES))
 
-VO=vo
-VOFILES:=$(VFILES:.v=.$(VO))
+VOFILES:=$(VFILES:.v=.vo)
 GLOBFILES:=$(VFILES:.v=.glob)
+VIFILES:=$(VFILES:.v=.vi)
 GFILES:=$(VFILES:.v=.g)
 HTMLFILES:=$(VFILES:.v=.html)
 GHTMLFILES:=$(VFILES:.v=.g.html)
@@ -149,10 +149,8 @@ endif
 
 all: $(VOFILES) 
 
-quick:
-	$(MAKE) -f $(firstword $(MAKEFILE_LIST)) all VO=vi
-checkproofs:
-	$(COQC) $(COQDEBUG) $(COQFLAGS) -schedule-vi-checking $(J) $(VOFILES:%.vo=%.vi)
+spec: $(VIFILES)
+
 gallina: $(GFILES)
 
 html: $(GLOBFILES) $(VFILES)
@@ -224,7 +222,7 @@ uninstall: uninstall_me.sh
 	sh $<
 
 clean:
-	rm -f $(VOFILES) $(VOFILES:.vo=.vi) $(GFILES) $(VFILES:.v=.v.d) $(VFILES:=.beautified) $(VFILES:=.old)
+	rm -f $(VOFILES) $(VIFILES) $(GFILES) $(VFILES:.v=.v.d) $(VFILES:=.beautified) $(VFILES:=.old)
 	rm -f all.ps all-gal.ps all.pdf all-gal.pdf all.glob $(VFILES:.v=.glob) $(VFILES:.v=.tex) $(VFILES:.v=.g.tex) all-mli.tex
 	- rm -rf html mlihtml uninstall_me.sh
 
@@ -255,7 +253,7 @@ Makefile: Make
 	$(COQC) $(COQDEBUG) $(COQFLAGS) $*
 
 %.vi: %.v
-	$(COQC) -quick $(COQDEBUG) $(COQFLAGS) $*
+	$(COQC) -i $(COQDEBUG) $(COQFLAGS) $*
 
 %.g: %.v
 	$(GALLINA) $<
@@ -273,7 +271,7 @@ Makefile: Make
 	$(COQDOC) $(COQDOCFLAGS)  -html -g $< -o $@
 
 %.v.d: %.v
-	$(COQDEP) $(COQLIBS) "$<" > "$@" || ( RV=$$?; rm -f "$@"; exit $${RV} )
+	$(COQDEP) -slash $(COQLIBS) "$<" > "$@" || ( RV=$$?; rm -f "$@"; exit $${RV} )
 
 %.v.beautified:
 	$(COQC) $(COQDEBUG) $(COQFLAGS) -beautify $*
