@@ -11,7 +11,7 @@
 Require Import Reals.
 Require Import Fourier.
 Require Import Euclid. 
-
+Require Import Omega.
 
 Lemma Rlt_stepl:forall x y z, Rlt x y -> x=z -> Rlt z y.
 Proof.
