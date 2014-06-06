@@ -19,6 +19,7 @@ Require Import ZArithRing.
 Require Export Qpositive.
 Require Export Q_field.
 
+Unset Standard Proposition Elimination Names.
 
 Inductive fractionalAcc : Z -> Z -> Prop :=
   | fractionalacc0 : forall m n : Z, m = n -> fractionalAcc m n

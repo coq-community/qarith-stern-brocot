@@ -903,7 +903,7 @@ Definition Qquadratic :
   Z ->
   forall (e f g h : Z) (s1 s2 : Q)
     (H_Qquadratic_denom_nonzero : Qquadratic_denom_nonzero e f g h s1 s2), Q.
-intros a b c d e f g h [| p1 [| p2| p2]| p1 [| p2| p2]]. 
+intros a b c d e f g h [| p1 | p1 ]; [ |intros [| p2| p2] | intros [| p2| p2]]. 
  (* s1 = Zero *)
  intros s2 H_Qquadratic_denom_nonzero.
  refine (Qhomographic c d g h s2 _).

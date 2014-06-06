@@ -19,6 +19,7 @@ Require Import ZArithRing.
 Require Import Qhomographic_sign.
 Require Import Zaux.
 
+Unset Standard Proposition Elimination Names.
 
 Definition outside_square (a b c d : Z) :=
   (Zsgn a + Zsgn b + Zsgn c + Zsgn d)%Z.

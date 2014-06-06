@@ -19,6 +19,7 @@ Require Export Qhomographic_sign.
 Require Export Qhomographic_Qpositive_to_Qpositive.
 Require Export Qhomographic_sign_properties.
 
+Unset Standard Proposition Elimination Names.
 
 Definition new_a (a b c d : Z) (p : Qpositive)
   (H_Qhomographic_sg_denom_nonzero : Qhomographic_sg_denom_nonzero c d p) :=

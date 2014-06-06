@@ -1093,7 +1093,7 @@ Qed.
 
 Lemma Qinv_0 : forall q : Q, Qinv q = Zero -> q = Zero. 
 Proof.
- intros [| qp Hqp| qp Hqp]; try trivial; discriminate Hqp.
+ intros [| qp | qp ] Hqp; try trivial; discriminate Hqp.
 Qed. 
 
 Lemma Qmult_resp_nonzero :
@@ -1489,7 +1489,7 @@ intros x Hc; apply (Qlt_irreflexive Zero); apply Qlt_transitive with (Qpos x);tr
 Qed.
 
 Lemma Qlt_dec_Qpos : forall x y, {~ Qlt (Qpos y) (Qpos x)} + {Qlt (Qpos y) (Qpos x)}.
-  intros x y; case Qpositive_le_dec with x y; intro; [left;intro; inversion H; contradiction | right;unfold Qlt; constructor; trivial].
+  intros x y; case Qpositive_le_dec with x y; intro H'; [left;intro H; inversion H; contradiction | right;unfold Qlt; constructor; trivial].
 Qed.
 
 Lemma Zero_not_lt_Qneg : forall x, ~ Qlt Zero (Qneg x).
@@ -1504,7 +1504,7 @@ Qed.
 
 Lemma Qlt_dec_Qneg : forall x y, {~ Qlt (Qneg y) (Qneg x)} + {Qlt (Qneg y) (Qneg x)}.
 Proof.
-intros x y; case Qpositive_le_dec with y x; intro; [left;intro; inversion H; contradiction | right;unfold Qlt; constructor; trivial].
+intros x y; case Qpositive_le_dec with y x; intro H'; [left;intro H; inversion H; contradiction | right;unfold Qlt; constructor; trivial].
 Qed.
 
 Lemma Q_le_lt_dec:forall (x y:Q), {Qle x y}+{Qlt y x}.
@@ -1523,7 +1523,7 @@ Proof.
  intros x y.
  case (Q_le_lt_dec x y);
  intros; [ left | right ] ; trivial.
- intro; apply H; trivial.
+ intros H'; apply H'; trivial.
 Qed.
 
 Lemma Qlt_dec:forall (x y:Q), {Qlt x y}+{~(Qlt x y)}.

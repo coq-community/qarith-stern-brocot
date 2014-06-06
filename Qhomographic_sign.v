@@ -18,7 +18,6 @@
 Require Export positive_fraction_encoding.
 Require Import ZArithRing.
 
-
 Definition outside_interval (a b : Z) := (Zsgn a + Zsgn b)%Z.
 
 Definition inside_interval_1 (o1 o2 : Z) :=
@@ -876,7 +875,7 @@ Proof.
                  H_Qhomographic_sg_denom_nonzero (refl_equal (dL q)) Hb Hd)
               
          end; generalize a c;
-          intros [[| pc| pc]| pa [| pc| pc]| pa [| pc| pc]]; 
+          intros [|pa|pa] [| pc| pc]; 
           simpl in |- *; first
           [ right; reflexivity
           | left; left; reflexivity

@@ -18,6 +18,7 @@
 Require Import Merge_Order.
 Require Export Qhomographic_Qpositive_to_Qpositive.
 
+Unset Standard Proposition Elimination Names.
 
 Definition quadratic_top_more (a b c d e f g h : Z) :=
   (e <= a)%Z /\ (f <= b)%Z /\ (g <= c)%Z /\ (h < d)%Z \/
@@ -747,7 +748,7 @@ Qed.
 Lemma Z8_lt_is_wf : wf_ind Z8 Z8_lt.
 Proof.
  red in |- *.
- intros P H ((((a, b), (c, d)), ((e, f), (g, h)))). 
+ intros P H ((((a, b), (c, d)), ((e, f), (g, h))), p); revert p. 
  simpl in |- *.
  intros (Ha, (Hb, (Hc, (Hd, (He, (Hf, (Hg, Hh))))))).
  assert (H_a_b_c_d_e_f_g_h : (0 <= a + b + c + d + e + f + g + h)%Z);
@@ -772,7 +773,7 @@ Proof.
  red in |- *.
  intros.
  apply H.
- intros ((((r_a, r_b), (r_c, r_d), ((r_e, r_f), (r_g, r_h))))). 
+ intros ((((r_a, r_b), (r_c, r_d)), ((r_e, r_f), (r_g, r_h))), p); revert p. 
  simpl in |- *.
  intros (H_r_a, (H_r_b, (H_r_c, (H_r_d, (H_r_e, (H_r_f, (H_r_g, H_r_h))))))). 
  intro Hr. 
@@ -843,7 +844,7 @@ Qed.
 Lemma bin2_lt_is_transitive :
  forall x y z : Qpositive2, bin2_lt x y -> bin2_lt y z -> bin2_lt x z.
 Proof.
- intros (p1_x, p2_x, (p1_y, p2_y), (p1_z, p2_z)).
+ intros (p1_x, p2_x) (p1_y, p2_y) (p1_z, p2_z).
  unfold bin2_lt in |- *. 
  apply bin_lt_is_transitive.
 Qed.
@@ -865,7 +866,7 @@ Qed.
 Lemma bin2_eq_is_symmetric :
  forall x y : Qpositive2, bin2_eq x y -> bin2_eq y x.
 Proof.
- intros (p1_x, p2_x, (p1_y, p2_y)).
+ intros (p1_x, p2_x) (p1_y, p2_y).
  unfold bin2_eq in |- *.
  apply sym_eq.
 Qed.
@@ -873,7 +874,7 @@ Qed.
 Lemma bin2_eq_is_transitive :
  forall x y z : Qpositive2, bin2_eq x y -> bin2_eq y z -> bin2_eq x z.
 Proof.
- intros (p1_x, p2_x, (p1_y, p2_y), (p1_z, p2_z)).
+ intros (p1_x, p2_x) (p1_y, p2_y) (p1_z, p2_z).
  unfold bin2_eq in |- *.
  apply trans_eq.
 Qed.
@@ -911,7 +912,7 @@ Qed.
 Lemma bin2_lt_is_well_def_rht : is_well_def_rht Qpositive2 bin2_lt bin2_eq.
 Proof.
  red in |- *.
- intros (p1_x, p2_x, (p1_y, p2_y)).
+ intros (p1_x, p2_x) (p1_y, p2_y).
  intros H (p1_z, p2_z) H0.
  red in H0.
  rewrite <- H0.
@@ -956,7 +957,7 @@ Proof.
  
  apply (merge_lt_wf Qpositive2_as_well_ordering Z8_as_well_ordering).
  intros (p1_i, p2_i).
- intros ((((a_i, b_i), (c_i, d_i), ((e_i, f_i), (g_i, h_i))))).
+ intros ((((a_i, b_i), (c_i, d_i)), ((e_i, f_i), (g_i, h_i))), p); revert p.
  unfold P2 in |- *.
  simpl in |- *.
  intros (Ha_i, (Hb_i, (Hc_i, (Hd_i, (He_i, (Hf_i, (Hg_i, Hh_i))))))).

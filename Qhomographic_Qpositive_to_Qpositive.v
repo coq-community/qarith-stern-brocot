@@ -20,6 +20,7 @@ Require Export positive_fraction_encoding.
 Require Import Merge_Order.
 Require Import Wf_nat.
 
+Unset Standard Proposition Elimination Names.
 
 Definition top_more (a b c d : Z) :=
   (c <= a)%Z /\ (d < b)%Z \/ (c < a)%Z /\ (d <= b)%Z.
@@ -540,7 +541,7 @@ Defined.
 Lemma Z4_lt_is_wf : wf_ind Z4 Z4_lt.
 Proof.
  red in |- *.
- intros P H (((a, b), (c, d))). 
+ intros P H (((a, b), (c, d)), p); revert p;
  simpl in |- *.
  intros (Ha, (Hb, (Hc, Hd))).
  assert (H_a_b_c_d : (0 <= a + b + c + d)%Z); repeat apply Zplus_le_0_compat;
@@ -560,7 +561,7 @@ Proof.
  red in |- *.
  intros.
  apply H.
- intros (((r_a, r_b), (r_c, r_d))).
+ intros (((r_a, r_b), (r_c, r_d)), p); revert p.
  simpl in |- *.
  intros (H_r_a, (H_r_b, (H_r_c, H_r_d))).
  intro Hq.
@@ -712,7 +713,7 @@ Proof.
  
  apply (merge_lt_wf Qpositive_as_well_ordering Z4_as_well_ordering).
  intro p_i.
- intros (((a_i, b_i), (c_i, d_i))).
+ intros (((a_i, b_i), (c_i, d_i)), q); revert q.
  unfold P2 in |- *.
  simpl in |- *.
  intros (Ha_i, (Hb_i, (Hc_i, Hd_i))).
