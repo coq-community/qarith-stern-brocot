@@ -1188,8 +1188,9 @@ Proof.
  rewrite Qsgn_29.
  assumption.
  (* (One2) : (Zsgn (a+b))<>0 & (Zsgn (a+b))=(Zsgn (c+d)) *)
+ Transparent Qone.
  unfold spec_Qhomographic_Qpositive_to_Q in |- *; clear e1 e0 ;
-  rewrite Qsgn_15; repeat rewrite Qmult_one_right; 
+  rewrite Qsgn_15; repeat rewrite Qmult_one_right;
   rewrite Qsgn_28; repeat rewrite <- Z_to_Qplus; repeat rewrite Qsgn_29;
      rewrite <- _x1; rewrite <- Zsgn_15; symmetry  in |- *; 
   apply Zsgn_7'; abstract auto with zarith.
