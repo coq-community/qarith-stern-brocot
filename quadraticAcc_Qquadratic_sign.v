@@ -178,7 +178,7 @@ Proof.
  destruct np1 as [p| p| ].
   (* np1 = (nR p) *)
   destruct np2 as [p0| p0| ].
-   (* np2 = (nR p0) *) 
+   (* np2 = (nR p0) *)
    apply quadraticAcc_wf; solve
     [ assumption
     | generalize
@@ -190,8 +190,8 @@ Proof.
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
            (H_discriminate_me, _)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ assumption
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zle_resp_neg; assumption
@@ -212,8 +212,8 @@ Proof.
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
            (H_discriminate_me, _)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ assumption
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zle_resp_neg; assumption
@@ -264,8 +264,8 @@ Proof.
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
            (H_discriminate_me, _)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ assumption
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zle_resp_neg; assumption
@@ -286,8 +286,8 @@ Proof.
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
            (H_discriminate_me, _)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ assumption
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zle_resp_neg; assumption
@@ -340,8 +340,8 @@ Proof.
              (_, (Hab, (Hcd, (Hef, Hgh))))]|
             (_, (Hab, (Hcd, (Hef, Hgh))))]|
            (_, H_discriminate_me)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ apply Zplus_le_0_compat; assumption
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zle_resp_neg; assumption
@@ -362,8 +362,8 @@ Proof.
              (_, (Hab, (Hcd, (Hef, Hgh))))]|
             (_, (Hab, (Hcd, (Hef, Hgh))))]|
            (_, H_discriminate_me)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ apply Zplus_le_0_compat; assumption
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zle_resp_neg; assumption
@@ -451,8 +451,8 @@ Proof.
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
            (H_discriminate_me, _)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zplus_le_0_compat; assumption
        | apply Zle_neg_opp; assumption
@@ -474,8 +474,8 @@ Proof.
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
            (H_discriminate_me, _)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zplus_le_0_compat; assumption
        | apply Zle_neg_opp; assumption
@@ -526,8 +526,8 @@ Proof.
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
            (H_discriminate_me, _)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zplus_le_0_compat; assumption
        | apply Zle_neg_opp; assumption
@@ -548,8 +548,8 @@ Proof.
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
            (H_discriminate_me, _)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zplus_le_0_compat; assumption
        | apply Zle_neg_opp; assumption
@@ -601,8 +601,8 @@ Proof.
              (_, (Hab, (Hcd, (Hef, Hgh))))]|
             (_, (Hab, (Hcd, (Hef, Hgh))))]|
            (_, H_discriminate_me)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zplus_le_0_compat; assumption
        | apply Zplus_le_0_compat; apply Zle_neg_opp; assumption
@@ -623,8 +623,8 @@ Proof.
              (_, (Hab, (Hcd, (Hef, Hgh))))]|
             (_, (Hab, (Hcd, (Hef, Hgh))))]|
            (_, H_discriminate_me)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zplus_le_0_compat; assumption
        | apply Zplus_le_0_compat; apply Zle_neg_opp; assumption
@@ -716,8 +716,8 @@ Proof.
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
            (H_discriminate_me, _)]|
-          (_, (H_discriminate_me))]|
-         (_, (H_discriminate_me))];
+          (_, (H_discriminate_me,_))]|
+         (_, (H_discriminate_me,_))];
        [ try apply Zle_neg_opp; assumption
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zle_resp_neg; assumption
@@ -778,8 +778,8 @@ Proof.
               (H_discriminate_me, _)]|
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
-           (_, (H_discriminate_me))]|
-          (_, (H_discriminate_me))];
+           (_, (H_discriminate_me,_))]|
+          (_, (H_discriminate_me,_))];
         [ try apply Zle_neg_opp; assumption
         | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
            repeat apply Zle_resp_neg; assumption
@@ -841,8 +841,8 @@ Proof.
               (_, (Hab, (Hcd, (Hef, Hgh))))]|
              (_, (Hab, (Hcd, (Hef, Hgh))))]|
             (_, H_discriminate_me)]|
-           (_, (H_discriminate_me))]|
-          (_, (H_discriminate_me))];
+           (_, (H_discriminate_me,_))]|
+          (_, (H_discriminate_me,_))];
         [ apply Zplus_le_0_compat; try apply Zle_neg_opp; assumption
         | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
            repeat apply Zle_resp_neg; assumption
@@ -939,8 +939,8 @@ Proof.
               (H_discriminate_me, _)]|
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
-           (_, (H_discriminate_me))]|
-          (_, (H_discriminate_me))];
+           (_, (H_discriminate_me,_))]|
+          (_, (H_discriminate_me,_))];
         [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
            repeat apply Zplus_le_0_compat; assumption
         | try apply Zle_neg_opp; assumption
@@ -1001,8 +1001,8 @@ Proof.
               (H_discriminate_me, _)]|
              (H_discriminate_me, _)]|
             (H_discriminate_me, _)]|
-           (_, (H_discriminate_me))]|
-          (_, (H_discriminate_me))];
+           (_, (H_discriminate_me,_))]|
+          (_, (H_discriminate_me,_))];
         [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
            repeat apply Zplus_le_0_compat; assumption
         | try apply Zle_neg_opp; assumption
@@ -1066,8 +1066,8 @@ Proof.
                (_, (Hab, (Hcd, (Hef, Hgh))))]|
               (_, (Hab, (Hcd, (Hef, Hgh))))]|
              (_, H_discriminate_me)]|
-            (_, (H_discriminate_me))]|
-           (_, (H_discriminate_me))];
+            (_, (H_discriminate_me,_))]|
+           (_, (H_discriminate_me,_))];
          [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
             repeat apply Zplus_le_0_compat; assumption
          | apply Zplus_le_0_compat; try apply Zle_neg_opp; assumption
@@ -1082,5 +1082,5 @@ Proof.
     |  (* np2 = (dL p) *) T_local
     |  (* Here we use the third clause in Qquadratic_sign_neg_2:  p1=One /\ .... *) 
        (* np2 = One *)
-       apply homographicacc0; reflexivity || omega ]). 
+       apply homographicacc0; reflexivity || omega ]).
 Qed.
