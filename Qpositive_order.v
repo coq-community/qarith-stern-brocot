@@ -34,9 +34,9 @@ Theorem Qpositive_le_add :
  forall w w' w'' : Qpositive,
  Qpositive_le w w' ->
  Qpositive_le (Qpositive_plus w w'') (Qpositive_plus w' w'').
-intros w w' w''; make_fraction w ipattern:p ipattern:q ipattern:Heq;
- make_fraction w' ipattern:p' ipattern:q' ipattern:Heq';
- make_fraction w'' ipattern:p'' ipattern:q'' ipattern:Heq''.
+intros w w' w''; make_fraction w ipattern:(p) ipattern:(q) ipattern:(Heq);
+ make_fraction w' ipattern:(p') ipattern:(q') ipattern:(Heq');
+ make_fraction w'' ipattern:(p'') ipattern:(q'') ipattern:(Heq'').
 intros H; apply Qpositive_le'_to_Qpositive_le;
  generalize (Qpositive_le_to_Qpositive_le' _ _ H); 
  clear H.
@@ -44,11 +44,11 @@ unfold Qpositive_le' in |- *; simpl in |- *.
 unfold Qpositive_le', Qpositive_plus in |- *; simpl in |- *; rewrite Heq;
  rewrite Heq'; rewrite Heq''.
 expand (S p * S q'' + S p'' * S q) (S q * S q'')
- (S p * S q'' + S p'' * S q + S q * S q'') ipattern:d ipattern:p3 ipattern:q3
- ipattern:Heq3 ipattern:Heq1 ipattern:Heq2.
+ (S p * S q'' + S p'' * S q + S q * S q'') ipattern:(d) ipattern:(p3) ipattern:(q3)
+ ipattern:(Heq3) ipattern:(Heq1) ipattern:(Heq2).
 expand (S p' * S q'' + S p'' * S q') (S q' * S q'')
- (S p' * S q'' + S p'' * S q' + S q' * S q'') ipattern:d' ipattern:p4
- ipattern:q4 ipattern:Heq4 ipattern:Heq5 ipattern:Heq6.
+ (S p' * S q'' + S p'' * S q' + S q' * S q'') ipattern:(d') ipattern:(p4)
+ ipattern:(q4) ipattern:(Heq4) ipattern:(Heq5) ipattern:(Heq6).
 intros Hle; apply mult_S_le_reg_l with d; rewrite (mult_comm (S p3));
  repeat rewrite (mult_comm (S d)); repeat rewrite <- mult_assoc.
 rewrite <- Heq1; rewrite <- Heq2.
@@ -71,19 +71,19 @@ Theorem Qpositive_le_mult :
  forall w w' w'' : Qpositive,
  Qpositive_le w w' ->
  Qpositive_le (Qpositive_mult w w'') (Qpositive_mult w' w'').
-intros w w' w''; make_fraction w ipattern:p ipattern:q ipattern:Heq;
- make_fraction w' ipattern:p' ipattern:q' ipattern:Heq';
- make_fraction w'' ipattern:p'' ipattern:q'' ipattern:Heq''.
+intros w w' w''; make_fraction w ipattern:(p) ipattern:(q) ipattern:(Heq);
+ make_fraction w' ipattern:(p') ipattern:(q') ipattern:(Heq');
+ make_fraction w'' ipattern:(p'') ipattern:(q'') ipattern:(Heq'').
 intros H; apply Qpositive_le'_to_Qpositive_le;
  generalize (Qpositive_le_to_Qpositive_le' _ _ H); 
  clear H.
 unfold Qpositive_le', Qpositive_mult in |- *; simpl in |- *; rewrite Heq;
  rewrite Heq'; rewrite Heq''.
-expand (S p * S p'') (S q * S q'') (S p * S p'' + S q * S q'') ipattern:d
- ipattern:p3 ipattern:q3 ipattern:Heq3 ipattern:Heq1 ipattern:Heq2.
+expand (S p * S p'') (S q * S q'') (S p * S p'' + S q * S q'') ipattern:(d)
+ ipattern:(p3) ipattern:(q3) ipattern:(Heq3) ipattern:(Heq1) ipattern:(Heq2).
 expand (S p' * S p'') (S q' * S q'') (S p' * S p'' + S q' * S q'')
- ipattern:d' ipattern:p4 ipattern:q4 ipattern:Heq4 ipattern:Heq5
- ipattern:Heq6.
+ ipattern:(d') ipattern:(p4) ipattern:(q4) ipattern:(Heq4) ipattern:(Heq5)
+ ipattern:(Heq6).
 intros Hle; apply mult_S_le_reg_l with d; rewrite (mult_comm (S p3));
  repeat rewrite (mult_comm (S d)); repeat rewrite <- mult_assoc.
 rewrite <- Heq1; rewrite <- Heq2.
@@ -106,8 +106,8 @@ elim (interp_non_zero w); intros p (q, Heq); elim (interp_non_zero w');
  intros p' (q', Heq').
 rewrite Heq; rewrite Heq'.
 expand (S p * S q' + S p' * S q) (S q * S q')
- (S p * S q' + S p' * S q + S q * S q') ipattern:d ipattern:p'' ipattern:q''
- ipattern:Heq2 ipattern:Heq3 ipattern:Heq4.
+ (S p * S q' + S p' * S q + S q * S q') ipattern:(d) ipattern:(p'') ipattern:(q'')
+ ipattern:(Heq2) ipattern:(Heq3) ipattern:(Heq4).
 apply mult_S_le_reg_l with d.
 rewrite (mult_assoc (S d) (S p'')); repeat rewrite (mult_comm (S d));
  rewrite <- (mult_assoc (S p)); rewrite <- Heq3; rewrite <- Heq4.

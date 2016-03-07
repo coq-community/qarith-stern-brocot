@@ -183,7 +183,7 @@ Ltac Absurd_q_sign_ :=
   match goal with
   | id1:(q_sign ?X1 ?X2 ?X3 ?X4 ?X5 ?X6 ?X7 ?X8 ?X9 ?X10 ?X11 = ?X0),id2:
   (Zsgn _ = 0%Z) |- _ =>
-      match constr:X0 with
+      match constr:(X0) with
       | 0%Z => QSign_mismatch_
       end ||
         (apply False_ind;
@@ -209,7 +209,7 @@ Ltac Absurd_q_sign_ :=
              [ idtac | reflexivity ]; repeat rewrite <- pair_1; 
              reflexivity
           | idtac ];
-          match constr:X0 with
+          match constr:(X0) with
           | 1%Z =>
               generalize
                (Qquadratic_sign_pos_1 X1 X2 X3 X4 X5 X6 X7 X8 X9 X10 X11

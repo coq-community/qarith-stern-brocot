@@ -30,7 +30,7 @@ intros w w'; unfold Qpositive_le in |- *; case (Qpositive_le_bool w w'); auto.
 Defined.
 
 Ltac Case' f :=
-  match constr:f with
+  match constr:(f) with
   | (Qpositive_le_dec ?X1 ?X2) =>
       case f;
        [ idtac
