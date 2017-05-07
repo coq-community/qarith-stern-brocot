@@ -539,7 +539,7 @@ Qed.
 Lemma conjLinv_range_l:forall r, -1<=r -> r <= 0 -> -1<=(3*r+1)/(-r+1).
 Proof.
  intros r Hr1 Hr2;
- stepl (-1/1); [| field; apply R1_neq_R0];
+ stepl (-(1)/1); [| field; apply R1_neq_R0];
  apply Rmult_Rdiv_pos_Rle; try fourier;
  rewrite Rmult_plus_distr_l; do 2 rewrite Rmult_1_r; rewrite Rmult_opp_opp; fourier.
 Qed.

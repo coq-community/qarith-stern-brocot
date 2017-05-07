@@ -713,19 +713,19 @@ Proof.
  apply False_ind; apply (Q_to_R_not_eq _ _ Hxy); assumption.
 Qed.
   
-Lemma Z_to_Q_to_R_IZR: forall z, Q_to_R (Z_to_Q z) = (Raxioms.IZR z).
+Lemma Z_to_Q_to_R_IZR: forall z, Q_to_R (Z_to_Q z) = IZR z.
 Proof.
  intros [|p|p].
   (* 0 *)
   simpl; rewrite <- Q_to_R_Zero; trivial.
   (* + *)
   unfold Z_to_Q, Q_to_R, numerator, denominator, decode_Q, fst, snd.
-  rewrite (Qpositive_i_c (nat_of_P p) (S (nat_of_P p)) (lt_O_nat_of_P _)); trivial.
-  repeat rewrite <- INR_IZR_INZ; unfold IZR, INR at 2; field; auto.
+  rewrite (Qpositive_i_c (nat_of_P p) (S (nat_of_P p)) (lt_O_nat_of_P _)); trivial;
+  repeat rewrite <- INR_IZR_INZ; unfold IZR, INR at 2; rewrite <- INR_IPR; field; auto.
   (* - *)
   unfold Z_to_Q, Q_to_R, numerator, denominator, decode_Q, fst, snd.
   rewrite (Qpositive_i_c (nat_of_P p) (S (nat_of_P p)) (lt_O_nat_of_P _)); trivial.
-  repeat rewrite Ropp_Ropp_IZR; repeat rewrite <- INR_IZR_INZ; unfold IZR, INR at 2; field; auto.
+  repeat rewrite Ropp_Ropp_IZR; repeat rewrite <- INR_IZR_INZ; unfold IZR, INR at 2; rewrite <- INR_IPR; field; auto.
 Qed.
 
 (** These tactics transfer hypotheses and goals from Q to R *)
