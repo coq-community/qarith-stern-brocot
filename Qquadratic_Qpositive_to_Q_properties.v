@@ -14,6 +14,7 @@
 (* 02110-1301 USA                                                     *)
 
 
+Require Import FunInd.
 Require Export Qquadratic.
 Require Import homographic_correctness.
 

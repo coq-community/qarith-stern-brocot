@@ -18,6 +18,7 @@ Require Export Zaux.
 Require Import ZArithRing.
 Require Export Qpositive.
 Require Export Q_field.
+Require Import FunInd.
 
 Unset Standard Proposition Elimination Names.
 

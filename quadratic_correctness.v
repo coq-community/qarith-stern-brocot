@@ -14,6 +14,7 @@
 (* 02110-1301 USA                                                     *)
 
 
+Require Import FunInd.
 Require Export homographic_correctness.
 Require Import Field_Theory_Q. 
 Require Export Qquadratic_sign.
@@ -22,7 +23,6 @@ Require Export Qquadratic_sign_properties.
 Require Export Qquadratic.
 Require Export quadraticAcc_Qquadratic_sign.
 Require Export Qquadratic_Qpositive_to_Q_properties.
-
 
 Definition spec_q (a b c d e f g h : Z) (q1 q2 : Q) : Q :=
   Qmult

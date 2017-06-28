@@ -14,6 +14,7 @@
 (* 02110-1301 USA                                                     *)
 
 
+Require Import FunInd.
 Require Import Field_Theory_Q. 
 Require Export Qhomographic_Qpositive_to_Q_properties.
 
