@@ -16,6 +16,7 @@
 
 (** General Facts About Q and Qpositive, the functions Qpositive_c and Qpositive_i and the operations Qmult, Qpositive, Qlt *)
 
+Require Import FunInd.
 Require Export Qpositive.
 Require Export Q_field.
 Require Export Q_order.
@@ -627,7 +628,7 @@ Proof.
   rewrite <- H_eq;reflexivity.
 
   intros m2 m1 abs;discriminate.
-Save. 
+Qed. 
 
 Functional Scheme Z_to_Q_ind := Induction for Z_to_Q Sort Prop.
 
