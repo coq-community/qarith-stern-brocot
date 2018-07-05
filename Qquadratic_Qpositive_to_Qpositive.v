@@ -72,10 +72,10 @@ Proof.
                [(H, (H1, (H2, H3)))|
                 [(H, (H1, (H2, H3)))|
                  [(H, (H1, (H2, H3)))| (H, (H1, (H2, H3)))]]];
-              [ rewrite e3 in H3; apply Zlt_irrefl with d; assumption
-              | rewrite e2 in H2; apply Zlt_irrefl with c; assumption
-              | rewrite e1 in H1; apply Zlt_irrefl with b; assumption
-              | rewrite e0 in H; apply Zlt_irrefl with a; assumption ] ] ] ] ].
+              [ rewrite e3 in H3; apply Z.lt_irrefl with d; assumption
+              | rewrite e2 in H2; apply Z.lt_irrefl with c; assumption
+              | rewrite e1 in H1; apply Z.lt_irrefl with b; assumption
+              | rewrite e0 in H; apply Z.lt_irrefl with a; assumption ] ] ] ] ].
 Defined.
 
 Lemma quadratic_top_more_1 :
@@ -671,7 +671,7 @@ Proof.
  unfold Z8_lt in |- *. 
  unfold octointegral_lt in |- *.
  simpl in |- *.
- apply Zlt_irrefl. 
+ apply Z.lt_irrefl. 
 Qed.
 
 

@@ -2032,7 +2032,7 @@ Proof.
  discriminate H.
 Qed.
 
-(** We use this when (Zsgn a+b+c+d)<0 *)
+(** We use this when (Z.sgn a+b+c+d)<0 *)
 Lemma
  spec_Qquadratic_Qpositive_to_Q_spec_Qquadratic_Qpositive_to_Qpositive2_neg_1
  :
@@ -2080,7 +2080,7 @@ Proof.
  discriminate H.
 Qed.
 
-(** We use this when 0<=(Zsgn a+b+c+d) *)
+(** We use this when 0<=(Z.sgn a+b+c+d) *)
 Lemma
  spec_Qquadratic_Qpositive_to_Q_spec_Qquadratic_Qpositive_to_Qpositive2_neg_2
  :

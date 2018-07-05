@@ -441,7 +441,7 @@ Proof.
  unfold Z4_lt in |- *. 
  unfold quadrointegral_lt in |- *.
  simpl in |- *.
- apply Zlt_irrefl. 
+ apply Z.lt_irrefl. 
 Defined.
 
 

@@ -18,7 +18,7 @@
 Require Export positive_fraction_encoding.
 Require Import ZArithRing.
 
-Definition outside_interval (a b : Z) := (Zsgn a + Zsgn b)%Z.
+Definition outside_interval (a b : Z) := (Z.sgn a + Z.sgn b)%Z.
 
 Definition inside_interval_1 (o1 o2 : Z) :=
   (0 < o1)%Z /\ (0 < o2)%Z \/ (o1 < 0)%Z /\ (o2 < 0)%Z.
@@ -38,8 +38,8 @@ Proof.
                   | id1:(~ ?X1) |- ?X2 =>
                       apply id1; case H; intros (H1, H2);
                        [ idtac
-                       | apply False_ind; apply Zlt_irrefl with o1;
-                          apply Zlt_trans with 0%Z ]
+                       | apply False_ind; apply Z.lt_irrefl with o1;
+                          apply Z.lt_trans with 0%Z ]
                   end ]
             | case (Z_lt_dec o1 0); intro Ho1';
                [ case (Z_lt_dec o2 0); intro Ho2;
@@ -63,8 +63,8 @@ Proof.
                   | id1:(~ ?X1) |- ?X2 =>
                       apply id1; case H; intros (H1, H2);
                        [ idtac
-                       | apply False_ind; apply Zlt_irrefl with o1;
-                          apply Zlt_trans with 0%Z ]
+                       | apply False_ind; apply Z.lt_irrefl with o1;
+                          apply Z.lt_trans with 0%Z ]
                   end ]
             | case (Z_lt_dec o1 0); intro Ho1';
                [ case (Z_lt_dec 0 o2); intro Ho2;
@@ -135,19 +135,19 @@ destruct p as [q| q| ]; intros H_Qhomographic_sg_denom_nonzero.
    case (Z_zerop d).
     (* d=0 *)
     intro Hd.
-    exact ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), nR q)).
+    exact ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), nR q)).
     (* d<>0 *) 
     intro Hd'. 
     case (Z_lt_dec 0 o2).
      (*  `0 < o2` *)
      intro Ho2.
-     exact (Zsgn a, (a, (b, (c, d)), nR q)).
+     exact (Z.sgn a, (a, (b, (c, d)), nR q)).
      (* ~( 0<o2 ) *)
      intro Ho2'.
      case (Z_lt_dec o2 0).
       (* o2 < 0  *)
       intro Ho2.
-      exact ((- Zsgn a)%Z, (a, (b, (c, d)), nR q)).
+      exact ((- Z.sgn a)%Z, (a, (b, (c, d)), nR q)).
       (* ~`0 < o2` /\ ~ `0 < o2` /\ d<>0  *)
       intro Ho2''.
       exact
@@ -161,13 +161,13 @@ destruct p as [q| q| ]; intros H_Qhomographic_sg_denom_nonzero.
     case (Z_lt_dec 0 o1).
      (*  `0 < o1` *)
      intro Ho1.
-     exact (Zsgn c, (a, (b, (c, d)), nR q)).
+     exact (Z.sgn c, (a, (b, (c, d)), nR q)).
      (* ~( 0<o1 ) *)
      intro Ho1'.
      case (Z_lt_dec o1 0).
       (* o1 < 0  *)
       intro Ho1.
-      exact ((- Zsgn c)%Z, (a, (b, (c, d)), nR q)).
+      exact ((- Z.sgn c)%Z, (a, (b, (c, d)), nR q)).
       (* ~`0 < o1` /\ ~ `0 < o1` /\ b<>0  *)
       intro Ho1''.
       exact
@@ -197,19 +197,19 @@ destruct p as [q| q| ]; intros H_Qhomographic_sg_denom_nonzero.
    case (Z_zerop d).
     (* d=0 *)
     intro Hd.
-    exact ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), dL q)).
+    exact ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), dL q)).
     (* d<>0 *) 
     intro Hd'. 
     case (Z_lt_dec 0 o2).
      (*  `0 < o2` *)
      intro Ho2.
-     exact (Zsgn a, (a, (b, (c, d)), dL q)).
+     exact (Z.sgn a, (a, (b, (c, d)), dL q)).
      (* ~( 0<o2 ) *)
      intro Ho2'.
      case (Z_lt_dec o2 0).
       (* o2 < 0  *)
       intro Ho2.
-      exact ((- Zsgn a)%Z, (a, (b, (c, d)), dL q)).
+      exact ((- Z.sgn a)%Z, (a, (b, (c, d)), dL q)).
       (* ~`0 < o2` /\ ~ `0 < o2` /\ d<>0  *)
       intro Ho2''.
       exact
@@ -223,13 +223,13 @@ destruct p as [q| q| ]; intros H_Qhomographic_sg_denom_nonzero.
     case (Z_lt_dec 0 o1).
      (*  `0 < o1` *)
      intro Ho1.
-     exact (Zsgn c, (a, (b, (c, d)), dL q)).
+     exact (Z.sgn c, (a, (b, (c, d)), dL q)).
      (* ~( 0<o1 ) *)
      intro Ho1'.
      case (Z_lt_dec o1 0).
       (* o1 < 0  *)
       intro Ho1.
-      exact ((- Zsgn c)%Z, (a, (b, (c, d)), dL q)).
+      exact ((- Z.sgn c)%Z, (a, (b, (c, d)), dL q)).
       (* ~`0 < o1` /\ ~ `0 < o1` /\ b<>0  *)
       intro Ho1''.
       exact
@@ -254,8 +254,8 @@ destruct p as [q| q| ]; intros H_Qhomographic_sg_denom_nonzero.
           (Qhomographic_signok_3 c d q H_Qhomographic_sg_denom_nonzero)).
 
  (* p = One *)
-  set (soorat := Zsgn (a + b)) in *.
-  set (makhraj := Zsgn (c + d)) in *.
+  set (soorat := Z.sgn (a + b)) in *.
+  set (makhraj := Z.sgn (c + d)) in *.
 
   case (Z_eq_dec soorat 0).   
    (*  `soorat = 0` *)
@@ -292,8 +292,8 @@ Proof.
             [ destruct p0 as [q| q| ];
                [ discriminate e
                | discriminate e
-               | simpl in |- *; case (Z_eq_dec (Zsgn (a0 + b0)) 0);
-                  case (Z_eq_dec (Zsgn (a0 + b0)) (Zsgn (c0 + d0))); 
+               | simpl in |- *; case (Z_eq_dec (Z.sgn (a0 + b0)) 0);
+                  case (Z_eq_dec (Z.sgn (a0 + b0)) (Z.sgn (c0 + d0))); 
                   intros; reflexivity ]
             | T_local
             | T_local ]).
@@ -323,14 +323,14 @@ Lemma sg_One_2 :
  forall (a b c d : Z) (p : Qpositive)
    (H_Qhomographic_sg_denom_nonzero : Qhomographic_sg_denom_nonzero c d p),
  p = One ->
- Zsgn (a + b) = 0%Z ->
+ Z.sgn (a + b) = 0%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
  (0%Z, (a, (b, (c, d)), One)).
 Proof.
  intros.
  destruct p as [q| q| ]; repeat (apply False_ind; discriminate H).
  simpl in |- *.
- case (Z_eq_dec (Zsgn (a + b)) 0).
+ case (Z_eq_dec (Z.sgn (a + b)) 0).
  intro.
  reflexivity.
  intro.
@@ -341,18 +341,18 @@ Lemma sg_One_3 :
  forall (a b c d : Z) (p : Qpositive)
    (H_Qhomographic_sg_denom_nonzero : Qhomographic_sg_denom_nonzero c d p),
  p = One ->
- Zsgn (a + b) <> 0%Z ->
- Zsgn (a + b) = Zsgn (c + d) ->
+ Z.sgn (a + b) <> 0%Z ->
+ Z.sgn (a + b) = Z.sgn (c + d) ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
  (1%Z, (a, (b, (c, d)), One)).
 Proof.
  intros.
  destruct p as [q| q| ]; repeat (apply False_ind; discriminate H).
  simpl in |- *.
- case (Z_eq_dec (Zsgn (a + b)) 0).
+ case (Z_eq_dec (Z.sgn (a + b)) 0).
  Falsum.
  intro.
- case (Z_eq_dec (Zsgn (a + b)) (Zsgn (c + d))).
+ case (Z_eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))).
  intro.
  reflexivity.
  intro.
@@ -364,17 +364,17 @@ Lemma sg_One_4 :
  forall (a b c d : Z) (p : Qpositive)
    (H_Qhomographic_sg_denom_nonzero : Qhomographic_sg_denom_nonzero c d p),
  p = One ->
- Zsgn (a + b) <> 0%Z ->
- Zsgn (a + b) <> Zsgn (c + d) ->
+ Z.sgn (a + b) <> 0%Z ->
+ Z.sgn (a + b) <> Z.sgn (c + d) ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
  ((-1)%Z, (a, (b, (c, d)), One)).
 Proof.
  intros.
  destruct p as [q| q| ]; repeat (apply False_ind; discriminate H).
  simpl in |- *.
- case (Z_eq_dec (Zsgn (a + b)) 0).
+ case (Z_eq_dec (Z.sgn (a + b)) 0).
  Falsum.
- case (Z_eq_dec (Zsgn (a + b)) (Zsgn (c + d))).
+ case (Z_eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))).
  Falsum.
  reflexivity.
 Defined.
@@ -386,7 +386,7 @@ Lemma Qhomographic_sign_nR_1 :
  b = 0%Z ->
  d = 0%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
- ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), p)).
+ ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), p)).
 Proof.
  intros; generalize H_Qhomographic_sg_denom_nonzero;
   clear H_Qhomographic_sg_denom_nonzero; rewrite H;
@@ -404,7 +404,7 @@ Lemma Qhomographic_sign_nR_2 :
  d <> 0%Z ->
  (0 < outside_interval c d)%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
- (Zsgn a, (a, (b, (c, d)), p)).
+ (Z.sgn a, (a, (b, (c, d)), p)).
 Proof.
  intros; generalize H_Qhomographic_sg_denom_nonzero;
   clear H_Qhomographic_sg_denom_nonzero; rewrite H;
@@ -427,7 +427,7 @@ Lemma Qhomographic_sign_nR_3 :
  ~ (0 < outside_interval c d)%Z ->
  (outside_interval c d < 0)%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
- ((- Zsgn a)%Z, (a, (b, (c, d)), p)).
+ ((- Z.sgn a)%Z, (a, (b, (c, d)), p)).
 Proof.
  intros; generalize H_Qhomographic_sg_denom_nonzero;
   clear H_Qhomographic_sg_denom_nonzero; rewrite H;
@@ -473,7 +473,7 @@ Lemma Qhomographic_sign_nR_5 :
  d = 0%Z ->
  (0 < outside_interval a b)%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
- (Zsgn c, (a, (b, (c, d)), p)).
+ (Z.sgn c, (a, (b, (c, d)), p)).
 Proof.
  intros; generalize H_Qhomographic_sg_denom_nonzero;
   clear H_Qhomographic_sg_denom_nonzero; rewrite H;
@@ -495,7 +495,7 @@ Lemma Qhomographic_sign_nR_6 :
  ~ (0 < outside_interval a b)%Z ->
  (outside_interval a b < 0)%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
- ((- Zsgn c)%Z, (a, (b, (c, d)), p)).
+ ((- Z.sgn c)%Z, (a, (b, (c, d)), p)).
 Proof.
  intros; generalize H_Qhomographic_sg_denom_nonzero;
   clear H_Qhomographic_sg_denom_nonzero; rewrite H;
@@ -623,7 +623,7 @@ Lemma Qhomographic_sign_dL_1 :
  b = 0%Z ->
  d = 0%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
- ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), p)).
+ ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), p)).
 Proof.
  intros; generalize H_Qhomographic_sg_denom_nonzero;
   clear H_Qhomographic_sg_denom_nonzero; rewrite H;
@@ -640,7 +640,7 @@ Lemma Qhomographic_sign_dL_2 :
  d <> 0%Z ->
  (0 < outside_interval c d)%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
- (Zsgn a, (a, (b, (c, d)), p)).
+ (Z.sgn a, (a, (b, (c, d)), p)).
 Proof.
  intros; generalize H_Qhomographic_sg_denom_nonzero;
   clear H_Qhomographic_sg_denom_nonzero; rewrite H;
@@ -662,7 +662,7 @@ Lemma Qhomographic_sign_dL_3 :
  ~ (0 < outside_interval c d)%Z ->
  (outside_interval c d < 0)%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
- ((- Zsgn a)%Z, (a, (b, (c, d)), p)).
+ ((- Z.sgn a)%Z, (a, (b, (c, d)), p)).
 Proof.
  intros; generalize H_Qhomographic_sg_denom_nonzero;
   clear H_Qhomographic_sg_denom_nonzero; rewrite H;
@@ -709,7 +709,7 @@ Lemma Qhomographic_sign_dL_5 :
  d = 0%Z ->
  (0 < outside_interval a b)%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
- (Zsgn c, (a, (b, (c, d)), p)).
+ (Z.sgn c, (a, (b, (c, d)), p)).
 Proof.
  intros; generalize H_Qhomographic_sg_denom_nonzero;
   clear H_Qhomographic_sg_denom_nonzero; rewrite H;
@@ -731,7 +731,7 @@ Lemma Qhomographic_sign_dL_6 :
  ~ (0 < outside_interval a b)%Z ->
  (outside_interval a b < 0)%Z ->
  Qhomographic_sign a b c d p H_Qhomographic_sg_denom_nonzero =
- ((- Zsgn c)%Z, (a, (b, (c, d)), p)).
+ ((- Z.sgn c)%Z, (a, (b, (c, d)), p)).
 Proof.
  intros; generalize H_Qhomographic_sg_denom_nonzero;
   clear H_Qhomographic_sg_denom_nonzero; rewrite H;
@@ -1048,11 +1048,11 @@ Proof.
  (destruct qp as [q| q| ];
    [ T_local
    | T_local
-   | case (Z_eq_dec (Zsgn (a + b)) 0); intro H_ab;
+   | case (Z_eq_dec (Z.sgn (a + b)) 0); intro H_ab;
       [ rewrite
          (sg_One_2 a b c d One H_Qhomographic_sg_denom_nonzero
             (refl_equal One) H_ab)
-      | case (Z_eq_dec (Zsgn (a + b)) (Zsgn (c + d))); intro H_ab_cd;
+      | case (Z_eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro H_ab_cd;
          [ rewrite
             (sg_One_3 a b c d One H_Qhomographic_sg_denom_nonzero
                (refl_equal One) H_ab H_ab_cd)

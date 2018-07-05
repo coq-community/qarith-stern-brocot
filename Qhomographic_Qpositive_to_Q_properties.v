@@ -131,14 +131,14 @@ Ltac Order_mismatch :=
    | id1:(?X1 < ?X2)%Z,id2:(?X2 <= ?X1)%Z |- _ =>
        match goal with
        | id1:(?X1 < ?X2)%Z,id2:(?X2 <= ?X1)%Z |- _ =>
-           first [ apply False_ind | apply False_rec ]; apply (Zlt_irrefl X1);
-            apply Zlt_le_trans with X2; assumption
+           first [ apply False_ind | apply False_rec ]; apply (Z.lt_irrefl X1);
+            apply Z.lt_le_trans with X2; assumption
        end
    | id2:(?X1 <= ?X2)%Z,id1:(?X2 < ?X1)%Z |- _ =>
        match goal with
        | id1:(?X1 < ?X2)%Z,id2:(?X2 <= ?X1)%Z |- _ =>
-           first [ apply False_ind | apply False_rec ]; apply (Zlt_irrefl X1);
-            apply Zlt_le_trans with X2; assumption
+           first [ apply False_ind | apply False_rec ]; apply (Z.lt_irrefl X1);
+            apply Z.lt_le_trans with X2; assumption
        end
    end. 
 
@@ -155,7 +155,7 @@ Lemma Qhomographic_Qpositive_to_Q_3 :
                           (new_d a b c d p H_Qhomographic_sg_denom_nonzero)
                           (new_p a b c d p H_Qhomographic_sg_denom_nonzero),
  (0 <
-  Zsgn
+  Z.sgn
     (new_a a b c d p H_Qhomographic_sg_denom_nonzero +
      new_b a b c d p H_Qhomographic_sg_denom_nonzero))%Z ->
  Qhomographic_Qpositive_to_Q a b c d p H_Qhomographic_sg_denom_nonzero =
@@ -188,7 +188,7 @@ Lemma Qhomographic_Qpositive_to_Q_4 :
                           (- new_c a b c d p H_Qhomographic_sg_denom_nonzero)
                           (- new_d a b c d p H_Qhomographic_sg_denom_nonzero)
                           (new_p a b c d p H_Qhomographic_sg_denom_nonzero),
- (Zsgn
+ (Z.sgn
     (new_a a b c d p H_Qhomographic_sg_denom_nonzero +
      new_b a b c d p H_Qhomographic_sg_denom_nonzero) <= 0)%Z ->
  Qhomographic_Qpositive_to_Q a b c d p H_Qhomographic_sg_denom_nonzero =
@@ -222,7 +222,7 @@ Lemma Qhomographic_Qpositive_to_Q_5 :
                           (new_c a b c d p H_Qhomographic_sg_denom_nonzero)
                           (new_d a b c d p H_Qhomographic_sg_denom_nonzero)
                           (new_p a b c d p H_Qhomographic_sg_denom_nonzero),
- (Zsgn
+ (Z.sgn
     (new_a a b c d p H_Qhomographic_sg_denom_nonzero +
      new_b a b c d p H_Qhomographic_sg_denom_nonzero) < 0)%Z ->
  Qhomographic_Qpositive_to_Q a b c d p H_Qhomographic_sg_denom_nonzero =
@@ -257,7 +257,7 @@ Lemma Qhomographic_Qpositive_to_Q_6 :
                           (- new_d a b c d p H_Qhomographic_sg_denom_nonzero)
                           (new_p a b c d p H_Qhomographic_sg_denom_nonzero),
  (0 <=
-  Zsgn
+  Z.sgn
     (new_a a b c d p H_Qhomographic_sg_denom_nonzero +
      new_b a b c d p H_Qhomographic_sg_denom_nonzero))%Z ->
  Qhomographic_Qpositive_to_Q a b c d p H_Qhomographic_sg_denom_nonzero =
@@ -439,7 +439,7 @@ generalize
      H_Qhomographic_sg_denom_nonzero2) in l1_eq_one0.
  change
    (0 <
-    Zsgn
+    Z.sgn
       (new_a a b c d p H_Qhomographic_sg_denom_nonzero1 +
        new_b a b c d p H_Qhomographic_sg_denom_nonzero1))%Z 
   in z. 
@@ -484,7 +484,7 @@ generalize
   (h_sign_equal a b c d p H_Qhomographic_sg_denom_nonzero1
      H_Qhomographic_sg_denom_nonzero2) in l1_eq_one0.
  change
-   (Zsgn
+   (Z.sgn
       (new_a a b c d p H_Qhomographic_sg_denom_nonzero1 +
        new_b a b c d p H_Qhomographic_sg_denom_nonzero1) <= 0)%Z 
   in z. 
@@ -529,7 +529,7 @@ generalize
   (h_sign_equal a b c d p H_Qhomographic_sg_denom_nonzero1
      H_Qhomographic_sg_denom_nonzero2) in l1_eq__minus_one0.
  change
-   (Zsgn
+   (Z.sgn
       (new_a a b c d p H_Qhomographic_sg_denom_nonzero1 +
        new_b a b c d p H_Qhomographic_sg_denom_nonzero1) < 0)%Z 
   in z. 
@@ -575,7 +575,7 @@ generalize
      H_Qhomographic_sg_denom_nonzero2) in l1_eq__minus_one0.
  change
    (0 <=
-    Zsgn
+    Z.sgn
       (new_a a b c d p H_Qhomographic_sg_denom_nonzero1 +
        new_b a b c d p H_Qhomographic_sg_denom_nonzero1))%Z 
   in z. 
