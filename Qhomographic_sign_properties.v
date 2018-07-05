@@ -85,7 +85,7 @@ Lemma sg_pos_1 :
  (1%Z, (na, (nb, (nc, nd)), np)) ->
  {(0 < na + nb)%Z /\ (0 < nc + nd)%Z} + {(na + nb < 0)%Z /\ (nc + nd < 0)%Z}.
 Proof.
- fix 5.
+ fix sg_pos_1 5.
  intros a b c d p H_Qhomographic_sg_denom_nonzero na nb nc nd np H_sg.
  set (o1 := outside_interval a b) in *.
  set (o2 := outside_interval c d) in *.
@@ -533,7 +533,7 @@ Lemma sg_pos_2 :
  {(na <= 0)%Z /\ (nb <= 0)%Z /\ (nc <= 0)%Z /\ (nd <= 0)%Z} + 
  {np = One}.
 Proof.
- fix 5.
+ fix sg_pos_2 5.
  intros a b c d p H_Qhomographic_sg_denom_nonzero na nb nc nd np H_sg.
  set (o1 := outside_interval a b) in *.
  set (o2 := outside_interval c d) in *.
@@ -1134,7 +1134,7 @@ Lemma sg_neg_1 :
  ((-1)%Z, (na, (nb, (nc, nd)), np)) ->
  {(0 < na + nb)%Z /\ (nc + nd < 0)%Z} + {(na + nb < 0)%Z /\ (0 < nc + nd)%Z}.
 Proof.
- fix 5.
+ fix sg_neg_1 5.
  intros a b c d p H_Qhomographic_sg_denom_nonzero na nb nc nd np H_sg.
  set (o1 := outside_interval a b) in *.
  set (o2 := outside_interval c d) in *.
@@ -1608,7 +1608,7 @@ Lemma sg_neg_2 :
  {(na <= 0)%Z /\ (nb <= 0)%Z /\ (0 <= nc)%Z /\ (0 <= nd)%Z} + 
  {np = One}.
 Proof.
- fix 5.
+ fix sg_neg_2 5.
  intros a b c d p H_Qhomographic_sg_denom_nonzero na nb nc nd np H_sg.
  set (o1 := outside_interval a b) in *.
  set (o2 := outside_interval c d) in *.

@@ -59,7 +59,7 @@ Defined.
 Definition encoding_algorithm :
   forall (x y : Z) (h1 : (0 < x)%Z) (h2 : (0 < y)%Z) (H : fractionalAcc x y),
   Qpositive.
-fix 5.
+fix encoding_algorithm 5.
 intros x y h1 h2 H.
 
 refine

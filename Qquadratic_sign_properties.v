@@ -237,7 +237,7 @@ Lemma Qquadratic_sign_pos_1 :
  {(0 < na + nb + nc + nd)%Z /\ (0 < ne + nf + ng + nh)%Z} +
  {(na + nb + nc + nd < 0)%Z /\ (ne + nf + ng + nh < 0)%Z}.
 Proof. 
- fix 9.
+ fix Qquadratic_sign_pos_1 9.
  intros.
  set (o1 := outside_square a b c d) in *.
  set (o2 := outside_square e f g h) in *.
@@ -1814,7 +1814,7 @@ Lemma Qquadratic_sign_pos_2 :
   (na + nb <= 0)%Z /\
   (nc + nd <= 0)%Z /\ (ne + nf <= 0)%Z /\ (ng + nh <= 0)%Z}.
 Proof.
- fix 9.
+ fix Qquadratic_sign_pos_2 9.
  intros.
  set (o1 := outside_square a b c d) in *.
  set (o2 := outside_square e f g h) in *.
@@ -4024,7 +4024,7 @@ Lemma Qquadratic_sign_neg_1 :
  {(0 < na + nb + nc + nd)%Z /\ (ne + nf + ng + nh < 0)%Z} +
  {(na + nb + nc + nd < 0 < ne + nf + ng + nh)%Z}.
 Proof.
- fix 9.
+ fix Qquadratic_sign_neg_1 9.
  intros.
  set (o1 := outside_square a b c d) in *.
  set (o2 := outside_square e f g h) in *.
@@ -5608,7 +5608,7 @@ Lemma Qquadratic_sign_neg_2 :
   (na + nb <= 0)%Z /\
   (nc + nd <= 0)%Z /\ (0 <= ne + nf)%Z /\ (0 <= ng + nh)%Z}.
 Proof.
- fix 9.
+ fix Qquadratic_sign_neg_2 9.
  intros.
  set (o1 := outside_square a b c d) in *.
  set (o2 := outside_square e f g h) in *.

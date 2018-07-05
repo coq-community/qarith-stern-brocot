@@ -856,7 +856,7 @@ Lemma sg_sign :
      Qhomographic_sign a b c d qp H_Qhomographic_sg_denom_nonzero in
  {l1 = 0%Z} + {l1 = 1%Z} + {l1 = (-1)%Z}.
 Proof.
- fix 5.
+ fix sg_sign 5.
  intros.
  (* (nR p) *)
 
