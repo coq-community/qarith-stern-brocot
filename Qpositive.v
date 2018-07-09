@@ -141,7 +141,7 @@ apply plus_reg_l with n.
 exact H'.
 Qed.
  
-Theorem absolu_inj_nat : forall x : nat, Zabs_nat (Z_of_nat x) = x.
+Theorem absolu_inj_nat : forall x : nat, Z.abs_nat (Z_of_nat x) = x.
 intros x; case x.
 auto.
 simpl in |- *.
@@ -149,7 +149,7 @@ exact nat_of_P_o_P_of_succ_nat_eq_succ.
 Qed.
  
 Theorem absolu_mult :
- forall x y : Z, Zabs_nat (x * y) = Zabs_nat x * Zabs_nat y.
+ forall x y : Z, Z.abs_nat (x * y) = Z.abs_nat x * Z.abs_nat y.
 intros x; case x; auto; intros p y; case y; auto; simpl in |- *; intros;
  apply nat_of_P_mult_morphism.
 Qed.
@@ -431,11 +431,11 @@ generalize H1; rewrite Heq1; rewrite Heq2; rewrite Heq3; rewrite Heq4;
 unfold fst, snd in Heq1, Heq2, Heq3, Heq4.
 cut (S p0 * S q'0 = S p'0 * S q0).
 intros Heq8.
-cut (S p'0 = Zabs_nat (a * S p'0 + b * S q'0) * S p0).
+cut (S p'0 = Z.abs_nat (a * S p'0 + b * S q'0) * S p0).
 intros Heq9.
-cut (S q'0 = Zabs_nat (a * S p'0 + b * S q'0) * S q0).
+cut (S q'0 = Z.abs_nat (a * S p'0 + b * S q'0) * S q0).
 intros Heq10.
-cut (exists d'' : nat, Zabs_nat (a * S p'0 + b * S q'0) = S d'').
+cut (exists d'' : nat, Z.abs_nat (a * S p'0 + b * S q'0) = S d'').
 intros Hex; elim Hex; intros d'' Heq11; rewrite Heq11 in Heq9;
  rewrite Heq11 in Heq10.
 replace (S p0 * S d) with (S (d + p0 * S d)).
@@ -481,13 +481,13 @@ rewrite mult_comm; simpl in |- *; auto with arith.
 assumption.
 auto.
 auto.
-CaseEq (Zabs_nat (a * S p'0 + b * S q'0)).
+CaseEq (Z.abs_nat (a * S p'0 + b * S q'0)).
 intros Dummy; rewrite Dummy in Heq10; simpl in Heq10; discriminate Heq10.
 intros d'' Heq; exists d''; auto.
 rewrite <- (absolu_inj_nat (S q0)).
 pattern (S q'0) at 1 in |- *; rewrite <- (absolu_inj_nat (S q'0)).
 rewrite <- absolu_mult.
-apply f_equal with (f := Zabs_nat).
+apply f_equal with (f := Z.abs_nat).
 pattern (Z_of_nat (S q'0)) at 1 in |- *; rewrite <- Zmult_1_r.
 rewrite <- Heq7.
 replace (S q'0 * (a * S p0 + b * S q0))%Z with
@@ -499,7 +499,7 @@ ring.
 rewrite <- (absolu_inj_nat (S p0)).
 pattern (S p'0) at 1 in |- *; rewrite <- absolu_inj_nat.
 rewrite <- absolu_mult.
-apply f_equal with (f := Zabs_nat).
+apply f_equal with (f := Z.abs_nat).
 pattern (Z_of_nat (S p'0)) at 1 in |- *; rewrite <- Zmult_1_r.
 rewrite <- Heq7.
 replace (S p'0 * (a * S p0 + b * S q0))%Z with

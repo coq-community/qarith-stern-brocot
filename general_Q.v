@@ -25,7 +25,7 @@ Require Export Zaux.
 
 (* An auxiliary lemma about [Z] *)
 
-Lemma Z_of_nat_Zabs_nat_pos: forall z, (0<=z)%Z -> Z_of_nat (Zabs_nat z) = z.
+Lemma Z_of_nat_Zabs_nat_pos: forall z, (0<=z)%Z -> Z_of_nat (Z.abs_nat z) = z.
 Proof.
  intros z Hz;
  destruct (Z_of_nat_complete_inf z Hz) as [n Hn];
@@ -42,13 +42,13 @@ Qed.
 Definition make_Q (m n : Z) :=
   match m, n with
   | Zpos _, Zpos _ =>
-      Qpos (Qpositive_c (Zabs_nat m) (Zabs_nat n) (Zabs_nat m + Zabs_nat n))
+      Qpos (Qpositive_c (Z.abs_nat m) (Z.abs_nat n) (Z.abs_nat m + Z.abs_nat n))
   | Zneg _, Zneg _ =>
-      Qpos (Qpositive_c (Zabs_nat m) (Zabs_nat n) (Zabs_nat m + Zabs_nat n))
+      Qpos (Qpositive_c (Z.abs_nat m) (Z.abs_nat n) (Z.abs_nat m + Z.abs_nat n))
   | Z0, _ => Zero
   | _, Z0 => Zero (* dummy *) 
   | _, _ =>
-      Qneg (Qpositive_c (Zabs_nat m) (Zabs_nat n) (Zabs_nat m + Zabs_nat n))
+      Qneg (Qpositive_c (Z.abs_nat m) (Z.abs_nat n) (Z.abs_nat m + Z.abs_nat n))
   end.
 
 (*** decoding a sequnce consisting of dL and nR and ending in One. *) 
@@ -106,8 +106,8 @@ Definition Qsgn (q : Q) :=
 Fixpoint length_of_Qpositive_to_positive (qp : Qpositive) : positive :=
   match qp with
   | One => 1%positive
-  | dL qp' => Psucc (length_of_Qpositive_to_positive qp')
-  | nR qp' => Psucc (length_of_Qpositive_to_positive qp')
+  | dL qp' => Pos.succ (length_of_Qpositive_to_positive qp')
+  | nR qp' => Pos.succ (length_of_Qpositive_to_positive qp')
   end.
 
 Fixpoint length_of_Qpositive (qp : Qpositive) : Z :=
@@ -557,7 +557,7 @@ Proof.
  reflexivity.
  rewrite Znat.inj_S.
  rewrite Zplus_comm.
- unfold Zsucc in |- *. 
+ unfold Z.succ in |- *. 
  transitivity (n - 1 + 1)%Z; [ idtac | omega ].
  apply f_equal2 with Z Z; trivial. 
  rewrite <- IHn.
@@ -586,7 +586,7 @@ Proof.
  reflexivity.
  rewrite Znat.inj_S.
  rewrite Zplus_comm.
- unfold Zsucc in |- *. 
+ unfold Z.succ in |- *. 
  apply f_equal2 with Z Z; trivial. 
  rewrite <- IHn.
  apply f_equal with Qpositive.
@@ -709,12 +709,12 @@ Proof.
  apply H; apply Qpositive_to_Z_Qpositive_le; assumption.
  generalize (Zmin_cancel_Zlt _ _ H1); intro H2; apply H;
   apply Qpositive_to_Z_Qpositive_le; assumption.
- apply Zlt_irrefl with 0%Z; generalize (Qpositive_to_Z_nonneg x'); intro H2;
+ apply Z.lt_irrefl with 0%Z; generalize (Qpositive_to_Z_nonneg x'); intro H2;
   omega.
- apply Zlt_irrefl with 0%Z; generalize (Qpositive_to_Z_nonneg x');
+ apply Z.lt_irrefl with 0%Z; generalize (Qpositive_to_Z_nonneg x');
   generalize (Qpositive_to_Z_nonneg y'); intros H2 H3; abstract 
   omega.
- apply Zlt_irrefl with 0%Z; generalize (Qpositive_to_Z_nonneg x'); intro H2;
+ apply Z.lt_irrefl with 0%Z; generalize (Qpositive_to_Z_nonneg x'); intro H2;
   omega.
 Qed.
 
@@ -990,7 +990,7 @@ Lemma Z_to_Qlt : forall x y : Z, (x < y)%Z -> Qlt x y.
 Proof. 
  intros x y H.
  apply Qlt_Zero_Qminus.
- generalize (Zlt_gt _ _ H); clear H; intro H.
+ generalize (Z.lt_gt _ _ H); clear H; intro H.
  case (Zcompare_Gt_spec _ _ H).
  intros p Hp.
  rewrite <- Z_to_Qminus.
@@ -1641,7 +1641,7 @@ Proof.
  intros [| x| x]; trivial. 
 Qed.
 
-Lemma Qsgn_29 : forall x : Z, Qsgn (Z_to_Q x) = Zsgn x. 
+Lemma Qsgn_29 : forall x : Z, Qsgn (Z_to_Q x) = Z.sgn x. 
 Proof.
  intros [| x| x]; trivial. 
 Qed.
@@ -1707,9 +1707,9 @@ Ltac qnat_S_rec k :=
 Ltac natZ_numerals  := 
  match goal with 
  | [ |- context [Z0] ] => replace Z0 with (Z_of_nat O); trivial; natZ_numerals
- | [ |- context [(Zpos ?X1)] ] => let v:= eval compute in (Zabs_nat (Zpred (Zpos X1))) in 
+ | [ |- context [(Zpos ?X1)] ] => let v:= eval compute in (Z.abs_nat (Zpred (Zpos X1))) in 
          replace (Zpos X1) with (Z_of_nat (S v)); trivial; natZ_numerals
- | [ |- context [(Zneg ?X1)] ] => let v:= eval compute in (Zabs_nat (Zsucc (Zpos X1))) in 
+ | [ |- context [(Zneg ?X1)] ] => let v:= eval compute in (Z.abs_nat (Z.succ (Zpos X1))) in 
          replace (Zneg X1) with (Zopp (Z_of_nat (S v))); trivial; natZ_numerals
  | [ |- _ ] => idtac
  end.

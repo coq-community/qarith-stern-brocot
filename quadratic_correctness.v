@@ -724,7 +724,7 @@ Lemma quadratic_sign :
  q_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero =
  Qsgn (spec_Qquadratic_Qpositive_to_Q a b c d e f g h p1 p2).
 Proof.
- fix 9.
+ fix quadratic_sign 9.
  intros a b c d e f g h.
  unfold q_sign in |- *.
  set (o1 := outside_square a b c d) in *.
@@ -2032,7 +2032,7 @@ Proof.
  discriminate H.
 Qed.
 
-(** We use this when (Zsgn a+b+c+d)<0 *)
+(** We use this when (Z.sgn a+b+c+d)<0 *)
 Lemma
  spec_Qquadratic_Qpositive_to_Q_spec_Qquadratic_Qpositive_to_Qpositive2_neg_1
  :
@@ -2080,7 +2080,7 @@ Proof.
  discriminate H.
 Qed.
 
-(** We use this when 0<=(Zsgn a+b+c+d) *)
+(** We use this when 0<=(Z.sgn a+b+c+d) *)
 Lemma
  spec_Qquadratic_Qpositive_to_Q_spec_Qquadratic_Qpositive_to_Qpositive2_neg_2
  :
@@ -2240,7 +2240,7 @@ Lemma Qquadratic_sign_pres_fraction :
             (Qplus (Qmult (Qmult e (Qpos p1)) (Qpos p2)) (Qmult f (Qpos p1)))
             (Qmult g (Qpos p2))) h)).
 Proof.
- fix 9.
+ fix Qquadratic_sign_pres_fraction 9.
  intros a b c d e f g h.
  unfold qnew_a, qnew_b, qnew_c, qnew_d, qnew_e, qnew_f, qnew_g, qnew_h,
   qnew_p1, qnew_p2 in |- *.

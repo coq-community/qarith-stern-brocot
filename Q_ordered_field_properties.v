@@ -698,7 +698,7 @@ Ltac qZ_numerals  :=
  | [ |- context [(Z_to_Q Z0)] ] => replace (Z_to_Q Z0) with Zero; trivial; qZ_numerals
  | [ |- context [(Z_to_Q (Zpos ?X1))] ] => progress  let v:= eval compute in (Zpred (Zpos X1)) in 
          replace (Z_to_Q (Zpos X1)) with (Qplus Qone (Z_to_Q v)); trivial; qZ_numerals
- | [ |- context [(Z_to_Q (Zneg ?X1))] ] => let v:= eval compute in (Zsucc (Zneg X1)) in 
+ | [ |- context [(Z_to_Q (Zneg ?X1))] ] => let v:= eval compute in (Z.succ (Zneg X1)) in 
         replace (Z_to_Q (Zneg X1)) with (Qminus (Z_to_Q v) Qone); trivial; qZ_numerals
  | [ |- context [(Qplus Zero ?X1)] ] => rewrite Qplus_zero_left; qZ_numerals
  | [ |- context [(Qplus ?X1 Zero)] ] => rewrite Qplus_zero_right; qZ_numerals

@@ -86,7 +86,7 @@ case (Z_eq_dec (a * d) (b * c)).
     intro l1_eq_one.
       case
        (Z_lt_le_dec 0
-          (Zsgn (new_a a b c d p H_hsign + new_b a b c d p H_hsign))).
+          (Z.sgn (new_a a b c d p H_hsign + new_b a b c d p H_hsign))).
       (* 0<s_ab *)
       intro z.
       refine
@@ -110,7 +110,7 @@ case (Z_eq_dec (a * d) (b * c)).
     (* (h_sign a b c d p) = (-1) *)
     intro l1_eq__minus_one.
      case
-      (Z_lt_le_dec (Zsgn (new_a a b c d p H_hsign + new_b a b c d p H_hsign))
+      (Z_lt_le_dec (Z.sgn (new_a a b c d p H_hsign + new_b a b c d p H_hsign))
          0).
       (* s_ab<0 *)
       intro z.

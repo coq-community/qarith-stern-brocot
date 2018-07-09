@@ -51,7 +51,7 @@ Proof.
  intro q.
  destruct (Q_le_lt_dec q Zero).
   exists O; qnat_zero.
-  exists (Zabs_nat (up_Q q)).
+  exists (Z.abs_nat (up_Q q)).
   destruct (up_Q_property q) as [H1 H2].  
   stepr (up_Q q); trivial.
    assert (H3:(0<=(up_Q q))%Z).

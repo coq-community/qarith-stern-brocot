@@ -1545,7 +1545,7 @@ Lemma Qquadratic_sign_sign :
      Qquadratic_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero in
  {l1 = 0%Z} + {l1 = 1%Z} + {l1 = (-1)%Z}.
 Proof.
- fix 9.
+ fix Qquadratic_sign_sign 9.
  intros.
  
   destruct p1 as [p| p| ].

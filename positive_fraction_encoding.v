@@ -42,7 +42,7 @@ Lemma fractionalacc_1 :
  forall m n : Z,
  fractionalAcc m n -> (0 < m)%Z -> (m < n)%Z -> fractionalAcc m (n - m).
 Proof.
- simple destruct 1; intros; trivial; Falsum; apply (Zlt_irrefl n0);
+ simple destruct 1; intros; trivial; Falsum; apply (Z.lt_irrefl n0);
   [ rewrite H0 in H2 | apply Zlt_trans with m0 ]; assumption.
 Defined.
 
@@ -51,7 +51,7 @@ Lemma fractionalacc_2 :
  forall m n : Z,
  fractionalAcc m n -> (0 < n)%Z -> (n < m)%Z -> fractionalAcc (m - n) n.
 Proof.
- simple destruct 1; intros; trivial; Falsum; apply (Zlt_irrefl n0);
+ simple destruct 1; intros; trivial; Falsum; apply (Z.lt_irrefl n0);
   [ rewrite H0 in H2 | apply Zlt_trans with m0 ]; assumption.
 Defined.
 
@@ -59,7 +59,7 @@ Defined.
 Definition encoding_algorithm :
   forall (x y : Z) (h1 : (0 < x)%Z) (h2 : (0 < y)%Z) (H : fractionalAcc x y),
   Qpositive.
-fix 5.
+fix encoding_algorithm 5.
 intros x y h1 h2 H.
 
 refine
@@ -116,7 +116,7 @@ Proof.
  split.
  apply Zplus_le_reg_l with n.
  replace (n + (m - n))%Z with m.
- change (Zsucc n <= m)%Z in |- *.
+ change (Z.succ n <= m)%Z in |- *.
  apply Zlt_le_succ.
  assumption.
  ring.
@@ -136,13 +136,13 @@ Proof.
  assumption.
  assumption.
  apply H0.
- change (Zsucc 0 <= m)%Z in |- *. 
+ change (Z.succ 0 <= m)%Z in |- *. 
  apply Zlt_le_succ.
  assumption.
  split.
  apply Zplus_le_reg_l with m.
  replace (m + (n - m))%Z with n.
- change (Zsucc m <= n)%Z in |- *.
+ change (Z.succ m <= n)%Z in |- *.
  apply Zlt_le_succ.
  assumption.
  ring.
@@ -157,10 +157,10 @@ Proof.
  assumption.
  assumption.
  
- change (Zsucc 0 <= y)%Z in |- *. 
+ change (Z.succ 0 <= y)%Z in |- *. 
  apply Zlt_le_succ.
  assumption.
- change (Zsucc 0 <= x)%Z in |- *. 
+ change (Z.succ 0 <= x)%Z in |- *. 
  apply Zlt_le_succ.
  assumption.
  intros.
@@ -184,7 +184,7 @@ Definition positive_fraction_encoding (x y : Z) (Hx : (0 < x)%Z)
 
 Definition fraction_encoding (m n : Z) (Hn : n <> 0%Z) : Q.
 intros.
-set (s := (Zsgn m * Zsgn n)%Z) in *.
+set (s := (Z.sgn m * Z.sgn n)%Z) in *.
 case (Z_dec s 0).
  intro.  
  case s0. 
@@ -231,31 +231,31 @@ Error: In environment
 Q : Z->(n:Z)`n <> 0`->Prop
 Hyprec :
 (m,n:Z; Hn:`n <> 0`;
- s0:({`(Zsgn m)*(Zsgn n) < 0`}+{`(Zsgn m)*(Zsgn n) > 0`}))
- (Z_dec `(Zsgn m)*(Zsgn n)` `0`)
-   =(inleft {`(Zsgn m)*(Zsgn n) < 0`}+{`(Zsgn m)*(Zsgn n) > 0`}
-      `(Zsgn m)*(Zsgn n) = 0` s0)
- ->(z:`(Zsgn m)*(Zsgn n) < 0`)
-    s0=(left `(Zsgn m)*(Zsgn n) < 0` `(Zsgn m)*(Zsgn n) > 0` z)
+ s0:({`(Z.sgn m)*(Z.sgn n) < 0`}+{`(Z.sgn m)*(Z.sgn n) > 0`}))
+ (Z_dec `(Z.sgn m)*(Z.sgn n)` `0`)
+   =(inleft {`(Z.sgn m)*(Z.sgn n) < 0`}+{`(Z.sgn m)*(Z.sgn n) > 0`}
+      `(Z.sgn m)*(Z.sgn n) = 0` s0)
+ ->(z:`(Z.sgn m)*(Z.sgn n) < 0`)
+    s0=(left `(Z.sgn m)*(Z.sgn n) < 0` `(Z.sgn m)*(Z.sgn n) > 0` z)
     ->(Q m n Hn)
 m : Z
 n : Z
 Hn : `n <> 0`
-s0 : {`(Zsgn m)*(Zsgn n) < 0`}+{`(Zsgn m)*(Zsgn n) > 0`}
+s0 : {`(Z.sgn m)*(Z.sgn n) < 0`}+{`(Z.sgn m)*(Z.sgn n) > 0`}
 _eq_ :
-(Z_dec `(Zsgn m)*(Zsgn n)` `0`)
-  =(inleft {`(Zsgn m)*(Zsgn n) < 0`}+{`(Zsgn m)*(Zsgn n) > 0`}
-     `(Zsgn m)*(Zsgn n) = 0` s0)
-z : `(Zsgn m)*(Zsgn n) > 0`
+(Z_dec `(Z.sgn m)*(Z.sgn n)` `0`)
+  =(inleft {`(Z.sgn m)*(Z.sgn n) < 0`}+{`(Z.sgn m)*(Z.sgn n) > 0`}
+     `(Z.sgn m)*(Z.sgn n) = 0` s0)
+z : `(Z.sgn m)*(Z.sgn n) > 0`
 _eq_ :
-s0=(right `(Zsgn m)*(Zsgn n) < 0` `(Zsgn m)*(Zsgn n) > 0` z)
+s0=(right `(Z.sgn m)*(Z.sgn n) < 0` `(Z.sgn m)*(Z.sgn n) > 0` z)
 the term (Hyprec m n Hn) has type
-(s0:({`(Zsgn m)*(Zsgn n) < 0`}+{`(Zsgn m)*(Zsgn n) > 0`}))
- (Z_dec `(Zsgn m)*(Zsgn n)` `0`)
-   =(inleft {`(Zsgn m)*(Zsgn n) < 0`}+{`(Zsgn m)*(Zsgn n) > 0`}
-      `(Zsgn m)*(Zsgn n) = 0` s0)
- ->(z:`(Zsgn m)*(Zsgn n) < 0`)
-    s0=(left `(Zsgn m)*(Zsgn n) < 0` `(Zsgn m)*(Zsgn n) > 0` z)
+(s0:({`(Z.sgn m)*(Z.sgn n) < 0`}+{`(Z.sgn m)*(Z.sgn n) > 0`}))
+ (Z_dec `(Z.sgn m)*(Z.sgn n)` `0`)
+   =(inleft {`(Z.sgn m)*(Z.sgn n) < 0`}+{`(Z.sgn m)*(Z.sgn n) > 0`}
+      `(Z.sgn m)*(Z.sgn n) = 0` s0)
+ ->(z:`(Z.sgn m)*(Z.sgn n) < 0`)
+    s0=(left `(Z.sgn m)*(Z.sgn n) < 0` `(Z.sgn m)*(Z.sgn n) > 0` z)
     ->(Q m n Hn) which should be Set, Prop or Type.
 
 *)
@@ -266,13 +266,13 @@ Ltac Irreflex :=
       match goal with
       | id1:(?X1 <> ?X1) |- _ => apply id1; reflexivity
       | id1:(?X1 < ?X1)%Z |- _ =>
-          apply (Zlt_irrefl X1); assumption
+          apply (Z.lt_irrefl X1); assumption
       | id1:(?X1 < ?X2)%Z,id2:(?X1 = ?X2) |- _ =>
-          rewrite id2 in id1; apply (Zlt_irrefl X2); assumption
+          rewrite id2 in id1; apply (Z.lt_irrefl X2); assumption
       | id1:(?X1 < ?X2)%Z,id2:(?X2 = ?X1) |- _ =>
-          rewrite id2 in id1; apply (Zlt_irrefl X1); assumption
+          rewrite id2 in id1; apply (Z.lt_irrefl X1); assumption
       | id1:(?X1 < ?X2)%Z,id2:(?X2 < ?X1)%Z |- _ =>
-          apply (Zlt_irrefl X2); apply Zlt_trans with X1; assumption
+          apply (Z.lt_irrefl X2); apply Zlt_trans with X1; assumption
       | id1:_ |- _ => idtac
       end ]. 
 
