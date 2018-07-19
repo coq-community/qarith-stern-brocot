@@ -9,6 +9,7 @@
 (* This file contains various properties of R that are not in the standard library. *)
 
 Require Import Reals.
+Require Import Lra.
 Require Import Fourier.
 Require Import Euclid. 
 Require Import Omega.
@@ -556,8 +557,7 @@ Lemma conjRinv_range_l:forall r, 0<=r -> -1<=(3*r-1)/(r+1).
 Proof.
  intros r Hr;
  stepl (-1/1); [| field; apply R1_neq_R0];
- apply Rmult_Rdiv_pos_Rle; try fourier.
- rewrite Rmult_plus_distr_l; do 2 rewrite Rmult_1_r; fourier.
+ apply Rmult_Rdiv_pos_Rle; lra.
 Qed.
 
 Lemma conjMinv_range_r:forall r, r <= 1/3 -> 3*r<=1.
