@@ -5,3 +5,4 @@
 *.vo
 Makefile.coq
 Makefile.coq.conf
+result
