@@ -12,5 +12,5 @@ in
   name = "qarith-stern-brocot";
   buildInputs = [ coq ];
   src = ./.;
-  installFlags = "DESTDIR=$(out)/lib/coq/";
+  installFlags = "COQLIB=$(out)/lib/coq/";
 }
