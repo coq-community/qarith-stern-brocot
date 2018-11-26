@@ -454,7 +454,7 @@ Proof.
  unfold quadrointegral_lt in |- *.
  simpl in |- *.
  intros.
- apply Zlt_trans with (a' + b' + c' + d')%Z; assumption.
+ apply Z.lt_trans with (a' + b' + c' + d')%Z; assumption.
 Defined.
 
 

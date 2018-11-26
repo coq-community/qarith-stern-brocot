@@ -103,8 +103,8 @@ Proof.
       intros.
       generalize (Zsgn_12 (na + nb) z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_trans with (na + nb)%Z.
       assumption.
       assumption.
       generalize (sg_pos_2 a b c d p H_hsign na nb nc nd (nR p0) H). 
@@ -121,8 +121,8 @@ Proof.
       intros.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       apply Zsgn_12.
       assumption.
       rewrite Zplus_0_r_reverse with 0%Z.
@@ -148,37 +148,8 @@ Proof.
       intros.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
-      apply Zsgn_12.
-      assumption.
-      rewrite Zplus_0_r_reverse with 0%Z.
-      apply Zplus_le_compat.
-      assumption.      
-      assumption.
-      intro.      
-      discriminate e.
-      generalize (sg_pos_2 a b c d p H_hsign na nb nc nd (nR p0) H). 
-      intro.
-      case H0.         
-      intro.
-      case s.
-      intro.
-      elim a0. 
-      intros.
-      elim H2.
-      intros.
-      elim H4.
-      intros.
-      assumption.
-      intro.
-      apply False_ind.
-      elim a0.
-      intros.
-      elim H2.
-      intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       apply Zsgn_12.
       assumption.
       rewrite Zplus_0_r_reverse with 0%Z.
@@ -206,8 +177,37 @@ Proof.
       intros.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
+      apply Zsgn_12.
+      assumption.
+      rewrite Zplus_0_r_reverse with 0%Z.
+      apply Zplus_le_compat.
+      assumption.      
+      assumption.
+      intro.      
+      discriminate e.
+      generalize (sg_pos_2 a b c d p H_hsign na nb nc nd (nR p0) H). 
+      intro.
+      case H0.         
+      intro.
+      case s.
+      intro.
+      elim a0. 
+      intros.
+      elim H2.
+      intros.
+      elim H4.
+      intros.
+      assumption.
+      intro.
+      apply False_ind.
+      elim a0.
+      intros.
+      elim H2.
+      intros.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       apply Zsgn_12.
       assumption.
       rewrite Zplus_0_r_reverse with 0%Z.
@@ -234,8 +234,8 @@ Proof.
       intros.
       generalize (Zsgn_12 (na + nb) z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_trans with (na + nb)%Z.
       assumption.
       assumption.
       generalize (sg_pos_2 a b c d p H_hsign na nb nc nd (dL p0) H). 
@@ -252,8 +252,8 @@ Proof.
       intros.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       apply Zsgn_12.
       assumption.
       rewrite Zplus_0_r_reverse with 0%Z.
@@ -279,37 +279,8 @@ Proof.
       intros.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
-      apply Zsgn_12.
-      assumption.
-      rewrite Zplus_0_r_reverse with 0%Z.
-      apply Zplus_le_compat.
-      assumption.      
-      assumption.
-      intro.      
-      discriminate e.
-      generalize (sg_pos_2 a b c d p H_hsign na nb nc nd (dL p0) H). 
-      intro.
-      case H0.         
-      intro.
-      case s.
-      intro.
-      elim a0. 
-      intros.
-      elim H2.
-      intros.
-      elim H4.
-      intros.
-      assumption.
-      intro.
-      apply False_ind.
-      elim a0.
-      intros.
-      elim H2.
-      intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       apply Zsgn_12.
       assumption.
       rewrite Zplus_0_r_reverse with 0%Z.
@@ -337,8 +308,37 @@ Proof.
       intros.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
+      apply Zsgn_12.
+      assumption.
+      rewrite Zplus_0_r_reverse with 0%Z.
+      apply Zplus_le_compat.
+      assumption.      
+      assumption.
+      intro.      
+      discriminate e.
+      generalize (sg_pos_2 a b c d p H_hsign na nb nc nd (dL p0) H). 
+      intro.
+      case H0.         
+      intro.
+      case s.
+      intro.
+      elim a0. 
+      intros.
+      elim H2.
+      intros.
+      elim H4.
+      intros.
+      assumption.
+      intro.
+      apply False_ind.
+      elim a0.
+      intros.
+      elim H2.
+      intros.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       apply Zsgn_12.
       assumption.
       rewrite Zplus_0_r_reverse with 0%Z.
@@ -365,8 +365,8 @@ Proof.
       intros.
       generalize (Zsgn_12 (na + nb) z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_trans with (na + nb)%Z.
       assumption.
       assumption.
 Defined.
@@ -411,8 +411,8 @@ Proof.
       intros.      
       generalize (Zsgn_14 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       assumption.
       assumption.
       intro.
@@ -430,8 +430,8 @@ Proof.
       intros.      
       generalize (Zsgn_14 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       assumption.
       assumption.
       intro.
@@ -453,8 +453,8 @@ Proof.
       apply False_ind.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_lt_le_compat.
       assumption.      
@@ -484,8 +484,8 @@ Proof.
       case (Z_le_lt_eq_dec 0 nb H3).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_lt_compat.
       assumption.      
@@ -519,8 +519,8 @@ Proof.
       case (Z_le_lt_eq_dec 0 nc H5).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (nc + nd)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (nc + nd)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_lt_le_compat.
       assumption.      
@@ -530,8 +530,8 @@ Proof.
       apply False_ind.
       elim a1.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       assumption.
       apply (Zsgn_14 _ z).
       intros.
@@ -569,8 +569,8 @@ Proof.
       case (Z_le_lt_eq_dec 0 nd H6).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (nc + nd)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (nc + nd)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_lt_compat.
       assumption.      
@@ -580,8 +580,8 @@ Proof.
       apply False_ind.
       elim a1.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       assumption.
       apply (Zsgn_14 _ z).
       intros.
@@ -615,8 +615,8 @@ Proof.
       intros.      
       generalize (Zsgn_14 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       assumption.
       assumption.
       intro.
@@ -634,8 +634,8 @@ Proof.
       intros.      
       generalize (Zsgn_14 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       assumption.
       assumption.
       intro.
@@ -657,8 +657,8 @@ Proof.
       apply False_ind.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_lt_le_compat.
       assumption.      
@@ -688,8 +688,8 @@ Proof.
       case (Z_le_lt_eq_dec 0 nb H3).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_lt_compat.
       assumption.      
@@ -723,8 +723,8 @@ Proof.
       case (Z_le_lt_eq_dec 0 nc H5).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (nc + nd)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (nc + nd)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_lt_le_compat.
       assumption.      
@@ -734,8 +734,8 @@ Proof.
       apply False_ind.
       elim a1.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       assumption.
       apply (Zsgn_14 _ z).
       intros.
@@ -773,8 +773,8 @@ Proof.
       case (Z_le_lt_eq_dec 0 nd H6).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (nc + nd)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (nc + nd)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_lt_compat.
       assumption.      
@@ -784,8 +784,8 @@ Proof.
       apply False_ind.
       elim a1.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       assumption.
       apply (Zsgn_14 _ z).
       intros.
@@ -820,8 +820,8 @@ Proof.
       intros.      
       generalize (Zsgn_14 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       assumption.
       assumption.
       intro.
@@ -839,8 +839,8 @@ Proof.
       intros.      
       generalize (Zsgn_14 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_le_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_le_trans with (na + nb)%Z.
       assumption.
       assumption.
       intro.
@@ -894,8 +894,8 @@ Proof.
       apply False_ind.      
       generalize (Zsgn_11 (na + nb) z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_trans with (na + nb)%Z.
       assumption.
       assumption.
       intros.
@@ -913,8 +913,8 @@ Proof.
       intros.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_compat.
       assumption.      
@@ -939,8 +939,8 @@ Proof.
       elim H2.
       intros.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_compat.
       assumption.      
@@ -967,8 +967,8 @@ Proof.
       elim H2.
       intros.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_compat.
       assumption.      
@@ -996,8 +996,8 @@ Proof.
       elim H2.
       intros.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_compat.
       assumption.      
@@ -1030,8 +1030,8 @@ Proof.
       apply False_ind.      
       generalize (Zsgn_11 (na + nb) z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_trans with (na + nb)%Z.
       assumption.
       assumption.
       intros.
@@ -1049,8 +1049,8 @@ Proof.
       intros.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_compat.
       assumption.      
@@ -1075,8 +1075,8 @@ Proof.
       elim H2.
       intros.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_compat.
       assumption.      
@@ -1103,8 +1103,8 @@ Proof.
       elim H2.
       intros.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_compat.
       assumption.      
@@ -1132,8 +1132,8 @@ Proof.
       elim H2.
       intros.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_compat.
       assumption.      
@@ -1166,8 +1166,8 @@ Proof.
       apply False_ind.      
       generalize (Zsgn_11 (na + nb) z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_trans with (na + nb)%Z.
       assumption.
       assumption.
       intro.
@@ -1218,8 +1218,8 @@ Proof.
       intros.      
       generalize (Zsgn_13 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       assumption.
       assumption.
       generalize (sg_neg_1 a b c d p H_hsign na nb nc nd (nR p0) H).
@@ -1237,8 +1237,8 @@ Proof.
       intros.      
       generalize (Zsgn_13 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       assumption.
       assumption.
       generalize (sg_neg_2 a b c d p H_hsign na nb nc nd (nR p0) H). 
@@ -1258,8 +1258,8 @@ Proof.
       apply False_ind.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       apply (Zsgn_13 _ z).
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_lt_le_compat.
@@ -1289,8 +1289,8 @@ Proof.
       case (Z_le_lt_eq_dec nb 0 H3).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       apply (Zsgn_13 _ z).
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_lt_compat.
@@ -1325,8 +1325,8 @@ Proof.
       case (Z_le_lt_eq_dec 0 nc H5).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_trans with (nc + nd)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_trans with (nc + nd)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_lt_le_compat.
       assumption.      
@@ -1338,8 +1338,8 @@ Proof.
       assumption.
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       apply (Zsgn_13 _ z). 
       elim a1.
       intros.
@@ -1374,8 +1374,8 @@ Proof.
       case (Z_le_lt_eq_dec 0 nd H6).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_trans with (nc + nd)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_trans with (nc + nd)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_lt_compat.
       assumption.      
@@ -1387,8 +1387,8 @@ Proof.
       assumption.
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       apply (Zsgn_13 _ z). 
       elim a1.
       intros.
@@ -1414,8 +1414,8 @@ Proof.
       intros.      
       generalize (Zsgn_13 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       assumption.
       assumption.
       generalize (sg_neg_1 a b c d p H_hsign na nb nc nd (dL p0) H).
@@ -1433,8 +1433,8 @@ Proof.
       intros.      
       generalize (Zsgn_13 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       assumption.
       assumption.
       generalize (sg_neg_2 a b c d p H_hsign na nb nc nd (dL p0) H). 
@@ -1454,8 +1454,8 @@ Proof.
       apply False_ind.
       elim H2.
       intros.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       apply (Zsgn_13 _ z).
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_lt_le_compat.
@@ -1485,8 +1485,8 @@ Proof.
       case (Z_le_lt_eq_dec nb 0 H3).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       apply (Zsgn_13 _ z).
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_lt_compat.
@@ -1521,8 +1521,8 @@ Proof.
       case (Z_le_lt_eq_dec 0 nc H5).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_trans with (nc + nd)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_trans with (nc + nd)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_lt_le_compat.
       assumption.      
@@ -1534,8 +1534,8 @@ Proof.
       assumption.
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       apply (Zsgn_13 _ z). 
       elim a1.
       intros.
@@ -1570,8 +1570,8 @@ Proof.
       case (Z_le_lt_eq_dec 0 nd H6).
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zlt_trans with (nc + nd)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.lt_trans with (nc + nd)%Z.
       rewrite Zplus_0_r_reverse with 0%Z.
       apply Zplus_le_lt_compat.
       assumption.      
@@ -1583,8 +1583,8 @@ Proof.
       assumption.
       intro.
       apply False_ind.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       apply (Zsgn_13 _ z). 
       elim a1.
       intros.
@@ -1611,8 +1611,8 @@ Proof.
       intros.      
       generalize (Zsgn_13 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       assumption.
       assumption.
       rewrite <- Zopp_plus_distr.
@@ -1630,8 +1630,8 @@ Proof.
       intros.      
       generalize (Zsgn_13 _ z).
       intro.
-      apply Zlt_irrefl with 0%Z.
-      apply Zle_lt_trans with (na + nb)%Z.
+      apply Z.lt_irrefl with 0%Z.
+      apply Z.le_lt_trans with (na + nb)%Z.
       assumption.
       assumption.
 Defined.

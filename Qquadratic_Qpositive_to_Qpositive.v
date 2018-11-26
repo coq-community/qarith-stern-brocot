@@ -685,7 +685,7 @@ Proof.
  unfold octointegral_lt in |- *.
  simpl in |- *.
  intros.
- apply Zlt_trans with (a' + b' + c' + d' + e' + f' + g' + h')%Z; assumption.
+ apply Z.lt_trans with (a' + b' + c' + d' + e' + f' + g' + h')%Z; assumption.
 Qed.
 
 

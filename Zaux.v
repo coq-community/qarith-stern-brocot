@@ -230,7 +230,7 @@ Proof.
  assumption.
  intro.
  right.
- apply Zle_lt_trans with (m := x).
+ apply Z.le_lt_trans with (m := x).
  apply Zge_le.
  assumption.
  assumption.
@@ -298,7 +298,7 @@ Proof.
  intro H1.
  left.
  right.
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption.
  intro.
  right.
@@ -419,7 +419,7 @@ Lemma Zlt_plus_plus :
  forall m n p q : Z, (m < n)%Z -> (p < q)%Z -> (m + p < n + q)%Z.
 Proof.
  intros.
- apply Zlt_trans with (m := (n + p)%Z).
+ apply Z.lt_trans with (m := (n + p)%Z).
  rewrite Zplus_comm.
  rewrite Zplus_comm with (n := n).
  apply Zplus_lt_compat_l.
@@ -465,7 +465,7 @@ Proof.
  assumption.
  intro.
  apply Zgt_plus_plus.
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption.
  assumption.
  intro.
@@ -586,7 +586,7 @@ Proof.
  ring_simplify (- a * x + a * x)%Z.
  replace (- a * x + a * y)%Z with ((y - x) * a)%Z.
  apply Zmult_gt_0_le_0_compat.
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption. 
  unfold Zminus in |- *.
  apply Zle_left.
@@ -859,7 +859,7 @@ Lemma Zlt_mult_mult :
  (0 < a)%Z -> (0 < d)%Z -> (a < b)%Z -> (c < d)%Z -> (a * c < b * d)%Z.
 Proof.
  intros.
- apply Zlt_trans with (a * d)%Z.
+ apply Z.lt_trans with (a * d)%Z.
  apply Zlt_reg_mult_l.
  Flip. 
  assumption.
@@ -946,7 +946,7 @@ Proof.
  constructor.
  replace (-1 * y)%Z with (- y)%Z.
  replace (-1 * x)%Z with (- x)%Z.
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption.
  ring.
  ring.
@@ -962,7 +962,7 @@ Proof.
  intro.
  apply False_ind.
  apply (Z.lt_irrefl (a * x)).
- apply Zle_lt_trans with (m := (a * y)%Z).
+ apply Z.le_lt_trans with (m := (a * y)%Z).
  assumption.
  apply Zgt_lt.
  apply Zlt_conv_mult_l.
@@ -977,9 +977,9 @@ Proof.
  intros.
  apply Zgt_lt.
  apply Zgt_mult_reg_absorb_l with x.
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption. 
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption.
 Qed.
  
@@ -1007,10 +1007,10 @@ Proof.
  intro.
  apply False_ind.
  apply (Z.lt_irrefl (a * y)).
- apply Zle_lt_trans with (m := (a * x)%Z).
+ apply Z.le_lt_trans with (m := (a * x)%Z).
  assumption.
  apply Zlt_reg_mult_l.
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption.
  apply Zgt_lt.
  assumption.
@@ -1138,7 +1138,7 @@ Proof.
  apply Zgt_trans with (c * b * f)%Z.
  replace (d * (e * b))%Z with (b * (e * d))%Z.
  replace (c * b * f)%Z with (b * (c * f))%Z.
- apply Zlt_gt.
+ apply Z.lt_gt.
  apply Zlt_reg_mult_l.
  Flip.
  assumption.
@@ -1146,7 +1146,7 @@ Proof.
  ring.
  replace (c * b * f)%Z with (f * (c * b))%Z.  
  replace (d * (a * f))%Z with (f * (a * d))%Z.
- apply Zlt_gt.
+ apply Z.lt_gt.
  apply Zlt_reg_mult_l.
  Flip.
  assumption.
@@ -1239,7 +1239,7 @@ Qed.
 Lemma nat_nat_pos : forall m n : nat, ((m + 1) * (n + 1) > 0)%Z. (*QF*)
 Proof.
  intros.
- apply Zlt_gt.
+ apply Z.lt_gt.
  cut (Z_of_nat m + 1 > 0)%Z.
  intro.
  cut (0 < Z_of_nat n + 1)%Z.
@@ -1257,7 +1257,7 @@ Proof.
  change (Z_of_nat 0 <= Z_of_nat n)%Z in |- *.
  apply Znat.inj_le.
  apply le_O_n.
- apply Zlt_gt.
+ apply Z.lt_gt.
  change (0 < Z.succ (Z_of_nat m))%Z in |- *.
  apply Zle_lt_succ.
  change (Z_of_nat 0 <= Z_of_nat m)%Z in |- *.
@@ -1341,7 +1341,7 @@ Proof.
  apply Zopp_involutive.
  apply Zcompare_Gt_spec.
  assumption.
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption.
  
  (***)
@@ -1375,7 +1375,7 @@ Proof.
  assumption.
  intro.
  right.
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption.
  assumption.
  apply not_Zeq.
@@ -1675,7 +1675,7 @@ Proof.
  intro.
  apply False_ind.
  apply H0.
- apply Zopp_inj.
+ apply Z.opp_inj.
  simpl in |- *.
  transitivity (-1 * y)%Z.
  constructor.
@@ -1724,7 +1724,7 @@ Proof.
  intro.
  apply False_ind.
  apply H.
- apply Zopp_inj.
+ apply Z.opp_inj.
  transitivity (-1 * x)%Z.
  ring.
  unfold Zopp in |- *.
@@ -1766,7 +1766,7 @@ Proof.
  intros.
  apply False_ind.
  apply (Z.lt_irrefl (Zneg p)).
- apply Zlt_trans with 0%Z.
+ apply Z.lt_trans with 0%Z.
  constructor.
  Flip.
 Qed.
@@ -1789,7 +1789,7 @@ Proof.
  intros.
  apply False_ind.
  apply (Z.lt_irrefl 0).
- apply Zlt_trans with (Zpos p).
+ apply Z.lt_trans with (Zpos p).
  constructor.
  assumption.
  intros.
@@ -2009,21 +2009,21 @@ Proof.
  apply Zlt_pred.
  simpl; trivial.
  ring_simplify (-1 * - p)%Z (-1 * 0)%Z.
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption.
 
  intros.
  simpl in H.
  split.
  assumption.
- apply Zlt_trans with (m := 0%Z).
+ apply Z.lt_trans with (m := 0%Z).
  apply Zgt_mult_conv_absorb_l with (a := (-1)%Z).
  replace (-1)%Z with (Zpred 0).
  apply Zlt_pred.
  simpl; trivial.
  ring_simplify (-1 * - p)%Z (-1 * 0)%Z.
- apply Zlt_gt.
- apply Zlt_trans with (m := Zpos p0).
+ apply Z.lt_gt.
+ apply Z.lt_trans with (m := Zpos p0).
  constructor.
  assumption.
  constructor.
@@ -2031,7 +2031,7 @@ Proof.
  intros.
  simpl in H.
  split.
- apply Zlt_trans with (m := Zpos p0).
+ apply Z.lt_trans with (m := Zpos p0).
  constructor.
  assumption.
  
@@ -2042,7 +2042,7 @@ Proof.
  ring_simplify (-1 * - p)%Z.
  replace (-1 * Zneg p0)%Z with (- Zneg p0)%Z.
  replace (- Zneg p0)%Z with (Zpos p0). 
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption.
  symmetry  in |- *.
  apply Zopp_neg.
@@ -2069,7 +2069,7 @@ Proof.
  intros.
  simpl in H.
  right.
- apply Zlt_gt.
+ apply Z.lt_gt.
  apply Zgt_mult_conv_absorb_l with (a := (-1)%Z).
  constructor.
  ring_simplify (-1 * - p)%Z.
@@ -2102,7 +2102,7 @@ Proof.
   constructor.
   replace (-1 * Zpos p0)%Z with (Zneg p0).
   replace (-1 * p)%Z with (- p)%Z.
-  apply Zlt_gt.
+  apply Z.lt_gt.
   assumption.
   ring.  
   simpl in |- *.
@@ -2167,7 +2167,7 @@ Proof.
  split.
  apply Zle_lt_succ.
  assumption.
- apply Zlt_le_trans with (m := (- p)%Z).
+ apply Z.lt_le_trans with (m := (- p)%Z).
  apply Zgt_lt. 
  apply Zlt_opp.
  apply Zlt_succ.
@@ -2199,7 +2199,7 @@ Proof.
  symmetry  in |- *.
  apply Zabs_eq.
  apply Zlt_le_weak.
- apply Zle_lt_trans with (m := p).
+ apply Z.le_lt_trans with (m := p).
  assumption.
  assumption.
  intro.
@@ -2212,7 +2212,7 @@ Proof.
  rewrite Zabs_min.
  apply Zabs_eq.
  apply Zlt_le_weak.
- apply Zle_lt_trans with (m := p).
+ apply Z.le_lt_trans with (m := p).
  assumption.
  apply Zmin_cancel_Zlt.
  ring_simplify (- - z)%Z.
@@ -2569,7 +2569,7 @@ Proof.
  intro k.
  intros.
  exists k.
- apply Zopp_inj. 
+ apply Z.opp_inj. 
  apply Zplus_reg_l with (n := p).
  replace (p + - (p - Z_of_nat k))%Z with (Z_of_nat k). 
  rewrite <- e.
@@ -2636,7 +2636,7 @@ Proof.
  intro k.
  intros.
  exists k.
- apply Zopp_inj. 
+ apply Z.opp_inj. 
  apply Zplus_reg_l with (n := p).
  replace (p + - (p - Z_of_nat k))%Z with (Z_of_nat k). 
  rewrite <- H3.
@@ -2668,7 +2668,7 @@ Proof.
  absurd (p <= p)%Z.
  apply Zgt_not_le.
  apply Zgt_le_trans with (m := y).
- apply Zlt_gt.
+ apply Z.lt_gt.
  elim H.
  intros.
  assumption.
@@ -2685,12 +2685,12 @@ Proof.
  elim H2.
  intros.
  assumption.
- apply Zlt_le_trans with y. 
+ apply Z.lt_le_trans with y. 
  elim H2.
  intros.
  assumption.
  apply Zgt_succ_le. 
- apply Zlt_gt. 
+ apply Z.lt_gt. 
  elim H1.
  intros.
  unfold Z.succ in |- *.
@@ -2758,7 +2758,7 @@ Proof.
  absurd (p <= p)%Z.
  apply Zgt_not_le.
  apply Zgt_le_trans with (m := y).
- apply Zlt_gt.
+ apply Z.lt_gt.
  elim H.
  intros.
  assumption.
@@ -2775,12 +2775,12 @@ Proof.
  elim H2.
  intros.
  assumption.
- apply Zlt_le_trans with y. 
+ apply Z.lt_le_trans with y. 
  elim H2.
  intros.
  assumption.
  apply Zgt_succ_le. 
- apply Zlt_gt. 
+ apply Z.lt_gt. 
  elim H1.
  intros.
  unfold Z.succ in |- *.
@@ -2896,7 +2896,7 @@ Proof.
  elim H.
  intro.
  left.
- apply Zlt_gt.
+ apply Z.lt_gt.
  assumption.
  intro.
  right.

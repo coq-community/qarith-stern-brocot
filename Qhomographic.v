@@ -243,7 +243,7 @@ Proof.
  apply H.
  apply Zmult_integral_l with (k0 + k'0)%Z.
  apply Zgt_not_eq.  
- apply Zlt_gt.
+ apply Z.lt_gt.
  replace 0%Z with (0 + 0)%Z.
  apply Zlt_plus_plus.
  assumption.

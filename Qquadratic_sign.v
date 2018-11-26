@@ -68,10 +68,10 @@ Proof.
  assumption.
  intros (H1, H2).
  apply False_ind.
- apply Zlt_irrefl with o1.
- apply Zlt_trans with (-2)%Z.
+ apply Z.lt_irrefl with o1.
+ apply Z.lt_trans with (-2)%Z.
  assumption.
- apply Zlt_trans with 2%Z.
+ apply Z.lt_trans with 2%Z.
  constructor.
  assumption.
 
@@ -90,10 +90,10 @@ Proof.
  case H.
  intros (H1, H2).
  apply False_ind.
- apply Zlt_irrefl with o1.
- apply Zlt_trans with (-2)%Z.
+ apply Z.lt_irrefl with o1.
+ apply Z.lt_trans with (-2)%Z.
  assumption.
- apply Zlt_trans with 2%Z.
+ apply Z.lt_trans with 2%Z.
  constructor.
  assumption.
  intros (H1, H2).
@@ -132,10 +132,10 @@ Proof.
  assumption.
  intros (H1, H2).
  apply False_ind.
- apply Zlt_irrefl with o1.
- apply Zlt_trans with (-2)%Z.
+ apply Z.lt_irrefl with o1.
+ apply Z.lt_trans with (-2)%Z.
  assumption.
- apply Zlt_trans with 2%Z.
+ apply Z.lt_trans with 2%Z.
  constructor.
  assumption.
 
@@ -154,10 +154,10 @@ Proof.
  case H.
  intros (H1, H2).
  apply False_ind.
- apply Zlt_irrefl with o1.
- apply Zlt_trans with (-2)%Z.
+ apply Z.lt_irrefl with o1.
+ apply Z.lt_trans with (-2)%Z.
  assumption.
- apply Zlt_trans with 2%Z.
+ apply Z.lt_trans with 2%Z.
  constructor.
  assumption.
  intros (H1, H2).

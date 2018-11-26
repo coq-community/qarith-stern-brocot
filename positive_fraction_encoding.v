@@ -43,7 +43,7 @@ Lemma fractionalacc_1 :
  fractionalAcc m n -> (0 < m)%Z -> (m < n)%Z -> fractionalAcc m (n - m).
 Proof.
  simple destruct 1; intros; trivial; Falsum; apply (Z.lt_irrefl n0);
-  [ rewrite H0 in H2 | apply Zlt_trans with m0 ]; assumption.
+  [ rewrite H0 in H2 | apply Z.lt_trans with m0 ]; assumption.
 Defined.
 
 
@@ -52,7 +52,7 @@ Lemma fractionalacc_2 :
  fractionalAcc m n -> (0 < n)%Z -> (n < m)%Z -> fractionalAcc (m - n) n.
 Proof.
  simple destruct 1; intros; trivial; Falsum; apply (Z.lt_irrefl n0);
-  [ rewrite H0 in H2 | apply Zlt_trans with m0 ]; assumption.
+  [ rewrite H0 in H2 | apply Z.lt_trans with m0 ]; assumption.
 Defined.
 
 
@@ -272,7 +272,7 @@ Ltac Irreflex :=
       | id1:(?X1 < ?X2)%Z,id2:(?X2 = ?X1) |- _ =>
           rewrite id2 in id1; apply (Z.lt_irrefl X1); assumption
       | id1:(?X1 < ?X2)%Z,id2:(?X2 < ?X1)%Z |- _ =>
-          apply (Z.lt_irrefl X2); apply Zlt_trans with X1; assumption
+          apply (Z.lt_irrefl X2); apply Z.lt_trans with X1; assumption
       | id1:_ |- _ => idtac
       end ]. 
 

@@ -194,9 +194,9 @@ Proof.
              end ||
                match goal with
                | id1:(Zpos ?X1 < ?X2)%Z,id2:(?X2 < Zneg ?X1)%Z |- ?X3 =>
-                   apply (Zlt_irrefl (Zpos X1));
-                    apply Zlt_trans with (Zneg X1);
-                    constructor || apply Zlt_trans with X2; 
+                   apply (Z.lt_irrefl (Zpos X1));
+                    apply Z.lt_trans with (Zneg X1);
+                    constructor || apply Z.lt_trans with X2; 
                     assumption
                end.
 Qed.
@@ -221,9 +221,9 @@ Proof.
              end ||
                match goal with
                | id1:(Zpos ?X1 < ?X2)%Z,id2:(?X2 < Zneg ?X1)%Z |- ?X3 =>
-                   apply (Zlt_irrefl (Zpos X1));
-                    apply Zlt_trans with (Zneg X1);
-                    constructor || apply Zlt_trans with X2; 
+                   apply (Z.lt_irrefl (Zpos X1));
+                    apply Z.lt_trans with (Zneg X1);
+                    constructor || apply Z.lt_trans with X2; 
                     assumption
                end.
 Qed.
@@ -359,7 +359,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_10; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_10; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -465,7 +465,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_10; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_10; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -705,7 +705,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_10; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_10; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -813,7 +813,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_10; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_10; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -1105,7 +1105,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_10; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_10; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -1213,7 +1213,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_10; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_10; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -1455,7 +1455,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_10; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_10; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -1563,7 +1563,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_10; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_10; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -1906,7 +1906,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
          match goal with
@@ -1975,7 +1975,7 @@ Proof.
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
           match goal with
@@ -2074,7 +2074,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
          match goal with
@@ -2142,7 +2142,7 @@ Proof.
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
           match goal with
@@ -2235,7 +2235,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
          match goal with
@@ -2409,7 +2409,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
          match goal with
@@ -2478,7 +2478,7 @@ Proof.
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
           match goal with
@@ -2577,7 +2577,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
          match goal with
@@ -2645,7 +2645,7 @@ Proof.
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
           match goal with
@@ -2738,7 +2738,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
          match goal with
@@ -2976,7 +2976,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
          match goal with
@@ -3045,7 +3045,7 @@ Proof.
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
           match goal with
@@ -3144,7 +3144,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
          match goal with
@@ -3212,7 +3212,7 @@ Proof.
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
           match goal with
@@ -3305,7 +3305,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
          match goal with
@@ -3479,7 +3479,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
          match goal with
@@ -3548,7 +3548,7 @@ Proof.
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
           match goal with
@@ -3647,7 +3647,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
          match goal with
@@ -3715,7 +3715,7 @@ Proof.
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
           match goal with
@@ -3808,7 +3808,7 @@ Proof.
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
          match goal with
@@ -4149,7 +4149,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_9; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_9; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -4257,7 +4257,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_9; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_9; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -4499,7 +4499,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_9; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_9; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -4607,7 +4607,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_9; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_9; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -4899,7 +4899,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_9; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_9; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -5007,7 +5007,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_9; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_9; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -5249,7 +5249,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_9; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_9; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -5357,7 +5357,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_9; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_9; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -5699,7 +5699,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
@@ -5768,7 +5768,7 @@ Proof.
        [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
@@ -5867,7 +5867,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
@@ -5935,7 +5935,7 @@ Proof.
        [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
@@ -6061,7 +6061,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
@@ -6202,7 +6202,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
@@ -6271,7 +6271,7 @@ Proof.
        [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
@@ -6370,7 +6370,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
@@ -6438,7 +6438,7 @@ Proof.
        [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
@@ -6565,7 +6565,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
@@ -6770,7 +6770,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
@@ -6839,7 +6839,7 @@ Proof.
        [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
@@ -6938,7 +6938,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
@@ -7006,7 +7006,7 @@ Proof.
        [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
@@ -7132,7 +7132,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
@@ -7273,7 +7273,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
@@ -7342,7 +7342,7 @@ Proof.
        [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
@@ -7441,7 +7441,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
@@ -7509,7 +7509,7 @@ Proof.
        [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
@@ -7636,7 +7636,7 @@ Proof.
       [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;

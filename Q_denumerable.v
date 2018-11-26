@@ -177,7 +177,7 @@ Proof.
    intro Hk';
    rewrite <- (double_eq_half_eq _ _ Hk');
    symmetry;
-   apply Zopp_inj;
+   apply Z.opp_inj;
    rewrite Zopp_neg;
    rewrite Zopp_involutive;
    apply Zpos_eq_Z_of_nat_o_nat_of_P.
