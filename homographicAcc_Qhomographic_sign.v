@@ -61,7 +61,7 @@ Lemma Qhomographic_Qpositive_to_Q_homographicAcc_pos_1 :
  (a * d)%Z <> (b * c)%Z ->
  h_sign a b c d p H_Qhomographic_sg_denom_nonzero = 1%Z ->
  (0 <
-  Zsgn
+  Z.sgn
     (new_a a b c d p H_Qhomographic_sg_denom_nonzero +
      new_b a b c d p H_Qhomographic_sg_denom_nonzero))%Z ->
  homographicAcc (new_a a b c d p H_Qhomographic_sg_denom_nonzero)
@@ -376,7 +376,7 @@ Lemma Qhomographic_Qpositive_to_Q_homographicAcc_pos_2 :
    (H_Qhomographic_sg_denom_nonzero : Qhomographic_sg_denom_nonzero c d p),
  (a * d)%Z <> (b * c)%Z ->
  h_sign a b c d p H_Qhomographic_sg_denom_nonzero = 1%Z ->
- (Zsgn
+ (Z.sgn
     (new_a a b c d p H_Qhomographic_sg_denom_nonzero +
      new_b a b c d p H_Qhomographic_sg_denom_nonzero) <= 0)%Z ->
  homographicAcc (- new_a a b c d p H_Qhomographic_sg_denom_nonzero)
@@ -857,7 +857,7 @@ Lemma Qhomographic_Qpositive_to_Q_homographicAcc_neg_1 :
    (H_hsign : Qhomographic_sg_denom_nonzero c d p),
  (a * d)%Z <> (b * c)%Z ->
  h_sign a b c d p H_hsign = (-1)%Z ->
- (Zsgn (new_a a b c d p H_hsign + new_b a b c d p H_hsign) < 0)%Z ->
+ (Z.sgn (new_a a b c d p H_hsign + new_b a b c d p H_hsign) < 0)%Z ->
  homographicAcc (- new_a a b c d p H_hsign) (- new_b a b c d p H_hsign)
    (new_c a b c d p H_hsign) (new_d a b c d p H_hsign)
    (new_p a b c d p H_hsign).
@@ -1182,7 +1182,7 @@ Lemma Qhomographic_Qpositive_to_Q_homographicAcc_neg_2 :
    (H_hsign : Qhomographic_sg_denom_nonzero c d p),
  (a * d)%Z <> (b * c)%Z ->
  h_sign a b c d p H_hsign = (-1)%Z ->
- (0 <= Zsgn (new_a a b c d p H_hsign + new_b a b c d p H_hsign))%Z ->
+ (0 <= Z.sgn (new_a a b c d p H_hsign + new_b a b c d p H_hsign))%Z ->
  homographicAcc (new_a a b c d p H_hsign) (new_b a b c d p H_hsign)
    (- new_c a b c d p H_hsign) (- new_d a b c d p H_hsign)
    (new_p a b c d p H_hsign).

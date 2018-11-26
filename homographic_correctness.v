@@ -1177,7 +1177,7 @@ Proof.
   rewrite spec_Qhomographic_Qpositive_to_Q_dL; rewrite IHp0; 
   reflexivity.
 (**********************************************************)
- (* (One1) : (Zsgn (a+b)) = 0 *)
+ (* (One1) : (Z.sgn (a+b)) = 0 *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *; clear e0.
  rewrite Qsgn_15.    
  replace (Qsgn (Qplus (Qmult a (Qpos One)) b)) with 0%Z.
@@ -1188,14 +1188,14 @@ Proof.
  symmetry  in |- *.
  rewrite Qsgn_29.
  assumption.
- (* (One2) : (Zsgn (a+b))<>0 & (Zsgn (a+b))=(Zsgn (c+d)) *)
+ (* (One2) : (Z.sgn (a+b))<>0 & (Z.sgn (a+b))=(Z.sgn (c+d)) *)
  Transparent Qone.
  unfold spec_Qhomographic_Qpositive_to_Q in |- *; clear e1 e0 ;
   rewrite Qsgn_15; repeat rewrite Qmult_one_right;
   rewrite Qsgn_28; repeat rewrite <- Z_to_Qplus; repeat rewrite Qsgn_29;
      rewrite <- _x1; rewrite <- Zsgn_15; symmetry  in |- *; 
   apply Zsgn_7'; abstract auto with zarith.
- (* (One2) : (Zsgn (a+b))<>0 & (Zsgn (a+b))<>(Zsgn (c+d)) *)
+ (* (One2) : (Z.sgn (a+b))<>0 & (Z.sgn (a+b))<>(Z.sgn (c+d)) *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *; clear e1 e0;
      abstract (rewrite Qsgn_15; repeat rewrite Qmult_one_right; rewrite Qsgn_28;
        repeat rewrite <- Z_to_Qplus; repeat rewrite Qsgn_29;
@@ -1375,7 +1375,7 @@ Proof.
  discriminate H.
 Defined.
 
-(** We use this when (Zsgn a+b)<0 *)
+(** We use this when (Z.sgn a+b)<0 *)
 Lemma spec_Qhomographic_Qpositive_to_Q_spec_ni2_neg_1 :
  forall (a b c d : Z) (q : Qpositive),
  Qsgn (spec_Qhomographic_Qpositive_to_Q a b c d q) = (-1)%Z ->
@@ -1415,7 +1415,7 @@ Proof.
  discriminate H.
 Defined.
 
-(** We use this when 0<=(Zsgn a+b) *)
+(** We use this when 0<=(Z.sgn a+b) *)
 Lemma spec_Qhomographic_Qpositive_to_Q_spec_ni2_neg_2 :
  forall (a b c d : Z) (q : Qpositive),
  Qsgn (spec_Qhomographic_Qpositive_to_Q a b c d q) = (-1)%Z ->

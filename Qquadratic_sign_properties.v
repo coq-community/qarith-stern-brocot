@@ -259,7 +259,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
      [ apply
         trans_eq
@@ -298,7 +298,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -335,7 +335,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -403,7 +403,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -440,7 +440,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -602,7 +602,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
      [ apply
         trans_eq
@@ -642,7 +642,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -680,7 +680,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -749,7 +749,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -787,7 +787,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -1002,7 +1002,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
      [ apply
         trans_eq
@@ -1042,7 +1042,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -1080,7 +1080,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -1149,7 +1149,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -1187,7 +1187,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -1352,7 +1352,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
      [ apply
         trans_eq
@@ -1392,7 +1392,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -1430,7 +1430,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -1499,7 +1499,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -1537,7 +1537,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -1836,7 +1836,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
      [ apply
         trans_eq
@@ -1877,7 +1877,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -1946,7 +1946,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -2045,7 +2045,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -2113,7 +2113,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -2339,7 +2339,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
      [ apply
         trans_eq
@@ -2380,7 +2380,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -2449,7 +2449,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -2548,7 +2548,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -2616,7 +2616,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -2906,7 +2906,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
      [ apply
         trans_eq
@@ -2947,7 +2947,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -3016,7 +3016,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -3115,7 +3115,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -3183,7 +3183,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -3409,7 +3409,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
      [ apply
         trans_eq
@@ -3450,7 +3450,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -3519,7 +3519,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -3618,7 +3618,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -3686,7 +3686,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -4046,7 +4046,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
      [ apply
         trans_eq
@@ -4086,7 +4086,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -4124,7 +4124,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -4193,7 +4193,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -4231,7 +4231,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -4396,7 +4396,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
      [ apply
         trans_eq
@@ -4436,7 +4436,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -4474,7 +4474,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -4543,7 +4543,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -4581,7 +4581,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -4796,7 +4796,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
      [ apply
         trans_eq
@@ -4836,7 +4836,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -4874,7 +4874,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -4943,7 +4943,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -4981,7 +4981,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -5146,7 +5146,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
      [ apply
         trans_eq
@@ -5186,7 +5186,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -5224,7 +5224,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -5293,7 +5293,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -5331,7 +5331,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -5630,7 +5630,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
      [ apply
         trans_eq
@@ -5671,7 +5671,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -5740,7 +5740,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -5839,7 +5839,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -5907,7 +5907,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -6133,7 +6133,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
      [ apply
         trans_eq
@@ -6174,7 +6174,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -6243,7 +6243,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -6342,7 +6342,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -6410,7 +6410,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -6701,7 +6701,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
      [ apply
         trans_eq
@@ -6742,7 +6742,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -6811,7 +6811,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -6910,7 +6910,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -6978,7 +6978,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -7204,7 +7204,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
      [ apply
         trans_eq
@@ -7245,7 +7245,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -7314,7 +7314,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -7413,7 +7413,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -7481,7 +7481,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
