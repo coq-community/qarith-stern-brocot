@@ -1883,7 +1883,7 @@ Proof.
  symmetry  in |- *.
  assumption.
  rewrite H0.
- apply Zle_refl.
+ apply Z.le_refl.
 Qed.
 
 Lemma Zsgn_14 : forall x : Z, (Z.sgn x <= 0)%Z -> (x <= 0)%Z.
@@ -1899,7 +1899,7 @@ Proof.
  apply Zsgn_2.
  assumption.
  rewrite H0.
- apply Zle_refl.
+ apply Z.le_refl.
 Qed.
 
 Lemma Zsgn_15 : forall x y : Z, Z.sgn (x * y) = (Z.sgn x * Z.sgn y)%Z.
@@ -2226,20 +2226,20 @@ Proof.
  intro.
  rewrite e.
  simpl in |- *.
- apply Zle_refl.
+ apply Z.le_refl.
  intro.
  case (not_Zeq z 0 n).
  intro.
  apply Zlt_le_weak.
  apply Zabs_9.
- apply Zle_refl.
+ apply Z.le_refl.
  simpl in |- *.
  right.
  assumption.
  intro.
  apply Zlt_le_weak.
  apply Zabs_9.
- apply Zle_refl.
+ apply Z.le_refl.
  simpl in |- *.
  left.
  assumption.
@@ -2249,7 +2249,7 @@ Lemma Zabs_11 : forall z : Z, z <> 0%Z -> (0 < Zabs z)%Z.
 Proof.
  intros.
  apply Zabs_9.
- apply Zle_refl.
+ apply Z.le_refl.
  simpl in |- *.
  apply not_Zeq.
  intro.
@@ -2297,14 +2297,14 @@ Proof.
  intros.
  case z.
  simpl in |- *.
- apply Zle_refl.
+ apply Z.le_refl.
  case p.
  intro.
  simpl in |- *.
- apply Zle_refl.
+ apply Z.le_refl.
  intros.
  simpl in |- *.
- apply Zle_refl.
+ apply Z.le_refl.
  intros.
  unfold Zabs at 2 in |- *.
  unfold Zabs at 2 in |- *.
@@ -2324,14 +2324,14 @@ Proof.
  ring.
  ring.
  apply Zplus_le_compat.
- apply Zle_refl.
+ apply Z.le_refl.
  apply Zlt_le_weak.
  constructor.
  
  case p.
  simpl in |- *.
  intro.
- apply Zle_refl.
+ apply Z.le_refl.
  intros.
  unfold Zabs at 2 in |- *.
  unfold Zabs at 2 in |- *.
@@ -2362,10 +2362,10 @@ Proof.
  apply Zplus_le_compat.
  apply Zlt_le_weak.
  constructor.
- apply Zle_refl.
+ apply Z.le_refl.
  intros.
  simpl in |- *.
- apply Zle_refl.
+ apply Z.le_refl.
 Qed.
 
 Lemma Zabs_neg : forall z : Z, (z <= 0)%Z -> Zabs z = (- z)%Z.
@@ -2675,7 +2675,7 @@ Proof.
  elim H.
  intros.
  assumption.
- apply Zle_refl.
+ apply Z.le_refl.
 
  intros. 
  apply WF_ind_step. 
@@ -2765,7 +2765,7 @@ Proof.
  elim H.
  intros.
  assumption.
- apply Zle_refl.
+ apply Z.le_refl.
 
  intros. 
  apply WF_ind_step. 

@@ -203,7 +203,7 @@ Proof.
  rewrite H0.
  repeat rewrite Zplus_assoc_reverse with (n := (a + b + c + d)%Z).
  apply Zplus_le_lt_compat.  
- apply Zle_refl.
+ apply Z.le_refl.
  assumption.
 Qed.
 
@@ -222,7 +222,7 @@ Lemma quadratic_top_more_5' :
  repeat rewrite Zplus_assoc_reverse with (n := 0%Z).
  apply Zplus_lt_le_compat.  
  assumption.
- apply Zle_refl.
+ apply Z.le_refl.
 Qed.
 
 

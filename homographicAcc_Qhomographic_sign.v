@@ -463,7 +463,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.
       elim a0.
       intros.
@@ -494,7 +494,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.
       elim a0.
       intros.
@@ -542,7 +542,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.
       elim a0.
       intros.
@@ -592,7 +592,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.
       elim a0.
       intros.
@@ -667,7 +667,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.
       elim a0.
       intros.
@@ -698,7 +698,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.
       elim a0.
       intros.
@@ -746,7 +746,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.
       elim a0.
       intros.
@@ -796,7 +796,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.
       elim a0.
       intros.
@@ -1267,7 +1267,7 @@ Proof.
       assumption.
       intro.
       rewrite e.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.      
       discriminate e.
       generalize (sg_neg_2 a b c d p H_hsign na nb nc nd (nR p0) H). 
@@ -1298,7 +1298,7 @@ Proof.
       assumption.
       intro.
       rewrite e.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.      
       discriminate e.
       generalize (sg_neg_2 a b c d p H_hsign na nb nc nd (nR p0) H). 
@@ -1347,7 +1347,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.      
       discriminate e.
       generalize (sg_neg_2 a b c d p H_hsign na nb nc nd (nR p0) H). 
@@ -1396,7 +1396,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.      
       discriminate e.
       (* l3 = (dL p0) *)
@@ -1463,7 +1463,7 @@ Proof.
       assumption.
       intro.
       rewrite e.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.      
       discriminate e.
       generalize (sg_neg_2 a b c d p H_hsign na nb nc nd (dL p0) H). 
@@ -1494,7 +1494,7 @@ Proof.
       assumption.
       intro.
       rewrite e.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.      
       discriminate e.
       generalize (sg_neg_2 a b c d p H_hsign na nb nc nd (dL p0) H). 
@@ -1543,7 +1543,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.      
       discriminate e.
       generalize (sg_neg_2 a b c d p H_hsign na nb nc nd (dL p0) H). 
@@ -1592,7 +1592,7 @@ Proof.
       intro.
       rewrite <- e.
       simpl in |- *.
-      apply Zle_refl.
+      apply Z.le_refl.
       intro.      
       discriminate e.
       (* l3 = One *)

@@ -189,7 +189,7 @@ Proof.
  rewrite H0.
  rewrite Zplus_assoc_reverse with (n := (a + b)%Z).
  apply Zplus_le_lt_compat.  
- apply Zle_refl.
+ apply Z.le_refl.
  assumption.
 Defined.
 
@@ -204,7 +204,7 @@ Proof.
  rewrite Zplus_assoc_reverse with (n := (a + b)%Z).
  apply Zplus_lt_le_compat.  
  assumption.
- apply Zle_refl.
+ apply Z.le_refl.
 Defined.
 
 

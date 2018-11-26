@@ -1863,7 +1863,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -1902,7 +1902,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -1971,7 +1971,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
@@ -2070,7 +2070,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -2138,7 +2138,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
@@ -2231,7 +2231,7 @@ Proof.
           end ].
      left; left; left; left; left; case (inside_square_1_inf _ _ H_inside_1);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -2366,7 +2366,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -2405,7 +2405,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -2474,7 +2474,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
@@ -2573,7 +2573,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -2641,7 +2641,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
@@ -2734,7 +2734,7 @@ Proof.
           end ].
      left; left; left; left; left; case (inside_square_1_inf _ _ H_inside_1);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -2933,7 +2933,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -2972,7 +2972,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -3041,7 +3041,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
@@ -3140,7 +3140,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -3208,7 +3208,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
@@ -3301,7 +3301,7 @@ Proof.
           end ].
      left; left; left; left; left; case (inside_square_1_inf _ _ H_inside_1);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -3436,7 +3436,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -3475,7 +3475,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -3544,7 +3544,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
@@ -3643,7 +3643,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -3711,7 +3711,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
@@ -3804,7 +3804,7 @@ Proof.
           end ].
      left; left; left; left; left; case (inside_square_1_inf _ _ H_inside_1);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
@@ -5657,7 +5657,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -5696,7 +5696,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -5765,7 +5765,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
              apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -5864,7 +5864,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -5932,7 +5932,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
              apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -6058,7 +6058,7 @@ Proof.
            end ].
      left; left; left; left; left; case (inside_square_2_inf _ _ H_inside_2);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -6160,7 +6160,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -6199,7 +6199,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -6268,7 +6268,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
              apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -6367,7 +6367,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -6435,7 +6435,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
              apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -6562,7 +6562,7 @@ Proof.
            end ].
      left; left; left; left; left; case (inside_square_2_inf _ _ H_inside_2);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -6728,7 +6728,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -6767,7 +6767,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -6836,7 +6836,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
              apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -6935,7 +6935,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -7003,7 +7003,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
              apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -7129,7 +7129,7 @@ Proof.
            end ].
      left; left; left; left; left; case (inside_square_2_inf _ _ H_inside_2);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -7231,7 +7231,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -7270,7 +7270,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -7339,7 +7339,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
              apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -7438,7 +7438,7 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -7506,7 +7506,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
              apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
@@ -7633,7 +7633,7 @@ Proof.
            end ].
      left; left; left; left; left; case (inside_square_2_inf _ _ H_inside_2);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj

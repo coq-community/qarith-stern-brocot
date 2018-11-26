@@ -669,7 +669,7 @@ Proof.
  intros x; induction  x as [x Hrecx| x Hrecx| ];
             [ replace (Qpositive_to_Z (nR x)) with (1 + Qpositive_to_Z x)%Z;
                trivial; abstract omega
-            | simpl in |- *; apply Zle_refl
+            | simpl in |- *; apply Z.le_refl
             | simpl in |- *; intro H; discriminate ].
 Qed. 
  
