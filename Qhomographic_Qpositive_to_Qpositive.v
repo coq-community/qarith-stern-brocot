@@ -20,8 +20,6 @@ Require Export positive_fraction_encoding.
 Require Import Merge_Order.
 Require Import Wf_nat.
 
-Unset Standard Proposition Elimination Names.
-
 Definition top_more (a b c d : Z) :=
   (c <= a)%Z /\ (d < b)%Z \/ (c < a)%Z /\ (d <= b)%Z.
 

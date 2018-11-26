@@ -150,7 +150,7 @@ Proof.
      [transitivity (Z_of_nat 0)
        |transitivity (Z.opp (Z_of_nat 0))
      ]; trivial;
-  try apply (f_equal Zopp);
+  try apply (f_equal Z.opp);
     apply (f_equal Z_of_nat);
       unfold Div2.double in Hk; omega.
 

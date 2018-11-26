@@ -20,12 +20,10 @@
 Require Export ZArith.
 Require Export ZArithRing.
 
-Unset Standard Proposition Elimination Names.
-
 Tactic Notation "ElimCompare" constr(c) constr(d) := elim_compare c d.
 
 Ltac Flip :=
-  apply Z.gt_lt || apply Z.lt_gt || apply Zle_ge || apply Z.ge_le; assumption.
+  apply Z.gt_lt || apply Z.lt_gt || apply Z.le_ge || apply Z.ge_le; assumption.
 
 Ltac Falsum :=
   try intro; apply False_ind;
@@ -544,7 +542,7 @@ Qed.
 Lemma Zge_opp : forall x y : Z, (x <= y)%Z -> (- x >= - y)%Z.
 Proof.
  intros.
- apply Zle_ge.
+ apply Z.le_ge.
  apply Zplus_le_reg_l with (p := (x + y)%Z).
  ring_simplify (x + y + - y)%Z (x + y + - x)%Z.
  assumption.
@@ -650,8 +648,8 @@ Proof.
  cut (x = Zpos x0). 
  intro.
  rewrite H2.
- unfold Zlt in H0.
- unfold Zlt in |- *.
+ unfold Z.lt in H0.
+ unfold Z.lt in |- *.
  cut ((Zpos x0 * y ?= Zpos x0 * z)%Z = (y ?= z)%Z).
  intro.
  exact (trans_eq H3 H0).
@@ -1189,14 +1187,14 @@ Proof.
  cut (P_of_succ_nat (nat_of_P p) = P_of_succ_nat (S x)).
  intro.
  rewrite P_of_succ_nat_o_nat_of_P_eq_succ in H1.
- cut (Ppred (Pos.succ p) = Ppred (P_of_succ_nat (S x))).
+ cut (Pos.pred (Pos.succ p) = Pos.pred (P_of_succ_nat (S x))).
  intro.
- rewrite Ppred_succ in H2.
+ rewrite Pos.pred_succ in H2.
  simpl in H2.
- rewrite Ppred_succ in H2.
+ rewrite Pos.pred_succ in H2.
  apply sym_eq.
  assumption.
- apply f_equal with (A := positive) (B := positive) (f := Ppred).
+ apply f_equal with (A := positive) (B := positive) (f := Pos.pred).
  assumption.
  apply f_equal with (f := P_of_succ_nat).
  assumption.
@@ -1224,7 +1222,7 @@ Lemma NEG_neq_ZERO : forall p : positive, Zneg p <> 0%Z.
 Proof.
  intros.
  apply Zorder.Zlt_not_eq.
- unfold Zlt in |- *.
+ unfold Z.lt in |- *.
  constructor.
 Qed.
 
@@ -1503,7 +1501,7 @@ Proof.
   [ replace (Z.abs_nat x) with (Z.abs_nat (x - 1 + 1));
      [ idtac | apply f_equal with Z; auto with zarith ];
      rewrite absolu_plus;
-     [ unfold Z.abs_nat at 2, nat_of_P, Piter_op in |- *; omega
+     [ unfold Z.abs_nat at 2, nat_of_P, Pos.iter_op in |- *; omega
      | auto with zarith
      | intro; discriminate ]
   | rewrite <- H1; reflexivity ].
@@ -2872,7 +2870,7 @@ Proof.
  intros.
  case (Z_lt_ge_dec n m).
  unfold Z.min in |- *.
- unfold Zlt in |- *.
+ unfold Z.lt in |- *.
  intro z.
  rewrite z.
  left.

@@ -18,8 +18,6 @@
 Require Import Merge_Order.
 Require Export Qhomographic_Qpositive_to_Qpositive.
 
-Unset Standard Proposition Elimination Names.
-
 Definition quadratic_top_more (a b c d e f g h : Z) :=
   (e <= a)%Z /\ (f <= b)%Z /\ (g <= c)%Z /\ (h < d)%Z \/
   (e <= a)%Z /\ (f <= b)%Z /\ (g < c)%Z /\ (h <= d)%Z \/

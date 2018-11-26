@@ -20,8 +20,6 @@ Require Export Qpositive.
 Require Export Q_field.
 Require Import FunInd.
 
-Unset Standard Proposition Elimination Names.
-
 Inductive fractionalAcc : Z -> Z -> Prop :=
   | fractionalacc0 : forall m n : Z, m = n -> fractionalAcc m n
   | fractionalacc1 :
