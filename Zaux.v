@@ -25,7 +25,7 @@ Unset Standard Proposition Elimination Names.
 Tactic Notation "ElimCompare" constr(c) constr(d) := elim_compare c d.
 
 Ltac Flip :=
-  apply Zgt_lt || apply Z.lt_gt || apply Zle_ge || apply Zge_le; assumption.
+  apply Z.gt_lt || apply Z.lt_gt || apply Zle_ge || apply Zge_le; assumption.
 
 Ltac Falsum :=
   try intro; apply False_ind;
@@ -310,7 +310,7 @@ Qed.
 Lemma Z_dec' : forall x y : Z, {(x < y)%Z} + {(y < x)%Z} + {x = y}.
 Proof.
  intros x y.
- case (Z_eq_dec x y); intro H;
+ case (Z.eq_dec x y); intro H;
   [ right; assumption | left; apply (not_Zeq_inf _ _ H) ].
 Qed.
 
@@ -700,8 +700,8 @@ Proof.
  intro.
  rewrite H6 in H4.
  assumption.
- exact (Zopp_involutive (x * z)).
- exact (Zopp_involutive (x * y)).
+ exact (Z.opp_involutive (x * z)).
+ exact (Z.opp_involutive (x * y)).
  cut ((- (- x * y))%Z = (- - (x * y))%Z).
  intro.
  rewrite H4 in H3.
@@ -737,7 +737,7 @@ Proof.
  assumption.
  exact (sym_eq H2).
  exact (Zorder.Zlt_not_eq y x H0).
- exact (Zgt_lt x y H).
+ exact (Z.gt_lt x y H).
 Qed.
 
 Lemma Zmult_resp_nonzero :
@@ -771,12 +771,12 @@ Qed.
 
 Lemma not_Zle_lt : forall x y : Z, ~ (y <= x)%Z -> (x < y)%Z.
 Proof.
- intros; apply Zgt_lt; apply Znot_le_gt; assumption.
+ intros; apply Z.gt_lt; apply Znot_le_gt; assumption.
 Qed.
 
 Lemma not_Zlt : forall x y : Z, ~ (y < x)%Z -> (x <= y)%Z.
 Proof.
- intros x y H1 H2; apply H1; apply Zgt_lt; assumption.
+ intros x y H1 H2; apply H1; apply Z.gt_lt; assumption.
 Qed.
 
 
@@ -915,14 +915,14 @@ Proof.
  rewrite Zmult_opp_opp.
  rewrite Zmult_opp_opp.
  assumption.
- apply Zopp_involutive.
- apply Zopp_involutive.
- apply Zgt_lt.
+ apply Z.opp_involutive.
+ apply Z.opp_involutive.
+ apply Z.gt_lt.
  apply Zlt_opp.
- apply Zgt_lt.
+ apply Z.gt_lt.
  assumption.
  simpl in |- *.
- rewrite Zopp_involutive.
+ rewrite Z.opp_involutive.
  assumption.
 Qed.
 
@@ -964,10 +964,10 @@ Proof.
  apply (Z.lt_irrefl (a * x)).
  apply Z.le_lt_trans with (m := (a * y)%Z).
  assumption.
- apply Zgt_lt.
+ apply Z.gt_lt.
  apply Zlt_conv_mult_l.
  assumption.
- apply Zgt_lt.
+ apply Z.gt_lt.
  assumption.
 Qed.
 
@@ -975,7 +975,7 @@ Lemma Zlt_mult_cancel_l :
  forall x y z : Z, (0 < x)%Z -> (x * y < x * z)%Z -> (y < z)%Z.
 Proof.
  intros.
- apply Zgt_lt.
+ apply Z.gt_lt.
  apply Zgt_mult_reg_absorb_l with x.
  apply Z.lt_gt.
  assumption. 
@@ -1012,7 +1012,7 @@ Proof.
  apply Zlt_reg_mult_l.
  apply Z.lt_gt.
  assumption.
- apply Zgt_lt.
+ apply Z.gt_lt.
  assumption.
 Qed.
 
@@ -1132,7 +1132,7 @@ Lemma fraction_lt_trans :
  (0 < f)%Z -> (a * d < c * b)%Z -> (c * f < e * d)%Z -> (a * f < e * b)%Z.
 Proof.
  intros.
- apply Zgt_lt.
+ apply Z.gt_lt.
  apply Zgt_mult_reg_absorb_l with d.
  Flip.
  apply Zgt_trans with (c * b * f)%Z.
@@ -1338,7 +1338,7 @@ Proof.
  intro.
  rewrite <- H6.
  exact (f_equal Zopp H5). 
- apply Zopp_involutive.
+ apply Z.opp_involutive.
  apply Zcompare_Gt_spec.
  assumption.
  apply Z.lt_gt.
@@ -1993,10 +1993,10 @@ Hint Resolve Zsgn_1 Zsgn_2 Zsgn_3 Zsgn_4 Zsgn_5 Zsgn_6 Zsgn_7 Zsgn_7' Zsgn_8
   Zsgn_27: zarith.
 
 (*###########################################################################*)
-(** Properties of Zabs                                                       *)
+(** Properties of Z.abs                                                       *)
 (*###########################################################################*)
 
-Lemma Zabs_1 : forall z p : Z, (Zabs z < p)%Z -> (z < p)%Z /\ (- p < z)%Z.
+Lemma Zabs_1 : forall z p : Z, (Z.abs z < p)%Z -> (z < p)%Z /\ (- p < z)%Z.
 Proof.
  intros z p.
  case z.
@@ -2052,7 +2052,7 @@ Proof.
 Qed.
 
 
-Lemma Zabs_2 : forall z p : Z, (Zabs z > p)%Z -> (z > p)%Z \/ (- p > z)%Z.
+Lemma Zabs_2 : forall z p : Z, (Z.abs z > p)%Z -> (z > p)%Z \/ (- p > z)%Z.
 Proof.
  intros z p.
  case z.
@@ -2078,7 +2078,7 @@ Proof.
  reflexivity.
 Qed.
 
-Lemma Zabs_3 : forall z p : Z, (z < p)%Z /\ (- p < z)%Z -> (Zabs z < p)%Z.
+Lemma Zabs_3 : forall z p : Z, (z < p)%Z /\ (- p < z)%Z -> (Z.abs z < p)%Z.
 Proof.
  intros z p.
  case z.
@@ -2109,7 +2109,7 @@ Proof.
   reflexivity.
 Qed.
 
-Lemma Zabs_4 : forall z p : Z, (Zabs z < p)%Z -> (- p < z < p)%Z.
+Lemma Zabs_4 : forall z p : Z, (Z.abs z < p)%Z -> (- p < z < p)%Z.
 Proof.
  intros.
  split.
@@ -2122,7 +2122,7 @@ Proof.
 Qed.
  
 
-Lemma Zabs_5 : forall z p : Z, (Zabs z <= p)%Z -> (- p <= z <= p)%Z.
+Lemma Zabs_5 : forall z p : Z, (Z.abs z <= p)%Z -> (- p <= z <= p)%Z.
 Proof.
  intros.
  split.
@@ -2141,7 +2141,7 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zabs_6 : forall z p : Z, (Zabs z <= p)%Z -> (z <= p)%Z.
+Lemma Zabs_6 : forall z p : Z, (Z.abs z <= p)%Z -> (z <= p)%Z.
 Proof.
  intros.
  apply proj2 with (A := (- p <= z)%Z).
@@ -2149,7 +2149,7 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zabs_7 : forall z p : Z, (Zabs z <= p)%Z -> (- p <= z)%Z.
+Lemma Zabs_7 : forall z p : Z, (Z.abs z <= p)%Z -> (- p <= z)%Z.
 Proof.
  intros.
  apply proj1 with (B := (z <= p)%Z).
@@ -2157,7 +2157,7 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zabs_8 : forall z p : Z, (- p <= z <= p)%Z -> (Zabs z <= p)%Z.
+Lemma Zabs_8 : forall z p : Z, (- p <= z <= p)%Z -> (Z.abs z <= p)%Z.
 Proof.
  intros.
  apply Zlt_succ_le.
@@ -2168,13 +2168,13 @@ Proof.
  apply Zle_lt_succ.
  assumption.
  apply Z.lt_le_trans with (m := (- p)%Z).
- apply Zgt_lt. 
+ apply Z.gt_lt. 
  apply Zlt_opp.
  apply Zlt_succ.
  assumption.
 Qed.
 
-Lemma Zabs_min : forall z : Z, Zabs z = Zabs (- z).
+Lemma Zabs_min : forall z : Z, Z.abs z = Z.abs (- z).
 Proof.
  intro.
  case z.
@@ -2189,28 +2189,28 @@ Proof.
 Qed.
 
 Lemma Zabs_9 :
- forall z p : Z, (0 <= p)%Z -> (p < z)%Z \/ (z < - p)%Z -> (p < Zabs z)%Z.
+ forall z p : Z, (0 <= p)%Z -> (p < z)%Z \/ (z < - p)%Z -> (p < Z.abs z)%Z.
 Proof.
  intros.
  case H0.
  intro.
- replace (Zabs z) with z.
+ replace (Z.abs z) with z.
  assumption.
  symmetry  in |- *.
- apply Zabs_eq.
+ apply Z.abs_eq.
  apply Zlt_le_weak.
  apply Z.le_lt_trans with (m := p).
  assumption.
  assumption.
  intro.
- cut (Zabs z = (- z)%Z).
+ cut (Z.abs z = (- z)%Z).
  intro.
  rewrite H2.
  apply Zmin_cancel_Zlt.
  ring_simplify (- - z)%Z.
  assumption.
  rewrite Zabs_min.
- apply Zabs_eq.
+ apply Z.abs_eq.
  apply Zlt_le_weak.
  apply Z.le_lt_trans with (m := p).
  assumption.
@@ -2219,7 +2219,7 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zabs_10 : forall z : Z, (0 <= Zabs z)%Z.
+Lemma Zabs_10 : forall z : Z, (0 <= Z.abs z)%Z.
 Proof.
  intro.
  case (Z_zerop z).
@@ -2245,7 +2245,7 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zabs_11 : forall z : Z, z <> 0%Z -> (0 < Zabs z)%Z.
+Lemma Zabs_11 : forall z : Z, z <> 0%Z -> (0 < Z.abs z)%Z.
 Proof.
  intros.
  apply Zabs_9.
@@ -2258,14 +2258,14 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zabs_12 : forall z m : Z, (m < Zabs z)%Z -> {(m < z)%Z} + {(z < - m)%Z}.
+Lemma Zabs_12 : forall z m : Z, (m < Z.abs z)%Z -> {(m < z)%Z} + {(z < - m)%Z}.
 Proof.
  intros [| p| p] m; simpl in |- *; intros H;
-  [ left | left | right; apply Zmin_cancel_Zlt; rewrite Zopp_involutive ];
+  [ left | left | right; apply Zmin_cancel_Zlt; rewrite Z.opp_involutive ];
   assumption.
 Qed.
 
-Lemma Zabs_mult : forall z p : Z, Zabs (z * p) = (Zabs z * Zabs p)%Z.
+Lemma Zabs_mult : forall z p : Z, Z.abs (z * p) = (Z.abs z * Z.abs p)%Z.
 Proof.
  intros.
  case z.
@@ -2292,7 +2292,7 @@ Proof.
  reflexivity.
 Qed.
 
-Lemma Zabs_plus : forall z p : Z, (Zabs (z + p) <= Zabs z + Zabs p)%Z.
+Lemma Zabs_plus : forall z p : Z, (Z.abs (z + p) <= Z.abs z + Z.abs p)%Z.
 Proof.
  intros.
  case z.
@@ -2306,8 +2306,8 @@ Proof.
  simpl in |- *.
  apply Z.le_refl.
  intros.
- unfold Zabs at 2 in |- *.
- unfold Zabs at 2 in |- *.
+ unfold Z.abs at 2 in |- *.
+ unfold Z.abs at 2 in |- *.
  apply Zabs_8.
  split.
  apply Zplus_le_reg_l with (Zpos p1 - Zneg p0)%Z.
@@ -2333,8 +2333,8 @@ Proof.
  intro.
  apply Z.le_refl.
  intros.
- unfold Zabs at 2 in |- *.
- unfold Zabs at 2 in |- *.
+ unfold Z.abs at 2 in |- *.
+ unfold Z.abs at 2 in |- *.
  apply Zabs_8.
  split.
  apply Zplus_le_reg_l with (Zpos p1 + Zneg p0)%Z.
@@ -2368,7 +2368,7 @@ Proof.
  apply Z.le_refl.
 Qed.
 
-Lemma Zabs_neg : forall z : Z, (z <= 0)%Z -> Zabs z = (- z)%Z.
+Lemma Zabs_neg : forall z : Z, (z <= 0)%Z -> Z.abs z = (- z)%Z.
 Proof.
  intro.
  case z.
@@ -2385,7 +2385,7 @@ Proof.
  reflexivity.
 Qed.
 
-Lemma Zle_Zabs: forall z, (z <= Zabs z)%Z.
+Lemma Zle_Zabs: forall z, (z <= Z.abs z)%Z.
 Proof.
  intros [|z|z]; simpl; auto with zarith; apply Zle_neg_pos. 
 Qed.
@@ -2578,7 +2578,7 @@ Proof.
  rewrite Zopp_plus_distr.
  rewrite Zplus_assoc.
  rewrite Zplus_opp_r.
- rewrite Zopp_involutive.
+ rewrite Z.opp_involutive.
  reflexivity.
  apply Z_of_nat_complete_inf.
  unfold Zminus in |- *.
@@ -2853,7 +2853,7 @@ Proof.
  apply Zplus_le_reg_l with (p := (- n + Zmin n m)%Z).
  ring_simplify (- n + Zmin n m + n)%Z.
  ring_simplify (- n + Zmin n m + (n + m - Zmin n m))%Z.
- apply Zle_min_r.
+ apply Z.le_min_r.
 Qed.
 
 Lemma Zle_max_r : forall n m : Z, (m <= Zmax n m)%Z.
@@ -2863,7 +2863,7 @@ Proof.
  apply Zplus_le_reg_l with (p := (- m + Zmin n m)%Z).
  ring_simplify (- m + Zmin n m + m)%Z.
  ring_simplify (- m + Zmin n m + (n + m - Zmin n m))%Z.
- apply Zle_min_l.
+ apply Z.le_min_l.
 Qed.
 
 

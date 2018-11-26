@@ -74,9 +74,9 @@ Proof.
   unfold p, q in |- *.
   apply pair_1.
  (* 1.2 *)
- replace (m + 1)%Z with (Zsucc m); [ idtac | reflexivity ].
+ replace (m + 1)%Z with (Z.succ m); [ idtac | reflexivity ].
  rewrite <- Znat.inj_S.
- replace (n + 1)%Z with (Zsucc n); [ idtac | reflexivity ].
+ replace (n + 1)%Z with (Z.succ n); [ idtac | reflexivity ].
  rewrite <- Znat.inj_S.
  simpl in |- *.
  repeat rewrite nat_of_P_o_P_of_succ_nat_eq_succ.
@@ -187,7 +187,7 @@ Proof.
   (spec_positive_fraction_encoding1 (S (pred_nat m Hm)) (S (pred_nat n Hn))).
  (* T2.1 *)
  repeat rewrite Znat.inj_S.
- unfold Zsucc in |- *.
+ unfold Z.succ in |- *.
  apply spec_coding.
  (* T2.2 *)
  repeat rewrite <- pred_nat_unfolded.
@@ -251,14 +251,14 @@ Proof.
  apply f_equal2 with Qpositive Qpositive.
  assert (Hm : (0 < m)%Z);
   [ apply Qpos_POS_1 with x'; symmetry  in |- *; assumption | idtac ].
- rewrite <- (Z_to_Qpositive_equal m (Zabs m) Hm).
+ rewrite <- (Z_to_Qpositive_equal m (Z.abs m) Hm).
  apply Qpos_injective.
  rewrite <- Z_to_Qpositive_to_Q.
  symmetry  in |- *; assumption.
- symmetry  in |- *; apply Zabs_eq; apply Zlt_le_weak; assumption.
+ symmetry  in |- *; apply Z.abs_eq; apply Zlt_le_weak; assumption.
  apply Qneg_injective.
  rewrite H.
- change (Qinv (Qneg (Z_to_Qpositive (Zabs n) (Zabs_11 n Hdenom))) = Qinv n)
+ change (Qinv (Qneg (Z_to_Qpositive (Z.abs n) (Zabs_11 n Hdenom))) = Qinv n)
   in |- *.
  apply f_equal with Q.
  assert (Hn' : (n < 0)%Z);
@@ -290,11 +290,11 @@ Proof.
 
  apply Qpos_injective.
  rewrite H.
- change (Qinv (Qpos (Z_to_Qpositive (Zabs n) (Zabs_11 n Hdenom))) = Qinv n)
+ change (Qinv (Qpos (Z_to_Qpositive (Z.abs n) (Zabs_11 n Hdenom))) = Qinv n)
   in |- *.
  apply f_equal with Q.
  rewrite <- Z_to_Qpositive_to_Q.
- rewrite Zabs_eq; try reflexivity.
+ rewrite Z.abs_eq; try reflexivity.
  apply Zlt_le_weak.
  apply pos_Z_to_Q.
  apply Qinv_1.
@@ -324,7 +324,7 @@ Proof.
  functional induction (Qmult y x); intros.
  (* Qpos 0: 1 *)
  apply False_ind.
- generalize (Zgt_lt _ _ z); clear z; intro z.
+ generalize (Z.gt_lt _ _ z); clear z; intro z.
  apply (Zorder.Zlt_not_eq _ _ z).
  symmetry  in |- *.
  rewrite <- Zsgn_15.
@@ -345,18 +345,18 @@ Proof.
  apply f_equal2 with Qpositive Qpositive.
  assert (Hm : (0 < m)%Z);
   [ apply Qpos_POS_1 with x'; symmetry  in |- *; assumption | idtac ].
- rewrite <- (Z_to_Qpositive_equal m (Zabs m) Hm).
+ rewrite <- (Z_to_Qpositive_equal m (Z.abs m) Hm).
  apply Qpos_injective.
  rewrite <- Z_to_Qpositive_to_Q.
  symmetry  in |- *; assumption.
- symmetry  in |- *; apply Zabs_eq; apply Zlt_le_weak; assumption.
+ symmetry  in |- *; apply Z.abs_eq; apply Zlt_le_weak; assumption.
  apply Qpos_injective.
  rewrite H.
- change (Qinv (Qpos (Z_to_Qpositive (Zabs n) (Zabs_11 n Hdenom))) = Qinv n)
+ change (Qinv (Qpos (Z_to_Qpositive (Z.abs n) (Zabs_11 n Hdenom))) = Qinv n)
   in |- *.
  apply f_equal with Q.
  rewrite <- Z_to_Qpositive_to_Q.
- rewrite Zabs_eq; try reflexivity.
+ rewrite Z.abs_eq; try reflexivity.
  apply Zlt_le_weak.
  apply pos_Z_to_Q.
  apply Qinv_1.
@@ -364,7 +364,7 @@ Proof.
  apply Qlt_zero_pos.
  (* Qpos Qneg : 1 *)
  apply False_ind.
- generalize (Zgt_lt _ _ z); clear z; intro z.
+ generalize (Z.gt_lt _ _ z); clear z; intro z.
  apply (Zlt_asym _ _ z).
  rewrite <- Zsgn_15.
  apply Zsgn_27.
@@ -385,7 +385,7 @@ Proof.
  symmetry  in |- *; assumption.
  (* Qpos Qneg : 2 *)
  apply False_ind.
- generalize (Zgt_lt _ _ z); clear z; intro z.
+ generalize (Z.gt_lt _ _ z); clear z; intro z.
  apply (Zlt_asym _ _ z).
  rewrite <- Zsgn_15.
  apply Zsgn_27.
@@ -413,7 +413,7 @@ Proof.
 
  apply Qneg_injective.
  rewrite H.
- change (Qinv (Qneg (Z_to_Qpositive (Zabs n) (Zabs_11 n Hdenom))) = Qinv n)
+ change (Qinv (Qneg (Z_to_Qpositive (Z.abs n) (Zabs_11 n Hdenom))) = Qinv n)
   in |- *.
  apply f_equal with Q.
  assert (Hn' : (n < 0)%Z);

@@ -969,7 +969,7 @@ Qed.
 Lemma Z_to_Q_S:forall k, Z_to_Q (Z_of_nat (S k))=Qplus k Qone.
 Proof.
  induction k; trivial.
- rewrite inj_S; unfold Zsucc; rewrite Z_to_Qplus; rewrite IHk;
+ rewrite inj_S; unfold Z.succ; rewrite Z_to_Qplus; rewrite IHk;
  unfold Z_to_Q at 2; simpl; fold Qone; ring.
 Qed.
 

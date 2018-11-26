@@ -490,7 +490,7 @@ Proof.
    | elim (sg_tuple_equal 1 na nb nc nd np 0 a b c d One H2); intros H3 H4;
       discriminate H3 ].
  
-  case (Z_eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.  
+  case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.  
    generalize
     (sg_One_3 a b c d One H_Qhomographic_sg_denom_nonzero 
        (refl_equal One) Hab Habcd); intro;
@@ -1096,7 +1096,7 @@ Proof.
    | elim (sg_tuple_equal 1 na nb nc nd np 0 a b c d One H2); intros H3 H4;
       discriminate H3 ].
  
-  case (Z_eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.  
+  case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.  
    generalize
     (sg_One_3 a b c d One H_Qhomographic_sg_denom_nonzero 
        (refl_equal One) Hab Habcd); intro;
@@ -1550,7 +1550,7 @@ Proof.
    | elim (sg_tuple_equal (-1) na nb nc nd np 0 a b c d One H2); intros H3 H4;
       discriminate H3 ].
  
-  case (Z_eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.  
+  case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.  
    generalize
     (sg_One_3 a b c d One H_Qhomographic_sg_denom_nonzero 
        (refl_equal One) Hab Habcd); intro;
@@ -2182,7 +2182,7 @@ Proof.
    | elim (sg_tuple_equal (-1) na nb nc nd np 0 a b c d One H2); intros H3 H4;
       discriminate H3 ].
  
-  case (Z_eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.
+  case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.
    generalize
     (sg_One_3 a b c d One H_Qhomographic_sg_denom_nonzero 
        (refl_equal One) Hab Habcd); intro; apply False_rec;

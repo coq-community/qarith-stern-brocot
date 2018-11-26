@@ -81,7 +81,7 @@ Defined.
 
 (*
 Extraction Language Haskell.
-Extraction Inline Z_dec' Z_eq_dec not_Zeq_inf. 
+Extraction Inline Z_dec' Z.eq_dec not_Zeq_inf. 
 Extraction encoding_algorithm.  
 *) 
 
@@ -101,7 +101,7 @@ Proof.
      (q0 := 1%Z).
  intros.
 
- case (Z_eq_dec n m).
+ case (Z.eq_dec n m).
  intro.
  apply fractionalacc0.
  assumption.
@@ -189,7 +189,7 @@ case (Z_dec s 0).
  intro.  
  case s0. 
   intro z.
-  refine (Qneg (positive_fraction_encoding (Zabs m) (Zabs n) _ _)). 
+  refine (Qneg (positive_fraction_encoding (Z.abs m) (Z.abs n) _ _)). 
   apply Zabs_11.
   generalize (Zorder.Zlt_not_eq _ _ z).
   intro.
@@ -203,7 +203,7 @@ case (Z_dec s 0).
   assumption.
  
   intro z.
-  refine (Qpos (positive_fraction_encoding (Zabs m) (Zabs n) _ _)).  
+  refine (Qpos (positive_fraction_encoding (Z.abs m) (Z.abs n) _ _)).  
   apply Zabs_11.
   generalize (Zgt_not_eq _ _ z).
   intro.

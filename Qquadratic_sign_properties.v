@@ -30,12 +30,12 @@ Lemma same_ratio_dec_inf :
  {same_ratio a b c d e f g h} + {~ same_ratio a b c d e f g h}.
 Proof. 
  intros.
- case (Z_eq_dec (a * f) (b * e));
-  [ case (Z_eq_dec (b * g) (c * f));
-     [ case (Z_eq_dec (c * h) (d * g));
-        [ case (Z_eq_dec (a * g) (c * e));
-           [ case (Z_eq_dec (a * h) (d * e));
-              [ case (Z_eq_dec (b * h) (d * f));
+ case (Z.eq_dec (a * f) (b * e));
+  [ case (Z.eq_dec (b * g) (c * f));
+     [ case (Z.eq_dec (c * h) (d * g));
+        [ case (Z.eq_dec (a * g) (c * e));
+           [ case (Z.eq_dec (a * h) (d * e));
+              [ case (Z.eq_dec (b * h) (d * f));
                  [ left; repeat split; assumption | idtac ]
               | idtac ]
            | idtac ]

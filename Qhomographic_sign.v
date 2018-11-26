@@ -257,13 +257,13 @@ destruct p as [q| q| ]; intros H_Qhomographic_sg_denom_nonzero.
   set (soorat := Z.sgn (a + b)) in *.
   set (makhraj := Z.sgn (c + d)) in *.
 
-  case (Z_eq_dec soorat 0).   
+  case (Z.eq_dec soorat 0).   
    (*  `soorat = 0` *)
    intro eq_numerator0.
    exact (0%Z, (a, (b, (c, d)), One)).
    (*  `soorat <> 0` *)   
    intro.
-   case (Z_eq_dec soorat makhraj).
+   case (Z.eq_dec soorat makhraj).
     (* soorat = makhraj *)
     intro.
     exact (1%Z, (a, (b, (c, d)), One)).
@@ -292,8 +292,8 @@ Proof.
             [ destruct p0 as [q| q| ];
                [ discriminate e
                | discriminate e
-               | simpl in |- *; case (Z_eq_dec (Z.sgn (a0 + b0)) 0);
-                  case (Z_eq_dec (Z.sgn (a0 + b0)) (Z.sgn (c0 + d0))); 
+               | simpl in |- *; case (Z.eq_dec (Z.sgn (a0 + b0)) 0);
+                  case (Z.eq_dec (Z.sgn (a0 + b0)) (Z.sgn (c0 + d0))); 
                   intros; reflexivity ]
             | T_local
             | T_local ]).
@@ -330,7 +330,7 @@ Proof.
  intros.
  destruct p as [q| q| ]; repeat (apply False_ind; discriminate H).
  simpl in |- *.
- case (Z_eq_dec (Z.sgn (a + b)) 0).
+ case (Z.eq_dec (Z.sgn (a + b)) 0).
  intro.
  reflexivity.
  intro.
@@ -349,10 +349,10 @@ Proof.
  intros.
  destruct p as [q| q| ]; repeat (apply False_ind; discriminate H).
  simpl in |- *.
- case (Z_eq_dec (Z.sgn (a + b)) 0).
+ case (Z.eq_dec (Z.sgn (a + b)) 0).
  Falsum.
  intro.
- case (Z_eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))).
+ case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))).
  intro.
  reflexivity.
  intro.
@@ -372,9 +372,9 @@ Proof.
  intros.
  destruct p as [q| q| ]; repeat (apply False_ind; discriminate H).
  simpl in |- *.
- case (Z_eq_dec (Z.sgn (a + b)) 0).
+ case (Z.eq_dec (Z.sgn (a + b)) 0).
  Falsum.
- case (Z_eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))).
+ case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))).
  Falsum.
  reflexivity.
 Defined.
@@ -1048,11 +1048,11 @@ Proof.
  (destruct qp as [q| q| ];
    [ T_local
    | T_local
-   | case (Z_eq_dec (Z.sgn (a + b)) 0); intro H_ab;
+   | case (Z.eq_dec (Z.sgn (a + b)) 0); intro H_ab;
       [ rewrite
          (sg_One_2 a b c d One H_Qhomographic_sg_denom_nonzero
             (refl_equal One) H_ab)
-      | case (Z_eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro H_ab_cd;
+      | case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro H_ab_cd;
          [ rewrite
             (sg_One_3 a b c d One H_Qhomographic_sg_denom_nonzero
                (refl_equal One) H_ab H_ab_cd)

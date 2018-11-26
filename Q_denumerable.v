@@ -179,7 +179,7 @@ Proof.
    symmetry;
    apply Z.opp_inj;
    rewrite Zopp_neg;
-   rewrite Zopp_involutive;
+   rewrite Z.opp_involutive;
    apply Zpos_eq_Z_of_nat_o_nat_of_P.
 
    intros [H_nat_p_lt_2 _];
