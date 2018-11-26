@@ -25,7 +25,7 @@ Unset Standard Proposition Elimination Names.
 Tactic Notation "ElimCompare" constr(c) constr(d) := elim_compare c d.
 
 Ltac Flip :=
-  apply Z.gt_lt || apply Z.lt_gt || apply Zle_ge || apply Zge_le; assumption.
+  apply Z.gt_lt || apply Z.lt_gt || apply Zle_ge || apply Z.ge_le; assumption.
 
 Ltac Falsum :=
   try intro; apply False_ind;
@@ -231,7 +231,7 @@ Proof.
  intro.
  right.
  apply Z.le_lt_trans with (m := x).
- apply Zge_le.
+ apply Z.ge_le.
  assumption.
  assumption.
 Qed.
@@ -270,7 +270,7 @@ Proof.
  left.
  assumption.
  intro H0.
- generalize (Zge_le _ _ H0).
+ generalize (Z.ge_le _ _ H0).
  intro.
  case (Z_le_lt_eq_dec _ _ H1).
  intro.
@@ -292,7 +292,7 @@ Proof.
  left.
  assumption.
  intro H.
- generalize (Zge_le _ _ H).
+ generalize (Z.ge_le _ _ H).
  intro H0.
  case (Z_le_lt_eq_dec y x H0).
  intro H1.
@@ -323,7 +323,7 @@ Proof.
  assumption.
  intro.
  right.
- apply Zge_le.
+ apply Z.ge_le.
  assumption.
 Qed.
 
@@ -461,7 +461,7 @@ Lemma Zge_gt_plus_plus :
 Proof.
  intros.
  case (Zle_lt_or_eq n m).
- apply Zge_le.
+ apply Z.ge_le.
  assumption.
  intro.
  apply Zgt_plus_plus.
@@ -644,7 +644,7 @@ Lemma Zlt_reg_mult_l :
 Proof.
  intros.
  case (Zcompare_Gt_spec x 0).
- unfold Zgt in H.
+ unfold Z.gt in H.
  assumption.
  intros.
  cut (x = Zpos x0). 
@@ -711,11 +711,11 @@ Proof.
  assumption.
  cut ((- x * z)%Z = (- (x * z))%Z).
  intro.
- exact (f_equal Zopp H5).
+ exact (f_equal Z.opp H5).
  exact (Zopp_mult_distr_l_reverse x z).
  cut ((- x * y)%Z = (- (x * y))%Z).
  intro.
- exact (f_equal Zopp H4).
+ exact (f_equal Z.opp H4).
  exact (Zopp_mult_distr_l_reverse x y).
  exact (Zlt_opp (- x * y) (- x * z) H2).
  exact (Zlt_reg_mult_l (- x) y z H1 H0).
@@ -1337,7 +1337,7 @@ Proof.
  cut ((- - x)%Z = x).
  intro.
  rewrite <- H6.
- exact (f_equal Zopp H5). 
+ exact (f_equal Z.opp H5). 
  apply Z.opp_involutive.
  apply Zcompare_Gt_spec.
  assumption.
@@ -1727,7 +1727,7 @@ Proof.
  apply Z.opp_inj.
  transitivity (-1 * x)%Z.
  ring.
- unfold Zopp in |- *.
+ unfold Z.opp in |- *.
  rewrite e in H1.
  transitivity (0 * y)%Z.
  assumption.
@@ -2005,7 +2005,7 @@ Proof.
  split.
  assumption.
  apply Zgt_mult_conv_absorb_l with (a := (-1)%Z).
- replace (-1)%Z with (Zpred 0).
+ replace (-1)%Z with (Z.pred 0).
  apply Zlt_pred.
  simpl; trivial.
  ring_simplify (-1 * - p)%Z (-1 * 0)%Z.
@@ -2018,7 +2018,7 @@ Proof.
  assumption.
  apply Z.lt_trans with (m := 0%Z).
  apply Zgt_mult_conv_absorb_l with (a := (-1)%Z).
- replace (-1)%Z with (Zpred 0).
+ replace (-1)%Z with (Z.pred 0).
  apply Zlt_pred.
  simpl; trivial.
  ring_simplify (-1 * - p)%Z (-1 * 0)%Z.
@@ -2036,7 +2036,7 @@ Proof.
  assumption.
  
  apply Zgt_mult_conv_absorb_l with (a := (-1)%Z).
- replace (-1)%Z with (Zpred 0).
+ replace (-1)%Z with (Z.pred 0).
  apply Zlt_pred.
  simpl;trivial.
  ring_simplify (-1 * - p)%Z.
@@ -2542,14 +2542,14 @@ Proof.
  replace (p - 0)%Z with p.
  assumption.
  unfold Zminus in |- *.
- unfold Zopp in |- *.
+ unfold Z.opp in |- *.
  rewrite Zplus_0_r; reflexivity.
  replace (p - Z_of_nat (S k))%Z with (p - k - 1)%Z.
  apply H0.
  apply Zplus_le_reg_l with (p := (- p)%Z).
  replace (- p + p)%Z with (- Z_of_nat 0)%Z. 
  replace (- p + (p - Z_of_nat k))%Z with (- Z_of_nat k)%Z.
- apply Zge_le.
+ apply Z.ge_le.
  apply Zge_opp.
  apply Znat.inj_le.
  apply le_O_n.
@@ -2619,7 +2619,7 @@ Proof.
  apply Zplus_le_reg_l with (p := (- p)%Z).
  replace (- p + p)%Z with (- Z_of_nat 0)%Z. 
  replace (- p + (p - Z_of_nat k))%Z with (- Z_of_nat k)%Z.
- apply Zge_le.
+ apply Z.ge_le.
  apply Zge_opp.
  apply Znat.inj_le.
  apply le_O_n.
@@ -2832,16 +2832,16 @@ Qed.
 (** Properties of Zmax                                                       *)
 (*###########################################################################*)
 
-Definition Zmax (n m : Z) := (n + m - Zmin n m)%Z.
+Definition Zmax (n m : Z) := (n + m - Z.min n m)%Z.
 
 Lemma ZmaxSS : forall n m : Z, (Zmax n m + 1)%Z = Zmax (n + 1) (m + 1).
 Proof.
  intros.
  unfold Zmax in |- *.
- replace (Zmin (n + 1) (m + 1)) with (Zmin n m + 1)%Z.
+ replace (Z.min (n + 1) (m + 1)) with (Z.min n m + 1)%Z.
  ring.
  symmetry  in |- *.
- change (Zmin (Z.succ n) (Z.succ m) = Z.succ (Zmin n m)) in |- *.
+ change (Z.min (Z.succ n) (Z.succ m) = Z.succ (Z.min n m)) in |- *.
  symmetry  in |- *.
  apply Zmin_SS.
 Qed.
@@ -2850,9 +2850,9 @@ Lemma Zle_max_l : forall n m : Z, (n <= Zmax n m)%Z.
 Proof.
  intros.
  unfold Zmax in |- *.
- apply Zplus_le_reg_l with (p := (- n + Zmin n m)%Z).
- ring_simplify (- n + Zmin n m + n)%Z.
- ring_simplify (- n + Zmin n m + (n + m - Zmin n m))%Z.
+ apply Zplus_le_reg_l with (p := (- n + Z.min n m)%Z).
+ ring_simplify (- n + Z.min n m + n)%Z.
+ ring_simplify (- n + Z.min n m + (n + m - Z.min n m))%Z.
  apply Z.le_min_r.
 Qed.
 
@@ -2860,18 +2860,18 @@ Lemma Zle_max_r : forall n m : Z, (m <= Zmax n m)%Z.
 Proof.
  intros.
  unfold Zmax in |- *.
- apply Zplus_le_reg_l with (p := (- m + Zmin n m)%Z).
- ring_simplify (- m + Zmin n m + m)%Z.
- ring_simplify (- m + Zmin n m + (n + m - Zmin n m))%Z.
+ apply Zplus_le_reg_l with (p := (- m + Z.min n m)%Z).
+ ring_simplify (- m + Z.min n m + m)%Z.
+ ring_simplify (- m + Z.min n m + (n + m - Z.min n m))%Z.
  apply Z.le_min_l.
 Qed.
 
 
-Lemma Zmin_or_informative : forall n m : Z, {Zmin n m = n} + {Zmin n m = m}.
+Lemma Zmin_or_informative : forall n m : Z, {Z.min n m = n} + {Z.min n m = m}.
 Proof.
  intros.
  case (Z_lt_ge_dec n m).
- unfold Zmin in |- *.
+ unfold Z.min in |- *.
  unfold Zlt in |- *.
  intro z.
  rewrite z.
@@ -2882,8 +2882,8 @@ Proof.
  intro.
  case H.
  intros z0.
- unfold Zmin in |- *.
- unfold Zgt in z0.
+ unfold Z.min in |- *.
+ unfold Z.gt in z0.
  rewrite z0.
  right.
  reflexivity.
@@ -2903,7 +2903,7 @@ Proof.
  symmetry  in |- *.
  assumption.
  apply Z_le_lt_eq_dec. 
- apply Zge_le.
+ apply Z.ge_le.
  assumption.
 Qed.
 
@@ -2992,7 +2992,7 @@ Lemma Z_div_le :
  forall a b c : Z, (0 < c)%Z -> (b <= a)%Z -> (b / c <= a / c)%Z. 
 Proof.
  intros.
- apply Zge_le.
+ apply Z.ge_le.
  apply Z_div_ge; Flip; assumption.
 Qed.
 
@@ -3000,7 +3000,7 @@ Lemma Z_div_nonneg :
  forall a b : Z, (0 < b)%Z -> (0 <= a)%Z -> (0 <= a / b)%Z.
 Proof.
  intros.
- apply Zge_le.
+ apply Z.ge_le.
  apply Z_div_ge0; Flip; assumption.
 Qed.
 

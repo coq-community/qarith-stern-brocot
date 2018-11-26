@@ -32,7 +32,7 @@ Proof.
  transitivity (Z_of_nat n); auto;
  apply (f_equal Z_of_nat);
  rewrite <- absolu_inj_nat;
- apply (f_equal Zabs_nat); trivial.
+ apply (f_equal Z.abs_nat); trivial.
 Qed.
 
 (** For decoding and encoing elements of Q: binary sequneces versus pairs of integers. *) 
@@ -796,7 +796,7 @@ Proof.
   unfold Z_to_Q at 1 2 3 in |- *.
   assert (Hp : (Zpos p < Zpos p2)%Z).
   apply Zmin_cancel_Zlt.
-  unfold Zopp in |- *.
+  unfold Z.opp in |- *.
   rewrite H.
   rewrite <- (Zplus_0_l (Zneg p2)).
   apply Zplus_lt_compat_r.
@@ -1707,9 +1707,9 @@ Ltac qnat_S_rec k :=
 Ltac natZ_numerals  := 
  match goal with 
  | [ |- context [Z0] ] => replace Z0 with (Z_of_nat O); trivial; natZ_numerals
- | [ |- context [(Zpos ?X1)] ] => let v:= eval compute in (Z.abs_nat (Zpred (Zpos X1))) in 
+ | [ |- context [(Zpos ?X1)] ] => let v:= eval compute in (Z.abs_nat (Z.pred (Zpos X1))) in 
          replace (Zpos X1) with (Z_of_nat (S v)); trivial; natZ_numerals
  | [ |- context [(Zneg ?X1)] ] => let v:= eval compute in (Z.abs_nat (Z.succ (Zpos X1))) in 
-         replace (Zneg X1) with (Zopp (Z_of_nat (S v))); trivial; natZ_numerals
+         replace (Zneg X1) with (Z.opp (Z_of_nat (S v))); trivial; natZ_numerals
  | [ |- _ ] => idtac
  end.

@@ -68,12 +68,12 @@ Qed.
 
 Lemma Rle_Rminus_zero : forall r1 r2:R , r2 <= r1 -> 0 <= r1-r2.
 Proof.
- intros r1 r2 H; fourier.
+ intros r1 r2 H; lra.
 Qed.
 
 Lemma Rlt_Rminus_zero : forall r1 r2:R , r2 < r1 -> 0 < r1-r2.
 Proof.
- intros r1 r2 H; fourier.
+ intros r1 r2 H; lra.
 Qed.
 
 Lemma Rlt_not_eq': forall r1 r2 : R, r1 < r2 -> r2 <> r1.
@@ -93,12 +93,12 @@ Qed.
 
 Lemma Rlt_Ropp_pos: forall r : R, r < 0 -> 0 < - r.
 Proof.
- intros r Hr; fourier.
+ intros r Hr; lra.
 Qed.
 
 Lemma Rlt_mult_neg_neg: forall r1 r2 : R, r1<0 -> r2<0 -> 0 < r1 * r2.
 Proof.
- intros r1 r2 Hr1 Hr2; stepr ((-r1)*(-r2)); [|ring]; apply Rmult_lt_0_compat; fourier. 
+ intros r1 r2 Hr1 Hr2; stepr ((-r1)*(-r2)); [|ring]; apply Rmult_lt_0_compat; lra. 
 Qed.
 
 Definition Rinv_pos:= Rinv_0_lt_compat.
@@ -120,7 +120,7 @@ Qed.
 
 Lemma Rmult_mult_Ropp_nonpos: forall r, -(r*r)<=0.
 Proof.
- intros r; generalize (r*r) (Rmult_mult_nonneg r); clear r; intros; fourier.
+ intros r; generalize (r*r) (Rmult_mult_nonneg r); clear r; intros; lra.
 Qed.
 
 Lemma Rlt_mult_pos_neg: forall r1 r2 : R, r1 < 0 -> 0<r2 -> r1 * r2<0.
@@ -250,7 +250,7 @@ Qed.
 
 Lemma Rle_mult_nonpos_nonpos: forall r1 r2 : R, r1<=0 -> r2<=0 -> 0 <= r1 * r2.
 Proof.
- intros r1 r2 Hr1 Hr2; stepr ((-r1)*(-r2)); [|ring]; apply Rle_mult_nonneg_nonneg; fourier. 
+ intros r1 r2 Hr1 Hr2; stepr ((-r1)*(-r2)); [|ring]; apply Rle_mult_nonneg_nonneg; lra. 
 Qed.
 
 Lemma Rlt_pos_pos_Rmult: forall r1 r2 : R, 0 < r1 ->  0 < r2 * r1 -> 0< r2.
@@ -406,7 +406,7 @@ Qed.
 
 Lemma Rabs_Rle: forall q p : R, (- p <= q)%R -> (q <= p)%R -> (Rabs q <= p)%R.
 Proof.
- intros q p H1 H2; assert (H_p: 0<= p); [fourier|];
+ intros q p H1 H2; assert (H_p: 0<= p); [lra|];
  stepr (Rmax (Rabs (-p)) (Rabs p));
  [ apply RmaxAbs; trivial
  | rewrite Rabs_Ropp; rewrite Rmax_involutive; apply Rabs_pos_eq; assumption].
@@ -446,7 +446,7 @@ Proof.
  3: inversion Hk2; inversion H0; contradict H3;auto with arith.
   rewrite Hk1.
   replace (k * 2 + 0)%nat with (2*k)%nat; [|omega].
-  apply Rle_trans with 0; [ fourier | apply pow_even_nonneg].
+  apply Rle_trans with 0; [ lra | apply pow_even_nonneg].
 
   rewrite Hk1.
   replace (k * 2 + 1)%nat with (S(2*k)%nat);[|omega].
@@ -458,17 +458,17 @@ Proof.
     apply Ropp_le_contravar; apply pow_Rle_r_1; assumption.
     stepl ((-1)  * (pow y (k + (k + 0)))); [apply Rmult_le_compat_r; assumption|ring].
 
-   subst y; stepr 0; [fourier |ring].
+   subst y; stepr 0; [lra |ring].
    stepr (pow y (S(2*k)%nat)); trivial.
-   apply Rle_trans with 0;[|apply pow_le]; fourier.
+   apply Rle_trans with 0;[|apply pow_le]; lra.
 Qed.
 
 Lemma conjL_range_l:forall r, -1 <= r -> -1<= (r-1)/(r+3).
 Proof.
  intros r Hr;
  stepl (-1/1); [| field; apply R1_neq_R0];
- apply Rmult_Rdiv_pos_Rle; try fourier;
- rewrite Rmult_plus_distr_l; rewrite Rmult_1_r; fourier.
+ apply Rmult_Rdiv_pos_Rle; try lra;
+ rewrite Rmult_plus_distr_l; rewrite Rmult_1_r; lra.
 Qed.
 
 Lemma conjL_range_r:forall r, -1<=r -> r <= 1 -> (r-1)/(r+3) <= 0.
@@ -476,55 +476,55 @@ Proof.
  intros r Hr1 Hr2;
  apply Ropp_le_cancel; stepl 0; try ring;
  unfold Rdiv; rewrite Ropp_mult_distr;
- apply Rle_mult_inv_pos; fourier.
+ apply Rle_mult_inv_pos; lra.
 Qed.
 
 Lemma conjL_range_weak:forall r, -1 <= r <= 1-> -1<= (r-1)/(r+3)<=1.
 Proof.
  intros r [Hr1 Hr2]; split.
  apply conjL_range_l; trivial.
- apply Rle_trans with 0; try fourier; apply conjL_range_r; trivial.
+ apply Rle_trans with 0; try lra; apply conjL_range_r; trivial.
 Qed.
 
 
 Lemma conjR_range_l:forall r, -1 <= r -> r <= 1 -> 0<= (r+1)/(-r+3).
 Proof.
  intros r Hr1 Hr2;
- unfold Rdiv; apply Rle_mult_inv_pos; fourier.
+ unfold Rdiv; apply Rle_mult_inv_pos; lra.
 Qed.
 
 Lemma conjR_range_r:forall r, r <= 1 -> (r+1)/(-r+3)<=1.
 Proof.
  intros r Hr;
  stepr (1/1); [| field; apply R1_neq_R0];
- apply Rmult_Rdiv_pos_Rle;  try fourier;
- rewrite Rmult_1_r;  rewrite Rmult_1_l; fourier.
+ apply Rmult_Rdiv_pos_Rle;  try lra;
+ rewrite Rmult_1_r;  rewrite Rmult_1_l; lra.
 Qed.
 
 Lemma conjR_range_weak:forall r, -1 <= r <= 1-> -1<= (r+1)/(-r+3)<=1.
 Proof.
  intros r [Hr1 Hr2]; split.
- apply Rle_trans with 0; try fourier; apply conjR_range_l; trivial.
+ apply Rle_trans with 0; try lra; apply conjR_range_l; trivial.
  apply conjR_range_r; trivial.
 Qed.
 
 
 Lemma conjM_range_l:forall r, -1 <= r -> -1/3<= r/3.
 Proof.
- intros r Hr; fourier.
+ intros r Hr; lra.
 Qed.
 
 Lemma conjM_range_r:forall r, r <= 1 -> r/3<=1/3.
 Proof.
- intros r Hr; fourier.
+ intros r Hr; lra.
 Qed.
 
 
 Lemma conjM_range_weak:forall r, -1 <= r <= 1-> -1<= r/3 <=1.
 Proof.
  intros r [Hr1 Hr2]; split.
- apply Rle_trans with (-1/3); try fourier; apply conjM_range_l; trivial.
- apply Rle_trans with (1/3); try fourier; apply conjM_range_r; trivial.
+ apply Rle_trans with (-1/3); try lra; apply conjM_range_l; trivial.
+ apply Rle_trans with (1/3); try lra; apply conjM_range_r; trivial.
 Qed.
 
 
@@ -532,8 +532,8 @@ Lemma conjLinv_range_r:forall r, r <= 0 -> (3*r+1)/(-r+1)<=1.
 Proof.
  intros r Hr;
  stepr (1/1); [| field; apply R1_neq_R0];
- apply Rmult_Rdiv_pos_Rle;  try fourier;
- rewrite Rmult_1_r;  rewrite Rmult_1_l; fourier.
+ apply Rmult_Rdiv_pos_Rle;  try lra;
+ rewrite Rmult_1_r;  rewrite Rmult_1_l; lra.
 Qed.
 
 
@@ -541,16 +541,16 @@ Lemma conjLinv_range_l:forall r, -1<=r -> r <= 0 -> -1<=(3*r+1)/(-r+1).
 Proof.
  intros r Hr1 Hr2;
  stepl (-(1)/1); [| field; apply R1_neq_R0];
- apply Rmult_Rdiv_pos_Rle; try fourier;
- rewrite Rmult_plus_distr_l; do 2 rewrite Rmult_1_r; rewrite Rmult_opp_opp; fourier.
+ apply Rmult_Rdiv_pos_Rle; try lra;
+ rewrite Rmult_plus_distr_l; do 2 rewrite Rmult_1_r; rewrite Rmult_opp_opp; lra.
 Qed.
 
 Lemma conjRinv_range_r:forall r, 0<=r-> r <= 1 -> (3*r-1)/(r+1)<=1.
 Proof.
  intros r Hr1 Hr2.
  stepr (1/1); [| field; apply R1_neq_R0];
- apply Rmult_Rdiv_pos_Rle;  try fourier;
- rewrite Rmult_1_r;  rewrite Rmult_1_l; fourier.
+ apply Rmult_Rdiv_pos_Rle;  try lra;
+ rewrite Rmult_1_r;  rewrite Rmult_1_l; lra.
 Qed.
 
 Lemma conjRinv_range_l:forall r, 0<=r -> -1<=(3*r-1)/(r+1).
@@ -562,12 +562,12 @@ Qed.
 
 Lemma conjMinv_range_r:forall r, r <= 1/3 -> 3*r<=1.
 Proof.
- intros r Hr; fourier.
+ intros r Hr; lra.
 Qed.
 
 Lemma conjMinv_range_l:forall r, -1/3<=r -> -1<=3*r.
 Proof.
- intros r Hr; fourier.
+ intros r Hr; lra.
 Qed.
 
 

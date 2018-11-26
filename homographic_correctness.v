@@ -152,7 +152,7 @@ Proof.
  rewrite (encoding_algorithm_equal m (n - m) l Hm Hmn Hmn f f).
  apply H.
  repeat rewrite absolu_pred_nat.
- replace (pred_nat m Hm) with (Zabs_nat (m - 1)). 
+ replace (pred_nat m Hm) with (Z.abs_nat (m - 1)). 
  repeat rewrite <- absolu_plus; try abstract omega.
  apply le_absolu; try abstract omega.
  rewrite pred_nat_absolu; reflexivity.
@@ -174,7 +174,7 @@ Proof.
  rewrite (encoding_algorithm_equal (m - n) n Hmn Hmn l Hn f f).
  apply H.
  repeat rewrite absolu_pred_nat.
- replace (pred_nat m Hm) with (Zabs_nat (m - 1)). 
+ replace (pred_nat m Hm) with (Z.abs_nat (m - 1)). 
  repeat rewrite <- absolu_plus; try abstract omega.
  apply le_absolu; try abstract omega.
  rewrite pred_nat_absolu; reflexivity.
