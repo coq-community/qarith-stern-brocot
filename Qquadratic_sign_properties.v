@@ -30,12 +30,12 @@ Lemma same_ratio_dec_inf :
  {same_ratio a b c d e f g h} + {~ same_ratio a b c d e f g h}.
 Proof. 
  intros.
- case (Z_eq_dec (a * f) (b * e));
-  [ case (Z_eq_dec (b * g) (c * f));
-     [ case (Z_eq_dec (c * h) (d * g));
-        [ case (Z_eq_dec (a * g) (c * e));
-           [ case (Z_eq_dec (a * h) (d * e));
-              [ case (Z_eq_dec (b * h) (d * f));
+ case (Z.eq_dec (a * f) (b * e));
+  [ case (Z.eq_dec (b * g) (c * f));
+     [ case (Z.eq_dec (c * h) (d * g));
+        [ case (Z.eq_dec (a * g) (c * e));
+           [ case (Z.eq_dec (a * h) (d * e));
+              [ case (Z.eq_dec (b * h) (d * f));
                  [ left; repeat split; assumption | idtac ]
               | idtac ]
            | idtac ]
@@ -194,9 +194,9 @@ Proof.
              end ||
                match goal with
                | id1:(Zpos ?X1 < ?X2)%Z,id2:(?X2 < Zneg ?X1)%Z |- ?X3 =>
-                   apply (Zlt_irrefl (Zpos X1));
-                    apply Zlt_trans with (Zneg X1);
-                    constructor || apply Zlt_trans with X2; 
+                   apply (Z.lt_irrefl (Zpos X1));
+                    apply Z.lt_trans with (Zneg X1);
+                    constructor || apply Z.lt_trans with X2; 
                     assumption
                end.
 Qed.
@@ -221,9 +221,9 @@ Proof.
              end ||
                match goal with
                | id1:(Zpos ?X1 < ?X2)%Z,id2:(?X2 < Zneg ?X1)%Z |- ?X3 =>
-                   apply (Zlt_irrefl (Zpos X1));
-                    apply Zlt_trans with (Zneg X1);
-                    constructor || apply Zlt_trans with X2; 
+                   apply (Z.lt_irrefl (Zpos X1));
+                    apply Z.lt_trans with (Zneg X1);
+                    constructor || apply Z.lt_trans with X2; 
                     assumption
                end.
 Qed.
@@ -259,7 +259,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
      [ apply
         trans_eq
@@ -298,7 +298,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -335,7 +335,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -359,7 +359,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_10; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_10; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -403,7 +403,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -440,7 +440,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -465,7 +465,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_10; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_10; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -602,7 +602,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
      [ apply
         trans_eq
@@ -642,7 +642,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -680,7 +680,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -705,7 +705,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_10; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_10; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -749,7 +749,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -787,7 +787,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -813,7 +813,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_10; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_10; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -1002,7 +1002,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
      [ apply
         trans_eq
@@ -1042,7 +1042,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -1080,7 +1080,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -1105,7 +1105,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_10; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_10; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -1149,7 +1149,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -1187,7 +1187,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -1213,7 +1213,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_10; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_10; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -1352,7 +1352,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
      [ apply
         trans_eq
@@ -1392,7 +1392,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -1430,7 +1430,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -1455,7 +1455,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_10; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_10; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -1499,7 +1499,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -1537,7 +1537,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -1563,7 +1563,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_10; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_10; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -1836,7 +1836,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
      [ apply
         trans_eq
@@ -1863,7 +1863,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -1877,7 +1877,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -1902,11 +1902,11 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
          match goal with
@@ -1946,7 +1946,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -1971,11 +1971,11 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
           match goal with
@@ -2045,7 +2045,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -2070,11 +2070,11 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
          match goal with
@@ -2113,7 +2113,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -2138,11 +2138,11 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
           match goal with
@@ -2231,11 +2231,11 @@ Proof.
           end ].
      left; left; left; left; left; case (inside_square_1_inf _ _ H_inside_1);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
          match goal with
@@ -2339,7 +2339,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
      [ apply
         trans_eq
@@ -2366,7 +2366,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -2380,7 +2380,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -2405,11 +2405,11 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
          match goal with
@@ -2449,7 +2449,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -2474,11 +2474,11 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
           match goal with
@@ -2548,7 +2548,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -2573,11 +2573,11 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
          match goal with
@@ -2616,7 +2616,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -2641,11 +2641,11 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
           match goal with
@@ -2734,11 +2734,11 @@ Proof.
           end ].
      left; left; left; left; left; case (inside_square_1_inf _ _ H_inside_1);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
          match goal with
@@ -2906,7 +2906,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
      [ apply
         trans_eq
@@ -2933,7 +2933,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -2947,7 +2947,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -2972,11 +2972,11 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
          match goal with
@@ -3016,7 +3016,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -3041,11 +3041,11 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
           match goal with
@@ -3115,7 +3115,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -3140,11 +3140,11 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
          match goal with
@@ -3183,7 +3183,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -3208,11 +3208,11 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
           match goal with
@@ -3301,11 +3301,11 @@ Proof.
           end ].
      left; left; left; left; left; case (inside_square_1_inf _ _ H_inside_1);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
          match goal with
@@ -3409,7 +3409,7 @@ Proof.
     assert
      (H_tuple_eq :
       (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
      [ apply
         trans_eq
@@ -3436,7 +3436,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -3450,7 +3450,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -3475,11 +3475,11 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
          match goal with
@@ -3519,7 +3519,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -3544,11 +3544,11 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
           match goal with
@@ -3618,7 +3618,7 @@ Proof.
      assert
       (H_tuple_eq :
        (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -3643,11 +3643,11 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
          match goal with
@@ -3686,7 +3686,7 @@ Proof.
       assert
        (H_tuple_eq :
         (1%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -3711,11 +3711,11 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
          |  |- (?X1 <= 0)%Z =>
-             apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
           match goal with
@@ -3804,11 +3804,11 @@ Proof.
           end ].
      left; left; left; left; left; case (inside_square_1_inf _ _ H_inside_1);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
         |  |- (?X1 <= 0)%Z =>
-            apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
          match goal with
@@ -4046,7 +4046,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
      [ apply
         trans_eq
@@ -4086,7 +4086,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -4124,7 +4124,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -4149,7 +4149,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_9; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_9; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -4193,7 +4193,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -4231,7 +4231,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -4257,7 +4257,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_9; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_9; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -4396,7 +4396,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
      [ apply
         trans_eq
@@ -4436,7 +4436,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -4474,7 +4474,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -4499,7 +4499,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_9; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_9; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -4543,7 +4543,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -4581,7 +4581,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -4607,7 +4607,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_9; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_9; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -4796,7 +4796,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
      [ apply
         trans_eq
@@ -4836,7 +4836,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -4874,7 +4874,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -4899,7 +4899,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_9; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_9; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -4943,7 +4943,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -4981,7 +4981,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -5007,7 +5007,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_9; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_9; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -5146,7 +5146,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
      [ apply
         trans_eq
@@ -5186,7 +5186,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -5224,7 +5224,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -5249,7 +5249,7 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
-       [ apply Zsgn_9; apply sym_eq; apply Zopp_inj; assumption
+       [ apply Zsgn_9; apply sym_eq; apply Z.opp_inj; assumption
        | apply outside_square_2; assumption ]. 
      (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -5293,7 +5293,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -5331,7 +5331,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -5357,7 +5357,7 @@ Proof.
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; repeat rewrite Zplus_0_r;
        [ apply outside_square_2
-       | apply Zsgn_9; apply sym_eq; apply Zopp_inj ]; 
+       | apply Zsgn_9; apply sym_eq; apply Z.opp_inj ]; 
        assumption.
       (* ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros Ho2' Ho2.
@@ -5630,7 +5630,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
      [ apply
         trans_eq
@@ -5657,7 +5657,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -5671,7 +5671,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -5696,10 +5696,10 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
@@ -5740,7 +5740,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -5765,10 +5765,10 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
@@ -5839,7 +5839,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -5864,10 +5864,10 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
@@ -5907,7 +5907,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -5932,10 +5932,10 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
@@ -6058,10 +6058,10 @@ Proof.
            end ].
      left; left; left; left; left; case (inside_square_2_inf _ _ H_inside_2);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
@@ -6133,7 +6133,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
      [ apply
         trans_eq
@@ -6160,7 +6160,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -6174,7 +6174,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -6199,10 +6199,10 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
@@ -6243,7 +6243,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -6268,10 +6268,10 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
@@ -6342,7 +6342,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -6367,10 +6367,10 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
@@ -6410,7 +6410,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -6435,10 +6435,10 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
@@ -6562,10 +6562,10 @@ Proof.
            end ].
      left; left; left; left; left; case (inside_square_2_inf _ _ H_inside_2);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
@@ -6701,7 +6701,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
      [ apply
         trans_eq
@@ -6728,7 +6728,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -6742,7 +6742,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -6767,10 +6767,10 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
@@ -6811,7 +6811,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -6836,10 +6836,10 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
@@ -6910,7 +6910,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
       [ apply
          trans_eq
           with
@@ -6935,10 +6935,10 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
@@ -6978,7 +6978,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))));
        [ apply
           trans_eq
            with
@@ -7003,10 +7003,10 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
@@ -7129,10 +7129,10 @@ Proof.
            end ].
      left; left; left; left; left; case (inside_square_2_inf _ _ H_inside_2);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;
@@ -7204,7 +7204,7 @@ Proof.
     assert
      (H_tuple_eq :
       ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-      ((Zsgn a * Zsgn e)%Z,
+      ((Z.sgn a * Z.sgn e)%Z,
       (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
      [ apply
         trans_eq
@@ -7231,7 +7231,7 @@ Proof.
      repeat
       match goal with
       | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
-      end; first [ apply Zle_refl | apply Zlt_le_weak ]; 
+      end; first [ apply Z.le_refl | apply Zlt_le_weak ]; 
      assumption.
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     intros H_fgh'.
@@ -7245,7 +7245,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -7270,10 +7270,10 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o2 in Ho2;
@@ -7314,7 +7314,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -7339,10 +7339,10 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o2 in Ho2';
@@ -7413,7 +7413,7 @@ Proof.
      assert
       (H_tuple_eq :
        ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-       (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+       (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
       [ apply
          trans_eq
           with
@@ -7438,10 +7438,10 @@ Proof.
        match goal with
        | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
        end; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1;
@@ -7481,7 +7481,7 @@ Proof.
       assert
        (H_tuple_eq :
         ((-1)%Z, (na, (nb, (nc, nd)), (ne, (nf, (ng, nh))), (np1, np2))) =
-        ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
+        ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))));
        [ apply
           trans_eq
            with
@@ -7506,10 +7506,10 @@ Proof.
         match goal with
         | id1:(?X1 = 0%Z) |- ?X2 => rewrite id1; clear id1
         end; first
-       [ apply Zle_refl
+       [ apply Z.le_refl
        | match goal with
          |  |- (0 <= ?X1)%Z =>
-             apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+             apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
          |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
          end; apply sym_eq; assumption
        | unfold o1 in Ho1';
@@ -7633,10 +7633,10 @@ Proof.
            end ].
      left; left; left; left; left; case (inside_square_2_inf _ _ H_inside_2);
       intros (Ho1, Ho2); [ left | right ]; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1; unfold o2 in Ho2;

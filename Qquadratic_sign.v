@@ -19,10 +19,8 @@ Require Import ZArithRing.
 Require Import Qhomographic_sign.
 Require Import Zaux.
 
-Unset Standard Proposition Elimination Names.
-
 Definition outside_square (a b c d : Z) :=
-  (Zsgn a + Zsgn b + Zsgn c + Zsgn d)%Z.
+  (Z.sgn a + Z.sgn b + Z.sgn c + Z.sgn d)%Z.
 
 
 Lemma three_integers_dec_inf :
@@ -68,10 +66,10 @@ Proof.
  assumption.
  intros (H1, H2).
  apply False_ind.
- apply Zlt_irrefl with o1.
- apply Zlt_trans with (-2)%Z.
+ apply Z.lt_irrefl with o1.
+ apply Z.lt_trans with (-2)%Z.
  assumption.
- apply Zlt_trans with 2%Z.
+ apply Z.lt_trans with 2%Z.
  constructor.
  assumption.
 
@@ -90,10 +88,10 @@ Proof.
  case H.
  intros (H1, H2).
  apply False_ind.
- apply Zlt_irrefl with o1.
- apply Zlt_trans with (-2)%Z.
+ apply Z.lt_irrefl with o1.
+ apply Z.lt_trans with (-2)%Z.
  assumption.
- apply Zlt_trans with 2%Z.
+ apply Z.lt_trans with 2%Z.
  constructor.
  assumption.
  intros (H1, H2).
@@ -132,10 +130,10 @@ Proof.
  assumption.
  intros (H1, H2).
  apply False_ind.
- apply Zlt_irrefl with o1.
- apply Zlt_trans with (-2)%Z.
+ apply Z.lt_irrefl with o1.
+ apply Z.lt_trans with (-2)%Z.
  assumption.
- apply Zlt_trans with 2%Z.
+ apply Z.lt_trans with 2%Z.
  constructor.
  assumption.
 
@@ -154,10 +152,10 @@ Proof.
  case H.
  intros (H1, H2).
  apply False_ind.
- apply Zlt_irrefl with o1.
- apply Zlt_trans with (-2)%Z.
+ apply Z.lt_irrefl with o1.
+ apply Z.lt_trans with (-2)%Z.
  assumption.
- apply Zlt_trans with 2%Z.
+ apply Z.lt_trans with 2%Z.
  constructor.
  assumption.
  intros (H1, H2).
@@ -308,18 +306,18 @@ destruct p1 as [xs| xs| ].
     (* `f = 0`/\`g = 0`/\`h = 0` *)
     intro Hfgh.
     exact
-     ((Zsgn a * Zsgn e)%Z,
+     ((Z.sgn a * Z.sgn e)%Z,
      (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))).
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     case (Z_lt_dec 2 o2).
      (*  `2 < o2` *)
      intros H_o2_gt_2 Hfgh'.
-     exact (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))).
+     exact (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))).
      case (Z_lt_dec o2 (-2)).
       (* `o2<(-2)` *)
       intros H_o2_lt_min_2 H_o2_gt_2' Hefg'.
       exact
-       ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))).
+       ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))).
       (*    ~`o2 < (-2)` /\ ~`2 < o2`/\~(`f = 0`/\`g = 0`/\`h = 0`) *) 
       intros H_o2_lt_min_2' H_o2_gt_2' Hfgh'.
       refine
@@ -335,12 +333,12 @@ destruct p1 as [xs| xs| ].
     case (Z_lt_dec 2 o1).
      (*  `2 < o1` *)
      intros H_o1_gt_2.
-     exact (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))).
+     exact (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))).
      case (Z_lt_dec o1 (-2)).
       (* `o1<(-2)` *)
       intros H_o1_lt_min_2 H_o1_gt_2'.
       exact
-       ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))).
+       ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, nR ys))).
       (*    ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros H_o1_lt_min_2' H_o1_gt_2'. 
       refine
@@ -376,18 +374,18 @@ destruct p1 as [xs| xs| ].
     (* `f = 0`/\`g = 0`/\`h = 0` *)
     intro Hfgh.
     exact
-     ((Zsgn a * Zsgn e)%Z,
+     ((Z.sgn a * Z.sgn e)%Z,
      (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))).
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     case (Z_lt_dec 2 o2).
      (*  `2 < o2` *)
      intros H_o2_gt_2 Hfgh'.
-     exact (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))).
+     exact (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))).
      case (Z_lt_dec o2 (-2)).
       (* `o2<(-2)` *)
       intros H_o2_lt_min_2 H_o2_gt_2' Hefg'.
       exact
-       ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))).
+       ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))).
       (*    ~`o2 < (-2)` /\ ~`2 < o2`/\~(`f = 0`/\`g = 0`/\`h = 0`) *) 
       intros H_o2_lt_min_2' H_o2_gt_2' Hfgh'.
       refine
@@ -403,12 +401,12 @@ destruct p1 as [xs| xs| ].
     case (Z_lt_dec 2 o1).
      (*  `2 < o1` *)
      intros H_o1_gt_2.
-     exact (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))).
+     exact (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))).
      case (Z_lt_dec o1 (-2)).
       (* `o1<(-2)` *)
       intros H_o1_lt_min_2 H_o1_gt_2'.
       exact
-       ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))).
+       ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (nR xs, dL ys))).
       (*    ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros H_o1_lt_min_2' H_o1_gt_2'. 
       refine
@@ -462,18 +460,18 @@ destruct p1 as [xs| xs| ].
     (* `f = 0`/\`g = 0`/\`h = 0` *)
     intro Hfgh.
     exact
-     ((Zsgn a * Zsgn e)%Z,
+     ((Z.sgn a * Z.sgn e)%Z,
      (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))).
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     case (Z_lt_dec 2 o2).
      (*  `2 < o2` *)
      intros H_o2_gt_2 Hfgh'.
-     exact (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))).
+     exact (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))).
      case (Z_lt_dec o2 (-2)).
       (* `o2<(-2)` *)
       intros H_o2_lt_min_2 H_o2_gt_2' Hefg'.
       exact
-       ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))).
+       ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))).
       (*    ~`o2 < (-2)` /\ ~`2 < o2`/\~(`f = 0`/\`g = 0`/\`h = 0`) *) 
       intros H_o2_lt_min_2' H_o2_gt_2' Hfgh'.
       refine
@@ -489,12 +487,12 @@ destruct p1 as [xs| xs| ].
     case (Z_lt_dec 2 o1).
      (*  `2 < o1` *)
      intros H_o1_gt_2.
-     exact (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))).
+     exact (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))).
      case (Z_lt_dec o1 (-2)).
       (* `o1<(-2)` *)
       intros H_o1_lt_min_2 H_o1_gt_2'.
       exact
-       ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))).
+       ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, nR ys))).
       (*    ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros H_o1_lt_min_2' H_o1_gt_2'. 
       refine
@@ -530,18 +528,18 @@ destruct p1 as [xs| xs| ].
     (* `f = 0`/\`g = 0`/\`h = 0` *)
     intro Hfgh.
     exact
-     ((Zsgn a * Zsgn e)%Z,
+     ((Z.sgn a * Z.sgn e)%Z,
      (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))).
     (* ~(`f = 0`/\`g = 0`/\`h = 0`) *)
     case (Z_lt_dec 2 o2).
      (*  `2 < o2` *)
      intros H_o2_gt_2 Hfgh'.
-     exact (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))).
+     exact (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))).
      case (Z_lt_dec o2 (-2)).
       (* `o2<(-2) ` *)
       intros H_o2_lt_min_2 H_o2_gt_2' Hefg'.
       exact
-       ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))).
+       ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))).
       (*    ~`o2 < (-2)` /\ ~`2 < o2`/\~(`f = 0`/\`g = 0`/\`h = 0`) *) 
       intros H_o2_lt_min_2' H_o2_gt_2' Hfgh'.
       refine
@@ -557,12 +555,12 @@ destruct p1 as [xs| xs| ].
     case (Z_lt_dec 2 o1).
      (*  `2 < o1` *)
      intros H_o1_gt_2.
-     exact (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))).
+     exact (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))).
      case (Z_lt_dec o1 (-2)).
       (* `o1<(-2)` *)
       intros H_o1_lt_min_2 H_o1_gt_2'.
       exact
-       ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))).
+       ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (dL xs, dL ys))).
       (*    ~`o1 < (-2)` /\ ~`2 < o1` *)
       intros H_o1_lt_min_2' H_o1_gt_2'. 
       refine
@@ -941,7 +939,7 @@ Lemma Qquadratic_sign_nRdL_nRdL_1 :
  b = 0%Z /\ c = 0%Z /\ d = 0%Z ->
  f = 0%Z /\ g = 0%Z /\ h = 0%Z ->
  Qquadratic_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero =
- ((Zsgn a * Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (p1, p2))).
+ ((Z.sgn a * Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (p1, p2))).
 Proof.
  intros.
  destruct p1 as [q| q| ];
@@ -963,7 +961,7 @@ Lemma Qquadratic_sign_nRdL_nRdL_2 :
  ~ (f = 0%Z /\ g = 0%Z /\ h = 0%Z) ->
  (2 < outside_square e f g h)%Z ->
  Qquadratic_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero =
- (Zsgn a, (a, (b, (c, d)), (e, (f, (g, h))), (p1, p2))).             
+ (Z.sgn a, (a, (b, (c, d)), (e, (f, (g, h))), (p1, p2))).             
 Proof.
  intros.
  destruct p1 as [q| q| ];
@@ -989,7 +987,7 @@ Lemma Qquadratic_sign_nRdL_nRdL_3 :
  ~ (2 < outside_square e f g h)%Z ->
  (outside_square e f g h < -2)%Z ->
  Qquadratic_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero =
- ((- Zsgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (p1, p2))).             
+ ((- Z.sgn a)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (p1, p2))).             
 Proof.
  intros.
  destruct p1 as [q| q| ];
@@ -1186,7 +1184,7 @@ Lemma Qquadratic_sign_nRdL_nRdL_5 :
  f = 0%Z /\ g = 0%Z /\ h = 0%Z ->
  (2 < outside_square a b c d)%Z ->
  Qquadratic_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero =
- (Zsgn e, (a, (b, (c, d)), (e, (f, (g, h))), (p1, p2))).
+ (Z.sgn e, (a, (b, (c, d)), (e, (f, (g, h))), (p1, p2))).
 Proof.
  intros.
  destruct p1 as [q| q| ];
@@ -1211,7 +1209,7 @@ Lemma Qquadratic_sign_nRdL_nRdL_6 :
  ~ (2 < outside_square a b c d)%Z ->
  (outside_square a b c d < -2)%Z ->
  Qquadratic_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero =
- ((- Zsgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (p1, p2))).
+ ((- Z.sgn e)%Z, (a, (b, (c, d)), (e, (f, (g, h))), (p1, p2))).
 Proof.
  intros.
  destruct p1 as [q| q| ];

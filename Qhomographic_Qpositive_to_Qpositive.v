@@ -20,8 +20,6 @@ Require Export positive_fraction_encoding.
 Require Import Merge_Order.
 Require Import Wf_nat.
 
-Unset Standard Proposition Elimination Names.
-
 Definition top_more (a b c d : Z) :=
   (c <= a)%Z /\ (d < b)%Z \/ (c < a)%Z /\ (d <= b)%Z.
 
@@ -189,7 +187,7 @@ Proof.
  rewrite H0.
  rewrite Zplus_assoc_reverse with (n := (a + b)%Z).
  apply Zplus_le_lt_compat.  
- apply Zle_refl.
+ apply Z.le_refl.
  assumption.
 Defined.
 
@@ -204,7 +202,7 @@ Proof.
  rewrite Zplus_assoc_reverse with (n := (a + b)%Z).
  apply Zplus_lt_le_compat.  
  assumption.
- apply Zle_refl.
+ apply Z.le_refl.
 Defined.
 
 
@@ -454,7 +452,7 @@ Proof.
  unfold quadrointegral_lt in |- *.
  simpl in |- *.
  intros.
- apply Zlt_trans with (a' + b' + c' + d')%Z; assumption.
+ apply Z.lt_trans with (a' + b' + c' + d')%Z; assumption.
 Defined.
 
 

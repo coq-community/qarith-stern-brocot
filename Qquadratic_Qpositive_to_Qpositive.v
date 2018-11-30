@@ -18,8 +18,6 @@
 Require Import Merge_Order.
 Require Export Qhomographic_Qpositive_to_Qpositive.
 
-Unset Standard Proposition Elimination Names.
-
 Definition quadratic_top_more (a b c d e f g h : Z) :=
   (e <= a)%Z /\ (f <= b)%Z /\ (g <= c)%Z /\ (h < d)%Z \/
   (e <= a)%Z /\ (f <= b)%Z /\ (g < c)%Z /\ (h <= d)%Z \/
@@ -203,7 +201,7 @@ Proof.
  rewrite H0.
  repeat rewrite Zplus_assoc_reverse with (n := (a + b + c + d)%Z).
  apply Zplus_le_lt_compat.  
- apply Zle_refl.
+ apply Z.le_refl.
  assumption.
 Qed.
 
@@ -222,7 +220,7 @@ Lemma quadratic_top_more_5' :
  repeat rewrite Zplus_assoc_reverse with (n := 0%Z).
  apply Zplus_lt_le_compat.  
  assumption.
- apply Zle_refl.
+ apply Z.le_refl.
 Qed.
 
 
@@ -685,7 +683,7 @@ Proof.
  unfold octointegral_lt in |- *.
  simpl in |- *.
  intros.
- apply Zlt_trans with (a' + b' + c' + d' + e' + f' + g' + h')%Z; assumption.
+ apply Z.lt_trans with (a' + b' + c' + d' + e' + f' + g' + h')%Z; assumption.
 Qed.
 
 

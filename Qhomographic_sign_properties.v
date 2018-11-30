@@ -47,7 +47,7 @@ Proof.
              end ||
                match goal with
                | id1:(0 < ?X2)%Z,id2:(?X2 < 0)%Z |- ?X3 =>
-                   apply (Zlt_irrefl 0); apply Zlt_trans with X2; assumption
+                   apply (Z.lt_irrefl 0); apply Z.lt_trans with X2; assumption
                end.
 Qed.       
    
@@ -72,7 +72,7 @@ Proof.
              end ||
                match goal with
                | id1:(0 < ?X2)%Z,id2:(?X2 < 0)%Z |- ?X3 =>
-                   apply (Zlt_irrefl 0); apply Zlt_trans with X2; assumption
+                   apply (Z.lt_irrefl 0); apply Z.lt_trans with X2; assumption
                end.
 Qed.       
    
@@ -99,14 +99,14 @@ Proof.
     assert
      (H6 :
       (1%Z, (na, (nb, (nc, nd)), np)) =
-      ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), nR p)));
+      ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), nR p)));
     [ apply
        trans_eq
         with
           (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
        assumption || symmetry  in |- *; assumption
     | elim
-       (sg_tuple_equal 1 na nb nc nd np (Zsgn a * Zsgn c) a b c d (nR p) H6);
+       (sg_tuple_equal 1 na nb nc nd np (Z.sgn a * Z.sgn c) a b c d (nR p) H6);
        intros H_ac ((H8, (H9, (H10, H11))), H12);
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -119,13 +119,13 @@ Proof.
         (refl_equal (nR p)) Hb Hd Ho2); intro;
      assert
       (H6 :
-       (1%Z, (na, (nb, (nc, nd)), np)) = (Zsgn a, (a, (b, (c, d)), nR p)));
+       (1%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn a, (a, (b, (c, d)), nR p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal 1 na nb nc nd np (Zsgn a) a b c d (nR p) H6);
+     | elim (sg_tuple_equal 1 na nb nc nd np (Z.sgn a) a b c d (nR p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -141,19 +141,19 @@ Proof.
       assert
        (H6 :
         (1%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), nR p)));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), nR p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
-      | elim (sg_tuple_equal 1 na nb nc nd np (- Zsgn a) a b c d (nR p) H6);
+      | elim (sg_tuple_equal 1 na nb nc nd np (- Z.sgn a) a b c d (nR p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; repeat rewrite Zplus_0_r; right; 
          split;
-         [ apply Zsgn_10; symmetry  in |- *; apply Zopp_inj | apply Zsgn_20 ];
+         [ apply Zsgn_10; symmetry  in |- *; apply Z.opp_inj | apply Zsgn_20 ];
          assumption ].
  
      generalize
@@ -179,13 +179,13 @@ Proof.
         (refl_equal (nR p)) Hb Hd Ho1); intro;
      assert
       (H6 :
-       (1%Z, (na, (nb, (nc, nd)), np)) = (Zsgn c, (a, (b, (c, d)), nR p)));
+       (1%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn c, (a, (b, (c, d)), nR p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal 1 na nb nc nd np (Zsgn c) a b c d (nR p) H6);
+     | elim (sg_tuple_equal 1 na nb nc nd np (Z.sgn c) a b c d (nR p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -201,19 +201,19 @@ Proof.
       assert
        (H6 :
         (1%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn c)%Z, (a, (b, (c, d)), nR p)));
+        ((- Z.sgn c)%Z, (a, (b, (c, d)), nR p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
-      | elim (sg_tuple_equal 1 na nb nc nd np (- Zsgn c) a b c d (nR p) H6);
+      | elim (sg_tuple_equal 1 na nb nc nd np (- Z.sgn c) a b c d (nR p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; repeat rewrite Zplus_0_r; right; 
          split;
-         [ apply Zsgn_20 | apply Zsgn_10; symmetry  in |- *; apply Zopp_inj ];
+         [ apply Zsgn_20 | apply Zsgn_10; symmetry  in |- *; apply Z.opp_inj ];
          assumption ].
  
      generalize
@@ -291,14 +291,14 @@ Proof.
     assert
      (H6 :
       (1%Z, (na, (nb, (nc, nd)), np)) =
-      ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), dL p)));
+      ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), dL p)));
     [ apply
        trans_eq
         with
           (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
        assumption || symmetry  in |- *; assumption
     | elim
-       (sg_tuple_equal 1 na nb nc nd np (Zsgn a * Zsgn c) a b c d (dL p) H6);
+       (sg_tuple_equal 1 na nb nc nd np (Z.sgn a * Z.sgn c) a b c d (dL p) H6);
        intros H_ac ((H8, (H9, (H10, H11))), H12);
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -311,13 +311,13 @@ Proof.
         (refl_equal (dL p)) Hb Hd Ho2); intro;
      assert
       (H6 :
-       (1%Z, (na, (nb, (nc, nd)), np)) = (Zsgn a, (a, (b, (c, d)), dL p)));
+       (1%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn a, (a, (b, (c, d)), dL p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal 1 na nb nc nd np (Zsgn a) a b c d (dL p) H6);
+     | elim (sg_tuple_equal 1 na nb nc nd np (Z.sgn a) a b c d (dL p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -333,19 +333,19 @@ Proof.
       assert
        (H6 :
         (1%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), dL p)));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), dL p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
-      | elim (sg_tuple_equal 1 na nb nc nd np (- Zsgn a) a b c d (dL p) H6);
+      | elim (sg_tuple_equal 1 na nb nc nd np (- Z.sgn a) a b c d (dL p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; repeat rewrite Zplus_0_r; right; 
          split;
-         [ apply Zsgn_10; symmetry  in |- *; apply Zopp_inj | apply Zsgn_20 ];
+         [ apply Zsgn_10; symmetry  in |- *; apply Z.opp_inj | apply Zsgn_20 ];
          assumption ].
  
      generalize
@@ -371,13 +371,13 @@ Proof.
         (refl_equal (dL p)) Hb Hd Ho1); intro;
      assert
       (H6 :
-       (1%Z, (na, (nb, (nc, nd)), np)) = (Zsgn c, (a, (b, (c, d)), dL p)));
+       (1%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn c, (a, (b, (c, d)), dL p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal 1 na nb nc nd np (Zsgn c) a b c d (dL p) H6);
+     | elim (sg_tuple_equal 1 na nb nc nd np (Z.sgn c) a b c d (dL p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -393,19 +393,19 @@ Proof.
       assert
        (H6 :
         (1%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn c)%Z, (a, (b, (c, d)), dL p)));
+        ((- Z.sgn c)%Z, (a, (b, (c, d)), dL p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
-      | elim (sg_tuple_equal 1 na nb nc nd np (- Zsgn c) a b c d (dL p) H6);
+      | elim (sg_tuple_equal 1 na nb nc nd np (- Z.sgn c) a b c d (dL p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; repeat rewrite Zplus_0_r; right; 
          split;
-         [ apply Zsgn_20 | apply Zsgn_10; symmetry  in |- *; apply Zopp_inj ];
+         [ apply Zsgn_20 | apply Zsgn_10; symmetry  in |- *; apply Z.opp_inj ];
          assumption ].
  
      generalize
@@ -476,7 +476,7 @@ Proof.
          assumption || symmetry  in |- *; assumption ] ].
 
  (* p = One *)
- case (Z_zerop (Zsgn (a + b))); intro Hab.  
+ case (Z_zerop (Z.sgn (a + b))); intro Hab.  
   apply False_rec;
    generalize
     (sg_One_2 a b c d One H_Qhomographic_sg_denom_nonzero 
@@ -490,7 +490,7 @@ Proof.
    | elim (sg_tuple_equal 1 na nb nc nd np 0 a b c d One H2); intros H3 H4;
       discriminate H3 ].
  
-  case (Z_eq_dec (Zsgn (a + b)) (Zsgn (c + d))); intro Habcd.  
+  case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.  
    generalize
     (sg_One_3 a b c d One H_Qhomographic_sg_denom_nonzero 
        (refl_equal One) Hab Habcd); intro;
@@ -504,7 +504,7 @@ Proof.
        intros _ ((H8, (H9, (H10, H11))), H12);
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
-              end; case (not_Zeq_inf (Zsgn (a + b)) 0 Hab); 
+              end; case (not_Zeq_inf (Z.sgn (a + b)) 0 Hab); 
        intro Hab';
        [ right; split; apply Zsgn_11; [ idtac | rewrite Habcd in Hab' ]
        | left; split; apply Zsgn_12; [ idtac | rewrite Habcd in Hab' ] ];
@@ -547,21 +547,21 @@ Proof.
     assert
      (H6 :
       (1%Z, (na, (nb, (nc, nd)), np)) =
-      ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), nR p)));
+      ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), nR p)));
     [ apply
        trans_eq
         with
           (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
        assumption || symmetry  in |- *; assumption
     | elim
-       (sg_tuple_equal 1 na nb nc nd np (Zsgn a * Zsgn c) a b c d (nR p) H6);
+       (sg_tuple_equal 1 na nb nc nd np (Z.sgn a * Z.sgn c) a b c d (nR p) H6);
        intros H_ac ((H8, (H9, (H10, H11))), H12);
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
               end; left; rewrite <- Zsgn_15 in H_ac;
        case (Zsgn_16 _ _ (sym_eq H_ac)); intros (Ha, Hc); 
        [ left | right ]; repeat split;
-       apply Zle_refl || (apply Zlt_le_weak; assumption) ].
+       apply Z.le_refl || (apply Zlt_le_weak; assumption) ].
   
    case (Z_lt_dec 0 o2); intros Ho2.
     generalize
@@ -569,22 +569,22 @@ Proof.
         (refl_equal (nR p)) Hb Hd Ho2); intro;
      assert
       (H6 :
-       (1%Z, (na, (nb, (nc, nd)), np)) = (Zsgn a, (a, (b, (c, d)), nR p)));
+       (1%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn a, (a, (b, (c, d)), nR p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal 1 na nb nc nd np (Zsgn a) a b c d (nR p) H6);
+     | elim (sg_tuple_equal 1 na nb nc nd np (Z.sgn a) a b c d (nR p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                end; left; left; repeat split; first
-        [ apply Zle_refl
+        [ apply Z.le_refl
         | match goal with
           |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
           |  |- (?X1 <= 0)%Z =>
-              apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+              apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
           end; apply sym_eq; assumption
         | unfold o2 in Ho2;
            match goal with
@@ -609,22 +609,22 @@ Proof.
       assert
        (H6 :
         (1%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), nR p)));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), nR p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
-      | elim (sg_tuple_equal 1 na nb nc nd np (- Zsgn a) a b c d (nR p) H6);
+      | elim (sg_tuple_equal 1 na nb nc nd np (- Z.sgn a) a b c d (nR p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; left; right; repeat split; first
-         [ apply Zle_refl
+         [ apply Z.le_refl
          | match goal with
            |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
            |  |- (?X1 <= 0)%Z =>
-               apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+               apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
            end; apply sym_eq; assumption
          | unfold o2 in Ho2, Ho2';
             match goal with
@@ -663,22 +663,22 @@ Proof.
         (refl_equal (nR p)) Hb Hd Ho1); intro;
      assert
       (H6 :
-       (1%Z, (na, (nb, (nc, nd)), np)) = (Zsgn c, (a, (b, (c, d)), nR p)));
+       (1%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn c, (a, (b, (c, d)), nR p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal 1 na nb nc nd np (Zsgn c) a b c d (nR p) H6);
+     | elim (sg_tuple_equal 1 na nb nc nd np (Z.sgn c) a b c d (nR p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                end; left; left; repeat split; first
-        [ apply Zle_refl
+        [ apply Z.le_refl
         | match goal with
           |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
           |  |- (?X1 <= 0)%Z =>
-              apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+              apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
           end; apply sym_eq; assumption
         | unfold o1 in Ho1;
            match goal with
@@ -703,22 +703,22 @@ Proof.
       assert
        (H6 :
         (1%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn c)%Z, (a, (b, (c, d)), nR p)));
+        ((- Z.sgn c)%Z, (a, (b, (c, d)), nR p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
-      | elim (sg_tuple_equal 1 na nb nc nd np (- Zsgn c) a b c d (nR p) H6);
+      | elim (sg_tuple_equal 1 na nb nc nd np (- Z.sgn c) a b c d (nR p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; left; right; repeat split; first
-         [ apply Zle_refl
+         [ apply Z.le_refl
          | match goal with
            |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
            |  |- (?X1 <= 0)%Z =>
-               apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+               apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
            end; apply sym_eq; assumption
          | unfold o1 in Ho1, Ho1';
             match goal with
@@ -819,21 +819,21 @@ Proof.
     assert
      (H6 :
       (1%Z, (na, (nb, (nc, nd)), np)) =
-      ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), dL p)));
+      ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), dL p)));
     [ apply
        trans_eq
         with
           (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
        assumption || symmetry  in |- *; assumption
     | elim
-       (sg_tuple_equal 1 na nb nc nd np (Zsgn a * Zsgn c) a b c d (dL p) H6);
+       (sg_tuple_equal 1 na nb nc nd np (Z.sgn a * Z.sgn c) a b c d (dL p) H6);
        intros H_ac ((H8, (H9, (H10, H11))), H12);
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
               end; left; rewrite <- Zsgn_15 in H_ac;
        case (Zsgn_16 _ _ (sym_eq H_ac)); intros (Ha, Hc); 
        [ left | right ]; repeat split;
-       apply Zle_refl || (apply Zlt_le_weak; assumption) ].
+       apply Z.le_refl || (apply Zlt_le_weak; assumption) ].
   
    case (Z_lt_dec 0 o2); intros Ho2.
     generalize
@@ -841,22 +841,22 @@ Proof.
         (refl_equal (dL p)) Hb Hd Ho2); intro;
      assert
       (H6 :
-       (1%Z, (na, (nb, (nc, nd)), np)) = (Zsgn a, (a, (b, (c, d)), dL p)));
+       (1%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn a, (a, (b, (c, d)), dL p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal 1 na nb nc nd np (Zsgn a) a b c d (dL p) H6);
+     | elim (sg_tuple_equal 1 na nb nc nd np (Z.sgn a) a b c d (dL p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                end; left; left; repeat split; first
-        [ apply Zle_refl
+        [ apply Z.le_refl
         | match goal with
           |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
           |  |- (?X1 <= 0)%Z =>
-              apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+              apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
           end; apply sym_eq; assumption
         | unfold o2 in Ho2;
            match goal with
@@ -881,22 +881,22 @@ Proof.
       assert
        (H6 :
         (1%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), dL p)));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), dL p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
-      | elim (sg_tuple_equal 1 na nb nc nd np (- Zsgn a) a b c d (dL p) H6);
+      | elim (sg_tuple_equal 1 na nb nc nd np (- Z.sgn a) a b c d (dL p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; left; right; repeat split; first
-         [ apply Zle_refl
+         [ apply Z.le_refl
          | match goal with
            |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
            |  |- (?X1 <= 0)%Z =>
-               apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+               apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
            end; apply sym_eq; assumption
          | unfold o2 in Ho2, Ho2';
             match goal with
@@ -935,22 +935,22 @@ Proof.
         (refl_equal (dL p)) Hb Hd Ho1); intro;
      assert
       (H6 :
-       (1%Z, (na, (nb, (nc, nd)), np)) = (Zsgn c, (a, (b, (c, d)), dL p)));
+       (1%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn c, (a, (b, (c, d)), dL p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal 1 na nb nc nd np (Zsgn c) a b c d (dL p) H6);
+     | elim (sg_tuple_equal 1 na nb nc nd np (Z.sgn c) a b c d (dL p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                end; left; left; repeat split; first
-        [ apply Zle_refl
+        [ apply Z.le_refl
         | match goal with
           |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
           |  |- (?X1 <= 0)%Z =>
-              apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+              apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
           end; apply sym_eq; assumption
         | unfold o1 in Ho1;
            match goal with
@@ -975,22 +975,22 @@ Proof.
       assert
        (H6 :
         (1%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn c)%Z, (a, (b, (c, d)), dL p)));
+        ((- Z.sgn c)%Z, (a, (b, (c, d)), dL p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
-      | elim (sg_tuple_equal 1 na nb nc nd np (- Zsgn c) a b c d (dL p) H6);
+      | elim (sg_tuple_equal 1 na nb nc nd np (- Z.sgn c) a b c d (dL p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; left; right; repeat split; first
-         [ apply Zle_refl
+         [ apply Z.le_refl
          | match goal with
            |  |- (0 <= ?X1)%Z => apply Zlt_le_weak; apply Zsgn_9
            |  |- (?X1 <= 0)%Z =>
-               apply Zlt_le_weak; apply Zsgn_10; apply Zopp_inj
+               apply Zlt_le_weak; apply Zsgn_10; apply Z.opp_inj
            end; apply sym_eq; assumption
          | unfold o1 in Ho1, Ho1';
             match goal with
@@ -1082,7 +1082,7 @@ Proof.
             (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption ].
  (* p = One *)
- case (Z_zerop (Zsgn (a + b))); intro Hab.  
+ case (Z_zerop (Z.sgn (a + b))); intro Hab.  
   apply False_rec;
    generalize
     (sg_One_2 a b c d One H_Qhomographic_sg_denom_nonzero 
@@ -1096,7 +1096,7 @@ Proof.
    | elim (sg_tuple_equal 1 na nb nc nd np 0 a b c d One H2); intros H3 H4;
       discriminate H3 ].
  
-  case (Z_eq_dec (Zsgn (a + b)) (Zsgn (c + d))); intro Habcd.  
+  case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.  
    generalize
     (sg_One_3 a b c d One H_Qhomographic_sg_denom_nonzero 
        (refl_equal One) Hab Habcd); intro;
@@ -1148,14 +1148,14 @@ Proof.
     assert
      (H6 :
       ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-      ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), nR p)));
+      ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), nR p)));
     [ apply
        trans_eq
         with
           (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
        assumption || symmetry  in |- *; assumption
     | elim
-       (sg_tuple_equal (-1) na nb nc nd np (Zsgn a * Zsgn c) a b c d 
+       (sg_tuple_equal (-1) na nb nc nd np (Z.sgn a * Z.sgn c) a b c d 
           (nR p) H6); intros H_ac ((H8, (H9, (H10, H11))), H12);
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -1168,13 +1168,13 @@ Proof.
         (refl_equal (nR p)) Hb Hd Ho2); intro;
      assert
       (H6 :
-       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Zsgn a, (a, (b, (c, d)), nR p)));
+       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn a, (a, (b, (c, d)), nR p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal (-1) na nb nc nd np (Zsgn a) a b c d (nR p) H6);
+     | elim (sg_tuple_equal (-1) na nb nc nd np (Z.sgn a) a b c d (nR p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -1190,20 +1190,20 @@ Proof.
       assert
        (H6 :
         ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), nR p)));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), nR p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
       | elim
-         (sg_tuple_equal (-1) na nb nc nd np (- Zsgn a) a b c d (nR p) H6);
+         (sg_tuple_equal (-1) na nb nc nd np (- Z.sgn a) a b c d (nR p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; repeat rewrite Zplus_0_r; left; 
          split;
-         [ apply Zsgn_9; symmetry  in |- *; apply Zopp_inj | apply Zsgn_20 ];
+         [ apply Zsgn_9; symmetry  in |- *; apply Z.opp_inj | apply Zsgn_20 ];
          assumption ].
  
      generalize
@@ -1229,13 +1229,13 @@ Proof.
         (refl_equal (nR p)) Hb Hd Ho1); intro;
      assert
       (H6 :
-       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Zsgn c, (a, (b, (c, d)), nR p)));
+       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn c, (a, (b, (c, d)), nR p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal (-1) na nb nc nd np (Zsgn c) a b c d (nR p) H6);
+     | elim (sg_tuple_equal (-1) na nb nc nd np (Z.sgn c) a b c d (nR p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -1251,20 +1251,20 @@ Proof.
       assert
        (H6 :
         ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn c)%Z, (a, (b, (c, d)), nR p)));
+        ((- Z.sgn c)%Z, (a, (b, (c, d)), nR p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
       | elim
-         (sg_tuple_equal (-1) na nb nc nd np (- Zsgn c) a b c d (nR p) H6);
+         (sg_tuple_equal (-1) na nb nc nd np (- Z.sgn c) a b c d (nR p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; repeat rewrite Zplus_0_r; right; 
          split;
-         [ apply Zsgn_20 | apply Zsgn_9; symmetry  in |- *; apply Zopp_inj ];
+         [ apply Zsgn_20 | apply Zsgn_9; symmetry  in |- *; apply Z.opp_inj ];
          assumption ].
  
      generalize
@@ -1346,14 +1346,14 @@ Proof.
     assert
      (H6 :
       ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-      ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), dL p)));
+      ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), dL p)));
     [ apply
        trans_eq
         with
           (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
        assumption || symmetry  in |- *; assumption
     | elim
-       (sg_tuple_equal (-1) na nb nc nd np (Zsgn a * Zsgn c) a b c d 
+       (sg_tuple_equal (-1) na nb nc nd np (Z.sgn a * Z.sgn c) a b c d 
           (dL p) H6); intros H_ac ((H8, (H9, (H10, H11))), H12);
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -1366,13 +1366,13 @@ Proof.
         (refl_equal (dL p)) Hb Hd Ho2); intro;
      assert
       (H6 :
-       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Zsgn a, (a, (b, (c, d)), dL p)));
+       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn a, (a, (b, (c, d)), dL p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal (-1) na nb nc nd np (Zsgn a) a b c d (dL p) H6);
+     | elim (sg_tuple_equal (-1) na nb nc nd np (Z.sgn a) a b c d (dL p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -1388,20 +1388,20 @@ Proof.
       assert
        (H6 :
         ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), dL p)));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), dL p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
       | elim
-         (sg_tuple_equal (-1) na nb nc nd np (- Zsgn a) a b c d (dL p) H6);
+         (sg_tuple_equal (-1) na nb nc nd np (- Z.sgn a) a b c d (dL p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; repeat rewrite Zplus_0_r; left; 
          split;
-         [ apply Zsgn_9; symmetry  in |- *; apply Zopp_inj | apply Zsgn_20 ];
+         [ apply Zsgn_9; symmetry  in |- *; apply Z.opp_inj | apply Zsgn_20 ];
          assumption ].
  
      generalize
@@ -1427,13 +1427,13 @@ Proof.
         (refl_equal (dL p)) Hb Hd Ho1); intro;
      assert
       (H6 :
-       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Zsgn c, (a, (b, (c, d)), dL p)));
+       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn c, (a, (b, (c, d)), dL p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal (-1) na nb nc nd np (Zsgn c) a b c d (dL p) H6);
+     | elim (sg_tuple_equal (-1) na nb nc nd np (Z.sgn c) a b c d (dL p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
@@ -1449,20 +1449,20 @@ Proof.
       assert
        (H6 :
         ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn c)%Z, (a, (b, (c, d)), dL p)));
+        ((- Z.sgn c)%Z, (a, (b, (c, d)), dL p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
       | elim
-         (sg_tuple_equal (-1) na nb nc nd np (- Zsgn c) a b c d (dL p) H6);
+         (sg_tuple_equal (-1) na nb nc nd np (- Z.sgn c) a b c d (dL p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end; repeat rewrite Zplus_0_r; right; 
          split;
-         [ apply Zsgn_20 | apply Zsgn_9; symmetry  in |- *; apply Zopp_inj ];
+         [ apply Zsgn_20 | apply Zsgn_9; symmetry  in |- *; apply Z.opp_inj ];
          assumption ].
  
      generalize
@@ -1536,7 +1536,7 @@ Proof.
        assumption || symmetry  in |- *; assumption.
 
 (* p = One *)
- case (Z_zerop (Zsgn (a + b))); intro Hab.  
+ case (Z_zerop (Z.sgn (a + b))); intro Hab.  
   apply False_rec;
    generalize
     (sg_One_2 a b c d One H_Qhomographic_sg_denom_nonzero 
@@ -1550,7 +1550,7 @@ Proof.
    | elim (sg_tuple_equal (-1) na nb nc nd np 0 a b c d One H2); intros H3 H4;
       discriminate H3 ].
  
-  case (Z_eq_dec (Zsgn (a + b)) (Zsgn (c + d))); intro Habcd.  
+  case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.  
    generalize
     (sg_One_3 a b c d One H_Qhomographic_sg_denom_nonzero 
        (refl_equal One) Hab Habcd); intro;
@@ -1578,7 +1578,7 @@ Proof.
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
               end ].
-   case (not_Zeq_inf (Zsgn (a + b)) 0 Hab); intro Hab';
+   case (not_Zeq_inf (Z.sgn (a + b)) 0 Hab); intro Hab';
     [ right; split; [ apply Zsgn_11; assumption | apply Zsgn_12 ];
        generalize (Zsgn_1 (c + d)); intros [[Hcd| Hcd]| Hcd];
        [ apply False_ind;
@@ -1593,7 +1593,7 @@ Proof.
           apply (Qhomographic_signok_1 c d H_Qhomographic_sg_denom_nonzero);
           apply Zsgn_2
        | apply False_ind; apply Habcd; rewrite Hcd; apply Zsgn_7;
-          apply Zlt_gt; apply Zsgn_12
+          apply Z.lt_gt; apply Zsgn_12
        | rewrite Hcd; constructor ]; assumption ].
 Qed.
 
@@ -1622,21 +1622,21 @@ Proof.
     assert
      (H6 :
       ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-      ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), nR p)));
+      ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), nR p)));
     [ apply
        trans_eq
         with
           (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
        assumption || symmetry  in |- *; assumption
     | elim
-       (sg_tuple_equal (-1) na nb nc nd np (Zsgn a * Zsgn c) a b c d 
+       (sg_tuple_equal (-1) na nb nc nd np (Z.sgn a * Z.sgn c) a b c d 
           (nR p) H6); intros H_ac ((H8, (H9, (H10, H11))), H12);
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
               end ]; left; rewrite <- Zsgn_15 in H_ac;
     case (Zsgn_17 _ _ (sym_eq H_ac)); intros (Ha, Hc); 
     [ left | right ]; repeat split;
-    apply Zle_refl || (apply Zlt_le_weak; assumption).
+    apply Z.le_refl || (apply Zlt_le_weak; assumption).
 
   
    case (Z_lt_dec 0 o2); intros Ho2.
@@ -1645,21 +1645,21 @@ Proof.
         (refl_equal (nR p)) Hb Hd Ho2); intro;
      assert
       (H6 :
-       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Zsgn a, (a, (b, (c, d)), nR p)));
+       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn a, (a, (b, (c, d)), nR p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal (-1) na nb nc nd np (Zsgn a) a b c d (nR p) H6);
+     | elim (sg_tuple_equal (-1) na nb nc nd np (Z.sgn a) a b c d (nR p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                end ]; left; right; repeat split; first
-     [ apply Zle_refl
+     [ apply Z.le_refl
      | match goal with
        |  |- (0 <= ?X1)%Z =>
-           apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+           apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
        |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
        end; apply sym_eq; assumption
      | unfold o2 in Ho2;
@@ -1682,22 +1682,22 @@ Proof.
       assert
        (H6 :
         ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), nR p)));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), nR p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
       | elim
-         (sg_tuple_equal (-1) na nb nc nd np (- Zsgn a) a b c d (nR p) H6);
+         (sg_tuple_equal (-1) na nb nc nd np (- Z.sgn a) a b c d (nR p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end ]; left; left; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o2 in Ho2, Ho2';
@@ -1738,21 +1738,21 @@ Proof.
         (refl_equal (nR p)) Hb Hd Ho1); intro;
      assert
       (H6 :
-       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Zsgn c, (a, (b, (c, d)), nR p)));
+       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn c, (a, (b, (c, d)), nR p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal (-1) na nb nc nd np (Zsgn c) a b c d (nR p) H6);
+     | elim (sg_tuple_equal (-1) na nb nc nd np (Z.sgn c) a b c d (nR p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                end ]; left; left; repeat split; first
-     [ apply Zle_refl
+     [ apply Z.le_refl
      | match goal with
        |  |- (0 <= ?X1)%Z =>
-           apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+           apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
        |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
        end; apply sym_eq; assumption
      | unfold o1 in Ho1;
@@ -1776,22 +1776,22 @@ Proof.
       assert
        (H6 :
         ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn c)%Z, (a, (b, (c, d)), nR p)));
+        ((- Z.sgn c)%Z, (a, (b, (c, d)), nR p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (nR p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
       | elim
-         (sg_tuple_equal (-1) na nb nc nd np (- Zsgn c) a b c d (nR p) H6);
+         (sg_tuple_equal (-1) na nb nc nd np (- Z.sgn c) a b c d (nR p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end ]; left; right; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1, Ho1';
@@ -1899,21 +1899,21 @@ Proof.
     assert
      (H6 :
       ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-      ((Zsgn a * Zsgn c)%Z, (a, (b, (c, d)), dL p)));
+      ((Z.sgn a * Z.sgn c)%Z, (a, (b, (c, d)), dL p)));
     [ apply
        trans_eq
         with
           (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
        assumption || symmetry  in |- *; assumption
     | elim
-       (sg_tuple_equal (-1) na nb nc nd np (Zsgn a * Zsgn c) a b c d 
+       (sg_tuple_equal (-1) na nb nc nd np (Z.sgn a * Z.sgn c) a b c d 
           (dL p) H6); intros H_ac ((H8, (H9, (H10, H11))), H12);
        repeat match goal with
               | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
               end ]; left; rewrite <- Zsgn_15 in H_ac;
     case (Zsgn_17 _ _ (sym_eq H_ac)); intros (Ha, Hc); 
     [ left | right ]; repeat split;
-    apply Zle_refl || (apply Zlt_le_weak; assumption).
+    apply Z.le_refl || (apply Zlt_le_weak; assumption).
 
   
    case (Z_lt_dec 0 o2); intros Ho2.
@@ -1922,21 +1922,21 @@ Proof.
         (refl_equal (dL p)) Hb Hd Ho2); intro;
      assert
       (H6 :
-       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Zsgn a, (a, (b, (c, d)), dL p)));
+       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn a, (a, (b, (c, d)), dL p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal (-1) na nb nc nd np (Zsgn a) a b c d (dL p) H6);
+     | elim (sg_tuple_equal (-1) na nb nc nd np (Z.sgn a) a b c d (dL p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                end ]; left; right; repeat split; first
-     [ apply Zle_refl
+     [ apply Z.le_refl
      | match goal with
        |  |- (0 <= ?X1)%Z =>
-           apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+           apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
        |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
        end; apply sym_eq; assumption
      | unfold o2 in Ho2;
@@ -1959,22 +1959,22 @@ Proof.
       assert
        (H6 :
         ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn a)%Z, (a, (b, (c, d)), dL p)));
+        ((- Z.sgn a)%Z, (a, (b, (c, d)), dL p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
       | elim
-         (sg_tuple_equal (-1) na nb nc nd np (- Zsgn a) a b c d (dL p) H6);
+         (sg_tuple_equal (-1) na nb nc nd np (- Z.sgn a) a b c d (dL p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end ]; left; left; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o2 in Ho2, Ho2';
@@ -2015,21 +2015,21 @@ Proof.
         (refl_equal (dL p)) Hb Hd Ho1); intro;
      assert
       (H6 :
-       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Zsgn c, (a, (b, (c, d)), dL p)));
+       ((-1)%Z, (na, (nb, (nc, nd)), np)) = (Z.sgn c, (a, (b, (c, d)), dL p)));
      [ apply
         trans_eq
          with
            (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
         assumption || symmetry  in |- *; assumption
-     | elim (sg_tuple_equal (-1) na nb nc nd np (Zsgn c) a b c d (dL p) H6);
+     | elim (sg_tuple_equal (-1) na nb nc nd np (Z.sgn c) a b c d (dL p) H6);
         intros H_a ((H8, (H9, (H10, H11))), H12);
         repeat match goal with
                | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                end ]; left; left; repeat split; first
-     [ apply Zle_refl
+     [ apply Z.le_refl
      | match goal with
        |  |- (0 <= ?X1)%Z =>
-           apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+           apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
        |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
        end; apply sym_eq; assumption
      | unfold o1 in Ho1;
@@ -2053,22 +2053,22 @@ Proof.
       assert
        (H6 :
         ((-1)%Z, (na, (nb, (nc, nd)), np)) =
-        ((- Zsgn c)%Z, (a, (b, (c, d)), dL p)));
+        ((- Z.sgn c)%Z, (a, (b, (c, d)), dL p)));
       [ apply
          trans_eq
           with
             (Qhomographic_sign a b c d (dL p) H_Qhomographic_sg_denom_nonzero);
          assumption || symmetry  in |- *; assumption
       | elim
-         (sg_tuple_equal (-1) na nb nc nd np (- Zsgn c) a b c d (dL p) H6);
+         (sg_tuple_equal (-1) na nb nc nd np (- Z.sgn c) a b c d (dL p) H6);
          intros H_a ((H8, (H9, (H10, H11))), H12);
          repeat match goal with
                 | id1:(?X1 = ?X2) |- ?X3 => rewrite id1
                 end ]; left; right; repeat split; first
-      [ apply Zle_refl
+      [ apply Z.le_refl
       | match goal with
         |  |- (0 <= ?X1)%Z =>
-            apply Zlt_le_weak; apply Zsgn_9; apply Zopp_inj
+            apply Zlt_le_weak; apply Zsgn_9; apply Z.opp_inj
         |  |- (?X1 <= 0)%Z => apply Zlt_le_weak; apply Zsgn_10
         end; apply sym_eq; assumption
       | unfold o1 in Ho1, Ho1';
@@ -2168,7 +2168,7 @@ Proof.
        assumption || symmetry  in |- *; assumption.
 
  (* p = One *)
- case (Z_zerop (Zsgn (a + b))); intro Hab.  
+ case (Z_zerop (Z.sgn (a + b))); intro Hab.  
   apply False_rec;
    generalize
     (sg_One_2 a b c d One H_Qhomographic_sg_denom_nonzero 
@@ -2182,7 +2182,7 @@ Proof.
    | elim (sg_tuple_equal (-1) na nb nc nd np 0 a b c d One H2); intros H3 H4;
       discriminate H3 ].
  
-  case (Z_eq_dec (Zsgn (a + b)) (Zsgn (c + d))); intro Habcd.
+  case (Z.eq_dec (Z.sgn (a + b)) (Z.sgn (c + d))); intro Habcd.
    generalize
     (sg_One_3 a b c d One H_Qhomographic_sg_denom_nonzero 
        (refl_equal One) Hab Habcd); intro; apply False_rec;

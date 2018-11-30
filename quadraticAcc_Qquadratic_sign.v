@@ -122,7 +122,7 @@ Lemma Qquadratic_Qpositive_to_Q_quadraticAcc_pos_1 :
    (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2),
  ~ same_ratio a b c d e f g h ->
  q_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero = 1%Z ->
- Zsgn
+ Z.sgn
    (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
@@ -384,7 +384,7 @@ Lemma Qquadratic_Qpositive_to_Q_quadraticAcc_pos_2 :
    (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2),
  ~ same_ratio a b c d e f g h ->
  q_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero = 1%Z ->
- Zsgn
+ Z.sgn
    (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
@@ -643,7 +643,7 @@ Lemma Qquadratic_Qpositive_to_Q_quadraticAcc_neg_1 :
    (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2),
  ~ same_ratio a b c d e f g h ->
  q_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero = (-1)%Z ->
- Zsgn
+ Z.sgn
    (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
@@ -867,7 +867,7 @@ Lemma Qquadratic_Qpositive_to_Q_quadraticAcc_neg_2 :
    (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2),
  ~ same_ratio a b c d e f g h ->
  q_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero = (-1)%Z ->
- Zsgn
+ Z.sgn
    (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +

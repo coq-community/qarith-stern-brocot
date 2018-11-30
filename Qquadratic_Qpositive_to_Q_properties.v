@@ -146,31 +146,31 @@ Ltac QSign_mismatch_ :=
 (* The tactique Absurd_q_sign_ solves the goal by contradiction if in the context we have:
 
 (C1)  id1:(q_sign a b c d e f g h p1 p2 H)=1
-     id2:(Zsgn new_a+new_b+new_c+new_d)=0 
+     id2:(Z.sgn new_a+new_b+new_c+new_d)=0 
      ----------------------------------
    
 or 
 
 (C2)  id1:(q_sign a b c d e f g h p1 p2 H)=1
-     id2:(Zsgn new_e+new_f+new_g+new_h)=0 
+     id2:(Z.sgn new_e+new_f+new_g+new_h)=0 
      ----------------------------------
 
 or
 
 (C3)  id1:(q_sign a b c d e f g h p1 p2 H)=-1
-     id2:(Zsgn new_a+new_b+new_c+new_d)=0 
+     id2:(Z.sgn new_a+new_b+new_c+new_d)=0 
      ----------------------------------
    
 or 
 
 (C4)  id1:(q_sign a b c d e f g h p1 p2 H)=-1
-     id2:(Zsgn new_e+new_f+new_g+new_h)=0 
+     id2:(Z.sgn new_e+new_f+new_g+new_h)=0 
      ----------------------------------
    
 otherwise if in the context we have 
 
 (C5)  id1:(q_sign a b c d e f g h p1 p2 H)=0
-     id2:(Zsgn ?)=0 
+     id2:(Z.sgn ?)=0 
      ----------------------------------
 
 it calls the QSign_mismatch_ tactic.
@@ -183,7 +183,7 @@ In the next files we used this tactic 4 times and all of them are instances of c
 Ltac Absurd_q_sign_ :=
   match goal with
   | id1:(q_sign ?X1 ?X2 ?X3 ?X4 ?X5 ?X6 ?X7 ?X8 ?X9 ?X10 ?X11 = ?X0),id2:
-  (Zsgn _ = 0%Z) |- _ =>
+  (Z.sgn _ = 0%Z) |- _ =>
       match constr:(X0) with
       | 0%Z => QSign_mismatch_
       end ||
@@ -268,7 +268,7 @@ Lemma Qquadratic_Qpositive_to_Q_5 :
    (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2),
  ~ same_ratio a b c d e f g h ->
  q_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero = 1%Z ->
- Zsgn
+ Z.sgn
    (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
@@ -325,7 +325,7 @@ Lemma Qquadratic_Qpositive_to_Q_6 :
    (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2),
  ~ same_ratio a b c d e f g h ->
  q_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero = 1%Z ->
- Zsgn
+ Z.sgn
    (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
@@ -392,7 +392,7 @@ Lemma Qquadratic_Qpositive_to_Q_7 :
    (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2),
  ~ same_ratio a b c d e f g h ->
  q_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero = (-1)%Z ->
- Zsgn
+ Z.sgn
    (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
@@ -454,7 +454,7 @@ Lemma Qquadratic_Qpositive_to_Q_8 :
    (H_Qquadratic_sg_denom_nonzero : Qquadratic_sg_denom_nonzero e f g h p1 p2),
  ~ same_ratio a b c d e f g h ->
  q_sign a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero = (-1)%Z ->
- Zsgn
+ Z.sgn
    (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
     qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero +
@@ -846,7 +846,7 @@ Proof.
  (* 7 *)
  assert
   (H :
-   Zsgn
+   Z.sgn
      (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
       qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
       qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
@@ -889,7 +889,7 @@ Proof.
  (* 8 *)
  assert
   (H :
-   Zsgn
+   Z.sgn
      (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
       qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
       qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
@@ -937,7 +937,7 @@ Proof.
  (* 10 *)
  assert
   (H :
-   Zsgn
+   Z.sgn
      (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
       qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
       qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
@@ -982,7 +982,7 @@ Proof.
  (* 11 *)
  assert
   (H :
-   Zsgn
+   Z.sgn
      (qnew_a a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
       qnew_b a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +
       qnew_c a b c d e f g h p1 p2 H_Qquadratic_sg_denom_nonzero2 +

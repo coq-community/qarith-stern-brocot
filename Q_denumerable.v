@@ -95,7 +95,7 @@ Defined.
 Definition nat_to_Z_i (n:nat) := 
   match even_odd_exists_dec n with
   | inl s => let (k, _) := s in Z_of_nat k
-  | inr s => let (k, _) := s in Zopp (Z_of_nat k)
+  | inr s => let (k, _) := s in Z.opp (Z_of_nat k)
   end.
 
 Lemma double_eq_half_eq:forall m n, Div2.double m = Div2.double n -> m =n.
@@ -148,9 +148,9 @@ Proof.
  simpl; 
    case (even_odd_exists_dec 0); intros [k Hk];
      [transitivity (Z_of_nat 0)
-       |transitivity (Zopp (Z_of_nat 0))
+       |transitivity (Z.opp (Z_of_nat 0))
      ]; trivial;
-  try apply (f_equal Zopp);
+  try apply (f_equal Z.opp);
     apply (f_equal Z_of_nat);
       unfold Div2.double in Hk; omega.
 
@@ -177,9 +177,9 @@ Proof.
    intro Hk';
    rewrite <- (double_eq_half_eq _ _ Hk');
    symmetry;
-   apply Zopp_inj;
+   apply Z.opp_inj;
    rewrite Zopp_neg;
-   rewrite Zopp_involutive;
+   rewrite Z.opp_involutive;
    apply Zpos_eq_Z_of_nat_o_nat_of_P.
 
    intros [H_nat_p_lt_2 _];

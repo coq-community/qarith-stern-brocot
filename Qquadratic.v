@@ -512,9 +512,9 @@ case (Qquadratic_sign_sign_dec a b c d e f g h p1 p2 H_qsign).
       qnew_b a b c d e f g h p1 p2 H_qsign +
       qnew_c a b c d e f g h p1 p2 H_qsign +
       qnew_d a b c d e f g h p1 p2 H_qsign)).
- (* Zsgn `na+nb+nc+nd` = 0 \/ Zsgn `na+nb+nc+nd` = 1 *)
+ (* Z.sgn `na+nb+nc+nd` = 0 \/ Z.sgn `na+nb+nc+nd` = 1 *)
  intros [na_nb_nc_nd_eq_zero| na_nb_nc_nd_eq_one].
- (* Zsgn = 0 -> False *)
+ (* Z.sgn = 0 -> False *)
  abstract (apply False_rec;
             generalize
              (Qquadratic_sign_pos_1 a b c d e f g h p1 p2 H_qsign
@@ -532,7 +532,7 @@ case (Qquadratic_sign_sign_dec a b c d e f g h p1 p2 H_qsign).
             generalize (Zsgn_2 _ na_nb_nc_nd_eq_zero);
             [ apply sym_not_eq | idtac ]; apply Zorder.Zlt_not_eq; 
             assumption).
- (* Zsgn = 1 *)
+ (* Z.sgn = 1 *)
  refine
   (Qpos
      (Qquadratic_Qpositive_to_Qpositive
@@ -550,7 +550,7 @@ case (Qquadratic_sign_sign_dec a b c d e f g h p1 p2 H_qsign).
            (Qquadratic_Qpositive_to_Q_quadraticAcc_pos_1 a b c d e f g h p1
               p2 H_qsign not_same_ratio_abcdefgh l1_eq_one na_nb_nc_nd_eq_one).
  
- (* Zsgn = -1 *)
+ (* Z.sgn = -1 *)
  intro na_nb_nc_nd_eq_minus_one.
  refine
   (Qpos
@@ -603,9 +603,9 @@ case (Qquadratic_sign_sign_dec a b c d e f g h p1 p2 H_qsign).
       qnew_b a b c d e f g h p1 p2 H_qsign +
       qnew_c a b c d e f g h p1 p2 H_qsign +
       qnew_d a b c d e f g h p1 p2 H_qsign)).
- (* Zsgn `na+nb+nc+nd` = 0 \/ Zsgn `na+nb+nc+nd` = 1 *)
+ (* Z.sgn `na+nb+nc+nd` = 0 \/ Z.sgn `na+nb+nc+nd` = 1 *)
  intros [na_nb_nc_nd_eq_zero| na_nb_nc_nd_eq_one].
- (* Zsgn = 0 -> False *)
+ (* Z.sgn = 0 -> False *)
  abstract (apply False_rec;
             generalize
              (Qquadratic_sign_neg_1 a b c d e f g h p1 p2 H_qsign
@@ -623,7 +623,7 @@ case (Qquadratic_sign_sign_dec a b c d e f g h p1 p2 H_qsign).
             generalize (Zsgn_2 _ na_nb_nc_nd_eq_zero);
             [ apply sym_not_eq | idtac ]; apply Zorder.Zlt_not_eq; 
             assumption).
- (* Zsgn = 1 *)
+ (* Z.sgn = 1 *)
  refine
   (Qneg
      (Qquadratic_Qpositive_to_Qpositive
@@ -642,7 +642,7 @@ case (Qquadratic_sign_sign_dec a b c d e f g h p1 p2 H_qsign).
               p2 H_qsign not_same_ratio_abcdefgh l1_eq_min_one
               na_nb_nc_nd_eq_one).
 
- (* Zsgn = -1 *)
+ (* Z.sgn = -1 *)
  intro na_nb_nc_nd_eq_minus_one.
  refine
   (Qneg
