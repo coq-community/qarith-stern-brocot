@@ -1,16 +1,25 @@
-{ coq-version ? "master" }:
+{ pkgs ? (import <nixpkgs> {}), coq-version-or-url, shell ? false }:
 
-let coq = {
-  "master" = import (fetchTarball "https://github.com/coq/coq/tarball/master") {};
-  "v8.8" = import (fetchTarball "https://github.com/coq/coq/tarball/v8.8") {};
-  "8.8" = (import <nixpkgs> {}).coq_8_8;
-  "8.7" = (import <nixpkgs> {}).coq_8_7;
-  }."${coq-version}";
+let
+  coq-version-parts = builtins.match "([0-9]+).([0-9]+)" coq-version-or-url;
+  coqPackages =
+    if coq-version-parts == null then
+      pkgs.mkCoqPackages (import (fetchTarball coq-version-or-url) {})
+    else
+      pkgs."coqPackages_${builtins.concatStringsSep "_" coq-version-parts}";
 in
 
-(import <nixpkgs> {}).stdenv.mkDerivation rec {
+with coqPackages;
+
+pkgs.stdenv.mkDerivation {
+
   name = "qarith-stern-brocot";
-  buildInputs = [ coq ];
-  src = ./.;
-  installFlags = "COQLIB=$(out)/lib/coq/";
+
+  propagatedBuildInputs = [
+    coq
+  ];
+
+  src = if shell then null else ./.;
+
+  installFlags = "COQLIB=$(out)/lib/coq/${coq.coq-version}/";
 }
