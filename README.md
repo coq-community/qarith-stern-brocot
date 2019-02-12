@@ -4,6 +4,10 @@
 [![Contributing][contributing-shield]][contributing-link]
 [![Code of Conduct][conduct-shield]][conduct-link]
 [![Gitter][gitter-shield]][gitter-link]
+[![DOI][doi-shield]][doi-link]
+
+[doi-shield]: https://zenodo.org/badge/DOI/10.1007/978-3-540-24849-1_20.svg
+[doi-link]: https://doi.org/10.1007/978-3-540-24849-1_20
 
 [travis-shield]: https://travis-ci.com/coq-community/qarith-stern-brocot.svg?branch=master
 [travis-link]: https://travis-ci.com/coq-community/qarith-stern-brocot/builds
@@ -17,10 +21,12 @@
 [gitter-shield]: https://img.shields.io/badge/chat-on%20gitter-%23c1272d.svg
 [gitter-link]: https://gitter.im/coq-community/Lobby
 
-Developement of rational numbers as finite binary lists and defining
+Development of rational numbers as finite binary lists and defining
 field operations on them in two different ways: strict and lazy.
 
 
+More details about the project can be found in the paper
+[QArith: Coq Formalisation of Lazy Rational Arithmetic](https://hal.inria.fr/inria-00077041).
 
 ## Meta
 
@@ -29,7 +35,7 @@ field operations on them in two different ways: strict and lazy.
   - Yves Bertot (initial)
 - Coq-community maintainer(s):
   - Hugo Herbelin ([**@herbelin**](https://github.com/herbelin))
-- License: [GNU Lesser General Public License v2.1](LICENSE)
+- License: [GNU Lesser General Public License v2.1 or later](LICENSE)
 - Compatible Coq versions: Coq 8.7 or greater (use releases for other Coq versions)
 - Additional dependencies: none
 
@@ -55,7 +61,7 @@ make install
 After installation, the included modules are available under
 the `QArithSternBrocot` namespace.
 
-## Description
+## Documentation
 
 This package contains a rational arithmetic library for Coq.
 This includes:
