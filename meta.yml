@@ -3,8 +3,13 @@ fullname: Binary Rational Numbers
 shortname: qarith-stern-brocot
 
 description: |
-  Developement of rational numbers as finite binary lists and defining
+  Development of rational numbers as finite binary lists and defining
   field operations on them in two different ways: strict and lazy.
+
+paper:
+  doi: 10.1007/978-3-540-24849-1_20
+  url: https://hal.inria.fr/inria-00077041
+  title: 'QArith: Coq Formalisation of Lazy Rational Arithmetic'
 
 authors:
 - name: Milad Niqui
@@ -17,8 +22,8 @@ maintainers:
   nickname: herbelin
 
 license:
-  fullname: GNU Lesser General Public License v2.1
-  shortname: LGPL 2.1
+  fullname: GNU Lesser General Public License v2.1 or later
+  identifier: LGPL-2.1-or-later
 
 supported_coq_versions:
   text: Coq 8.7 or greater (use releases for other Coq versions)
@@ -46,7 +51,7 @@ categories:
 - name: Miscellaneous/Extracted Programs/Arithmetic
 
 documentation: |
-  ## Description
+  ## Documentation
 
   This package contains a rational arithmetic library for Coq.
   This includes:
