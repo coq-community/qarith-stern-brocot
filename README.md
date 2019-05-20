@@ -6,9 +6,6 @@
 [![Gitter][gitter-shield]][gitter-link]
 [![DOI][doi-shield]][doi-link]
 
-[doi-shield]: https://zenodo.org/badge/DOI/10.1007/978-3-540-24849-1_20.svg
-[doi-link]: https://doi.org/10.1007/978-3-540-24849-1_20
-
 [travis-shield]: https://travis-ci.com/coq-community/qarith-stern-brocot.svg?branch=master
 [travis-link]: https://travis-ci.com/coq-community/qarith-stern-brocot/builds
 
@@ -20,6 +17,9 @@
 
 [gitter-shield]: https://img.shields.io/badge/chat-on%20gitter-%23c1272d.svg
 [gitter-link]: https://gitter.im/coq-community/Lobby
+
+[doi-shield]: https://zenodo.org/badge/DOI/10.1007/978-3-540-24849-1_20.svg
+[doi-link]: https://doi.org/10.1007/978-3-540-24849-1_20
 
 Development of rational numbers as finite binary lists and defining
 field operations on them in two different ways: strict and lazy.
@@ -36,13 +36,13 @@ More details about the project can be found in the paper
 - Coq-community maintainer(s):
   - Hugo Herbelin ([**@herbelin**](https://github.com/herbelin))
 - License: [GNU Lesser General Public License v2.1 or later](LICENSE)
-- Compatible Coq versions: Coq 8.7 or greater (use releases for other Coq versions)
-- Additional dependencies: none
+- Compatible Coq versions: 8.7 or later (use releases for other Coq versions)
+- Additional Coq dependencies: none
 
 ## Building and installation instructions
 
-The easiest way to install the latest released version is via
-[OPAM](https://opam.ocaml.org/doc/Install.html):
+The easiest way to install the latest released version of Binary Rational Numbers
+is via [OPAM](https://opam.ocaml.org/doc/Install.html):
 
 ```shell
 opam repo add coq-released https://coq.inria.fr/opam/released
@@ -60,6 +60,7 @@ make install
 
 After installation, the included modules are available under
 the `QArithSternBrocot` namespace.
+
 
 ## Documentation
 
