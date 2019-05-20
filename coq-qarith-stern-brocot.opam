@@ -1,16 +1,22 @@
-opam-version: "1.2"
+opam-version: "2.0"
 maintainer: "palmskog@gmail.com"
 
 homepage: "https://github.com/coq-community/qarith-stern-brocot"
-dev-repo: "https://github.com/coq-community/qarith-stern-brocot.git"
+dev-repo: "git+https://github.com/coq-community/qarith-stern-brocot.git"
 bug-reports: "https://github.com/coq-community/qarith-stern-brocot/issues"
 license: "LGPL-2.1-or-later"
 
+synopsis: "Binary rational numbers"
+description: """
+Development of rational numbers as finite binary lists and defining
+field operations on them in two different ways: strict and lazy.
+"""
+
 build: [make "-j%{jobs}%"]
 install: [make "install"]
-remove: ["rm" "-R" "%{lib}%/coq/user-contrib/QArithSternBrocot"]
 depends: [
-  "coq" {(>= "8.7" & < "8.10~") | (= "dev")}
+  "ocaml"
+  "coq" {(>= "8.7" & < "8.11~") | (= "dev")}
 ]
 
 tags: [
