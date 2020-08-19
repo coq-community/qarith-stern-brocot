@@ -3,7 +3,7 @@
 [![Travis][travis-shield]][travis-link]
 [![Contributing][contributing-shield]][contributing-link]
 [![Code of Conduct][conduct-shield]][conduct-link]
-[![Gitter][gitter-shield]][gitter-link]
+[![Zulip][zulip-shield]][zulip-link]
 [![DOI][doi-shield]][doi-link]
 
 [travis-shield]: https://travis-ci.com/coq-community/qarith-stern-brocot.svg?branch=master
@@ -15,8 +15,9 @@
 [conduct-shield]: https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-%23f15a24.svg
 [conduct-link]: https://github.com/coq-community/manifesto/blob/master/CODE_OF_CONDUCT.md
 
-[gitter-shield]: https://img.shields.io/badge/chat-on%20gitter-%23c1272d.svg
-[gitter-link]: https://gitter.im/coq-community/Lobby
+[zulip-shield]: https://img.shields.io/badge/chat-on%20zulip-%23c1272d.svg
+[zulip-link]: https://coq.zulipchat.com/#narrow/stream/237663-coq-community-devs.20.26.20users
+
 
 [doi-shield]: https://zenodo.org/badge/DOI/10.1007/978-3-540-24849-1_20.svg
 [doi-link]: https://doi.org/10.1007/978-3-540-24849-1_20
@@ -24,9 +25,6 @@
 Development of rational numbers as finite binary lists and defining
 field operations on them in two different ways: strict and lazy.
 
-
-More details about the project can be found in the paper
-[QArith: Coq Formalisation of Lazy Rational Arithmetic](https://hal.inria.fr/inria-00077041).
 
 ## Meta
 
@@ -36,8 +34,11 @@ More details about the project can be found in the paper
 - Coq-community maintainer(s):
   - Hugo Herbelin ([**@herbelin**](https://github.com/herbelin))
 - License: [GNU Lesser General Public License v2.1 or later](LICENSE)
-- Compatible Coq versions: 8.7 or later (use releases for other Coq versions)
-- Additional Coq dependencies: none
+- Compatible Coq versions: 8.7 to 8.10
+- Additional dependencies: none
+- Coq namespace: `QArithSternBrocot`
+- Related publication(s):
+  - [QArith: Coq Formalisation of Lazy Rational Arithmetic](https://hal.inria.fr/inria-00077041) doi:[10.1007/978-3-540-24849-1_20](https://doi.org/10.1007/978-3-540-24849-1_20)
 
 ## Building and installation instructions
 
@@ -52,14 +53,11 @@ opam install coq-qarith-stern-brocot
 To instead build and install manually, do:
 
 ``` shell
-git clone https://github.com/coq-community/qarith-stern-brocot
+git clone https://github.com/coq-community/qarith-stern-brocot.git
 cd qarith-stern-brocot
-make   # or make -j <number-of-cores-on-your-machine>
+make   # or make -j <number-of-cores-on-your-machine> 
 make install
 ```
-
-After installation, the included modules are available under
-the `QArithSternBrocot` namespace.
 
 
 ## Documentation
