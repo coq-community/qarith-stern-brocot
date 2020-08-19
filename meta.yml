@@ -33,17 +33,17 @@ license:
   identifier: LGPL-2.1-or-later
 
 supported_coq_versions:
-  text: 8.7 or later (use releases for other Coq versions)
-  opam: '{(>= "8.7" & < "8.11~") | (= "dev")}'
+  text: 8.7 to 8.10
+  opam: '{(>= "8.7" & < "8.11~")}'
 
 tested_coq_nix_versions:
-- version_or_url: https://github.com/coq/coq/tarball/master
-- version_or_url: 8.9
-- version_or_url: 8.8
-- version_or_url: 8.7
+- version_or_url: "8.10"
+- version_or_url: "8.9"
+- version_or_url: "8.8"
+- version_or_url: "8.7"
 
 tested_coq_opam_versions:
-- version: dev
+- version: "8.10"
 
 namespace: QArithSternBrocot
 
