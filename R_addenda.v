@@ -14,6 +14,8 @@ Require Import Fourier.
 Require Import Euclid. 
 Require Import Omega.
 
+Open Scope R_scope.
+
 Lemma Rlt_stepl:forall x y z, Rlt x y -> x=z -> Rlt z y.
 Proof.
  intros x y z H_lt H_eq; subst; assumption.
@@ -111,7 +113,7 @@ Definition Ropp_resp_nonzero:=RIneq.Ropp_neq_0_compat.
 
 Hint Resolve Rlt_Ropp_pos Rinv_pos R1_neq_R0 Rle_mult_nonneg_nonneg
              Rlt_mult_pos_pos Rlt_mult_neg_neg Rlt_not_eq' Rlt_not_eq
-             Rmult_resp_nonzero Rinv_resp_nonzero Ropp_resp_nonzero.
+             Rmult_resp_nonzero Rinv_resp_nonzero Ropp_resp_nonzero : core.
 
 Lemma Rmult_mult_nonneg: forall r, 0<=r*r.
 Proof.
@@ -386,7 +388,7 @@ Proof.
  intros n; apply lt_INR_0; auto with arith.  
 Qed.
 
-Hint Resolve not_O_S_INR pos_S_INR pos_INR.
+Hint Resolve not_O_S_INR pos_S_INR pos_INR : core.
 
 
 Lemma Req_Rdiv_Rone:forall x y, y<>0 -> x=y -> x/y =1.

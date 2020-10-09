@@ -1202,7 +1202,7 @@ Proof.
          generalize
            (Zsgn_3 _
              (Qhomographic_signok_1 _ _ _x));
-           intro Hcd_; generalize (Zsgn_1 (a + b)) (Zsgn_1 (c + d));
+           intro Hcd_; generalize (Zsgn_1' (a + b)) (Zsgn_1' (c + d));
              intros [[Hab| Hab]| Hab] [[Hcd| Hcd]| Hcd]; 
                try solve [ Falsum ]; rewrite Hab in _x1; 
 		 rewrite Hcd in _x1; try solve [ Falsum ]; 

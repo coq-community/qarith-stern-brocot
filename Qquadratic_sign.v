@@ -1553,15 +1553,15 @@ Proof.
      case (three_integers_dec_inf f g h); intro Hfgh;
      [ rewrite Qquadratic_sign_nRdL_nRdL_1;
         try solve [ discriminate | assumption ]; rewrite <- Zsgn_15;
-        apply Zsgn_1
+        apply Zsgn_1'
      | case (Z_lt_dec 2 (outside_square e f g h)); intro Ho2;
         [ rewrite Qquadratic_sign_nRdL_nRdL_2;
            try solve [ discriminate | assumption ]; 
-           apply Zsgn_1
+           apply Zsgn_1'
         | case (Z_lt_dec (outside_square e f g h) (-2)); intro Ho2';
            [ rewrite Qquadratic_sign_nRdL_nRdL_3;
               try solve [ discriminate | assumption ]; 
-              rewrite <- Zsgn_25; apply Zsgn_1
+              rewrite <- Zsgn_25; apply Zsgn_1'
            | match goal with
              | id1:(?X1 ?X2 ?X3 ?X4 ?X5 (nR ?X6) (nR ?X7)) |- ?X8 =>
                  rewrite
@@ -1599,11 +1599,11 @@ Proof.
      | case (Z_lt_dec 2 (outside_square a b c d)); intro Ho1;
         [ rewrite Qquadratic_sign_nRdL_nRdL_5;
            try solve [ discriminate | assumption ]; 
-           apply Zsgn_1
+           apply Zsgn_1'
         | case (Z_lt_dec (outside_square a b c d) (-2)); intro Ho1';
            [ rewrite Qquadratic_sign_nRdL_nRdL_6;
               try solve [ discriminate | assumption ]; 
-              rewrite <- Zsgn_25; apply Zsgn_1
+              rewrite <- Zsgn_25; apply Zsgn_1'
            | match goal with
              | id1:(?X1 ?X2 ?X3 ?X4 ?X5 (nR ?X6) (nR ?X7)) |- ?X8 =>
                  rewrite
@@ -1690,15 +1690,15 @@ Proof.
      case (three_integers_dec_inf f g h); intro Hfgh;
      [ rewrite Qquadratic_sign_nRdL_nRdL_1;
         try solve [ discriminate | assumption ]; rewrite <- Zsgn_15;
-        apply Zsgn_1
+        apply Zsgn_1'
      | case (Z_lt_dec 2 (outside_square e f g h)); intro Ho2;
         [ rewrite Qquadratic_sign_nRdL_nRdL_2;
            try solve [ discriminate | assumption ]; 
-           apply Zsgn_1
+           apply Zsgn_1'
         | case (Z_lt_dec (outside_square e f g h) (-2)); intro Ho2';
            [ rewrite Qquadratic_sign_nRdL_nRdL_3;
               try solve [ discriminate | assumption ]; 
-              rewrite <- Zsgn_25; apply Zsgn_1
+              rewrite <- Zsgn_25; apply Zsgn_1'
            | match goal with
              | id1:(?X1 ?X2 ?X3 ?X4 ?X5 (nR ?X6) (nR ?X7)) |- ?X8 =>
                  rewrite
@@ -1736,11 +1736,11 @@ Proof.
      | case (Z_lt_dec 2 (outside_square a b c d)); intro Ho1;
         [ rewrite Qquadratic_sign_nRdL_nRdL_5;
            try solve [ discriminate | assumption ]; 
-           apply Zsgn_1
+           apply Zsgn_1'
         | case (Z_lt_dec (outside_square a b c d) (-2)); intro Ho1';
            [ rewrite Qquadratic_sign_nRdL_nRdL_6;
               try solve [ discriminate | assumption ]; 
-              rewrite <- Zsgn_25; apply Zsgn_1
+              rewrite <- Zsgn_25; apply Zsgn_1'
            | match goal with
              | id1:(?X1 ?X2 ?X3 ?X4 ?X5 (nR ?X6) (nR ?X7)) |- ?X8 =>
                  rewrite
@@ -1851,15 +1851,15 @@ Proof.
      case (three_integers_dec_inf f g h); intro Hfgh;
      [ rewrite Qquadratic_sign_nRdL_nRdL_1;
         try solve [ discriminate | assumption ]; rewrite <- Zsgn_15;
-        apply Zsgn_1
+        apply Zsgn_1'
      | case (Z_lt_dec 2 (outside_square e f g h)); intro Ho2;
         [ rewrite Qquadratic_sign_nRdL_nRdL_2;
            try solve [ discriminate | assumption ]; 
-           apply Zsgn_1
+           apply Zsgn_1'
         | case (Z_lt_dec (outside_square e f g h) (-2)); intro Ho2';
            [ rewrite Qquadratic_sign_nRdL_nRdL_3;
               try solve [ discriminate | assumption ]; 
-              rewrite <- Zsgn_25; apply Zsgn_1
+              rewrite <- Zsgn_25; apply Zsgn_1'
            | match goal with
              | id1:(?X1 ?X2 ?X3 ?X4 ?X5 (nR ?X6) (nR ?X7)) |- ?X8 =>
                  rewrite
@@ -1897,11 +1897,11 @@ Proof.
      | case (Z_lt_dec 2 (outside_square a b c d)); intro Ho1;
         [ rewrite Qquadratic_sign_nRdL_nRdL_5;
            try solve [ discriminate | assumption ]; 
-           apply Zsgn_1
+           apply Zsgn_1'
         | case (Z_lt_dec (outside_square a b c d) (-2)); intro Ho1';
            [ rewrite Qquadratic_sign_nRdL_nRdL_6;
               try solve [ discriminate | assumption ]; 
-              rewrite <- Zsgn_25; apply Zsgn_1
+              rewrite <- Zsgn_25; apply Zsgn_1'
            | match goal with
              | id1:(?X1 ?X2 ?X3 ?X4 ?X5 (nR ?X6) (nR ?X7)) |- ?X8 =>
                  rewrite
@@ -1988,15 +1988,15 @@ Proof.
      case (three_integers_dec_inf f g h); intro Hfgh;
      [ rewrite Qquadratic_sign_nRdL_nRdL_1;
         try solve [ discriminate | assumption ]; rewrite <- Zsgn_15;
-        apply Zsgn_1
+        apply Zsgn_1'
      | case (Z_lt_dec 2 (outside_square e f g h)); intro Ho2;
         [ rewrite Qquadratic_sign_nRdL_nRdL_2;
            try solve [ discriminate | assumption ]; 
-           apply Zsgn_1
+           apply Zsgn_1'
         | case (Z_lt_dec (outside_square e f g h) (-2)); intro Ho2';
            [ rewrite Qquadratic_sign_nRdL_nRdL_3;
               try solve [ discriminate | assumption ]; 
-              rewrite <- Zsgn_25; apply Zsgn_1
+              rewrite <- Zsgn_25; apply Zsgn_1'
            | match goal with
              | id1:(?X1 ?X2 ?X3 ?X4 ?X5 (nR ?X6) (nR ?X7)) |- ?X8 =>
                  rewrite
@@ -2034,11 +2034,11 @@ Proof.
      | case (Z_lt_dec 2 (outside_square a b c d)); intro Ho1;
         [ rewrite Qquadratic_sign_nRdL_nRdL_5;
            try solve [ discriminate | assumption ]; 
-           apply Zsgn_1
+           apply Zsgn_1'
         | case (Z_lt_dec (outside_square a b c d) (-2)); intro Ho1';
            [ rewrite Qquadratic_sign_nRdL_nRdL_6;
               try solve [ discriminate | assumption ]; 
-              rewrite <- Zsgn_25; apply Zsgn_1
+              rewrite <- Zsgn_25; apply Zsgn_1'
            | match goal with
              | id1:(?X1 ?X2 ?X3 ?X4 ?X5 (nR ?X6) (nR ?X7)) |- ?X8 =>
                  rewrite

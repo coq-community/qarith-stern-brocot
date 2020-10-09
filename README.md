@@ -34,7 +34,7 @@ field operations on them in two different ways: strict and lazy.
 - Coq-community maintainer(s):
   - Hugo Herbelin ([**@herbelin**](https://github.com/herbelin))
 - License: [GNU Lesser General Public License v2.1 or later](LICENSE)
-- Compatible Coq versions: 8.7 to 8.10
+- Compatible Coq versions: 8.7 and later
 - Additional dependencies: none
 - Coq namespace: `QArithSternBrocot`
 - Related publication(s):

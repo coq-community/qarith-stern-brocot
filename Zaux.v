@@ -1518,7 +1518,7 @@ Proof.
  intros [| px| px] Hx1 Hx2; try (discriminate Hx1); trivial.
 Qed.
 
-Let pred_nat_unfolded_subproof px :
+Lemma pred_nat_unfolded_subproof px :
   Pos.to_nat px <> 0.
 Proof.
 apply sym_not_equal; apply lt_O_neq; apply lt_O_nat_of_P.
@@ -1580,7 +1580,7 @@ Qed.
 (*###########################################################################*)
 
 
-Lemma Zsgn_1 :
+Lemma Zsgn_1' :
  forall x : Z, {Z.sgn x = 0%Z} + {Z.sgn x = 1%Z} + {Z.sgn x = (-1)%Z}. (*QF*)
 Proof.
  intros.
@@ -1690,7 +1690,7 @@ Proof.
  rewrite Zmult_1_l.
  reflexivity.
  transitivity (Z.sgn b * (Z.sgn b * y))%Z.
- case (Zsgn_1 b).
+ case (Zsgn_1' b).
  intro.
  case s.
  intro.
@@ -1716,7 +1716,7 @@ Proof.
  unfold Z.sgn at 2 in |- *.
  intro.
  transitivity (Z.sgn b * (-1 * (Z.sgn b * y)))%Z.
- case (Zsgn_1 b).
+ case (Zsgn_1' b).
  intros.
  case s.
  intro.
@@ -1828,7 +1828,7 @@ Lemma Zsgn_11 : forall x : Z, (Z.sgn x < 0)%Z -> (x < 0)%Z.
 Proof.
  intros.
  apply Zsgn_10.
- case (Zsgn_1 x).
+ case (Zsgn_1' x).
  intro.
  apply False_ind.
  case s.
@@ -1848,7 +1848,7 @@ Lemma Zsgn_12 : forall x : Z, (0 < Z.sgn x)%Z -> (0 < x)%Z.
 Proof.
  intros.
  apply Zsgn_9.
- case (Zsgn_1 x).
+ case (Zsgn_1' x).
  intro.
  case s.
  intro.
@@ -1985,7 +1985,7 @@ Proof.
  intros [| p| p] Hp; trivial.
 Qed.
 
-Hint Resolve Zsgn_1 Zsgn_2 Zsgn_3 Zsgn_4 Zsgn_5 Zsgn_6 Zsgn_7 Zsgn_7' Zsgn_8
+Hint Resolve Zsgn_1' Zsgn_2 Zsgn_3 Zsgn_4 Zsgn_5 Zsgn_6 Zsgn_7 Zsgn_7' Zsgn_8
   Zsgn_9 Zsgn_10 Zsgn_11 Zsgn_12 Zsgn_13 Zsgn_14 Zsgn_15 Zsgn_16 Zsgn_17
   Zsgn_18 Zsgn_19 Zsgn_20 Zsgn_21 Zsgn_22 Zsgn_23 Zsgn_24 Zsgn_25 Zsgn_26
   Zsgn_27: zarith.

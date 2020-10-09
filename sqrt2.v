@@ -33,7 +33,7 @@ Theorem lt_neq : forall x y : nat, x < y -> x <> y.
 unfold not in |- *; intros x y H H1; elim (lt_irrefl x);
  pattern x at 2 in |- *; rewrite H1; auto.
 Qed.
-Hint Resolve lt_neq.
+Hint Resolve lt_neq : core.
  
 Theorem monotonic_inverse :
  forall f : nat -> nat,
@@ -98,7 +98,7 @@ intros H; elim (lt_n_O 0); auto.
 intros n H.
 simpl in |- *; discriminate.
 Qed.
-Hint Resolve sqrt_q_non_zero.
+Hint Resolve sqrt_q_non_zero : core.
  
 Ltac solve_comparison :=
   apply root_monotonic; repeat rewrite square_recompose; rewrite hyp_sqrt;
