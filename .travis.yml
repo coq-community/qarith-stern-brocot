@@ -47,6 +47,12 @@ jobs:
 
   # Test supported versions of Coq via Nix
   - env:
+    - COQ=https://github.com/coq/coq-on-cachix/tarball/master
+    <<: *NIX
+  - env:
+    - COQ=8.12
+    <<: *NIX
+  - env:
     - COQ=8.11
     <<: *NIX
   - env:
@@ -64,7 +70,7 @@ jobs:
 
   # Test supported versions of Coq via OPAM
   - env:
-    - COQ_IMAGE=coqorg/coq:8.11
+    - COQ_IMAGE=coqorg/coq:dev
     - PACKAGE=coq-qarith-stern-brocot.dev
     - NJOBS=2
     <<: *OPAM
