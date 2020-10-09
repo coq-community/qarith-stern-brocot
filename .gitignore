@@ -5,6 +5,7 @@
 *.vo
 *.vos
 *.vok
+_build
 Makefile.coq
 Makefile.coq.conf
 result
