@@ -1518,7 +1518,7 @@ Proof.
  intros [| px| px] Hx1 Hx2; try (discriminate Hx1); trivial.
 Qed.
 
-Let pred_nat_unfolded_subproof px :
+Lemma pred_nat_unfolded_subproof px :
   Pos.to_nat px <> 0.
 Proof.
 apply sym_not_equal; apply lt_O_neq; apply lt_O_nat_of_P.
