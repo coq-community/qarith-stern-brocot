@@ -1,43 +1,43 @@
--R . QArithSternBrocot
+-R theories QArithSternBrocot
 
 -arg -w -arg -notation-overridden
 -arg -w -arg -undeclared-scope
 -arg -w -arg -omega-is-deprecated
 
-Field_Theory_Q.v
-general_Q.v
-homographicAcc_Qhomographic_sign.v
-homographic_correctness.v
-Merge_Order.v
-positive_fraction_encoding.v
-Qabs.v
-Q_Archimedean.v
-QArith_Stern_Brocot.v
-Q_denumerable.v
-Q_field.v
-Qhomographic_Qpositive_to_Qpositive.v
-Qhomographic_Qpositive_to_Q_properties.v
-Qhomographic_sign_properties.v
-Qhomographic_sign.v
-Qhomographic.v
-Qmax_min.v
-Q_ordered_field_properties.v
-Q_order.v
-Qpositive_le.v
-Qpositive_order.v
-Qpositive_plus_mult.v
-Qpositive_sub.v
-Qpositive.v
-Qquadratic_Qpositive_to_Qpositive.v
-Qquadratic_Qpositive_to_Q_properties.v
-Qquadratic_sign_properties.v
-Qquadratic_sign.v
-Qquadratic.v
-Qsyntax.v
-Q_to_R.v
-quadraticAcc_Qquadratic_sign.v
-quadratic_correctness.v
-R_addenda.v
-second_Field_Theory_Q.v
-sqrt2.v
-Zaux.v
+theories/Field_Theory_Q.v
+theories/general_Q.v
+theories/homographicAcc_Qhomographic_sign.v
+theories/homographic_correctness.v
+theories/Merge_Order.v
+theories/positive_fraction_encoding.v
+theories/Qabs.v
+theories/Q_Archimedean.v
+theories/QArith_Stern_Brocot.v
+theories/Q_denumerable.v
+theories/Q_field.v
+theories/Qhomographic_Qpositive_to_Qpositive.v
+theories/Qhomographic_Qpositive_to_Q_properties.v
+theories/Qhomographic_sign_properties.v
+theories/Qhomographic_sign.v
+theories/Qhomographic.v
+theories/Qmax_min.v
+theories/Q_ordered_field_properties.v
+theories/Q_order.v
+theories/Qpositive_le.v
+theories/Qpositive_order.v
+theories/Qpositive_plus_mult.v
+theories/Qpositive_sub.v
+theories/Qpositive.v
+theories/Qquadratic_Qpositive_to_Qpositive.v
+theories/Qquadratic_Qpositive_to_Q_properties.v
+theories/Qquadratic_sign_properties.v
+theories/Qquadratic_sign.v
+theories/Qquadratic.v
+theories/Qsyntax.v
+theories/Q_to_R.v
+theories/quadraticAcc_Qquadratic_sign.v
+theories/quadratic_correctness.v
+theories/R_addenda.v
+theories/second_Field_Theory_Q.v
+theories/sqrt2.v
+theories/Zaux.v
