@@ -1580,7 +1580,7 @@ Proof.
               end ].
    case (not_Zeq_inf (Z.sgn (a + b)) 0 Hab); intro Hab';
     [ right; split; [ apply Zsgn_11; assumption | apply Zsgn_12 ];
-       generalize (Zsgn_1 (c + d)); intros [[Hcd| Hcd]| Hcd];
+       generalize (Zsgn_1' (c + d)); intros [[Hcd| Hcd]| Hcd];
        [ apply False_ind;
           apply (Qhomographic_signok_1 c d H_Qhomographic_sg_denom_nonzero);
           apply Zsgn_2
@@ -1588,7 +1588,7 @@ Proof.
        | apply False_ind; apply Habcd; rewrite Hcd; apply Zsgn_8;
           apply Zsgn_11 ]; assumption
     | left; split; [ apply Zsgn_12; assumption | apply Zsgn_11 ];
-       generalize (Zsgn_1 (c + d)); intros [[Hcd| Hcd]| Hcd];
+       generalize (Zsgn_1' (c + d)); intros [[Hcd| Hcd]| Hcd];
        [ apply False_ind;
           apply (Qhomographic_signok_1 c d H_Qhomographic_sg_denom_nonzero);
           apply Zsgn_2

@@ -507,7 +507,7 @@ case (Qquadratic_sign_sign_dec a b c d e f g h p1 p2 H_qsign).
  
  (* still l1=1 -> Q *)
  case
-  (Zsgn_1
+  (Zsgn_1'
      (qnew_a a b c d e f g h p1 p2 H_qsign +
       qnew_b a b c d e f g h p1 p2 H_qsign +
       qnew_c a b c d e f g h p1 p2 H_qsign +
@@ -598,7 +598,7 @@ case (Qquadratic_sign_sign_dec a b c d e f g h p1 p2 H_qsign).
  
  (* still l1= -1 -> Q *)
  case
-  (Zsgn_1
+  (Zsgn_1'
      (qnew_a a b c d e f g h p1 p2 H_qsign +
       qnew_b a b c d e f g h p1 p2 H_qsign +
       qnew_c a b c d e f g h p1 p2 H_qsign +

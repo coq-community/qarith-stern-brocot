@@ -3,6 +3,8 @@
 *.aux
 *.d
 *.vo
+*.vos
+*.vok
 Makefile.coq
 Makefile.coq.conf
 result
