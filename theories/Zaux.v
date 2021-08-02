@@ -13,8 +13,9 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-(** This file includes random facts about Integers (and natural numbers) which are not found in the standard library. Some of the lemma here are not used in the QArith developement but are rather useful.
+(** This file includes random facts about Integers (and natural numbers) which are not
+    found in the standard library. Some of the lemmas here are not used in the QArith
+    development but are rather useful.
 *)
 
 Require Export ZArith.
@@ -573,7 +574,7 @@ Qed.
 
 
 
-Hint Resolve Zmult_pos_pos Zmult_neg_neg Zmult_neg_pos Zmult_pos_neg: zarith.
+#[export] Hint Resolve Zmult_pos_pos Zmult_neg_neg Zmult_neg_pos Zmult_pos_neg: zarith.
 
 
 Lemma Zle_reg_mult_l :
@@ -1158,7 +1159,7 @@ Proof.
  intros [| p| p]; intros; [ Falsum | constructor | constructor ].
 Qed.
  
-Hint Resolve square_pos: zarith.
+#[export] Hint Resolve square_pos: zarith.
 
 (*###########################################################################*)
 (** Properties of positive numbers, mapping between Z and nat                *)
@@ -1985,7 +1986,7 @@ Proof.
  intros [| p| p] Hp; trivial.
 Qed.
 
-Hint Resolve Zsgn_1' Zsgn_2 Zsgn_3 Zsgn_4 Zsgn_5 Zsgn_6 Zsgn_7 Zsgn_7' Zsgn_8
+#[export] Hint Resolve Zsgn_1' Zsgn_2 Zsgn_3 Zsgn_4 Zsgn_5 Zsgn_6 Zsgn_7 Zsgn_7' Zsgn_8
   Zsgn_9 Zsgn_10 Zsgn_11 Zsgn_12 Zsgn_13 Zsgn_14 Zsgn_15 Zsgn_16 Zsgn_17
   Zsgn_18 Zsgn_19 Zsgn_20 Zsgn_21 Zsgn_22 Zsgn_23 Zsgn_24 Zsgn_25 Zsgn_26
   Zsgn_27: zarith.
@@ -2388,7 +2389,7 @@ Proof.
  intros [|z|z]; simpl; auto with zarith; apply Zle_neg_pos. 
 Qed.
  
-Hint Resolve Zabs_1 Zabs_2 Zabs_3 Zabs_4 Zabs_5 Zabs_6 Zabs_7 Zabs_8 Zabs_9
+#[export] Hint Resolve Zabs_1 Zabs_2 Zabs_3 Zabs_4 Zabs_5 Zabs_6 Zabs_7 Zabs_8 Zabs_9
   Zabs_10 Zabs_11 Zabs_12 Zabs_min Zabs_neg Zabs_mult Zabs_plus Zle_Zabs: zarith.
 
 
@@ -2949,7 +2950,7 @@ Proof.
  ring.
 Qed.
 
-Hint Resolve ZmaxSS Zle_max_r Zle_max_l Zmax_n_n: zarith.
+#[export] Hint Resolve ZmaxSS Zle_max_r Zle_max_l Zmax_n_n: zarith.
 
 (*###########################################################################*)
 (** Properties of Arity                                                      *)
@@ -3020,7 +3021,7 @@ Proof.
  Flip.
 Qed.
 
-Hint Resolve Z_div_mod_eq_2 Z_div_le Z_div_nonneg Z_div_neg: zarith.
+#[export] Hint Resolve Z_div_mod_eq_2 Z_div_le Z_div_nonneg Z_div_neg: zarith.
 
 (*###########################################################################*)
 (** Properties of Zpower                                                       *)
@@ -3038,4 +3039,4 @@ Proof.
   ring.
 Qed.
 
-Hint Resolve Zpower_1 Zpower_2: zarith.
+#[export] Hint Resolve Zpower_1 Zpower_2: zarith.

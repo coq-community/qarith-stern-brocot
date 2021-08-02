@@ -35,10 +35,9 @@ Proof.
  apply (f_equal Z.abs_nat); trivial.
 Qed.
 
-(** For decoding and encoing elements of Q: binary sequneces versus pairs of integers. *) 
+(** For decoding and encoing elements of Q: binary sequneces versus pairs of integers. *)
 
-
-(*** Building the rational number m/n *)
+(** Building the rational number m/n *)
 Definition make_Q (m n : Z) :=
   match m, n with
   | Zpos _, Zpos _ =>
@@ -51,7 +50,7 @@ Definition make_Q (m n : Z) :=
       Qneg (Qpositive_c (Z.abs_nat m) (Z.abs_nat n) (Z.abs_nat m + Z.abs_nat n))
   end.
 
-(*** decoding a sequnce consisting of dL and nR and ending in One. *) 
+(** decoding a sequnce consisting of dL and nR and ending in One. *)
 Definition decode_Q (q : Q) :=
   match q with
   | Qpos p =>
@@ -157,7 +156,7 @@ Lemma Qlt_neg_zero : forall x' : Qpositive, Qlt (Qneg x') Zero.
  unfold Qlt in |- *; auto with *.
 Qed.
 
-Hint Resolve Qlt_neg_pos Qlt_neg_zero Qlt_zero_pos : core.
+#[export] Hint Resolve Qlt_neg_pos Qlt_neg_zero Qlt_zero_pos : core.
 
 Ltac QltCleanAbsurdCases :=
   match goal with
@@ -725,7 +724,7 @@ Proof.
  intro x; unfold Qlt in |- *; intro H; apply Qgt_antisym with x x; assumption.
 Qed.
 
-Hint Resolve Qlt_irreflexive : core.
+#[export] Hint Resolve Qlt_irreflexive : core.
 
 Lemma Qlt_not_eq : forall x y : Q, Qlt x y -> y <> x.
 Proof.
@@ -733,7 +732,7 @@ Proof.
   assumption.
 Qed. 
 
-Hint Resolve Qlt_not_eq : core.
+#[export] Hint Resolve Qlt_not_eq : core.
 
 Lemma Qlt_transitive : forall x y z : Q, Qlt x y -> Qlt y z -> Qlt x z.
 Proof.
@@ -1104,7 +1103,7 @@ Proof.
   [ apply Hx | apply Hy ]; assumption.
 Qed.
 
-Hint Resolve Qmult_resp_nonzero : core.
+#[export] Hint Resolve Qmult_resp_nonzero : core.
 
 Lemma Qlt_mult_pos_pos :
  forall x y : Q, Qlt Zero x -> Qlt Zero y -> Qlt Zero (Qmult x y).
@@ -1121,7 +1120,7 @@ Proof.
             auto with *; [ inversion Hx | inversion Hy ].
 Qed.
 
-Hint Resolve Qlt_mult_pos_pos Qlt_mult_neg_pos : core.
+#[export] Hint Resolve Qlt_mult_pos_pos Qlt_mult_neg_pos : core.
 
 
 Lemma Qlt_plus_pos_pos :
@@ -1131,7 +1130,7 @@ Proof.
             auto with *; [ inversion Hy | inversion Hx | inversion Hx ].
 Qed.
 
-Hint Resolve Qlt_plus_pos_pos : core.
+#[export] Hint Resolve Qlt_plus_pos_pos : core.
 
 
 
@@ -1240,7 +1239,7 @@ Proof.
  unfold Qone in |- *; apply Qlt_zero_pos. 
 Qed.
 
-Hint Resolve Qlt_zero_one : core.
+#[export] Hint Resolve Qlt_zero_one : core.
 
 Lemma Z_to_Qpositive_Q_tail_pos :
  forall (a : Z) (Ha : (0 < a)%Z), Z_to_Qpositive a Ha = Q_tail a.
@@ -1478,7 +1477,7 @@ Proof.
  intro x; unfold Qle; apply Qlt_irreflexive.
 Qed.
 
-Hint Resolve Qplus_zero_right Qlt_le_reg_pos Qle_lt_reg_pos Qlt_le_reg
+#[export] Hint Resolve Qplus_zero_right Qlt_le_reg_pos Qle_lt_reg_pos Qlt_le_reg
   Qle_lt_reg Qlt_le_weak Qlt_le_reg_neg Qle_lt_reg_neg Qle_plus_pos_pos
   Qle_plus_neg_neg Qle_mult_nonneg_nonneg Qle_mult_nonneg_nonpos
   Qle_mult_nonpos_nonneg Qle_mult_nonpos_pos Qle_mult_neg_nonneg
@@ -1671,7 +1670,7 @@ Proof.
  intros [|x|x] Hx; auto; try apply Qle_reflexive; apply False_ind; apply Hx; reflexivity.
 Qed.
 
-Hint Resolve Qsgn_2 Qsgn_7 Qsgn_8 Qsgn_9 Qsgn_10 Qsgn_15 Qsgn_25 Qsgn_28
+#[export] Hint Resolve Qsgn_2 Qsgn_7 Qsgn_8 Qsgn_9 Qsgn_10 Qsgn_15 Qsgn_25 Qsgn_28
   Qsgn_29 Qsgn_30 : core.
 
 (* Not all of these properties are necessary at the moment. We Uncomment one any time we need it *)

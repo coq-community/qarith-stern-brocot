@@ -13,7 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 Require Export ArithRing.
 Require Export Compare_dec.
 Require Export Wf_nat.
@@ -33,7 +32,8 @@ Theorem lt_neq : forall x y : nat, x < y -> x <> y.
 unfold not in |- *; intros x y H H1; elim (lt_irrefl x);
  pattern x at 2 in |- *; rewrite H1; auto.
 Qed.
-Hint Resolve lt_neq : core.
+
+#[local] Hint Resolve lt_neq : core.
  
 Theorem monotonic_inverse :
  forall f : nat -> nat,
@@ -89,7 +89,9 @@ Qed.
 Remark mult2_recompose : forall x y : nat, x * (2 * y) = x * 2 * y.
 intros; ring.
 Qed.
+
 Section sqrt2_decrease.
+
 Variables (p q : nat) (pos_q : 0 < q) (hyp_sqrt : p * p = 2 * (q * q)).
  
 Theorem sqrt_q_non_zero : 0 <> q * q.
@@ -98,7 +100,8 @@ intros H; elim (lt_n_O 0); auto.
 intros n H.
 simpl in |- *; discriminate.
 Qed.
-Hint Resolve sqrt_q_non_zero : core.
+
+#[local] Hint Resolve sqrt_q_non_zero : core.
  
 Ltac solve_comparison :=
   apply root_monotonic; repeat rewrite square_recompose; rewrite hyp_sqrt;
@@ -117,7 +120,8 @@ Qed.
 Theorem comparison3 : 4 * q < 3 * p.
 solve_comparison.
 Qed.
-Hint Resolve comparison1 comparison2 comparison3: arith.
+
+#[local] Hint Resolve comparison1 comparison2 comparison3: arith.
  
 Theorem comparison4 : 3 * q - 2 * p < q.
 apply plus_lt_reg_l with (2 * p).
@@ -142,8 +146,10 @@ repeat rewrite sub_square_identity; auto with arith.
 repeat rewrite square_recompose; rewrite mult_minus_distr_l.
 apply minus_eq_decompose; try rewrite hyp_sqrt; ring.
 Qed.
+
 End sqrt2_decrease.
-Hint Resolve lt_le_weak comparison2: sqrt.
+
+#[local] Hint Resolve lt_le_weak comparison2: sqrt.
  
 Theorem sqrt2_not_rational :
  forall p q : nat, q <> 0 -> p * p = 2 * (q * q) -> False.
