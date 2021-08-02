@@ -284,8 +284,8 @@ Proof.
  
  rewrite (Qpositive_c_nR _ _ p H_1_m). 
  rewrite (Qpositive_i_nR (Qpositive_c (m - 1) 1 p) (m - 1) 1). 
- apply pair_2; simpl in |- *; trivial; omega.
- apply IHp; omega.
+ apply pair_2; simpl in |- *; trivial; lia.
+ apply IHp; lia.
  intro H_1_1.
  rewrite <- H_1_1.
  reflexivity.
@@ -313,27 +313,27 @@ Proof.
  intros [| p'x] HpO HqO Hpq Hpq'.
  generalize (le_plus_O_r p q Hpq') (le_plus_O_l p q Hpq').
  intros Hq Hp.
- apply False_ind;omega.
+ apply False_ind;lia.
 (*  rewrite Hp in H_eq_1.  *)
 (*  rewrite Hq in H_eq_1. *)
 (*  apply False_ind. *)
 (*  abstract discriminate H_eq_1. *)
  rewrite Qpositive_c_1_0_1;auto.
  apply f_equal with Qpositive. 
- rewrite (IHq p'x);try omega.
+ rewrite (IHq p'x);try lia.
  unfold Qpositive_c at 2;fold Qpositive_c.
  rewrite e1. 
  destruct (q - p);tauto.
- omega.
+ lia.
  (* 4 *)
  intros [| p'x] HpO HqO Hpq Hpq'.
  generalize (le_plus_O_r p q Hpq') (le_plus_O_l p q Hpq').
  intros Hq Hp.
- apply False_ind;omega.
+ apply False_ind;lia.
  unfold Qpositive_c at 2;fold Qpositive_c.
   
  rewrite e0.
- rewrite (IHq p'x);try omega.
+ rewrite (IHq p'x);try lia.
  reflexivity.
 Qed.
 
@@ -387,7 +387,7 @@ Proof.
  assumption.
  rewrite plus_comm.
  apply le_plus_l.
- clear;  omega.
+ clear;  lia.
 Qed.
 
 
@@ -465,7 +465,7 @@ Proof.
      (S p0 + S q0)).
  apply construct_correct.  
  assumption.
- omega.
+ lia.
  rewrite <- mult_n_Sm.
  rewrite <- plus_n_Sm.
  auto with arith.
@@ -487,7 +487,7 @@ Proof.
  rewrite <- plus_n_Sm.
  rewrite <- plus_n_Sm with (m := q0).
  generalize (S q0 * p0 + q0) (S q0 * q0 + q0); clear qp H_eq_; intros;
-  omega.
+  lia.
  rewrite mult_comm.
  rewrite <- mult_n_Sm.
  rewrite <- plus_n_Sm; reflexivity.
@@ -557,13 +557,13 @@ Proof.
  rewrite Znat.inj_S.
  rewrite Zplus_comm.
  unfold Z.succ in |- *. 
- transitivity (n - 1 + 1)%Z; [ idtac | omega ].
+ transitivity (n - 1 + 1)%Z; [ idtac | lia ].
  apply f_equal2 with Z Z; trivial. 
  rewrite <- IHn.
  apply f_equal with Qpositive.
  apply f_equal3 with nat nat nat; trivial.
  simpl in |- *; auto with arith. 
- omega.
+ lia.
  intro H1; rewrite <- H1.
  rewrite Qpositive_c_equal_One; trivial.
 Qed.
@@ -591,7 +591,7 @@ Proof.
  apply f_equal with Qpositive.
  apply f_equal3 with nat nat nat; trivial.
  simpl in |- *; auto with arith. 
- omega.
+ lia.
  intro H1; rewrite <- H1.
  rewrite Qpositive_c_equal_One; trivial.
 Qed.
@@ -667,7 +667,7 @@ Lemma Qpositive_to_Z_nonneg : forall x : Qpositive, (0 <= Qpositive_to_Z x)%Z.
 Proof.
  intros x; induction  x as [x Hrecx| x Hrecx| ];
             [ replace (Qpositive_to_Z (nR x)) with (1 + Qpositive_to_Z x)%Z;
-               trivial; abstract omega
+               trivial; abstract lia
             | simpl in |- *; apply Z.le_refl
             | simpl in |- *; intro H; discriminate ].
 Qed. 
@@ -685,16 +685,16 @@ Proof.
     trivial.
  apply IHb.
  unfold Qpositive_to_Z in H;fold Qpositive_to_Z in H. 
- omega.
+ lia.
 unfold Qpositive_to_Z in H;fold Qpositive_to_Z in H;
  generalize (Qpositive_to_Z_nonneg y);intros;
- apply False_ind;omega.
+ apply False_ind;lia.
 unfold Qpositive_to_Z in H;fold Qpositive_to_Z in H;
  generalize (Qpositive_to_Z_nonneg y);intros;
- apply False_ind;omega.
+ apply False_ind;lia.
  apply IHb.
  unfold Qpositive_to_Z in H;fold Qpositive_to_Z in H. 
- omega.
+ lia.
  unfold Qpositive_to_Z in H;fold Qpositive_to_Z in H;discriminate.
 Qed.
 
@@ -709,12 +709,12 @@ Proof.
  generalize (Zmin_cancel_Zlt _ _ H1); intro H2; apply H;
   apply Qpositive_to_Z_Qpositive_le; assumption.
  apply Z.lt_irrefl with 0%Z; generalize (Qpositive_to_Z_nonneg x'); intro H2;
-  omega.
+  lia.
  apply Z.lt_irrefl with 0%Z; generalize (Qpositive_to_Z_nonneg x');
   generalize (Qpositive_to_Z_nonneg y'); intros H2 H3; abstract 
-  omega.
+  lia.
  apply Z.lt_irrefl with 0%Z; generalize (Qpositive_to_Z_nonneg x'); intro H2;
-  omega.
+  lia.
 Qed.
 
 
@@ -763,7 +763,7 @@ Proof.
   apply f_equal3 with nat nat nat; trivial.
   apply nat_of_P_plus_morphism.
   rewrite nat_of_P_plus_morphism.
-  omega.
+  lia.
   apply lt_O_nat_of_P.
   constructor.
   apply lt_O_nat_of_P.
@@ -786,11 +786,11 @@ Proof.
   rewrite Qplus_zero_left.
   apply f_equal with Z.
   transitivity (- Zneg p2)%Z; trivial.
-  omega.
+  lia.
   rewrite <- Z_to_Qplus_POS.
   apply f_equal with Z.
   replace (Zpos p2) with (- Zneg p2)%Z; trivial.  
-  omega.
+  lia.
   
   unfold Z_to_Q at 1 2 3 in |- *.
   assert (Hp : (Zpos p < Zpos p2)%Z).
@@ -831,15 +831,13 @@ Proof.
     repeat rewrite Qpositive_i_c. 
     repeat rewrite mult_1_l.
     repeat rewrite mult_1_r.
-    clear H1 H2; apply Qpositive_c_equal_strong; trivial; try omega;
+    clear H1 H2; apply Qpositive_c_equal_strong; trivial; try lia;
      rewrite Hp2; rewrite nat_of_P_plus_morphism.
-    omega.
+    lia.
+    lia.
     replace (nat_of_P p1 + nat_of_P p - nat_of_P p) with (nat_of_P p1);
-     [ apply lt_O_nat_of_P | omega ].
-    apply lt_O_nat_of_P.
-    constructor.
-    apply lt_O_nat_of_P.
-    constructor. 
+     [ apply lt_O_nat_of_P | lia ].
+    lia.
 
    apply False_ind; apply H1.
    apply Qpositive_to_Z_Qpositive_le.
@@ -901,7 +899,7 @@ Proof.
  apply f_equal3 with nat nat nat; trivial.
  apply nat_of_P_mult_morphism.
  rewrite nat_of_P_mult_morphism.
- omega.
+ lia.
  apply lt_O_nat_of_P.
  constructor.
  apply lt_O_nat_of_P.
@@ -924,7 +922,7 @@ Proof.
  apply f_equal3 with nat nat nat; trivial.
  apply nat_of_P_mult_morphism.
  rewrite nat_of_P_mult_morphism.
- omega.
+ lia.
  apply lt_O_nat_of_P.
  constructor.
  apply lt_O_nat_of_P.
@@ -947,7 +945,7 @@ Proof.
  apply f_equal3 with nat nat nat; trivial.
  apply nat_of_P_mult_morphism.
  rewrite nat_of_P_mult_morphism.
- omega.
+ lia.
  apply lt_O_nat_of_P.
  constructor.
  apply lt_O_nat_of_P.

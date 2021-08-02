@@ -2,4 +2,4 @@
  (name QArithSternBrocot)
  (package coq-qarith-stern-brocot)
  (synopsis "Binary rational numbers")
- (flags -w -notation-overridden -w -undeclared-scope -w -omega-is-deprecated))
+ (flags -w -notation-overridden))

@@ -13,7 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 Require Export Qpositive.
  
 Fixpoint Qpositive_le_bool (w w' : Qpositive) {struct w'} : bool :=
@@ -73,7 +72,7 @@ auto with arith.
 unfold Qpositive_le, Qpositive_le' in |- *.
 simpl in |- *.
 case (Qpositive_i w'1).
-intros; omega.
+intros; lia.
 (* 3 *)
 
 
@@ -105,8 +104,7 @@ intros w1; simpl in |- *.
 intros Heq; discriminate Heq.
  intros w'; simpl in |- *.
  case (Qpositive_i w').
- intros; omega.
-
+ intros; lia.
 Qed.
  
 Theorem Qpositive_le'_to_Qpositive_le :

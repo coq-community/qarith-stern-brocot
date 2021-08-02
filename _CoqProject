@@ -1,8 +1,6 @@
 -R theories QArithSternBrocot
 
 -arg -w -arg -notation-overridden
--arg -w -arg -undeclared-scope
--arg -w -arg -omega-is-deprecated
 
 theories/Field_Theory_Q.v
 theories/general_Q.v

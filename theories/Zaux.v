@@ -20,6 +20,7 @@
 
 Require Export ZArith.
 Require Export ZArithRing.
+Require Import Lia.
 
 Tactic Notation "ElimCompare" constr(c) constr(d) := elim_compare c d.
 
@@ -141,35 +142,35 @@ Qed.
 Lemma lt_minus_neq : forall m n : nat, m < n -> n - m <> 0.
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 Lemma lt_minus_eq_0 : forall m n : nat, m < n -> m - n = 0.
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 Lemma le_plus_Sn_1_SSn : forall n : nat, S n + 1 <= S (S n).
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 Lemma le_plus_O_l : forall p q : nat, p + q <= 0 -> p = 0.
 Proof. 
- intros; omega.
+ intros; lia.
 Qed.
 
 Lemma le_plus_O_r : forall p q : nat, p + q <= 0 -> q = 0.
 Proof. 
- intros; omega.
+ intros; lia.
 Qed.
 
 Lemma minus_pred : forall m n : nat, 0 < n -> pred m - pred n = m - n.
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 
@@ -551,7 +552,7 @@ Qed.
 
 
 
-(* Omega can't solve this *)
+(* Lia can't solve this *)
 Lemma Zmult_pos_pos : forall x y : Z, (0 < x)%Z -> (0 < y)%Z -> (0 < x * y)%Z.
 Proof.
  intros [| px| px] [| py| py] Hx Hy; trivial || constructor.
@@ -1415,13 +1416,13 @@ Qed.
 Lemma lt_inj : forall m n : nat, (m < n)%Z -> m < n.
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 Lemma le_inj : forall m n : nat, (m <= n)%Z -> m <= n.
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 
@@ -1502,11 +1503,11 @@ Proof.
   [ replace (Z.abs_nat x) with (Z.abs_nat (x - 1 + 1));
      [ idtac | apply f_equal with Z; auto with zarith ];
      rewrite absolu_plus;
-     [ unfold Z.abs_nat at 2, nat_of_P, Pos.iter_op in |- *; omega
+     [ unfold Z.abs_nat at 2, nat_of_P, Pos.iter_op in |- *; lia
      | auto with zarith
      | intro; discriminate ]
   | rewrite <- H1; reflexivity ].
-Qed. 
+Qed.
 
 Definition pred_nat : forall (x : Z) (Hx : (0 < x)%Z), nat.
 intros [| px| px] Hx; try abstract (discriminate Hx).

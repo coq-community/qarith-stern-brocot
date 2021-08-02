@@ -12,7 +12,7 @@ Require Import Reals.
 Require Import Lra.
 Require Import Fourier.
 Require Import Euclid. 
-Require Import Omega.
+Require Import Lia.
 
 Open Scope R_scope.
 
@@ -432,7 +432,7 @@ Lemma pow_even_nonneg:forall (y: R) (n : nat), 0 <= pow y (2*n)%nat.
 Proof.
  induction n; simpl.
   auto with real.
-  replace (n + S (n + 0))%nat with (S (2*n)%nat); [|omega].
+  replace (n + S (n + 0))%nat with (S (2*n)%nat); [|lia].
   simpl.
   stepr ((y*y)*(pow y (2*n)%nat)); [|simpl;ring].
   apply Rle_mult_nonneg_nonneg; [apply Rmult_mult_nonneg|apply IHn].
@@ -441,15 +441,15 @@ Qed.
 Lemma pow_Rle_l_1 : forall (y: R) (n : nat),  - 1 <= y -> y <= 1 -> -1 <= pow y n.
 Proof.
  intros y n.
- assert (H2:(2 > 0)%nat); [omega|].
+ assert (H2:(2 > 0)%nat); [lia|].
  destruct (modulo 2 H2 n) as [[|[|r]] [k [Hk1 Hk2]]]; intros hyp1 hyp2.
  3: inversion Hk2; inversion H0; contradict H3;auto with arith.
   rewrite Hk1.
-  replace (k * 2 + 0)%nat with (2*k)%nat; [|omega].
+  replace (k * 2 + 0)%nat with (2*k)%nat; [|lia].
   apply Rle_trans with 0; [ lra | apply pow_even_nonneg].
 
   rewrite Hk1.
-  replace (k * 2 + 1)%nat with (S(2*k)%nat);[|omega].
+  replace (k * 2 + 1)%nat with (S(2*k)%nat);[|lia].
   generalize (pow_even_nonneg y k).
   simpl.
   intros hyp3.
