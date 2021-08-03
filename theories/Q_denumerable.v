@@ -21,13 +21,13 @@
 
 (** We start by some general notions for expressing the bijection *)
 
-Definition identity (A:Set) := fun a:A=> a.
-Definition compose (A B C:Set) (g:B->C) (f:A->B) := fun a:A=>g(f a).
+Definition identity (A:Type) := fun a:A=> a.
+Definition compose (A B C:Type) (g:B->C) (f:A->B) := fun a:A=>g(f a).
 
 Section Denumerability.
 
 (** What it means to have the same cardinality *)
-Definition same_cardinality (A:Set) (B:Set) :=
+Definition same_cardinality (A:Type) (B:Type) :=
  {f:A->B & { g:B->A | 
   (forall b,(compose _ _ _ f g) b= (identity B) b) /\
    forall a,(compose _ _ _ g f) a = (identity A) a}}.
@@ -35,7 +35,8 @@ Definition same_cardinality (A:Set) (B:Set) :=
 (** What it means to be a denumerable *)
 Definition is_denumerable A := same_cardinality A nat.
 
-Lemma same_cardinality_transitive:forall A B C, same_cardinality A B -> same_cardinality B C -> same_cardinality A C.
+Lemma same_cardinality_transitive :
+ forall A B C, same_cardinality A B -> same_cardinality B C -> same_cardinality A C.
 Proof.
  intros A B C [f [g [HAB1 HAB2]]] [h [k [HBC1 HBC2]]];
  repeat (match goal with [id1: forall (_:_), compose _ _ _ _ _ _  = identity _ _  |- _ ]=> 
@@ -49,7 +50,8 @@ Proof.
   ]; trivial.
 Defined.
 
-Lemma is_denumerable_transitive:forall A B, is_denumerable A -> same_cardinality B A -> is_denumerable B.
+Lemma is_denumerable_transitive :
+ forall A B, is_denumerable A -> same_cardinality B A -> is_denumerable B.
 Proof.
  intros A B HA HBA; apply (same_cardinality_transitive B A nat HBA HA).
 Defined.
@@ -69,7 +71,7 @@ Definition Z_to_nat_i (z:Z) :nat :=
    | Z0 => O
    | Zpos p => Div2.double (nat_of_P p)
    | Zneg p => pred (Div2.double (nat_of_P p))
-   end. 
+   end.
 
 (** Some lemmas about parity. They could be added to [Arith.Div2] *)
 Lemma odd_pred2n: forall n : nat, Even.odd n -> {p : nat | n = pred (Div2.double p)}.

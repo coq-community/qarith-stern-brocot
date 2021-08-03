@@ -51,7 +51,7 @@ Ltac CaseEq formula :=
    case formula.
 
 
-Lemma pair_1 : forall (A B : Set) (H : A * B), H = pair (fst H) (snd H).
+Lemma pair_1 : forall (A B : Type) (H : A * B), H = pair (fst H) (snd H).
 Proof.
  intros.
  case H.
@@ -61,7 +61,7 @@ Proof.
 Qed.
 
 Lemma pair_2 :
- forall (A B : Set) (H1 H2 : A * B),
+ forall (A B : Type) (H1 H2 : A * B),
  fst H1 = fst H2 -> snd H1 = snd H2 -> H1 = H2.
 Proof.
  intros A B H1 H2.
@@ -76,7 +76,7 @@ Qed.
 
 
 Section projection.   
- Variable A : Set.
+ Variable A : Type.
  Variable P : A -> Prop.
  
  Definition projP1 (H : sig P) := let (x, h) := H in x.
@@ -2455,8 +2455,8 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zrec :
- forall (P : Z -> Set) (p : Z),
+Definition Zrec :
+ forall (P : Z -> Type) (p : Z),
  P p ->
  (forall q : Z, (p <= q)%Z -> P q -> P (q + 1)%Z) ->
  forall q : Z, (p <= q)%Z -> P q. 
@@ -2471,11 +2471,11 @@ Proof.
  intros.
  cut {k : nat | q = (p + Z_of_nat k)%Z}.
  intro.
- case H4.
+ case H1.
  intros.
  rewrite e.
- apply H2.
- apply H1.
+ apply X1.
+ apply H.
  assumption.
  intro.
  induction  k as [| k Hreck].
@@ -2483,7 +2483,7 @@ Proof.
  rewrite Zplus_0_r.
  assumption.
  replace (p + Z_of_nat (S k))%Z with (p + k + 1)%Z.
- apply H0.
+ apply X0.
  apply Zplus_le_reg_l with (p := (- p)%Z).
  replace (- p + p)%Z with (Z_of_nat 0). 
  replace (- p + (p + Z_of_nat k))%Z with (Z_of_nat k).
@@ -2514,8 +2514,8 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zrec_down :
- forall (P : Z -> Set) (p : Z),
+Definition Zrec_down :
+ forall (P : Z -> Type) (p : Z),
  P p ->
  (forall q : Z, (q <= p)%Z -> P q -> P (q - 1)%Z) ->
  forall q : Z, (q <= p)%Z -> P q.
@@ -2530,11 +2530,11 @@ Proof.
  intros.
  cut {k : nat | q = (p - Z_of_nat k)%Z}.
  intro.
- case H4.
+ case H1.
  intros.
  rewrite e.
- apply H2.
- apply H1.
+ apply X1.
+ apply H.
  assumption.
  intro.
  induction  k as [| k Hreck].
@@ -2545,7 +2545,7 @@ Proof.
  unfold Z.opp in |- *.
  rewrite Zplus_0_r; reflexivity.
  replace (p - Z_of_nat (S k))%Z with (p - k - 1)%Z.
- apply H0.
+ apply X0.
  apply Zplus_le_reg_l with (p := (- p)%Z).
  replace (- p + p)%Z with (- Z_of_nat 0)%Z. 
  replace (- p + (p - Z_of_nat k))%Z with (- Z_of_nat k)%Z.
@@ -2565,7 +2565,7 @@ Proof.
  intros.
  cut {k : nat | (p - q)%Z = Z_of_nat k}.
  intro.
- case H2.
+ case H0.
  intro k.
  intros.
  exists k.
@@ -2648,15 +2648,15 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zrec_wf :
- forall (P : Z -> Set) (p : Z),
+Definition Zrec_wf :
+ forall (P : Z -> Type) (p : Z),
  (forall q : Z, (forall r : Z, (p <= r < q)%Z -> P r) -> P q) ->
  forall q : Z, (p <= q)%Z -> P q.
 Proof.
  intros P p WF_ind_step q Hq.
  cut (forall x : Z, (p <= x)%Z -> forall y : Z, (p <= y < x)%Z -> P y).
  intro.
- apply (H (Z.succ q)).
+ apply (X (Z.succ q)).
  apply Zle_le_succ.
  assumption.
  
@@ -2680,26 +2680,26 @@ Proof.
  intros. 
  apply WF_ind_step. 
  intros.
- apply (H0 H).
+ apply (X H).
  split. 
- elim H2.
+ elim H1.
  intros.
  assumption.
  apply Z.lt_le_trans with y. 
- elim H2.
+ elim H1.
  intros.
  assumption.
  apply Zgt_succ_le. 
  apply Z.lt_gt. 
- elim H1.
+ elim H0.
  intros.
  unfold Z.succ in |- *.
  assumption.
  assumption.
 Qed.
 
-Lemma Zrec_wf2 :
- forall (q : Z) (P : Z -> Set) (p : Z),
+Definition Zrec_wf2 :
+ forall (q : Z) (P : Z -> Type) (p : Z),
  (forall q : Z, (forall r : Z, (p <= r < q)%Z -> P r) -> P q) ->
  (p <= q)%Z -> P q.
 Proof.
@@ -2709,8 +2709,8 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zrec_wf_double :
- forall (P : Z -> Z -> Set) (p0 q0 : Z),
+Definition Zrec_wf_double :
+ forall (P : Z -> Z -> Type) (p0 q0 : Z),
  (forall n m : Z,
   (forall p q : Z, (q0 <= q)%Z -> (p0 <= p < n)%Z -> P p q) ->
   (forall p : Z, (q0 <= p < m)%Z -> P n p) -> P n m) ->
@@ -2907,7 +2907,7 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zmax_case : forall (n m : Z) (P : Z -> Set), P n -> P m -> P (Zmax n m).
+Lemma Zmax_case : forall (n m : Z) (P : Z -> Type), P n -> P m -> P (Zmax n m).
 Proof.
  intros.
  unfold Zmax in |- *.
@@ -2916,14 +2916,14 @@ Proof.
  rewrite e.
  cut ((n + m - n)%Z = m).
  intro.
- rewrite H1.
+ rewrite H.
  assumption.
  ring.
  intro.
  rewrite e.
  cut ((n + m - m)%Z = n).
  intro.
- rewrite H1.
+ rewrite H.
  assumption.
  ring.
 Qed.
