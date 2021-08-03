@@ -210,7 +210,7 @@ Proof.
  functional induction (Qmult y x); intros.
  (* Qneg 0: 1 *)
  apply False_ind.
- apply (Zorder.Zlt_not_eq _ _ z).
+ apply (Zorder.Zlt_not_eq _ _ a0).
  rewrite <- Zsgn_15.
  apply Zsgn_6.
  rewrite Z_eq_mult; try reflexivity.
@@ -224,7 +224,7 @@ Proof.
  symmetry  in |- *; assumption.
  (* Qneg Qpos : 1 *)
  apply False_ind.
- apply (Zlt_asym _ _ z).
+ apply (Zlt_asym _ _ a0).
  rewrite <- Zsgn_15.
  apply Zsgn_26.
  assert (Hm : (0 < m)%Z);
@@ -293,7 +293,7 @@ Proof.
  apply Qlt_zero_pos.
  (* Qneg Qpos : 2 *)
  apply False_ind.
- apply (Zlt_asym _ _ z).
+ apply (Zlt_asym _ _ a0).
  rewrite <- Zsgn_15.
  apply Zsgn_26.
  assert (Hm : (m < 0)%Z);
@@ -315,7 +315,7 @@ Proof.
  functional induction (Qmult y x); intros.
  (* Qpos 0: 1 *)
  apply False_ind.
- generalize (Z.gt_lt _ _ z); clear z; intro z.
+ generalize (Z.gt_lt _ _ b); clear b; intro z.
  apply (Zorder.Zlt_not_eq _ _ z).
  symmetry  in |- *.
  rewrite <- Zsgn_15.
@@ -355,7 +355,7 @@ Proof.
  apply Qlt_zero_pos.
  (* Qpos Qneg : 1 *)
  apply False_ind.
- generalize (Z.gt_lt _ _ z); clear z; intro z.
+ generalize (Z.gt_lt _ _ b); clear b; intro z.
  apply (Zlt_asym _ _ z).
  rewrite <- Zsgn_15.
  apply Zsgn_27.
@@ -376,7 +376,7 @@ Proof.
  symmetry  in |- *; assumption.
  (* Qpos Qneg : 2 *)
  apply False_ind.
- generalize (Z.gt_lt _ _ z); clear z; intro z.
+ generalize (Z.gt_lt _ _ b); clear b; intro z.
  apply (Zlt_asym _ _ z).
  rewrite <- Zsgn_15.
  apply Zsgn_27.
@@ -636,7 +636,7 @@ Proof.
  repeat rewrite Qsgn_15.  
  rewrite Qsgn_28.
  simpl in |- *.
- generalize (Zsgn_21 _ _ _x1) (Zsgn_23 _ _ _x1) (Zsgn_19 _ _ _x1);
+ generalize (Zsgn_21 _ _ a1) (Zsgn_23 _ _ a1) (Zsgn_19 _ _ a1);
   intros Hc_nonneg Hd_nonneg Hcd_pos.
  replace (Qsgn (Qplus (Qmult c (Qpos (nR q))) d)) with 1%Z.
  rewrite Qsgn_29.
@@ -666,7 +666,7 @@ Proof.
  repeat rewrite Qsgn_15.  
  rewrite Qsgn_28.
  simpl in |- *.
- generalize (Zsgn_22 _ _ _x2) (Zsgn_24 _ _ _x2) (Zsgn_20 _ _ _x2);
+ generalize (Zsgn_22 _ _ a1) (Zsgn_24 _ _ a1) (Zsgn_20 _ _ a1);
   intros Hc_nonpos Hd_nonpos Hcd_neg.
  replace (Qsgn (Qplus (Qmult c (Qpos (nR q))) d)) with (-1)%Z.
  rewrite Qsgn_29.
@@ -700,7 +700,7 @@ Proof.
  rewrite Qsgn_28.
  rewrite Qsgn_15.
  simpl in |- *.
- generalize (Zsgn_21 _ _ _x1) (Zsgn_23 _ _ _x1) (Zsgn_19 _ _ _x1);
+ generalize (Zsgn_21 _ _ a1) (Zsgn_23 _ _ a1) (Zsgn_19 _ _ a1);
   intros Ha_nonneg Hb_nonneg Hab_pos.
  replace (Qsgn (Qplus (Qmult a (Qpos (nR q))) b)) with 1%Z.
  rewrite Qsgn_29.
@@ -732,7 +732,7 @@ Proof.
  rewrite Qsgn_28.
  rewrite Qsgn_15.
  simpl in |- *.
- generalize (Zsgn_22 _ _ _x2) (Zsgn_24 _ _ _x2) (Zsgn_20 _ _ _x2);
+ generalize (Zsgn_22 _ _ a1) (Zsgn_24 _ _ a1) (Zsgn_20 _ _ a1);
   intros Ha_nonpos Hb_nonpos Hab_neg.
  replace (Qsgn (Qplus (Qmult a (Qpos (nR q))) b)) with (-1)%Z.
  rewrite Qsgn_29.
@@ -761,7 +761,7 @@ Proof.
   clear e2 e0 e1  .
  repeat rewrite Qsgn_15.  
  rewrite Qsgn_28.
- case (inside_interval_1_inf _ _ _x1); clear _x1;
+ case (inside_interval_1_inf _ _ a0); clear a0;
   intros (Hab, Hcd);
   repeat
    match goal with
@@ -820,10 +820,10 @@ Proof.
      | apply Z_to_Q_neg; assumption ] ].
  (* (nR9) : b<>0 & d<>0 & ~(i1 o1 o2) & (i2 o1 o2)*)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *;
-  clear e3 e0 e1 e2  _x1.
+  clear e3 e0 e1 e2 b2.
  repeat rewrite Qsgn_15.  
  rewrite Qsgn_28.
- case (inside_interval_2_inf _ _ _x2); clear _x2;
+ case (inside_interval_2_inf _ _ a0); clear a0;
   intros (Hab, Hcd);
   repeat
    match goal with
@@ -917,7 +917,7 @@ Proof.
  repeat rewrite Qsgn_15.  
  rewrite Qsgn_28.
  simpl in |- *.
- generalize (Zsgn_21 _ _ _x1) (Zsgn_23 _ _ _x1) (Zsgn_19 _ _ _x1);
+ generalize (Zsgn_21 _ _ a1) (Zsgn_23 _ _ a1) (Zsgn_19 _ _ a1);
   intros Hc_nonneg Hd_nonneg Hcd_pos.
  replace (Qsgn (Qplus (Qmult c (Qpos (dL q))) d)) with 1%Z.
  rewrite Qsgn_29.
@@ -947,7 +947,7 @@ Proof.
  repeat rewrite Qsgn_15.  
  rewrite Qsgn_28.
  simpl in |- *.
- generalize (Zsgn_22 _ _ _x2) (Zsgn_24 _ _ _x2) (Zsgn_20 _ _ _x2);
+ generalize (Zsgn_22 _ _ a1) (Zsgn_24 _ _ a1) (Zsgn_20 _ _ a1);
   intros Hc_nonpos Hd_nonpos Hcd_neg.
  replace (Qsgn (Qplus (Qmult c (Qpos (dL q))) d)) with (-1)%Z.
  rewrite Qsgn_29.
@@ -981,7 +981,7 @@ Proof.
  rewrite Qsgn_28.
  rewrite Qsgn_15.
  simpl in |- *.
- generalize (Zsgn_21 _ _ _x1) (Zsgn_23 _ _ _x1) (Zsgn_19 _ _ _x1);
+ generalize (Zsgn_21 _ _ a1) (Zsgn_23 _ _ a1) (Zsgn_19 _ _ a1);
   intros Ha_nonneg Hb_nonneg Hab_pos.
  replace (Qsgn (Qplus (Qmult a (Qpos (dL q))) b)) with 1%Z.
  rewrite Qsgn_29.
@@ -1013,7 +1013,7 @@ Proof.
  rewrite Qsgn_28.
  rewrite Qsgn_15.
  simpl in |- *.
- generalize (Zsgn_22 _ _ _x2) (Zsgn_24 _ _ _x2) (Zsgn_20 _ _ _x2);
+ generalize (Zsgn_22 _ _ a1) (Zsgn_24 _ _ a1) (Zsgn_20 _ _ a1);
   intros Ha_nonpos Hb_nonpos Hab_neg.
  replace (Qsgn (Qplus (Qmult a (Qpos (dL q))) b)) with (-1)%Z.
  rewrite Qsgn_29.
@@ -1042,7 +1042,7 @@ Proof.
   clear e2 e0 e1  .
  repeat rewrite Qsgn_15.  
  rewrite Qsgn_28.
- case (inside_interval_1_inf _ _ _x1); clear _x1;
+ case (inside_interval_1_inf _ _ a0); clear a0;
   intros (Hab, Hcd);
   repeat
    match goal with
@@ -1101,10 +1101,10 @@ Proof.
      | apply Z_to_Q_neg; assumption ] ].
  (* (dL9) : b<>0 & d<>0 & ~(i1 o1 o2) & (i2 o1 o2)*)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *;
-  clear e3 e0 e1 e2  _x1.
+  clear e3 e0 e1 e2 b2.
  repeat rewrite Qsgn_15.  
  rewrite Qsgn_28.
- case (inside_interval_2_inf _ _ _x2); clear _x2;
+ case (inside_interval_2_inf _ _ a0); clear a0;
   intros (Hab, Hcd);
   repeat
    match goal with
@@ -1184,7 +1184,7 @@ Proof.
  unfold spec_Qhomographic_Qpositive_to_Q in |- *; clear e1 e0 ;
   rewrite Qsgn_15; repeat rewrite Qmult_one_right;
   rewrite Qsgn_28; repeat rewrite <- Z_to_Qplus; repeat rewrite Qsgn_29;
-     rewrite <- _x1; rewrite <- Zsgn_15; symmetry  in |- *; 
+     rewrite <- a0; rewrite <- Zsgn_15; symmetry  in |- *; 
   apply Zsgn_7'; abstract auto with zarith.
  (* (One2) : (Z.sgn (a+b))<>0 & (Z.sgn (a+b))<>(Z.sgn (c+d)) *)
  unfold spec_Qhomographic_Qpositive_to_Q in |- *; clear e1 e0;
@@ -1195,11 +1195,10 @@ Proof.
              (Qhomographic_signok_1 _ _ _x));
            intro Hcd_; generalize (Zsgn_1' (a + b)) (Zsgn_1' (c + d));
              intros [[Hab| Hab]| Hab] [[Hcd| Hcd]| Hcd]; 
-               try solve [ Falsum ]; rewrite Hab in _x1; 
-		 rewrite Hcd in _x1; try solve [ Falsum ]; 
+               try solve [ Falsum ]; rewrite Hab in b1; 
+		 rewrite Hcd in b1; try solve [ Falsum ]; 
 		   rewrite Hab; rewrite Hcd; constructor).
 Defined.
-
 
 Lemma homographicAcc_positive :
  forall (a b c d : Z) (p : Qpositive),
@@ -1627,9 +1626,9 @@ Proof.
    (Qhomographic_Qpositive_to_Q a b c d p H_Qhomographic_sg_denom_nonzero).
 
  (* 1 *)
- clear e e0 e1 .
+ clear e e0 e1.
  rename x into Hc0;
- rename _x into ad_eq_bc;
+ rename a0 into ad_eq_bc;
    rewrite coding_Q.
  assert (b0_eq_zero : b = 0%Z).
  rewrite Zmult_0_r in ad_eq_bc.
@@ -1646,8 +1645,8 @@ Proof.
                          *)
                    rewrite <- Qdiv_num_denom; [ reflexivity | discriminate ]) .
  clear e e0 e1.
- rename H into Hc0;
- rename _x into ad_eq_bc;
+ rename x into Hc0;
+ rename a0 into ad_eq_bc;
    rewrite coding_Q.
  assert (b0_eq_zero : b = 0%Z).
  rewrite Zmult_0_r in ad_eq_bc.

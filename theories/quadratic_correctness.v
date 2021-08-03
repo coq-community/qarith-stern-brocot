@@ -13,7 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 Require Import FunInd.
 Require Export homographic_correctness.
 Require Import Field_Theory_Q. 
@@ -3229,7 +3228,7 @@ Proof.
  (* 1 *)
  rewrite coding_Q.
  unfold spec_fraction_encoding in |- *.
- generalize _x; intros (H1, (H2, (H3, (H4, (H5, H6)))));
+ generalize a0; intros (H1, (H2, (H3, (H4, (H5, H6)))));
   repeat
    match goal with
    | id1:(_ = _ :>Z) |- _ =>
@@ -3245,7 +3244,7 @@ Proof.
  (* 2 *)
  rewrite coding_Q.
  unfold spec_fraction_encoding in |- *.
- generalize _x; intros (H1, (H2, (H3, (H4, (H5, H6)))));
+ generalize a0; intros (H1, (H2, (H3, (H4, (H5, H6)))));
   repeat
    match goal with
    | id1:(_ = _ :>Z) |- _ =>
@@ -3261,7 +3260,7 @@ Proof.
  (* 3 *)
  rewrite coding_Q.
  unfold spec_fraction_encoding in |- *.
- generalize _x; intros (H1, (H2, (H3, (H4, (H5, H6)))));
+ generalize a0; intros (H1, (H2, (H3, (H4, (H5, H6)))));
   repeat
    match goal with
    | id1:(_ = _ :>Z) |- _ =>
@@ -3277,7 +3276,7 @@ Proof.
  (* 4 *)
  rewrite coding_Q.
  unfold spec_fraction_encoding in |- *.
- generalize _x; intros (H1, (H2, (H3, (H4, (H5, H6)))));
+ generalize a0; intros (H1, (H2, (H3, (H4, (H5, H6)))));
   repeat
    match goal with
    | id1:(_ = _ :>Z) |- _ =>
