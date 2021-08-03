@@ -13,9 +13,8 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 Section General_Order.
-Variable S : Set.
+Variable S : Type.
 Variable O : S -> S -> Prop.
 Variable E : S -> S -> Prop.
 
@@ -44,7 +43,7 @@ Definition is_well_def_lft :=
 End General_Order.
 
 Record well_ordering : Type := 
-  {wfcrr :> Set;
+  {wfcrr :> Type;
    order : wfcrr -> wfcrr -> Prop;
    equality : wfcrr -> wfcrr -> Prop;
    is_ord : is_order wfcrr order;
@@ -174,8 +173,5 @@ Proof.
  apply H1.
  assumption.
 Defined.
-
-
-
 
 End Merge_Order.

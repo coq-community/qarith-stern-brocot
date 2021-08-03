@@ -13,8 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-
 Require Export Qquadratic_sign_properties.
 Require Export Qquadratic_Qpositive_to_Qpositive.
 Require Export homographicAcc_Qhomographic_sign.
@@ -330,7 +328,7 @@ Proof.
   destruct np2 as [p| p| ].
    (* np2 = (nR p) *) (* Here we use the third & forth clause in Qquadratic_sign_pos_2:  p1=One /\ .... *)
    apply homographicAcc_wf; first
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_pos_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh One (nR p) H);
@@ -346,13 +344,13 @@ Proof.
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zle_resp_neg; assumption
        | assumption
-       | apply False_ind; generalize H_nabcd; apply Zle_not_lt; omega
+       | apply False_ind; generalize H_nabcd; apply Zle_not_lt; lia
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me ] ].
    (* np2 = (dL p) *) (* Here we use the third & forth clause in Qquadratic_sign_pos_2:  p1=One /\ .... *)
    apply homographicAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_pos_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh One (dL p) H);
@@ -368,12 +366,12 @@ Proof.
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zle_resp_neg; assumption
        | assumption
-       | apply False_ind; generalize H_nabcd; apply Zle_not_lt; omega
+       | apply False_ind; generalize H_nabcd; apply Zle_not_lt; lia
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me ] ].
    (* np2 = One *)
-   apply homographicacc0; reflexivity || omega. 
+   apply homographicacc0; reflexivity || lia. 
 Qed.
 
 
@@ -441,7 +439,7 @@ Proof.
   destruct np2 as [p0| p0| ].
    (* np2 = (nR p0 *) 
    apply quadraticAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_pos_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh (nR p) (nR p0) H);
@@ -464,7 +462,7 @@ Proof.
 
    (* np2 = (dL p0) *) 
    apply quadraticAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_pos_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh (nR p) (dL p0) H);
@@ -489,7 +487,7 @@ Proof.
    discriminate.
    reflexivity.
    apply homographicAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_pos_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh (nR p) One H);
@@ -503,20 +501,20 @@ Proof.
          (_, (_, (Hab, (Hcd, (Hef, Hgh)))))];
        [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zplus_le_0_compat; assumption
-       | omega
+       | lia
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           rewrite <- Zplus_assoc; apply Zplus_le_0_compat; 
           assumption
-       | omega ] ].
+       | lia ] ].
 
  (* np1 = (dL p) *)
   destruct np2 as [p0| p0| ].
    (* np2 = (nR p0) *) 
    apply quadraticAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_pos_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh (dL p) (nR p0) H);
@@ -538,7 +536,7 @@ Proof.
        | discriminate H_discriminate_me ] ].
    (* np2 = (dL p0) *) 
    apply quadraticAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_pos_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh (dL p) (dL p0) H);
@@ -563,7 +561,7 @@ Proof.
    discriminate.
    reflexivity.
    apply homographicAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_pos_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh (dL p) One H);
@@ -577,21 +575,21 @@ Proof.
          (_, (_, (Hab, (Hcd, (Hef, Hgh)))))];
        [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zplus_le_0_compat; assumption
-       | omega
+       | lia
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me
        | apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           rewrite <- Zplus_assoc; apply Zplus_le_0_compat; 
           assumption
-       | omega ] ].
+       | lia ] ].
   (* np1 = One *)
   apply quadraticacc0.
   reflexivity.
   destruct np2 as [p| p| ].
    (* np2 = (nR p) *) (* Here we use the third & forth clause in Qquadratic_sign_pos_2:  p1=One /\ .... *)
    apply homographicAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_pos_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh One (nR p) H);
@@ -606,14 +604,14 @@ Proof.
        [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zplus_le_0_compat; assumption
        | apply Zplus_le_0_compat; apply Zle_neg_opp; assumption
-       | apply False_ind; generalize H_nabcd; apply Zle_not_lt; omega
+       | apply False_ind; generalize H_nabcd; apply Zle_not_lt; lia
        | rewrite <- Zopp_plus_distr; apply Zle_neg_opp; assumption
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me ] ].
    (* np2 = (dL p) *) (* Here we use the third & forth clause in Qquadratic_sign_pos_2:  p1=One /\ .... *)
    apply homographicAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_pos_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh One (dL p) H);
@@ -628,13 +626,13 @@ Proof.
        [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
           repeat apply Zplus_le_0_compat; assumption
        | apply Zplus_le_0_compat; apply Zle_neg_opp; assumption
-       | apply False_ind; generalize H_nabcd; apply Zle_not_lt; omega
+       | apply False_ind; generalize H_nabcd; apply Zle_not_lt; lia
        | rewrite <- Zopp_plus_distr; apply Zle_neg_opp; assumption
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me
        | discriminate H_discriminate_me ] ].
    (* np2 = One *)
-   apply homographicacc0; reflexivity || omega. 
+   apply homographicacc0; reflexivity || lia. 
 Qed.
 
 
@@ -699,7 +697,7 @@ Proof.
  let T_local :=
   (apply quadraticAcc_wf; solve
     [ assumption
-    | omega
+    | lia
     | match goal with
       | id1:(?X1 = (?X2, (?X3, (?X4, nR ?X5)))) |- ?X6 =>
           generalize
@@ -734,7 +732,7 @@ Proof.
    discriminate.
    reflexivity. 
    apply homographicAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_neg_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh (nR p) One H);
@@ -761,7 +759,7 @@ Proof.
   let T_local :=
    (apply quadraticAcc_wf; solve
      [ assumption
-     | omega
+     | lia
      | match goal with
        | id1:(?X1 = (?X2, (?X3, (?X4, nR ?X5)))) |- ?X6 =>
            generalize
@@ -795,7 +793,7 @@ Proof.
    discriminate.
    reflexivity.
    apply homographicAcc_wf; solve
-    [ rewrite Zplus_assoc; assumption || omega
+    [ rewrite Zplus_assoc; assumption || lia
     | generalize
        (Qquadratic_sign_neg_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh (dL p) One H);
@@ -824,7 +822,7 @@ Proof.
   reflexivity.
   let T_local :=
    (apply homographicAcc_wf; solve
-     [ omega
+     [ lia
      | match goal with
        | id1:(?X1 = (?X2, (?X3, (?X4, nR ?X5)))) |- ?X6 =>
            generalize
@@ -848,7 +846,7 @@ Proof.
            repeat apply Zle_resp_neg; assumption
         | assumption ||
             (rewrite <- Zopp_plus_distr; apply Zle_neg_opp; assumption)
-        | apply False_ind; generalize H_nabcd; apply Zle_not_lt; omega
+        | apply False_ind; generalize H_nabcd; apply Zle_not_lt; lia
         | discriminate H_discriminate_me
         | discriminate H_discriminate_me
         | discriminate H_discriminate_me ] ]) in
@@ -857,7 +855,7 @@ Proof.
     |  (* np2 = (dL p) *) T_local
     |  (* Here we use the third clause in Qquadratic_sign_neg_2:  p1=One /\ .... *) 
        (* np2 = One *)
-       apply homographicacc0; reflexivity || omega ]). 
+       apply homographicacc0; reflexivity || lia ]). 
 Qed.
 
 
@@ -922,7 +920,7 @@ Proof.
   (* np1 = (nR p) *)
   let T_local :=
    (apply quadraticAcc_wf; solve
-     [ assumption || omega
+     [ assumption || lia
      | match goal with
        | id1:(?X1 = (?X2, (?X3, (?X4, nR ?X5)))) |- ?X6 =>
            generalize
@@ -957,7 +955,7 @@ Proof.
    discriminate.
    reflexivity.
    apply homographicAcc_wf; solve
-    [ omega
+    [ lia
     | generalize
        (Qquadratic_sign_neg_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh (nR p) One H);
@@ -984,7 +982,7 @@ Proof.
  (* np1 = (dL p0) *)
   let T_local :=
    (apply quadraticAcc_wf; solve
-     [ assumption || omega
+     [ assumption || lia
      | match goal with
        | id1:(?X1 = (?X2, (?X3, (?X4, nR ?X5)))) |- ?X6 =>
            generalize
@@ -1019,7 +1017,7 @@ Proof.
    discriminate.
    reflexivity.
    apply homographicAcc_wf; solve
-    [ rewrite Zplus_assoc; assumption || omega
+    [ rewrite Zplus_assoc; assumption || lia
     | generalize
        (Qquadratic_sign_neg_2 a b c d e f g h p1 p2 H_qsign na nb nc nd ne nf
           ng nh (dL p) One H);
@@ -1049,7 +1047,7 @@ Proof.
   let T_local :=
    (apply homographicAcc_wf;
      try solve
-      [ omega
+      [ lia
       | match goal with
         | id1:(?X1 = (?X2, (?X3, (?X4, nR ?X5)))) |- ?X6 =>
             generalize
@@ -1071,7 +1069,7 @@ Proof.
          [ apply False_ind; generalize H_nabcd; apply Zle_not_lt;
             repeat apply Zplus_le_0_compat; assumption
          | apply Zplus_le_0_compat; try apply Zle_neg_opp; assumption
-         | apply False_ind; generalize H_nabcd; apply Zle_not_lt; omega
+         | apply False_ind; generalize H_nabcd; apply Zle_not_lt; lia
          | assumption ||
              (rewrite <- Zopp_plus_distr; apply Zle_neg_opp; assumption)
          | discriminate H_discriminate_me
@@ -1082,5 +1080,5 @@ Proof.
     |  (* np2 = (dL p) *) T_local
     |  (* Here we use the third clause in Qquadratic_sign_neg_2:  p1=One /\ .... *) 
        (* np2 = One *)
-       apply homographicacc0; reflexivity || omega ]).
+       apply homographicacc0; reflexivity || lia ]).
 Qed.

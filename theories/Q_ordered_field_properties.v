@@ -336,9 +336,9 @@ Proof.
  apply Qlt_transitive with Zero; auto.
 Qed.
 
-Hint Resolve Qinv_pos Qinv_resp_nonzero Qminus_Qeq Qeq_Qminus
-             Qlt_not_eq' Qinv_neg Qle_Qopp_pos Qlt_Qopp_pos 
-             Qlt_Qopp_neg Qopp_Qone_Qlt_Qone : core.
+#[export] Hint Resolve Qinv_pos Qinv_resp_nonzero Qminus_Qeq Qeq_Qminus
+ Qlt_not_eq' Qinv_neg Qle_Qopp_pos Qlt_Qopp_pos
+ Qlt_Qopp_neg Qopp_Qone_Qlt_Qone : core.
 
 Lemma Qle_mult_nonneg_pos: forall x y : Q, Zero <= x -> Zero < y -> Zero <= x * y.
 Proof.

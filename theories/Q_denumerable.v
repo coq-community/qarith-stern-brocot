@@ -13,30 +13,30 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 (************************************************************************)
 (* Copyright 2005 Milad Niqui                                           *)
 (* This file is distributed under the terms of the                      *) 
 (* GNU Lesser General Public License Version 2.1                        *)
 (************************************************************************)
 
-(* $Id$ *)
-
 (** We start by some general notions for expressing the bijection *)
 
-Definition identity (A:Set) := fun a:A=> a.
-Definition compose (A B C:Set) (g:B->C) (f:A->B) := fun a:A=>g(f a).
+Definition identity (A:Type) := fun a:A=> a.
+Definition compose (A B C:Type) (g:B->C) (f:A->B) := fun a:A=>g(f a).
 
 Section Denumerability.
 
 (** What it means to have the same cardinality *)
-Definition same_cardinality (A:Set) (B:Set) := {f:A->B & { g:B->A | (forall b,(compose _ _ _ f g) b= (identity B) b)
-                                                                /\ forall a,(compose _ _ _ g f) a = (identity A) a}}. 
+Definition same_cardinality (A:Type) (B:Type) :=
+ {f:A->B & { g:B->A | 
+  (forall b,(compose _ _ _ f g) b= (identity B) b) /\
+   forall a,(compose _ _ _ g f) a = (identity A) a}}.
 
 (** What it means to be a denumerable *)
 Definition is_denumerable A := same_cardinality A nat.
 
-Lemma same_cardinality_transitive:forall A B C, same_cardinality A B -> same_cardinality B C -> same_cardinality A C.
+Lemma same_cardinality_transitive :
+ forall A B C, same_cardinality A B -> same_cardinality B C -> same_cardinality A C.
 Proof.
  intros A B C [f [g [HAB1 HAB2]]] [h [k [HBC1 HBC2]]];
  repeat (match goal with [id1: forall (_:_), compose _ _ _ _ _ _  = identity _ _  |- _ ]=> 
@@ -50,7 +50,8 @@ Proof.
   ]; trivial.
 Defined.
 
-Lemma is_denumerable_transitive:forall A B, is_denumerable A -> same_cardinality B A -> is_denumerable B.
+Lemma is_denumerable_transitive :
+ forall A B, is_denumerable A -> same_cardinality B A -> is_denumerable B.
 Proof.
  intros A B HA HBA; apply (same_cardinality_transitive B A nat HBA HA).
 Defined.
@@ -62,6 +63,7 @@ End Denumerability.
 
 Require Div2.
 Require Import ZArith.
+Require Import Lia.
 
 (** An injection from [Z] to [nat] *)
 Definition Z_to_nat_i (z:Z) :nat :=
@@ -69,7 +71,7 @@ Definition Z_to_nat_i (z:Z) :nat :=
    | Z0 => O
    | Zpos p => Div2.double (nat_of_P p)
    | Zneg p => pred (Div2.double (nat_of_P p))
-   end. 
+   end.
 
 (** Some lemmas about parity. They could be added to [Arith.Div2] *)
 Lemma odd_pred2n: forall n : nat, Even.odd n -> {p : nat | n = pred (Div2.double p)}.
@@ -100,7 +102,7 @@ Definition nat_to_Z_i (n:nat) :=
 
 Lemma double_eq_half_eq:forall m n, Div2.double m = Div2.double n -> m =n.
 Proof.
- unfold Div2.double; intros m n; omega.
+ unfold Div2.double; intros m n; lia.
 Defined.
 
 Lemma parity_mismatch_not_eq:forall m n, Even.even m -> Even.odd n -> ~m=n.
@@ -113,18 +115,18 @@ Lemma even_double:forall n, Even.even (Div2.double n).
 Proof.
  intro n;
  unfold Div2.double;
- replace (n + n) with (2*n); auto with arith; omega.
+ replace (n + n) with (2*n); auto with arith; lia.
 Defined.
 
 Lemma double_S_neq_pred:forall m n, ~Div2.double (S m) = pred (Div2.double n).
 Proof.
  intros m [|n].
- unfold Div2.double; omega.
+ unfold Div2.double; lia.
  apply (parity_mismatch_not_eq (Div2.double (S m)) (pred (Div2.double (S n))));
  try apply even_double;
  replace (pred (Div2.double (S n))) with (S (Div2.double n));
  [ constructor; apply even_double
- | unfold Div2.double; omega].
+ | unfold Div2.double; lia].
 Defined.
 
 Lemma eq_add_pred : forall n m : nat, pred n = pred m -> {n = m} + {n<2/\m<2}.
@@ -132,11 +134,11 @@ Proof.
  intros [|[|n]] m;
  simpl;
  intros H;
- try (right; omega);
+ try (right; lia);
  left;
  rewrite (f_equal S H);
  symmetry; apply S_pred with 0;
- omega.
+ lia.
 Defined.
 
 (** We prove that the maps [Z_to_nat_i] is the right inverse of [nat_to_Z_i].*)
@@ -152,7 +154,7 @@ Proof.
      ]; trivial;
   try apply (f_equal Z.opp);
     apply (f_equal Z_of_nat);
-      unfold Div2.double in Hk; omega.
+      unfold Div2.double in Hk; lia.
 
  case (even_odd_exists_dec (Z_to_nat_i (Zpos p)) ); intros [k Hk].
   unfold Z_to_nat_i in Hk;
@@ -170,7 +172,7 @@ Proof.
  case (even_odd_exists_dec (Z_to_nat_i (Zneg p)) ); intros [k Hk].
   unfold Z_to_nat_i in Hk;
   unfold Div2.double in Hk;
-  destruct (ZL4 p) as [m Hm]; omega.
+  destruct (ZL4 p) as [m Hm]; lia.
 
   unfold Z_to_nat_i in Hk;
   case (eq_add_pred _ _ Hk).
@@ -187,7 +189,7 @@ Proof.
    destruct (ZL4 p) as [m Hm];
    rewrite Hm in H_nat_p_lt_2;
    rewrite Div2.double_S in H_nat_p_lt_2;
-   omega.
+   lia.
 Defined.
 
 (** We prove that the maps [Z_to_nat_i] is the left inverse of [nat_to_Z_i].*)
@@ -200,7 +202,7 @@ Proof.
  intros [k Hk];
  transitivity (Z_to_nat_i (Z_of_nat 0)); trivial;
  apply (f_equal Z_to_nat_i);
- simpl; unfold Div2.double in Hk; omega.
+ simpl; unfold Div2.double in Hk; lia.
 
  case (even_odd_exists_dec (S n)); intros [[|k] Hk]; rewrite Hk; trivial; simpl;
  [apply (f_equal Div2.double);

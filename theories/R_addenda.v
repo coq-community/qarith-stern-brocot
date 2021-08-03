@@ -12,7 +12,7 @@ Require Import Reals.
 Require Import Lra.
 Require Import Fourier.
 Require Import Euclid. 
-Require Import Omega.
+Require Import Lia.
 
 Open Scope R_scope.
 
@@ -110,10 +110,9 @@ Definition Rmult_resp_nonzero:=RIneq.prod_neq_R0.
 Definition Rinv_resp_nonzero:=Rinv_neq_0_compat.
 Definition Ropp_resp_nonzero:=RIneq.Ropp_neq_0_compat.
 
-
-Hint Resolve Rlt_Ropp_pos Rinv_pos R1_neq_R0 Rle_mult_nonneg_nonneg
-             Rlt_mult_pos_pos Rlt_mult_neg_neg Rlt_not_eq' Rlt_not_eq
-             Rmult_resp_nonzero Rinv_resp_nonzero Ropp_resp_nonzero : core.
+#[export] Hint Resolve Rlt_Ropp_pos Rinv_pos R1_neq_R0 Rle_mult_nonneg_nonneg
+ Rlt_mult_pos_pos Rlt_mult_neg_neg Rlt_not_eq' Rlt_not_eq
+ Rmult_resp_nonzero Rinv_resp_nonzero Ropp_resp_nonzero : core.
 
 Lemma Rmult_mult_nonneg: forall r, 0<=r*r.
 Proof.
@@ -388,8 +387,7 @@ Proof.
  intros n; apply lt_INR_0; auto with arith.  
 Qed.
 
-Hint Resolve not_O_S_INR pos_S_INR pos_INR : core.
-
+#[export] Hint Resolve not_O_S_INR pos_S_INR pos_INR : core.
 
 Lemma Req_Rdiv_Rone:forall x y, y<>0 -> x=y -> x/y =1.
 Proof.
@@ -434,7 +432,7 @@ Lemma pow_even_nonneg:forall (y: R) (n : nat), 0 <= pow y (2*n)%nat.
 Proof.
  induction n; simpl.
   auto with real.
-  replace (n + S (n + 0))%nat with (S (2*n)%nat); [|omega].
+  replace (n + S (n + 0))%nat with (S (2*n)%nat); [|lia].
   simpl.
   stepr ((y*y)*(pow y (2*n)%nat)); [|simpl;ring].
   apply Rle_mult_nonneg_nonneg; [apply Rmult_mult_nonneg|apply IHn].
@@ -443,15 +441,15 @@ Qed.
 Lemma pow_Rle_l_1 : forall (y: R) (n : nat),  - 1 <= y -> y <= 1 -> -1 <= pow y n.
 Proof.
  intros y n.
- assert (H2:(2 > 0)%nat); [omega|].
+ assert (H2:(2 > 0)%nat); [lia|].
  destruct (modulo 2 H2 n) as [[|[|r]] [k [Hk1 Hk2]]]; intros hyp1 hyp2.
  3: inversion Hk2; inversion H0; contradict H3;auto with arith.
   rewrite Hk1.
-  replace (k * 2 + 0)%nat with (2*k)%nat; [|omega].
+  replace (k * 2 + 0)%nat with (2*k)%nat; [|lia].
   apply Rle_trans with 0; [ lra | apply pow_even_nonneg].
 
   rewrite Hk1.
-  replace (k * 2 + 1)%nat with (S(2*k)%nat);[|omega].
+  replace (k * 2 + 1)%nat with (S(2*k)%nat);[|lia].
   generalize (pow_even_nonneg y k).
   simpl.
   intros hyp3.

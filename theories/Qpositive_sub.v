@@ -13,9 +13,7 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 Require Export Qpositive_order.
-
  
 Definition Qpositive_sub (w w' : Qpositive) :=
   let (p, q) := Qpositive_i w in
@@ -409,7 +407,7 @@ assumption.
 auto.
 apply lt_le_S.
 case le_lt_or_eq with (1 := Hle).
-omega.
+lia.
 intros Heq1; elim H;
  rewrite <- construct_correct with (n := S p + S q) (1 := Heq); 
  auto.

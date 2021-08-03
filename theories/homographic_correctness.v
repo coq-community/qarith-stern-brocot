@@ -13,7 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 Require Import FunInd.
 Require Import Field_Theory_Q. 
 Require Export Qhomographic_Qpositive_to_Q_properties.
@@ -110,8 +109,6 @@ Proof.
   reflexivity.
 Defined.
 
-
-
 Lemma coding :
  forall (m n : Z) (Hm : (0 < m)%Z) (Hn : (0 < n)%Z),
  positive_fraction_encoding m n Hm Hn =
@@ -153,11 +150,10 @@ Proof.
  apply H.
  repeat rewrite absolu_pred_nat.
  replace (pred_nat m Hm) with (Z.abs_nat (m - 1)). 
- repeat rewrite <- absolu_plus; try abstract omega.
- apply le_absolu; try abstract omega.
+ repeat rewrite <- absolu_plus; try abstract lia.
  rewrite pred_nat_absolu; reflexivity.
  repeat rewrite absolu_pred_nat.
- apply lt_absolu; try abstract omega.
+ apply lt_absolu; try abstract lia.
  (* 3 *)
  generalize (Zlt_minus m n l0).
  intro Hmn.
@@ -175,12 +171,10 @@ Proof.
  apply H.
  repeat rewrite absolu_pred_nat.
  replace (pred_nat m Hm) with (Z.abs_nat (m - 1)). 
- repeat rewrite <- absolu_plus; try abstract omega.
- apply le_absolu; try abstract omega.
+ repeat rewrite <- absolu_plus; try abstract lia.
  rewrite pred_nat_absolu; reflexivity.
  repeat rewrite absolu_pred_nat.
- apply lt_absolu; try abstract omega.
-
+ apply lt_absolu; try abstract lia.
  (* T2 *)
  rewrite spec_positive_fraction_encoding1_positive_fraction_encoding.
  transitivity
@@ -193,9 +187,6 @@ Proof.
  repeat rewrite <- pred_nat_unfolded.
  reflexivity.
 Defined.
-
-
-
 
 Functional Scheme Qmult_ind := Induction for Qmult Sort Prop.
 

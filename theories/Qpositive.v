@@ -17,7 +17,7 @@
 Require Export Arith.
 Require Export Compare_dec.
 Require Export ArithRing.
-Require Export Omega.
+Require Export Lia.
 Require Export ZArith.
 Require Export ZArithRing.
  
@@ -53,7 +53,7 @@ intros w Hrec; elim Hrec; intros a Hrec2; elim Hrec2; intros b; simpl in |- *;
  case (Qpositive_i w); simpl in |- *.
 intros p q Heq; exists (a - b)%Z; exists b.
 rewrite <- Heq; repeat rewrite Znat.inj_plus; ring.
-exists 1%Z; exists 0%Z; simpl in |- *; omega.
+exists 1%Z; exists 0%Z; simpl in |- *; lia.
 Qed.
  
 Fixpoint Qpositive_inv (w : Qpositive) : Qpositive :=
@@ -631,16 +631,16 @@ apply le_trans with (p + S q).
 rewrite <- plus_n_Sm.
 auto with arith.
 apply le_S_n; assumption.
-omega.
+lia.
 rewrite <- Heq2.
 rewrite plus_comm; rewrite <- le_plus_minus.
 apply le_trans with (p' + S q').
 rewrite <- plus_n_Sm; auto with arith.
 apply le_S_n; exact Hle2.
-omega.
+lia.
 exact Heq3.
-omega.
-omega.
+lia.
+lia.
 Qed.
  
 Theorem Qpositive_c_equiv' :

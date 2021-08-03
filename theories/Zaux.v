@@ -13,12 +13,14 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-(** This file includes random facts about Integers (and natural numbers) which are not found in the standard library. Some of the lemma here are not used in the QArith developement but are rather useful.
+(** This file includes random facts about Integers (and natural numbers) which are not
+    found in the standard library. Some of the lemmas here are not used in the QArith
+    development but are rather useful.
 *)
 
 Require Export ZArith.
 Require Export ZArithRing.
+Require Import Lia.
 
 Tactic Notation "ElimCompare" constr(c) constr(d) := elim_compare c d.
 
@@ -49,7 +51,7 @@ Ltac CaseEq formula :=
    case formula.
 
 
-Lemma pair_1 : forall (A B : Set) (H : A * B), H = pair (fst H) (snd H).
+Lemma pair_1 : forall (A B : Type) (H : A * B), H = pair (fst H) (snd H).
 Proof.
  intros.
  case H.
@@ -59,7 +61,7 @@ Proof.
 Qed.
 
 Lemma pair_2 :
- forall (A B : Set) (H1 H2 : A * B),
+ forall (A B : Type) (H1 H2 : A * B),
  fst H1 = fst H2 -> snd H1 = snd H2 -> H1 = H2.
 Proof.
  intros A B H1 H2.
@@ -74,7 +76,7 @@ Qed.
 
 
 Section projection.   
- Variable A : Set.
+ Variable A : Type.
  Variable P : A -> Prop.
  
  Definition projP1 (H : sig P) := let (x, h) := H in x.
@@ -140,35 +142,35 @@ Qed.
 Lemma lt_minus_neq : forall m n : nat, m < n -> n - m <> 0.
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 Lemma lt_minus_eq_0 : forall m n : nat, m < n -> m - n = 0.
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 Lemma le_plus_Sn_1_SSn : forall n : nat, S n + 1 <= S (S n).
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 Lemma le_plus_O_l : forall p q : nat, p + q <= 0 -> p = 0.
 Proof. 
- intros; omega.
+ intros; lia.
 Qed.
 
 Lemma le_plus_O_r : forall p q : nat, p + q <= 0 -> q = 0.
 Proof. 
- intros; omega.
+ intros; lia.
 Qed.
 
 Lemma minus_pred : forall m n : nat, 0 < n -> pred m - pred n = m - n.
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 
@@ -550,7 +552,7 @@ Qed.
 
 
 
-(* Omega can't solve this *)
+(* Lia can't solve this *)
 Lemma Zmult_pos_pos : forall x y : Z, (0 < x)%Z -> (0 < y)%Z -> (0 < x * y)%Z.
 Proof.
  intros [| px| px] [| py| py] Hx Hy; trivial || constructor.
@@ -573,7 +575,7 @@ Qed.
 
 
 
-Hint Resolve Zmult_pos_pos Zmult_neg_neg Zmult_neg_pos Zmult_pos_neg: zarith.
+#[export] Hint Resolve Zmult_pos_pos Zmult_neg_neg Zmult_neg_pos Zmult_pos_neg: zarith.
 
 
 Lemma Zle_reg_mult_l :
@@ -1158,7 +1160,7 @@ Proof.
  intros [| p| p]; intros; [ Falsum | constructor | constructor ].
 Qed.
  
-Hint Resolve square_pos: zarith.
+#[export] Hint Resolve square_pos: zarith.
 
 (*###########################################################################*)
 (** Properties of positive numbers, mapping between Z and nat                *)
@@ -1414,13 +1416,13 @@ Qed.
 Lemma lt_inj : forall m n : nat, (m < n)%Z -> m < n.
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 Lemma le_inj : forall m n : nat, (m <= n)%Z -> m <= n.
 Proof.
  intros.
- omega.
+ lia.
 Qed.
 
 
@@ -1501,11 +1503,11 @@ Proof.
   [ replace (Z.abs_nat x) with (Z.abs_nat (x - 1 + 1));
      [ idtac | apply f_equal with Z; auto with zarith ];
      rewrite absolu_plus;
-     [ unfold Z.abs_nat at 2, nat_of_P, Pos.iter_op in |- *; omega
+     [ unfold Z.abs_nat at 2, nat_of_P, Pos.iter_op in |- *; lia
      | auto with zarith
      | intro; discriminate ]
   | rewrite <- H1; reflexivity ].
-Qed. 
+Qed.
 
 Definition pred_nat : forall (x : Z) (Hx : (0 < x)%Z), nat.
 intros [| px| px] Hx; try abstract (discriminate Hx).
@@ -1985,7 +1987,7 @@ Proof.
  intros [| p| p] Hp; trivial.
 Qed.
 
-Hint Resolve Zsgn_1' Zsgn_2 Zsgn_3 Zsgn_4 Zsgn_5 Zsgn_6 Zsgn_7 Zsgn_7' Zsgn_8
+#[export] Hint Resolve Zsgn_1' Zsgn_2 Zsgn_3 Zsgn_4 Zsgn_5 Zsgn_6 Zsgn_7 Zsgn_7' Zsgn_8
   Zsgn_9 Zsgn_10 Zsgn_11 Zsgn_12 Zsgn_13 Zsgn_14 Zsgn_15 Zsgn_16 Zsgn_17
   Zsgn_18 Zsgn_19 Zsgn_20 Zsgn_21 Zsgn_22 Zsgn_23 Zsgn_24 Zsgn_25 Zsgn_26
   Zsgn_27: zarith.
@@ -2388,7 +2390,7 @@ Proof.
  intros [|z|z]; simpl; auto with zarith; apply Zle_neg_pos. 
 Qed.
  
-Hint Resolve Zabs_1 Zabs_2 Zabs_3 Zabs_4 Zabs_5 Zabs_6 Zabs_7 Zabs_8 Zabs_9
+#[export] Hint Resolve Zabs_1 Zabs_2 Zabs_3 Zabs_4 Zabs_5 Zabs_6 Zabs_7 Zabs_8 Zabs_9
   Zabs_10 Zabs_11 Zabs_12 Zabs_min Zabs_neg Zabs_mult Zabs_plus Zle_Zabs: zarith.
 
 
@@ -2453,8 +2455,8 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zrec :
- forall (P : Z -> Set) (p : Z),
+Definition Zrec :
+ forall (P : Z -> Type) (p : Z),
  P p ->
  (forall q : Z, (p <= q)%Z -> P q -> P (q + 1)%Z) ->
  forall q : Z, (p <= q)%Z -> P q. 
@@ -2469,11 +2471,11 @@ Proof.
  intros.
  cut {k : nat | q = (p + Z_of_nat k)%Z}.
  intro.
- case H4.
+ case H1.
  intros.
  rewrite e.
- apply H2.
- apply H1.
+ apply X1.
+ apply H.
  assumption.
  intro.
  induction  k as [| k Hreck].
@@ -2481,7 +2483,7 @@ Proof.
  rewrite Zplus_0_r.
  assumption.
  replace (p + Z_of_nat (S k))%Z with (p + k + 1)%Z.
- apply H0.
+ apply X0.
  apply Zplus_le_reg_l with (p := (- p)%Z).
  replace (- p + p)%Z with (Z_of_nat 0). 
  replace (- p + (p + Z_of_nat k))%Z with (Z_of_nat k).
@@ -2512,8 +2514,8 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zrec_down :
- forall (P : Z -> Set) (p : Z),
+Definition Zrec_down :
+ forall (P : Z -> Type) (p : Z),
  P p ->
  (forall q : Z, (q <= p)%Z -> P q -> P (q - 1)%Z) ->
  forall q : Z, (q <= p)%Z -> P q.
@@ -2528,11 +2530,11 @@ Proof.
  intros.
  cut {k : nat | q = (p - Z_of_nat k)%Z}.
  intro.
- case H4.
+ case H1.
  intros.
  rewrite e.
- apply H2.
- apply H1.
+ apply X1.
+ apply H.
  assumption.
  intro.
  induction  k as [| k Hreck].
@@ -2543,7 +2545,7 @@ Proof.
  unfold Z.opp in |- *.
  rewrite Zplus_0_r; reflexivity.
  replace (p - Z_of_nat (S k))%Z with (p - k - 1)%Z.
- apply H0.
+ apply X0.
  apply Zplus_le_reg_l with (p := (- p)%Z).
  replace (- p + p)%Z with (- Z_of_nat 0)%Z. 
  replace (- p + (p - Z_of_nat k))%Z with (- Z_of_nat k)%Z.
@@ -2563,7 +2565,7 @@ Proof.
  intros.
  cut {k : nat | (p - q)%Z = Z_of_nat k}.
  intro.
- case H2.
+ case H0.
  intro k.
  intros.
  exists k.
@@ -2646,15 +2648,15 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zrec_wf :
- forall (P : Z -> Set) (p : Z),
+Definition Zrec_wf :
+ forall (P : Z -> Type) (p : Z),
  (forall q : Z, (forall r : Z, (p <= r < q)%Z -> P r) -> P q) ->
  forall q : Z, (p <= q)%Z -> P q.
 Proof.
  intros P p WF_ind_step q Hq.
  cut (forall x : Z, (p <= x)%Z -> forall y : Z, (p <= y < x)%Z -> P y).
  intro.
- apply (H (Z.succ q)).
+ apply (X (Z.succ q)).
  apply Zle_le_succ.
  assumption.
  
@@ -2678,26 +2680,26 @@ Proof.
  intros. 
  apply WF_ind_step. 
  intros.
- apply (H0 H).
+ apply (X H).
  split. 
- elim H2.
+ elim H1.
  intros.
  assumption.
  apply Z.lt_le_trans with y. 
- elim H2.
+ elim H1.
  intros.
  assumption.
  apply Zgt_succ_le. 
  apply Z.lt_gt. 
- elim H1.
+ elim H0.
  intros.
  unfold Z.succ in |- *.
  assumption.
  assumption.
 Qed.
 
-Lemma Zrec_wf2 :
- forall (q : Z) (P : Z -> Set) (p : Z),
+Definition Zrec_wf2 :
+ forall (q : Z) (P : Z -> Type) (p : Z),
  (forall q : Z, (forall r : Z, (p <= r < q)%Z -> P r) -> P q) ->
  (p <= q)%Z -> P q.
 Proof.
@@ -2707,8 +2709,8 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zrec_wf_double :
- forall (P : Z -> Z -> Set) (p0 q0 : Z),
+Definition Zrec_wf_double :
+ forall (P : Z -> Z -> Type) (p0 q0 : Z),
  (forall n m : Z,
   (forall p q : Z, (q0 <= q)%Z -> (p0 <= p < n)%Z -> P p q) ->
   (forall p : Z, (q0 <= p < m)%Z -> P n p) -> P n m) ->
@@ -2905,7 +2907,7 @@ Proof.
  assumption.
 Qed.
 
-Lemma Zmax_case : forall (n m : Z) (P : Z -> Set), P n -> P m -> P (Zmax n m).
+Lemma Zmax_case : forall (n m : Z) (P : Z -> Type), P n -> P m -> P (Zmax n m).
 Proof.
  intros.
  unfold Zmax in |- *.
@@ -2914,14 +2916,14 @@ Proof.
  rewrite e.
  cut ((n + m - n)%Z = m).
  intro.
- rewrite H1.
+ rewrite H.
  assumption.
  ring.
  intro.
  rewrite e.
  cut ((n + m - m)%Z = n).
  intro.
- rewrite H1.
+ rewrite H.
  assumption.
  ring.
 Qed.
@@ -2949,7 +2951,7 @@ Proof.
  ring.
 Qed.
 
-Hint Resolve ZmaxSS Zle_max_r Zle_max_l Zmax_n_n: zarith.
+#[export] Hint Resolve ZmaxSS Zle_max_r Zle_max_l Zmax_n_n: zarith.
 
 (*###########################################################################*)
 (** Properties of Arity                                                      *)
@@ -3020,7 +3022,7 @@ Proof.
  Flip.
 Qed.
 
-Hint Resolve Z_div_mod_eq_2 Z_div_le Z_div_nonneg Z_div_neg: zarith.
+#[export] Hint Resolve Z_div_mod_eq_2 Z_div_le Z_div_nonneg Z_div_neg: zarith.
 
 (*###########################################################################*)
 (** Properties of Zpower                                                       *)
@@ -3038,4 +3040,4 @@ Proof.
   ring.
 Qed.
 
-Hint Resolve Zpower_1 Zpower_2: zarith.
+#[export] Hint Resolve Zpower_1 Zpower_2: zarith.

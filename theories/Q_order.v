@@ -13,7 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 Require Export Q_field.
  
 Theorem Qmult_sym : forall n m : Q, Qmult n m = Qmult m n.
@@ -117,7 +116,8 @@ Inductive Qgt : Q -> Q -> Prop :=
   | Qgt_pos_zero : forall x' : Qpositive, Qgt (Qpos x') Zero
   | Qgt_pos_neg : forall x' y' : Qpositive, Qgt (Qpos x') (Qneg y')
   | Qgt_zero_neg : forall x' : Qpositive, Qgt Zero (Qneg x').
-Hint Resolve Qgt_pos_pos Qgt_neg_neg Qgt_pos_zero Qgt_pos_neg Qgt_zero_neg : core.
+
+#[export] Hint Resolve Qgt_pos_pos Qgt_neg_neg Qgt_pos_zero Qgt_pos_neg Qgt_zero_neg : core.
  
 Theorem Qgt_total : forall x y : Q, Qgt x y \/ x = y \/ Qgt y x.
 intros x y; case y; case x; auto.

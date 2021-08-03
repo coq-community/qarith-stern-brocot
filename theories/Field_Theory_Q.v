@@ -72,8 +72,7 @@ Ltac Qcst t :=
  
 Add Field Qfield : QField (decidable Q_eq_prop, constants [Qcst]).
 
-Definition not_eq2eqT (A : Set) (x y : A) (H1 : x <> y) : 
+Definition not_eq2eqT (A : Type) (x y : A) (H1 : x <> y) :
   x <> y := fun H2 : x = y => H1 (H2).
-
 
 Ltac Field := field.
