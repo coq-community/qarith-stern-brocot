@@ -1,13 +1,17 @@
+<!---
+This file was generated from `meta.yml`, please do not edit manually.
+Follow the instructions on https://github.com/coq-community/templates to regenerate.
+--->
 # Binary Rational Numbers
 
-[![CI][action-shield]][action-link]
+[![Docker CI][docker-action-shield]][docker-action-link]
 [![Contributing][contributing-shield]][contributing-link]
 [![Code of Conduct][conduct-shield]][conduct-link]
 [![Zulip][zulip-shield]][zulip-link]
 [![DOI][doi-shield]][doi-link]
 
-[action-shield]: https://github.com/coq-community/qarith-stern-brocot/workflows/CI/badge.svg?branch=master
-[action-link]: https://github.com/coq-community/qarith-stern-brocot/actions?query=workflow%3ACI
+[docker-action-shield]: https://github.com/coq-community/qarith-stern-brocot/workflows/Docker%20CI/badge.svg?branch=master
+[docker-action-link]: https://github.com/coq-community/qarith-stern-brocot/actions?query=workflow:"Docker%20CI"
 
 [contributing-shield]: https://img.shields.io/badge/contributions-welcome-%23f7931e.svg
 [contributing-link]: https://github.com/coq-community/manifesto/blob/master/CONTRIBUTING.md
@@ -34,7 +38,7 @@ field operations on them in two different ways: strict and lazy.
 - Coq-community maintainer(s):
   - Hugo Herbelin ([**@herbelin**](https://github.com/herbelin))
 - License: [GNU Lesser General Public License v2.1 or later](LICENSE)
-- Compatible Coq versions: 8.7 and later
+- Compatible Coq versions: 8.12 or 8.13
 - Additional dependencies: none
 - Coq namespace: `QArithSternBrocot`
 - Related publication(s):
