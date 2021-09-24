@@ -38,6 +38,7 @@ supported_coq_versions:
 
 tested_coq_opam_versions:
 - version: dev
+- version: '8.14'
 
 namespace: QArithSternBrocot
 
