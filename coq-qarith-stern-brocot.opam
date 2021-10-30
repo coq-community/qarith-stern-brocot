@@ -1,6 +1,3 @@
-# This file was generated from `meta.yml`, please do not edit manually.
-# Follow the instructions on https://github.com/coq-community/templates to regenerate.
-
 opam-version: "2.0"
 maintainer: "palmskog@gmail.com"
 version: "dev"
@@ -10,15 +7,15 @@ dev-repo: "git+https://github.com/coq-community/qarith-stern-brocot.git"
 bug-reports: "https://github.com/coq-community/qarith-stern-brocot/issues"
 license: "LGPL-2.1-or-later"
 
-synopsis: "Binary rational numbers"
+synopsis: "Binary rational numbers in Coq"
 description: """
-Development of rational numbers as finite binary lists and defining
+Development of rational numbers in Coq as finite binary lists and defining
 field operations on them in two different ways: strict and lazy.
 """
 
-build: [make "-j%{jobs}%" ]
-install: [make "install"]
+build: ["dune" "build" "-p" name "-j" jobs]
 depends: [
+  "dune" {>= "2.5"}
   "coq" {(>= "8.14" & < "8.15~") | (= "dev")}
 ]
 

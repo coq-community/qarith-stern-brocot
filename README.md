@@ -5,6 +5,7 @@ Follow the instructions on https://github.com/coq-community/templates to regener
 # Binary Rational Numbers
 
 [![Docker CI][docker-action-shield]][docker-action-link]
+[![Nix CI][nix-action-shield]][nix-action-link]
 [![Contributing][contributing-shield]][contributing-link]
 [![Code of Conduct][conduct-shield]][conduct-link]
 [![Zulip][zulip-shield]][zulip-link]
@@ -12,6 +13,9 @@ Follow the instructions on https://github.com/coq-community/templates to regener
 
 [docker-action-shield]: https://github.com/coq-community/qarith-stern-brocot/workflows/Docker%20CI/badge.svg?branch=master
 [docker-action-link]: https://github.com/coq-community/qarith-stern-brocot/actions?query=workflow:"Docker%20CI"
+
+[nix-action-shield]: https://github.com/coq-community/qarith-stern-brocot/workflows/Nix%20CI/badge.svg?branch=master
+[nix-action-link]: https://github.com/coq-community/qarith-stern-brocot/actions?query=workflow:"Nix%20CI"
 
 [contributing-shield]: https://img.shields.io/badge/contributions-welcome-%23f7931e.svg
 [contributing-link]: https://github.com/coq-community/manifesto/blob/master/CONTRIBUTING.md
@@ -26,7 +30,7 @@ Follow the instructions on https://github.com/coq-community/templates to regener
 [doi-shield]: https://zenodo.org/badge/DOI/10.1007/978-3-540-24849-1_20.svg
 [doi-link]: https://doi.org/10.1007/978-3-540-24849-1_20
 
-Development of rational numbers as finite binary lists and defining
+Development of rational numbers in Coq as finite binary lists and defining
 field operations on them in two different ways: strict and lazy.
 
 
@@ -66,8 +70,7 @@ make install
 
 ## Documentation
 
-This package contains a rational arithmetic library for Coq.
-This includes:
+This project contains a rational arithmetic library for Coq. This includes:
 
 - A binary representation for positive rational numbers `Qpositive` and its
   extension to `Q` by adding sign bit (also known as Stern-Brocot
