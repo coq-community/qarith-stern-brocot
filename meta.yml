@@ -4,11 +4,12 @@ shortname: qarith-stern-brocot
 organization: coq-community
 community: true
 action: true
+nix: true
 
-synopsis: Binary rational numbers
+synopsis: Binary rational numbers in Coq
 
 description: |
-  Development of rational numbers as finite binary lists and defining
+  Development of rational numbers in Coq as finite binary lists and defining
   field operations on them in two different ways: strict and lazy.
 
 doi: 10.1007/978-3-540-24849-1_20
@@ -40,6 +41,9 @@ tested_coq_opam_versions:
 - version: dev
 - version: '8.14'
 
+tested_coq_nix_versions:
+- coq_version: 'master'
+
 namespace: QArithSternBrocot
 
 keywords:
@@ -56,8 +60,7 @@ categories:
 documentation: |
   ## Documentation
 
-  This package contains a rational arithmetic library for Coq.
-  This includes:
+  This project contains a rational arithmetic library for Coq. This includes:
 
   - A binary representation for positive rational numbers `Qpositive` and its
     extension to `Q` by adding sign bit (also known as Stern-Brocot
