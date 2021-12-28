@@ -42,18 +42,18 @@ Proof.
      (Qpositive_inv (Qpositive_c (S n) 1 (S (S n))))).
  (* 1.1 *)
  unfold Qpositive_mult in |- *.
- rewrite Qpositive_i_c; [ idtac | apply lt_O_Sn | apply le_n ].
+ rewrite Qpositive_i_c; [ idtac | apply Nat.lt_0_succ | apply le_n ].
 
  set (P := Qpositive_i (Qpositive_c (S n) 1 (S (S n)))) in *.
  set (p := fst P) in *.
  set (q := snd P) in *. 
  transitivity (Qpositive_c (S m * 1) (1 * S n) (S m * 1 + 1 * S n)).
   (* 1.1.1 *)
-  repeat rewrite mult_1_l; repeat rewrite mult_1_r; reflexivity.
+  repeat rewrite Nat.mul_1_l; repeat rewrite Nat.mul_1_r; reflexivity.
   (* 1.1.2 *)
   assert (P = (S n, 1)).
   unfold P in |- *.
-  apply Qpositive_i_c; try apply lt_O_Sn.
+  apply Qpositive_i_c; try apply Nat.lt_0_succ.
   apply le_n.
   replace (Qpositive_i (Qpositive_inv (Qpositive_c (S n) 1 (S (S n))))) with
    (q, p).

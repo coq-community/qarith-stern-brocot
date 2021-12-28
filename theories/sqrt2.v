@@ -29,7 +29,7 @@ intros x; ring.
 Qed.
  
 Theorem lt_neq : forall x y : nat, x < y -> x <> y.
-unfold not in |- *; intros x y H H1; elim (lt_irrefl x);
+unfold not in |- *; intros x y H H1; elim (Nat.lt_irrefl x);
  pattern x at 2 in |- *; rewrite H1; auto.
 Qed.
 
@@ -40,9 +40,10 @@ Theorem monotonic_inverse :
  (forall x y : nat, x < y -> f x < f y) ->
  forall x y : nat, f x < f y -> x < y.
 intros f Hmon x y Hlt; case (le_gt_dec y x); auto.
-intros Hle; elim (le_lt_or_eq _ _ Hle).
-intros Hlt'; elim (lt_asym _ _ Hlt); apply Hmon; auto.
-intros Heq; elim (lt_neq _ _ Hlt); rewrite Heq; auto.
+intros Hle; apply Nat.lt_eq_cases in Hle.
+destruct Hle as [Hlt'|Heq].
+elim (Nat.lt_asymm _ _ Hlt); apply Hmon; auto.
+elim (lt_neq _ _ Hlt); rewrite Heq; auto.
 Qed.
  
 Theorem mult_lt : forall a b c : nat, c <> 0 -> a < b -> a * c < b * c.
@@ -58,23 +59,26 @@ Qed.
 Remark add_sub_square_identity :
  forall a b : nat,
  (b + a - b) * (b + a - b) = (b + a) * (b + a) + b * b - 2 * ((b + a) * b).
-intros a b; rewrite minus_plus.
-repeat rewrite mult_plus_distr_r || rewrite <- (mult_comm (b + a)).
+intros a b; rewrite (Nat.add_comm b a) at 1 2; rewrite Nat.add_sub.
+repeat rewrite Nat.mul_add_distr_r || rewrite <- (Nat.mul_comm (b + a)).
 replace (b * b + a * b + (b * a + a * a) + b * b) with
  (b * b + a * b + (b * b + a * b + a * a)); try (ring; fail).
-rewrite expand_mult2; repeat rewrite minus_plus; auto with *.
+rewrite expand_mult2; repeat rewrite Nat.add_sub; auto with *.
 Qed.
  
 Theorem sub_square_identity :
  forall a b : nat, b <= a -> (a - b) * (a - b) = a * a + b * b - 2 * (a * b).
-intros a b H; rewrite (le_plus_minus b a H); apply add_sub_square_identity.
+intros a b H.
+apply Nat.sub_add in H; rewrite Nat.add_comm in H.
+rewrite <- H.
+apply add_sub_square_identity.
 Qed.
  
 Theorem square_monotonic : forall x y : nat, x < y -> x * x < y * y.
 intros x; case x.
 intros y; case y; simpl in |- *; auto with *.
-intros x' y Hlt; apply lt_trans with (S x' * y).
-rewrite (mult_comm (S x') y); apply mult_lt; auto.
+intros x' y Hlt; apply Nat.lt_trans with (S x' * y).
+rewrite (Nat.mul_comm (S x') y); apply mult_lt; auto.
 apply mult_lt; lia.
 Qed.
  
@@ -96,7 +100,7 @@ Variables (p q : nat) (pos_q : 0 < q) (hyp_sqrt : p * p = 2 * (q * q)).
  
 Theorem sqrt_q_non_zero : 0 <> q * q.
 generalize pos_q; case q.
-intros H; elim (lt_n_O 0); auto.
+intros H; elim (Nat.nlt_0_r 0); auto.
 intros n H.
 simpl in |- *; discriminate.
 Qed.
@@ -124,15 +128,16 @@ Qed.
 #[local] Hint Resolve comparison1 comparison2 comparison3: arith.
  
 Theorem comparison4 : 3 * q - 2 * p < q.
-apply plus_lt_reg_l with (2 * p).
-rewrite <- le_plus_minus; try (simple apply lt_le_weak; auto with arith).
+apply Nat.add_lt_mono_l with (2 * p).
+rewrite Nat.add_comm; rewrite Nat.sub_add;
+ try (simple apply Nat.lt_le_incl; auto with arith).
 replace (3 * q) with (2 * q + q); try ring.
-apply plus_lt_le_compat; auto.
-repeat rewrite (mult_comm 2); apply mult_lt; auto with arith.
+apply Nat.add_lt_le_mono; auto.
+repeat rewrite (Nat.mul_comm 2); apply mult_lt; auto with arith.
 Qed.
  
 Remark mult_minus_distr_l : forall a b c : nat, a * (b - c) = a * b - a * c.
-intros a b c; repeat rewrite (mult_comm a); apply mult_minus_distr_r.
+intros a b c; repeat rewrite (Nat.mul_comm a); apply Nat.mul_sub_distr_r.
 Qed.
  
 Remark minus_eq_decompose :
@@ -149,15 +154,16 @@ Qed.
 
 End sqrt2_decrease.
 
-#[local] Hint Resolve lt_le_weak comparison2: sqrt.
+#[local] Hint Resolve Nat.lt_le_incl comparison2: sqrt.
  
 Theorem sqrt2_not_rational :
  forall p q : nat, q <> 0 -> p * p = 2 * (q * q) -> False.
 intros p q; generalize p; clear p; elim q using (well_founded_ind lt_wf).
-clear q; intros q Hrec p Hneq; generalize (neq_O_lt _ (sym_not_equal Hneq));
- intros Hlt_O_q Heq.
+clear q; intros q Hrec p Hneq; 
+ pose proof Hneq as Hlt_O_q; apply Nat.neq_0_lt_0 in Hlt_O_q;
+ intros Heq.
 apply (Hrec (3 * q - 2 * p) (comparison4 _ _ Hlt_O_q Heq) (3 * p - 4 * q)).
-apply sym_not_equal; apply lt_neq; apply plus_lt_reg_l with (2 * p);
- rewrite <- plus_n_O; rewrite <- le_plus_minus; auto with *.
+apply sym_not_equal; apply lt_neq; apply Nat.add_lt_mono_l with (2 * p);
+ rewrite <- plus_n_O; rewrite Nat.add_comm; rewrite Nat.sub_add; auto with *.
 apply new_equality; auto.
 Qed.

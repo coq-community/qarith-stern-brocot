@@ -69,23 +69,24 @@ Require Import Lia.
 Definition Z_to_nat_i (z:Z) :nat :=
    match z with 
    | Z0 => O
-   | Zpos p => Div2.double (nat_of_P p)
-   | Zneg p => pred (Div2.double (nat_of_P p))
+   | Zpos p => Nat.double (nat_of_P p)
+   | Zneg p => pred (Nat.double (nat_of_P p))
    end.
 
 (** Some lemmas about parity. They could be added to [Arith.Div2] *)
-Lemma odd_pred2n: forall n : nat, Even.odd n -> {p : nat | n = pred (Div2.double p)}.
+Lemma odd_pred2n: forall n : nat, Even.odd n -> {p : nat | n = pred (Nat.double p)}.
 Proof.
  intros n H_odd;
  rewrite (Div2.odd_double _ H_odd);
- exists (S (Div2.div2 n));
- generalize (Div2.div2 n);
+ exists (S (Nat.div2 n));
+ generalize (Nat.div2 n);
  clear n H_odd; intros n;
- rewrite Div2.double_S;
+ unfold Nat.double;
+ rewrite Nat.add_succ_r;
  reflexivity.
 Defined.
 
-Lemma even_odd_exists_dec:forall n, {p : nat | n = Div2.double p} + {p : nat | n = pred (Div2.double p)}.
+Lemma even_odd_exists_dec : forall n, {p : nat | n = Nat.double p} + {p : nat | n = pred (Nat.double p)}.
 Proof. 
  intro n;
  destruct (Even.even_odd_dec n) as [H_parity|H_parity];
@@ -100,9 +101,9 @@ Definition nat_to_Z_i (n:nat) :=
   | inr s => let (k, _) := s in Z.opp (Z_of_nat k)
   end.
 
-Lemma double_eq_half_eq:forall m n, Div2.double m = Div2.double n -> m =n.
+Lemma double_eq_half_eq:forall m n, Nat.double m = Nat.double n -> m = n.
 Proof.
- unfold Div2.double; intros m n; lia.
+ unfold Nat.double; intros m n; lia.
 Defined.
 
 Lemma parity_mismatch_not_eq:forall m n, Even.even m -> Even.odd n -> ~m=n.
@@ -111,25 +112,25 @@ Proof.
  apply (Even.not_even_and_odd n); trivial.
 Defined.
 
-Lemma even_double:forall n, Even.even (Div2.double n).
+Lemma even_double:forall n, Even.even (Nat.double n).
 Proof.
  intro n;
- unfold Div2.double;
+ unfold Nat.double;
  replace (n + n) with (2*n); auto with arith; lia.
 Defined.
 
-Lemma double_S_neq_pred:forall m n, ~Div2.double (S m) = pred (Div2.double n).
+Lemma double_S_neq_pred:forall m n, ~Nat.double (S m) = pred (Nat.double n).
 Proof.
  intros m [|n].
- unfold Div2.double; lia.
- apply (parity_mismatch_not_eq (Div2.double (S m)) (pred (Div2.double (S n))));
+ unfold Nat.double; lia.
+ apply (parity_mismatch_not_eq (Nat.double (S m)) (pred (Nat.double (S n))));
  try apply even_double;
- replace (pred (Div2.double (S n))) with (S (Div2.double n));
+ replace (pred (Nat.double (S n))) with (S (Nat.double n));
  [ constructor; apply even_double
- | unfold Div2.double; lia].
+ | unfold Nat.double; lia].
 Defined.
 
-Lemma eq_add_pred : forall n m : nat, pred n = pred m -> {n = m} + {n<2/\m<2}.
+Lemma eq_add_pred : forall n m : nat, pred n = pred m -> {n = m} + {n < 2 /\ m < 2}.
 Proof.
  intros [|[|n]] m;
  simpl;
@@ -137,7 +138,7 @@ Proof.
  try (right; lia);
  left;
  rewrite (f_equal S H);
- symmetry; apply S_pred with 0;
+ apply (Nat.lt_succ_pred 0);
  lia.
 Defined.
 
@@ -154,7 +155,7 @@ Proof.
      ]; trivial;
   try apply (f_equal Z.opp);
     apply (f_equal Z_of_nat);
-      unfold Div2.double in Hk; lia.
+      unfold Nat.double in Hk; lia.
 
  case (even_odd_exists_dec (Z_to_nat_i (Zpos p)) ); intros [k Hk].
   unfold Z_to_nat_i in Hk;
@@ -171,7 +172,7 @@ Proof.
 
  case (even_odd_exists_dec (Z_to_nat_i (Zneg p)) ); intros [k Hk].
   unfold Z_to_nat_i in Hk;
-  unfold Div2.double in Hk;
+  unfold Nat.double in Hk;
   destruct (ZL4 p) as [m Hm]; lia.
 
   unfold Z_to_nat_i in Hk;
@@ -188,7 +189,8 @@ Proof.
    apply False_ind;
    destruct (ZL4 p) as [m Hm];
    rewrite Hm in H_nat_p_lt_2;
-   rewrite Div2.double_S in H_nat_p_lt_2;
+   unfold Nat.double in H_nat_p_lt_2;
+   rewrite Nat.add_succ_r in H_nat_p_lt_2;
    lia.
 Defined.
 
@@ -202,14 +204,14 @@ Proof.
  intros [k Hk];
  transitivity (Z_to_nat_i (Z_of_nat 0)); trivial;
  apply (f_equal Z_to_nat_i);
- simpl; unfold Div2.double in Hk; lia.
+ simpl; unfold Nat.double in Hk; lia.
 
  case (even_odd_exists_dec (S n)); intros [[|k] Hk]; rewrite Hk; trivial; simpl;
- [apply (f_equal Div2.double);
+ [apply (f_equal Nat.double);
   apply nat_of_P_o_P_of_succ_nat_eq_succ
- |transitivity (pred (Div2.double (S k))); trivial;
+ |transitivity (pred (Nat.double (S k))); trivial;
   apply (f_equal pred);
-  apply (f_equal Div2.double);
+  apply (f_equal Nat.double);
   apply nat_of_P_o_P_of_succ_nat_eq_succ
  ].
 Defined. 

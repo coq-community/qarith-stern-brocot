@@ -249,11 +249,10 @@ Proof.
  assumption.
  assumption.
  constructor.
- rewrite Zmult_comm.
+ rewrite Z.mul_comm.
  assumption.
  rewrite Zmult_plus_distr_l; reflexivity.
 Defined.
-
 
 Lemma Qhomographic_sg_denom_nonzero_Zero_always :
  forall (d : Z) (p : Qpositive),

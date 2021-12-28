@@ -210,8 +210,8 @@ Proof.
   apply Qquadratic_signok0'.
   reflexivity.
   simpl in |- *.
-  rewrite Zmult_comm with k h0.
-  rewrite Zmult_comm with k g0.
+  rewrite Z.mul_comm with k h0.
+  rewrite Z.mul_comm with k g0.
   apply Qhomographic_sg_denom_nonzero_always_1; assumption.
 Defined.
 
@@ -236,8 +236,8 @@ Proof.
                   apply Qquadratic_sg_denom_nonzero_always
                | apply Qquadratic_signok0;
                   [ reflexivity
-                  | simpl in |- *; rewrite Zmult_comm;
-                     rewrite Zmult_comm with k h0;
+                  | simpl in |- *; rewrite Z.mul_comm;
+                     rewrite Z.mul_comm with k h0;
                      apply Qhomographic_sg_denom_nonzero_always_1 ] ]
             | 
                (* p1 = (dL p1) *)
@@ -250,8 +250,8 @@ Proof.
                   apply Qquadratic_sg_denom_nonzero_always
                | apply Qquadratic_signok0;
                   [ reflexivity
-                  | simpl in |- *; rewrite Zmult_comm;
-                     rewrite Zmult_comm with k h0;
+                  | simpl in |- *; rewrite Z.mul_comm;
+                     rewrite Z.mul_comm with k h0;
                      apply Qhomographic_sg_denom_nonzero_always_1 ] ]
             | 
                (* p1 = One *)
@@ -289,8 +289,8 @@ Proof.
                   apply IHp1
                | apply Qquadratic_signok0;
                   [ reflexivity
-                  | repeat rewrite Zplus_0_r; rewrite Zmult_comm;
-                     rewrite Zmult_comm with k g0;
+                  | repeat rewrite Zplus_0_r; rewrite Z.mul_comm;
+                     rewrite Z.mul_comm with k g0;
                      apply Qhomographic_sg_denom_nonzero_always_1 ] ]
             | 
                (* p1 = (dL p1) *)
@@ -305,8 +305,8 @@ Proof.
                   apply IHp1
                | apply Qquadratic_signok0;
                   [ reflexivity
-                  | repeat rewrite Zplus_0_r; rewrite Zmult_comm;
-                     rewrite Zmult_comm with k g0;
+                  | repeat rewrite Zplus_0_r; rewrite Z.mul_comm;
+                     rewrite Z.mul_comm with k g0;
                      apply Qhomographic_sg_denom_nonzero_always_1 ] ]
             | 
                (* p1 = One *)

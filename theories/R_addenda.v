@@ -582,7 +582,7 @@ Proof.
  destruct (H_lim eps H_eps) as [N H_N].
  exists (S N).
  intros [|n] H_n.
-  red in H_n; apply False_ind; apply (le_Sn_O _ H_n).
+  red in H_n; apply False_ind; apply (Nat.nle_succ_0 _ H_n).
   apply H_N; red; apply le_S_n; trivial.
 Qed.
 
@@ -592,8 +592,8 @@ Proof.
  destruct (H_lim eps H_eps) as [N H_N].
  exists (S N).
  intros [|n] H_n.
-  red in H_n; apply False_ind; apply (le_Sn_O _ H_n).
-  apply H_N; red; apply le_trans with n. 
+  red in H_n; apply False_ind; apply (Nat.nle_succ_0 _ H_n).
+  apply H_N; red; apply Nat.le_trans with n. 
    apply le_S_n; trivial.
    repeat constructor.
 Qed.

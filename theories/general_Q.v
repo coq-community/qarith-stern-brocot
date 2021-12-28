@@ -13,7 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 (** General Facts About Q and Qpositive, the functions Qpositive_c and Qpositive_i and the operations Qmult, Qpositive, Qlt *)
 
 Require Import FunInd.
@@ -207,7 +206,7 @@ Lemma Qpositive_c_equal_One :
 Proof.
  intros p q [| n'] Hpq;
   [ apply Qpositive_c_0
-  | apply Qpositive_c_1_0_0; rewrite Hpq; rewrite <- minus_n_n ]; 
+  | apply Qpositive_c_1_0_0; rewrite Hpq; rewrite Nat.sub_diag ]; 
   reflexivity.
 Qed.
 
@@ -308,7 +307,7 @@ Proof.
  intros p' _ _ _ _. 
  symmetry  in |- *.
  apply Qpositive_c_equal_One.
- apply le_antisym; apply minus_O_le; assumption.
+ apply Nat.le_antisymm; apply minus_O_le; assumption.
  (* 3 *)
  intros [| p'x] HpO HqO Hpq Hpq'.
  generalize (le_plus_O_r p q Hpq') (le_plus_O_l p q Hpq').
@@ -377,20 +376,17 @@ Proof.
  repeat rewrite <- plus_n_Sm.
  rewrite <- mult_n_O.
  rewrite plus_O_n.
- rewrite mult_1_l.
- rewrite mult_1_r.
- rewrite Qpositive_c_nR. 
- rewrite plus_comm.
- rewrite minus_plus.
+ rewrite Nat.mul_1_l.
+ rewrite Nat.mul_1_r.
+ rewrite Qpositive_c_nR.
+ rewrite Nat.add_sub.
  apply f_equal with Qpositive.
  symmetry  in |- *; apply construct_correct.
  assumption.
- rewrite plus_comm.
- apply le_plus_l.
+ rewrite Nat.add_comm.
+ apply Nat.le_add_r.
  clear;  lia.
 Qed.
-
-
 
 Functional Scheme Qpositive_mult_ind := Induction for Qpositive_mult Sort Prop.
 
@@ -423,8 +419,8 @@ Proof.
  repeat rewrite <- plus_n_Sm.
  rewrite <- mult_n_O.
  rewrite plus_O_n.
- rewrite mult_1_l.
- rewrite mult_1_r.
+ rewrite Nat.mul_1_l.
+ rewrite Nat.mul_1_r.
  unfold Qpositive_mult in |- *.
  rewrite H_eq_.
  set
@@ -442,7 +438,7 @@ Proof.
  rewrite (Qpositive_c_unfold1 p0 q0 (S p0 + S q0 + q0)) in H_P.
  rewrite
   (construct_correct qp (S p0) (S q0) (S p0 + S q0 + q0) H_eq_
-     (le_plus_l _ _)) in H_P.  
+     (Nat.le_add_r _ _)) in H_P.
  rewrite (Qpositive_i_nR qp _ _ H_eq_) in H_P.
  let f_local :=
   eval cbv beta delta -[plus] in (sym_eq (f_equal (fst (B:=_)) H_P)) in
@@ -474,21 +470,23 @@ Proof.
  auto with arith.
  auto with arith.
  auto with arith.
- rewrite mult_plus_distr_l.
- apply le_plus_r.
+ rewrite Nat.mul_add_distr_l.
+ rewrite <- (Nat.add_comm (S q0 * S p0 + S q0 * S q0)).
+ apply Nat.le_add_r.
  apply le_n.
- rewrite (mult_comm (S q0) (S p0)).
+ rewrite (Nat.mul_comm (S q0) (S p0)).
  auto with arith.
- rewrite mult_plus_distr_l.
- rewrite minus_plus; reflexivity.
- rewrite mult_plus_distr_l.
- rewrite plus_comm.
+ rewrite Nat.mul_add_distr_l.
+ rewrite Nat.add_comm.
+ rewrite Nat.add_sub; reflexivity.
+ rewrite Nat.mul_add_distr_l.
+ rewrite Nat.add_comm.
  repeat rewrite <- mult_n_Sm.
  rewrite <- plus_n_Sm.
  rewrite <- plus_n_Sm with (m := q0).
  generalize (S q0 * p0 + q0) (S q0 * q0 + q0); clear qp H_eq_; intros;
   lia.
- rewrite mult_comm.
+ rewrite Nat.mul_comm.
  rewrite <- mult_n_Sm.
  rewrite <- plus_n_Sm; reflexivity.
  rewrite plus_n_Sm.
@@ -549,13 +547,14 @@ Proof.
  intro.
  inversion H.
  intro.
- case (le_lt_eq_dec 1 (S n) (lt_le_S _ _ H)).
+ apply Nat.le_succ_l in H.
+ case (le_lt_eq_dec 1 (S n) H).
  intro H1.
  rewrite (Qpositive_c_nR _ _ (S n) H1).
  transitivity (1 + length_of_Qpositive (Qpositive_c (S n - 1) 1 (S n)))%Z.
  reflexivity.
  rewrite Znat.inj_S.
- rewrite Zplus_comm.
+ rewrite Z.add_comm.
  unfold Z.succ in |- *. 
  transitivity (n - 1 + 1)%Z; [ idtac | lia ].
  apply f_equal2 with Z Z; trivial. 
@@ -578,13 +577,14 @@ Proof.
  generalize (nat_of_P p).
  induction n; intro H.
  inversion H.
- case (le_lt_eq_dec 1 (S n) (lt_le_S _ _ H)).
+ apply Nat.le_succ_l in H.
+ case (le_lt_eq_dec 1 (S n) H).
  intro H1.
  rewrite (Qpositive_c_nR _ _ (S n) H1).
  transitivity (1 + Qpositive_to_Z (Qpositive_c (S n - 1) 1 (S n)))%Z.
  reflexivity.
  rewrite Znat.inj_S.
- rewrite Zplus_comm.
+ rewrite Z.add_comm.
  unfold Z.succ in |- *. 
  apply f_equal2 with Z Z; trivial. 
  rewrite <- IHn.
@@ -595,7 +595,6 @@ Proof.
  intro H1; rewrite <- H1.
  rewrite Qpositive_c_equal_One; trivial.
 Qed.
- 
 
 Lemma Q_to_Z_to_Q : forall x : Z, Q_to_Z (Z_to_Q x) = x.
 Proof.
@@ -758,8 +757,8 @@ Proof.
   apply f_equal with Qpositive.
   unfold Qpositive_plus in |- *.
   repeat rewrite Qpositive_i_c. 
-  repeat rewrite mult_1_l.
-  repeat rewrite mult_1_r.
+  repeat rewrite Nat.mul_1_l.
+  repeat rewrite Nat.mul_1_r.
   apply f_equal3 with nat nat nat; trivial.
   apply nat_of_P_plus_morphism.
   rewrite nat_of_P_plus_morphism.
@@ -829,8 +828,8 @@ Proof.
     apply f_equal with Qpositive.
     unfold Qpositive_sub in |- *.
     repeat rewrite Qpositive_i_c. 
-    repeat rewrite mult_1_l.
-    repeat rewrite mult_1_r.
+    repeat rewrite Nat.mul_1_l.
+    repeat rewrite Nat.mul_1_r.
     clear H1 H2; apply Qpositive_c_equal_strong; trivial; try lia;
      rewrite Hp2; rewrite nat_of_P_plus_morphism.
     lia.
@@ -869,7 +868,7 @@ Proof.
  intros [| x| x] [| y| y]; trivial;
   [ apply Z_to_Qplus_POS
   | apply Z_to_Qplus_POS_NEG
-  | rewrite Zplus_comm; rewrite Qplus_sym; apply Z_to_Qplus_POS_NEG
+  | rewrite Z.add_comm; rewrite Qplus_sym; apply Z_to_Qplus_POS_NEG
   | apply Z_to_Qplus_NEG ].
 Qed.
 
@@ -895,7 +894,7 @@ Proof.
  apply f_equal with Qpositive.
  unfold Qpositive_mult in |- *.
  repeat rewrite Qpositive_i_c. 
- repeat rewrite mult_1_l.
+ repeat rewrite Nat.mul_1_l.
  apply f_equal3 with nat nat nat; trivial.
  apply nat_of_P_mult_morphism.
  rewrite nat_of_P_mult_morphism.
@@ -918,7 +917,7 @@ Proof.
  apply f_equal with Qpositive.
  unfold Qpositive_mult in |- *.
  repeat rewrite Qpositive_i_c. 
- repeat rewrite mult_1_l.
+ repeat rewrite Nat.mul_1_l.
  apply f_equal3 with nat nat nat; trivial.
  apply nat_of_P_mult_morphism.
  rewrite nat_of_P_mult_morphism.
@@ -941,7 +940,7 @@ Proof.
  apply f_equal with Qpositive.
  unfold Qpositive_mult in |- *.
  repeat rewrite Qpositive_i_c. 
- repeat rewrite mult_1_l.
+ repeat rewrite Nat.mul_1_l.
  apply f_equal3 with nat nat nat; trivial.
  apply nat_of_P_mult_morphism.
  rewrite nat_of_P_mult_morphism.
@@ -958,10 +957,9 @@ Proof.
  intros [| x| x] [| y| y]; trivial;
   [ apply Z_to_Qmult_POS
   | apply Z_to_Qmult_POS_NEG
-  | rewrite Zmult_comm; rewrite Qmult_sym; apply Z_to_Qmult_POS_NEG
+  | rewrite Z.mul_comm; rewrite Qmult_sym; apply Z_to_Qmult_POS_NEG
   | apply Z_to_Qmult_NEG ].
 Qed.
-
 
 Lemma Z_to_Q_S:forall k, Z_to_Q (Z_of_nat (S k))=Qplus k Qone.
 Proof.

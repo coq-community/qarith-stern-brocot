@@ -13,8 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-
 Require Export general_Q.
 Require Export positive_fraction_encoding.
 Require Import Merge_Order.
@@ -612,7 +610,7 @@ Lemma bin_lt_is_irreflexive : forall x : Qpositive, ~ bin_lt x x.
 Proof.
  intros x.
  unfold bin_lt in |- *.
- apply lt_irrefl.
+ apply Nat.lt_irrefl.
 Defined.
 
 
@@ -620,7 +618,7 @@ Lemma bin_lt_is_transitive :
  forall x y z : Qpositive, bin_lt x y -> bin_lt y z -> bin_lt x z.
 Proof.
  intros x y z; unfold bin_lt in |- *.
- apply lt_trans.
+ apply Nat.lt_trans.
 Defined.
 
 Lemma bin_lt_is_order : is_order Qpositive bin_lt.

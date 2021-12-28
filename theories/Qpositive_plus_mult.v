@@ -13,21 +13,20 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 Require Export Qpositive.
  
 Definition Qpositive_plus (w w' : Qpositive) : Qpositive :=
   let (p, q) := Qpositive_i w in
   let (p', q') := Qpositive_i w' in
   Qpositive_c (p * q' + p' * q) (q * q') (p * q' + p' * q + q * q').
- 
+
 Theorem Qpositive_plus_1 : forall w : Qpositive, Qpositive_plus One w = nR w.
 intros w; elim (interp_non_zero w); intros p Hex; elim Hex; intros q Heq.
 unfold Qpositive_plus in |- *.
 replace (Qpositive_i One) with (1, 1).
 rewrite Heq.
-rewrite mult_1_r; rewrite mult_1_l.
-rewrite (plus_comm (S q)).
+rewrite Nat.mul_1_r; rewrite Nat.mul_1_l.
+rewrite (Nat.add_comm (S q)).
 replace (S p + S q + S q) with (S (p + S q + S q)).
 rewrite (Qpositive_c_unfold1 p q).
 rewrite (construct_correct w); auto with *.
@@ -43,9 +42,9 @@ intros w w'; elim (interp_non_zero w); intros p Hex; elim Hex; intros q Heq;
 elim (interp_non_zero w'); intros p' Hex; elim Hex; intros q' Heq'; clear Hex.
 unfold Qpositive_plus in |- *.
 rewrite Heq; rewrite Heq'.
-repeat rewrite (mult_comm (S q')).
-repeat rewrite (mult_comm (S p')).
-repeat rewrite (plus_comm (S p * S q')).
+repeat rewrite (Nat.mul_comm (S q')).
+repeat rewrite (Nat.mul_comm (S p')).
+repeat rewrite (Nat.add_comm (S p * S q')).
 auto.
 Qed.
  
@@ -90,27 +89,27 @@ auto.
 auto.
 unfold snd, fst in Heq5, Heq1, Heq2, Heq4, Heq5.
 apply mult_reg_l with d'.
-rewrite mult_plus_distr_r.
-rewrite (mult_comm (S d')).
-rewrite mult_plus_distr_r.
-repeat rewrite mult_assoc_reverse.
+rewrite Nat.mul_add_distr_r.
+rewrite (Nat.mul_comm (S d')).
+rewrite Nat.mul_add_distr_r.
+repeat rewrite <- Nat.mul_assoc.
 rewrite <- Heq5.
-rewrite mult_plus_distr_r.
-rewrite (mult_comm (S d')).
-rewrite mult_plus_distr_r.
-rewrite (mult_comm (S p * S q4)).
-rewrite (mult_comm (S p4 * S q)).
-rewrite (mult_comm (S p4)).
-repeat rewrite <- mult_assoc.
+rewrite Nat.mul_add_distr_r.
+rewrite (Nat.mul_comm (S d')).
+rewrite Nat.mul_add_distr_r.
+rewrite (Nat.mul_comm (S p * S q4)).
+rewrite (Nat.mul_comm (S p4 * S q)).
+rewrite (Nat.mul_comm (S p4)).
+repeat rewrite <- Nat.mul_assoc.
 rewrite <- Heq5.
 rewrite <- Heq4.
-rewrite (mult_assoc (S p'')).
-rewrite <- (mult_comm (S q3)).
-rewrite <- mult_assoc.
+rewrite (Nat.mul_assoc (S p'')).
+rewrite <- (Nat.mul_comm (S q3)).
+rewrite <- Nat.mul_assoc.
 apply mult_reg_l with d.
-repeat rewrite (mult_comm (S d)); repeat rewrite mult_plus_distr_r;
- repeat rewrite <- (mult_comm (S d)); repeat rewrite (mult_assoc (S d));
- repeat rewrite (mult_comm (S d)); rewrite <- Heq1; 
+repeat rewrite (Nat.mul_comm (S d)); repeat rewrite Nat.mul_add_distr_r;
+ repeat rewrite <- (Nat.mul_comm (S d)); repeat rewrite (Nat.mul_assoc (S d));
+ repeat rewrite (Nat.mul_comm (S d)); rewrite <- Heq1; 
  rewrite <- Heq2.
 ring.
 simpl in |- *; auto with arith.
@@ -134,7 +133,7 @@ intros w; elim (interp_non_zero w); intros p Hex; elim Hex; intros q Heq.
 unfold Qpositive_mult in |- *.
 replace (Qpositive_i One) with (1, 1).
 rewrite Heq.
-repeat rewrite mult_1_l.
+repeat rewrite Nat.mul_1_l.
 apply construct_correct; auto with *.
 simpl in |- *; auto.
 Qed.
@@ -145,7 +144,7 @@ intros w w'.
 elim (interp_non_zero w); intros p Hex; elim Hex; intros q Heq; clear Hex.
 elim (interp_non_zero w'); intros p' Hex; elim Hex; intros q' Heq'; clear Hex.
 unfold Qpositive_mult in |- *; rewrite Heq; rewrite Heq';
- repeat rewrite <- (mult_comm (S p)); repeat rewrite <- (mult_comm (S q));
+ repeat rewrite <- (Nat.mul_comm (S p)); repeat rewrite <- (Nat.mul_comm (S q));
  auto.
 Qed.
  
@@ -188,12 +187,12 @@ auto.
 auto.
 unfold fst, snd in Heq1, Heq2, Heq4, Heq5.
 apply mult_reg_l with d'.
-rewrite (mult_comm (S p * S p4)).
-repeat rewrite (mult_comm (S d')); repeat rewrite <- mult_assoc;
+rewrite (Nat.mul_comm (S p * S p4)).
+repeat rewrite (Nat.mul_comm (S d')); repeat rewrite <- Nat.mul_assoc;
  rewrite <- Heq4; rewrite <- Heq5.
 clear Heq4 Heq5 Heq6.
-apply mult_reg_l with d; repeat rewrite (mult_assoc (S d));
- repeat rewrite (mult_comm (S d)); rewrite <- Heq1; 
+apply mult_reg_l with d; repeat rewrite (Nat.mul_assoc (S d));
+ repeat rewrite (Nat.mul_comm (S d)); rewrite <- Heq1; 
  rewrite <- Heq2; ring.
 simpl in |- *; auto with arith.
 simpl in |- *; auto with arith.
@@ -250,22 +249,22 @@ auto.
 auto.
 unfold fst, snd in Heq1, Heq2, Heq4, Heq5, Heq7, Heq8.
 apply mult_reg_l with d''.
-rewrite (mult_comm (S p5)).
-rewrite mult_plus_distr_r.
+rewrite (Nat.mul_comm (S p5)).
+rewrite Nat.mul_add_distr_r.
 repeat
- (rewrite <- mult_assoc; try rewrite (mult_comm (S p5));
-   try rewrite (mult_comm (S q5))).
-repeat rewrite (mult_comm (S d'')); rewrite mult_plus_distr_r;
- repeat rewrite <- mult_assoc; rewrite <- Heq7; rewrite <- Heq8.
+ (rewrite <- Nat.mul_assoc; try rewrite (Nat.mul_comm (S p5));
+   try rewrite (Nat.mul_comm (S q5))).
+repeat rewrite (Nat.mul_comm (S d'')); rewrite Nat.mul_add_distr_r;
+ repeat rewrite <- Nat.mul_assoc; rewrite <- Heq7; rewrite <- Heq8.
 repeat
- (repeat rewrite (mult_comm (S p4)); repeat rewrite (mult_comm (S q4));
-   rewrite <- mult_assoc).
-apply mult_reg_l with d'; repeat rewrite (mult_comm (S d'));
- rewrite mult_plus_distr_r; repeat rewrite <- mult_assoc.
+ (repeat rewrite (Nat.mul_comm (S p4)); repeat rewrite (Nat.mul_comm (S q4));
+   rewrite <- Nat.mul_assoc).
+apply mult_reg_l with d'; repeat rewrite (Nat.mul_comm (S d'));
+ rewrite Nat.mul_add_distr_r; repeat rewrite <- Nat.mul_assoc.
 rewrite <- Heq4; rewrite <- Heq5.
-apply mult_reg_l with d; repeat rewrite (mult_comm (S d));
- rewrite mult_plus_distr_r; repeat rewrite (mult_comm (S q3));
- rewrite (mult_comm (S p3)); repeat rewrite <- mult_assoc.
+apply mult_reg_l with d; repeat rewrite (Nat.mul_comm (S d));
+ rewrite Nat.mul_add_distr_r; repeat rewrite (Nat.mul_comm (S q3));
+ rewrite (Nat.mul_comm (S p3)); repeat rewrite <- Nat.mul_assoc.
 rewrite <- Heq1; rewrite <- Heq2.
 ring.
 simpl in |- *; auto with arith.
@@ -327,13 +326,13 @@ intros w w'; unfold Qpositive_plus in |- *; elim (interp_non_zero w);
 rewrite <- (construct_correct w _ _ (S p + S q) Heq).
 red in |- *; intros Heq2;
  cut (S p * (S q * S q') = (S p * S q' + S p' * S q) * S q).
-rewrite mult_plus_distr_r.
-rewrite <- mult_assoc.
-rewrite (mult_comm (S q')).
+rewrite Nat.mul_add_distr_r.
+rewrite <- Nat.mul_assoc.
+rewrite (Nat.mul_comm (S q')).
 pattern (S p * (S q * S q')) at 1 in |- *.
 rewrite plus_n_O.
-intros H; generalize (plus_reg_l _ _ _ H).
-simpl in |- *; intros H'; discriminate H'.
+intros H; apply Nat.add_cancel_l in H;
+ simpl in |- *; discriminate H.
 apply
  Qpositive_c_equiv' with (S p + S q) (S p * S q' + S p' * S q + S q * S q').
 auto with arith.

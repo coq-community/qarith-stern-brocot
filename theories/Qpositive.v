@@ -13,7 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 Require Export Arith.
 Require Export Compare_dec.
 Require Export ArithRing.
@@ -69,7 +68,7 @@ Theorem inv_correct :
  let T_local :=
   (intros w'; simpl in |- *; case (Qpositive_i w'); intros p' q' Hrec p q Heq;
     rewrite (Hrec p' q'); auto; injection Heq; intros H1 H2; 
-    rewrite <- H1; rewrite <- H2; rewrite plus_comm; 
+    rewrite <- H1; rewrite <- H2; rewrite Nat.add_comm; 
     auto) in
  (intros w; elim w; clear w;
    [ T_local
@@ -132,12 +131,12 @@ intros p'; rewrite <- mult_n_O.
 intros H; discriminate H.
 intros m' Hrec p; case p.
 rewrite <- mult_n_O; simpl in |- *; intros H; discriminate H.
-intros p'; repeat rewrite (mult_comm (S n)); simpl in |- *.
+intros p'; repeat rewrite (Nat.mul_comm (S n)); simpl in |- *.
 intros H; injection H.
 intros H'; apply f_equal with (f := S).
 apply Hrec.
-repeat rewrite (mult_comm (S n)).
-apply plus_reg_l with n.
+repeat rewrite (Nat.mul_comm (S n)).
+apply Nat.add_cancel_l with n.
 exact H'.
 Qed.
  
@@ -160,8 +159,8 @@ Theorem Qpositive_c_unfold1 :
  Qpositive_c (S p + S q) (S q) (S n) = nR (Qpositive_c (S p) (S q) n).
 intros p q n Hle; simpl in |- *.
 rewrite <- (plus_n_Sm p q).
-rewrite <- (minus_Sn_m (p + q) q).
-rewrite (plus_comm p); rewrite minus_plus; auto with *.
+rewrite Nat.sub_succ_l.
+rewrite Nat.add_sub; auto with *.
 auto with arith.
 Qed.
  
@@ -171,7 +170,8 @@ Theorem Qpositive_c_unfold2 :
  Qpositive_c (S p) (S p + S q) (S n) = dL (Qpositive_c (S p) (S q) n).
 intros p q n Hle; simpl in |- *.
 rewrite le_minus_O.
-rewrite minus_plus.
+rewrite Nat.add_comm.
+rewrite Nat.add_sub.
 auto.
 auto with arith.
 Qed.
@@ -234,15 +234,15 @@ CaseEq (q - p).
 intros Heq_minus; exists p.
 simpl in |- *; split; auto with arith.
 rewrite <- plus_n_O.
-apply le_antisym; auto with arith.
+apply Nat.le_antisymm; auto with arith.
 apply minus_O_le.
 auto.
 intros q' Heq_minus; elim (Hrec p q').
 intros d; simpl in |- *; case (Qpositive_i (Qpositive_c (S p) (S q') n));
- repeat rewrite <- (mult_comm (S d)); intros p'' q'' (Heq1, Heq2).
+ repeat rewrite <- (Nat.mul_comm (S d)); intros p'' q'' (Heq1, Heq2).
 exists d; split.
 exact Heq1.
-rewrite (le_plus_minus (S p) (S q)).
+rewrite <- (Nat.sub_add (S p) (S q)).
 simpl in |- *.
 rewrite Heq_minus; rewrite Heq2.
 simpl in |- *.
@@ -254,14 +254,15 @@ simpl in |- *; auto.
 auto with arith.
 apply le_S_n.
 rewrite plus_n_Sm.
-apply le_trans with (S p + S q).
-apply plus_le_compat_l.
+apply Nat.le_trans with (S p + S q).
+apply Nat.add_le_mono_l.
 apply le_n_S.
 rewrite <- Heq_minus; apply minus_le.
 exact Hle.
 auto with arith.
 intros Hgt; simpl in |- *; CaseEq (p - q).
-intros H; elim (gt_not_le _ _ Hgt).
+intros H; apply Nat.lt_nge in Hgt.
+contradict Hgt.
 apply le_n_S.
 apply minus_O_le.
 exact H.
@@ -270,7 +271,7 @@ intros Heq_minus; simpl in |- *; elim (Hrec p' q).
 intros d; case (Qpositive_i (Qpositive_c (S p') (S q) n)).
 simpl in |- *; intros p'' q'' (Heq1, Heq2).
 exists d; split; auto.
-rewrite (le_plus_minus (S q) (S p)); simpl in |- *.
+rewrite <- (Nat.sub_add (S q) (S p)); simpl in |- *.
 rewrite Heq_minus.
 replace (S (q + S p')) with (S q + S p').
 rewrite Heq2; rewrite Heq1; ring.
@@ -278,9 +279,8 @@ simpl in |- *; auto.
 auto with arith.
 rewrite <- Heq_minus.
 replace (p - q) with (S p - S q).
-rewrite <- (plus_comm (S q)).
-rewrite <- (le_plus_minus (S q) (S p)).
-apply le_trans with (S p + q).
+rewrite (Nat.sub_add (S q) (S p)).
+apply Nat.le_trans with (S p + q).
 auto with arith.
 apply le_S_n; rewrite plus_n_Sm.
 exact Hle.
@@ -320,11 +320,11 @@ CaseEq (p - q).
 CaseEq (q - p).
 intros H H0.
 cut (p' = q').
-intros Heq'; rewrite Heq'; rewrite <- (minus_n_n q').
+intros Heq'; rewrite Heq'; rewrite (Nat.sub_diag q').
 auto.
 apply mult_reg_l with d.
 rewrite <- Heqd2; rewrite <- Heqd1.
-apply le_antisym; apply minus_O_le; assumption.
+apply Nat.le_antisymm; apply minus_O_le; assumption.
 intros q2 Heq2 Heqp.
 cut (p' <= q').
 intros H; generalize (le_minus_O _ _ H).
@@ -333,14 +333,14 @@ CaseEq (q' - p').
 intros Heq4; cut (q' = p').
 intros Heq5; generalize Heq2; replace (q - p) with (S q - S p).
 rewrite Heqd2; rewrite Heqd1; rewrite Heq5.
-rewrite <- minus_n_n; intros Heq6; discriminate Heq6.
+rewrite Nat.sub_diag; intros Heq6; discriminate Heq6.
 auto.
-apply le_antisym; apply minus_O_le; assumption.
+apply Nat.le_antisymm; apply minus_O_le; assumption.
 intros q'2.
 generalize Hle2; case n'.
 generalize Heqd1 Heqd2; case p'; case q'.
 simpl in |- *; intros H'1 H'2 H'3 H'4; discriminate H'4.
-intros x; rewrite <- (mult_comm 0); simpl in |- *; intros Dummy;
+intros x; rewrite <- (Nat.mul_comm 0); simpl in |- *; intros Dummy;
  discriminate Dummy.
 simpl in |- *; intros x H'1 H'2 H'3 H'4; discriminate H'4.
 simpl in |- *; intros n n1 H'1 H'2; rewrite <- plus_n_Sm; intros H'3;
@@ -351,7 +351,7 @@ intros Hle3 Heq4.
 simpl in |- *.
 CaseEq p'.
 intros Heqp'; generalize Heqd1; rewrite Heqp'.
-rewrite <- (mult_comm 0); simpl in |- *; intros Dummy; discriminate Dummy.
+rewrite <- (Nat.mul_comm 0); simpl in |- *; intros Dummy; discriminate Dummy.
 intros p'2 Heqp'2.
 change
   (dL (Qpositive_c (S p) (S q2) (S n0)) =
@@ -359,14 +359,14 @@ change
 apply f_equal with (f := dL).
 apply Hrec with d.
 - rewrite <- Heqp'2; assumption.
-- rewrite <- Heq4; rewrite <- Heq2; rewrite (mult_comm (S d)).
-  rewrite mult_minus_distr_r.
-  repeat rewrite <- (mult_comm (S d)).
+- rewrite <- Heq4; rewrite <- Heq2; rewrite (Nat.mul_comm (S d)).
+  rewrite Nat.mul_sub_distr_r.
+  repeat rewrite <- (Nat.mul_comm (S d)).
   rewrite <- Heqd2; rewrite <- Heqd1.
   simpl in |- *; auto.
 - auto with zarith.
 - auto with zarith.
-- apply mult_S_le_reg_l with d.
+- apply Nat.mul_le_mono_pos_l with (S d); auto with arith.
   rewrite <- Heqd2; rewrite <- Heqd1.
   apply le_n_S.
   apply minus_O_le; assumption.
@@ -375,16 +375,16 @@ apply Hrec with d.
   intros Heqm'; cut (S p - S q = 0).
   simpl in |- *; rewrite Heqp2; intros Dummy; discriminate Dummy.
   rewrite Heqd2; rewrite Heqd1.
-  repeat rewrite (mult_comm (S d)).
-  rewrite <- mult_minus_distr_r.
+  repeat rewrite (Nat.mul_comm (S d)).
+  rewrite <- Nat.mul_sub_distr_r.
   rewrite Heqm'; simpl in |- *; auto.
   intros p'2.
   generalize Hle2; case n'.
   generalize Heqd1 Heqd2; case p'; case q'.
   simpl in |- *; intros H'1 H'2 H'3 H'4; discriminate H'4.
-  intros x; rewrite <- (mult_comm 0); simpl in |- *; intros Dummy;
+  intros x; rewrite <- (Nat.mul_comm 0); simpl in |- *; intros Dummy;
    discriminate Dummy.
-  intros x; rewrite <- (mult_comm 0); simpl in |- *; intros Dummy1 Dummy2;
+  intros x; rewrite <- (Nat.mul_comm 0); simpl in |- *; intros Dummy1 Dummy2;
    discriminate Dummy2.
   simpl in |- *; intros n n1 H'1 H'2; rewrite <- plus_n_Sm; intros H'3;
    inversion H'3.
@@ -393,16 +393,16 @@ apply Hrec with d.
   intros Hle3 Heq4.
   CaseEq q'.
   intros Heq5; generalize Heqd2; rewrite Heq5; simpl in |- *.
-  rewrite <- (mult_comm 0); simpl in |- *; intros Dummy; discriminate Dummy.
+  rewrite <- (Nat.mul_comm 0); simpl in |- *; intros Dummy; discriminate Dummy.
   intros q'2 Heqq'2.
   change
     (nR (Qpositive_c (S p2) (S q) (S n0)) =
      nR (Qpositive_c (S p'2) (S q'2) (S n''))) in |- *.
   apply f_equal with (f := nR).
   apply Hrec with d.
-  * rewrite <- Heq4; rewrite <- Heqp2; rewrite (mult_comm (S d)).
-    rewrite mult_minus_distr_r.
-    repeat rewrite <- (mult_comm (S d)).
+  * rewrite <- Heq4; rewrite <- Heqp2; rewrite (Nat.mul_comm (S d)).
+    rewrite Nat.mul_sub_distr_r.
+    repeat rewrite <- (Nat.mul_comm (S d)).
     rewrite <- Heqd2; rewrite <- Heqd1.
     simpl in |- *; auto.
   * rewrite <- Heqq'2; assumption.
@@ -445,8 +445,7 @@ intros Hex; elim Hex; intros d'' Heq11; rewrite Heq11 in Heq9;
 replace (S p0 * S d) with (S (d + p0 * S d)).
 replace (S q0 * S d) with (S (d + q0 * S d)).
 rewrite
- (construct_correct3 n n (d + p0 * S d) (d + q0 * S d) (S p0) (S q0) d)
- .
+ (construct_correct3 n n (d + p0 * S d) (d + q0 * S d) (S p0) (S q0) d).
 replace (S p'0 * S d') with (S (d' + p'0 * S d')).
 replace (S q'0 * S d') with (S (d' + q'0 * S d')).
 symmetry  in |- *.
@@ -463,25 +462,25 @@ rewrite <- Heq3; rewrite <- Heq4.
 exact H0.
 auto.
 auto.
-apply le_trans with (S p + S q).
+apply Nat.le_trans with (S p + S q).
 rewrite Heq1; rewrite Heq2.
-rewrite <- mult_plus_distr_r.
-rewrite mult_comm; simpl in |- *; auto with arith.
+rewrite <- Nat.mul_add_distr_r.
+rewrite Nat.mul_comm; simpl in |- *; auto with arith.
 assumption.
 auto.
 auto.
-rewrite (mult_comm (S d)); auto.
-rewrite (mult_comm (S d)); auto.
+rewrite (Nat.mul_comm (S d)); auto.
+rewrite (Nat.mul_comm (S d)); auto.
 replace (S (d + q0 * S d)) with (S q0 * S d).
 replace (S (d + p0 * S d)) with (S p0 * S d).
 rewrite <- Heq1; rewrite <- Heq2.
 exact H.
 auto.
 auto.
-apply le_trans with (S p + S q).
+apply Nat.le_trans with (S p + S q).
 rewrite Heq1; rewrite Heq2.
-rewrite <- mult_plus_distr_r.
-rewrite mult_comm; simpl in |- *; auto with arith.
+rewrite <- Nat.mul_add_distr_r.
+rewrite Nat.mul_comm; simpl in |- *; auto with arith.
 assumption.
 auto.
 auto.
@@ -579,32 +578,36 @@ intros Heq3 Heq4; cut (p = q).
 intros Heq5; rewrite Heq5.
 cut (p' = q').
 intros Heq6; rewrite Heq6.
-intros; apply mult_comm.
-apply eq_add_S; apply le_antisym; apply minus_O_le; auto with *.
-apply eq_add_S; apply le_antisym; apply minus_O_le; auto with *.
+intros; apply Nat.mul_comm.
+apply eq_add_S; apply Nat.le_antisymm; apply minus_O_le; auto with *.
+apply eq_add_S; apply Nat.le_antisymm; apply minus_O_le; auto with *.
 intros p2 H H1 H2 H3 H4; discriminate H4.
 intros n2 H H1 H2 H4; discriminate H4.
 intros q2 Heq1 Heq2 n2 p' q'; CaseEq (S p' - S q').
 CaseEq (S q' - S p').
 intros H3 H4 H H1 H2; discriminate H2.
 intros q'2 H H1 H2 H3 H4; injection H4; intros H5.
-rewrite (le_plus_minus (S p) (S q)).
-rewrite (le_plus_minus (S p') (S q')).
-rewrite (mult_comm (S p)); rewrite (mult_comm (S p')).
-repeat rewrite mult_plus_distr_r; repeat rewrite <- (mult_comm (S p)).
+rewrite <- (Nat.sub_add (S p) (S q)).
+rewrite Nat.add_comm.
+rewrite <- (Nat.sub_add (S p') (S q')).
+rewrite Nat.add_comm.
+rewrite (Nat.mul_comm (S p)); rewrite (Nat.mul_comm (S p')).
+repeat rewrite Nat.mul_add_distr_r; repeat rewrite <- (Nat.mul_comm (S p)).
 apply f_equal with (f := fun x : nat => S p * S p' + x).
 rewrite Heq1; rewrite H.
-rewrite <- (mult_comm (S p')).
+rewrite <- (Nat.mul_comm (S p')).
 apply Hrec with n2.
 rewrite <- Heq1.
-rewrite <- le_plus_minus.
-apply le_trans with (p + S q).
+rewrite Nat.add_comm.
+rewrite Nat.sub_add.
+apply Nat.le_trans with (p + S q).
 auto with arith.
 apply le_S_n; exact H2.
 apply minus_O_le; auto.
 rewrite <- H.
-rewrite <- le_plus_minus.
-apply le_trans with (p' + S q').
+rewrite Nat.add_comm.
+rewrite Nat.sub_add.
+apply Nat.le_trans with (p' + S q').
 auto with arith; fail.
 apply le_S_n; exact H3.
 apply minus_O_le; auto.
@@ -618,23 +621,26 @@ intros Dummy3 Dummy1 Dummy2; discriminate Dummy2.
 intros n3 Dummy Dummy1 Dummy2; discriminate Dummy2.
 intros p'2 Heq2 Heq3.
 injection Heq3; clear Heq3; intros Heq3.
-rewrite (le_plus_minus (S q) (S p)).
+rewrite <- (Nat.sub_add (S q) (S p)).
+rewrite Nat.add_comm.
 rewrite Heq1.
-rewrite (le_plus_minus (S q') (S p')).
+rewrite <- (Nat.sub_add (S q') (S p')).
+rewrite <- (Nat.add_comm (S q')).
 rewrite Heq2.
-repeat rewrite mult_plus_distr_r; repeat rewrite (mult_comm (S q')).
+repeat rewrite Nat.mul_add_distr_r; repeat rewrite (Nat.mul_comm (S q')).
 apply f_equal with (f := fun x : nat => S q * S q' + x).
 apply Hrec with n2.
-rewrite plus_comm; rewrite <- Heq1.
-rewrite <- le_plus_minus.
-apply le_trans with (p + S q).
+rewrite Nat.add_comm; rewrite <- Heq1.
+rewrite Nat.add_comm.
+rewrite Nat.sub_add.
+apply Nat.le_trans with (p + S q).
 rewrite <- plus_n_Sm.
 auto with arith.
 apply le_S_n; assumption.
 lia.
 rewrite <- Heq2.
-rewrite plus_comm; rewrite <- le_plus_minus.
-apply le_trans with (p' + S q').
+rewrite Nat.sub_add.
+apply Nat.le_trans with (p' + S q').
 rewrite <- plus_n_Sm; auto with arith.
 apply le_S_n; exact Hle2.
 lia.
