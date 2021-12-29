@@ -1374,9 +1374,9 @@ Proof.
    (apply Zplus_le_0_compat; assumption) ||
      (rewrite Zplus_assoc;
        (rewrite Zplus_assoc_reverse with (m := c0:Z);
-         rewrite Zplus_comm with (n := c0:Z)) ||
+         rewrite Z.add_comm with (n := c0:Z)) ||
          (rewrite Zplus_assoc_reverse with (m := g0:Z);
-           rewrite Zplus_comm with (n := g0:Z)); rewrite Zplus_assoc);
+           rewrite Z.add_comm with (n := g0:Z)); rewrite Zplus_assoc);
    assumption.
 Qed.
 

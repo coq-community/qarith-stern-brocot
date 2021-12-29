@@ -73,7 +73,7 @@ make install
 This project contains a rational arithmetic library for Coq. This includes:
 
 - A binary representation for positive rational numbers `Qpositive` and its
-  extension to `Q` by adding sign bit (also known as Stern-Brocot
+  extension to `Q` by adding a sign bit (also known as Stern-Brocot
   tree encoding).
 - Arithmetic operations on `Qpositive` and `Q` defined in an strict way.
 - More efficient arithmetic operations on `Q` defined lazily using

@@ -14,7 +14,7 @@
 (* 02110-1301 USA                                                     *)
 
 Require Export Qpositive.
- 
+
 Fixpoint Qpositive_le_bool (w w' : Qpositive) {struct w'} : bool :=
   match w with
   | One => match w' with
@@ -49,9 +49,9 @@ intros w1 H; generalize (Hrec w1 H).
 unfold Qpositive_le' in |- *.
 simpl in |- *.
 case (Qpositive_i w1); case (Qpositive_i w'1).
-intros p' q' p q Hle; repeat rewrite mult_plus_distr_r.
-rewrite (mult_comm q').
-apply plus_le_compat_r.
+intros p' q' p q Hle; repeat rewrite Nat.mul_add_distr_r.
+rewrite (Nat.mul_comm q').
+apply Nat.add_le_mono_r.
 auto.
 (* 1 *)
 
@@ -60,11 +60,11 @@ intros w1; unfold Qpositive_le in |- *.
 simpl in |- *.
 unfold Qpositive_le' in |- *; simpl in |- *; intros H; case (Qpositive_i w1);
  case (Qpositive_i w'1); intros p' q' p q.
-rewrite mult_plus_distr_r.
-repeat rewrite <- (mult_comm (p + q)).
-repeat rewrite mult_plus_distr_r.
-rewrite (plus_comm (p * p' + q * p')).
-repeat rewrite <- plus_assoc.
+rewrite Nat.mul_add_distr_r.
+repeat rewrite <- (Nat.mul_comm (p + q)).
+repeat rewrite Nat.mul_add_distr_r.
+rewrite (Nat.add_comm (p * p' + q * p')).
+repeat rewrite <- Nat.add_assoc.
 auto with arith.
 (* 2 *)
 
@@ -88,11 +88,11 @@ intros q H; discriminate H.
 intros w1 H; generalize (Hrec w1 H); unfold Qpositive_le' in |- *.
 simpl in |- *; case (Qpositive_i w1); case (Qpositive_i w'1);
  intros p' q' p q.
-repeat rewrite (mult_comm p); repeat rewrite (mult_comm p');
- repeat rewrite mult_plus_distr_r.
+repeat rewrite (Nat.mul_comm p); repeat rewrite (Nat.mul_comm p');
+ repeat rewrite Nat.mul_add_distr_r.
 intros H1.
-rewrite (mult_comm p').
-apply plus_le_compat_l.
+rewrite (Nat.mul_comm p').
+apply Nat.add_le_mono_l.
 auto.
 (* 3 *)
 intros H; discriminate H.
@@ -110,10 +110,8 @@ Qed.
 Theorem Qpositive_le'_to_Qpositive_le :
  forall w w' : Qpositive, Qpositive_le' w w' -> Qpositive_le w w'.
 intros w w'; generalize w; elim w'; clear w w'.
-
 (* Focus 1 *)
 intros w'1 Hrec w; case w; clear w.
-
 (* 1.1 *)
 intros w; unfold Qpositive_le', Qpositive_le in |- *; simpl in |- *.
 generalize (Hrec w); clear Hrec; unfold Qpositive_le, Qpositive_le' in |- *;
@@ -123,7 +121,7 @@ elim (interp_non_zero w); intros p Hex; elim Hex; intros q Heq; clear Hex;
 elim (interp_non_zero w'1); intros p' Hex; elim Hex; intros q' Heq1;
  clear Hex; rewrite Heq1.
 intros H H1; (lapply H; [ intros H0; try exact H0 | idtac ]).
-apply (fun p n m : nat => plus_le_reg_l n m p) with (S q * S q').
+apply (fun p n m : nat => Nat.add_le_mono_l n m p) with (S q * S q').
 replace (S q * S q' + S p * S q') with ((S p + S q) * S q').
 replace (S q * S q' + S p' * S q) with ((S p' + S q') * S q).
 auto.
@@ -134,7 +132,6 @@ unfold Qpositive_le in |- *; simpl in |- *; auto.
 (* 1.3 *)
 unfold Qpositive_le in |- *; simpl in |- *.
 auto.
-
 (* Focus 2 *)
 intros w'1 Hrec w; case w; clear w; unfold Qpositive_le in |- *;
  simpl in |- *; auto.
@@ -144,13 +141,13 @@ elim (interp_non_zero w1); intros p Hex; elim Hex; intros q Heq; clear Hex;
  rewrite Heq.
 elim (interp_non_zero w'1); intros p' Hex; elim Hex; intros q' Heq1;
  clear Hex; rewrite Heq1.
-rewrite mult_plus_distr_r.
-repeat rewrite <- (mult_comm (S p' + S q')).
-repeat rewrite mult_plus_distr_r.
-repeat rewrite <- (plus_comm (S p' * S q)) || rewrite plus_assoc;
- repeat rewrite <- plus_assoc.
+rewrite Nat.mul_add_distr_r.
+repeat rewrite <- (Nat.mul_comm (S p' + S q')).
+repeat rewrite Nat.mul_add_distr_r.
+repeat rewrite <- (Nat.add_comm (S p' * S q)) || rewrite Nat.add_assoc;
+ repeat rewrite <- Nat.add_assoc.
 pattern (S p' * S q) at 2 in |- *; rewrite plus_n_O.
-intros H; generalize (plus_le_reg_l _ _ _ H); simpl in |- *; intros H1;
+intros H; pose proof H as H1; apply Nat.add_le_mono_l in H1; simpl in |- *;
  inversion H1.
 (* 2.2 *)
 intros w; unfold Qpositive_le', Qpositive_le in |- *; simpl in |- *.
@@ -161,7 +158,7 @@ elim (interp_non_zero w); intros p Hex; elim Hex; intros q Heq; clear Hex;
 elim (interp_non_zero w'1); intros p' Hex; elim Hex; intros q' Heq1;
  clear Hex; rewrite Heq1.
 intros H H1; (lapply H; [ intros H0; try exact H0 | idtac ]).
-apply (fun p n m : nat => plus_le_reg_l n m p) with (S p * S p').
+apply (fun p n m : nat => Nat.add_le_mono_l n m p) with (S p * S p').
 replace (S p * S p' + S p * S q') with (S p * (S p' + S q')).
 replace (S p * S p' + S p' * S q) with (S p' * (S p + S q)).
 auto.
@@ -171,26 +168,21 @@ ring.
 unfold Qpositive_le' in |- *; simpl in |- *.
 elim (interp_non_zero w'1); intros p' Hex; elim Hex; intros q' Heq1;
  clear Hex; rewrite Heq1.
-rewrite <- plus_n_O; rewrite <- (mult_comm 1); simpl in |- *; intros H;
- generalize (plus_le_reg_l _ _ _ (le_S_n _ _ H)).
-intros H1; inversion H1.
-
-
+rewrite <- plus_n_O; rewrite <- (Nat.mul_comm 1); simpl in |- *; intros H.
+ pose proof (le_S_n _ _ H) as H1; apply Nat.add_le_mono_l in H1; inversion H1.
 (* Focus 3 *)
-
 intros w; case w; clear w; unfold Qpositive_le', Qpositive_le in |- *;
  simpl in |- *.
 (* 3.1 *)
 intros w; elim (interp_non_zero w).
 intros p Hex; elim Hex; intros q Heq; rewrite Heq.
-rewrite mult_1_r.
-rewrite (plus_comm (S p)).
-intros H; generalize (plus_le_reg_l _ _ _ H); intros H1; inversion H1.
+rewrite Nat.mul_1_r.
+rewrite (Nat.add_comm (S p)).
+intros H; apply Nat.add_le_mono_l in H; inversion H.
 (* 3.2 *)
 auto.
 (* 3.3 *)
 auto.
-
 Qed.
  
 Theorem Qpositive_le_trans :
@@ -260,7 +252,7 @@ intros H; elim H; intros H1;
  auto.
 unfold Qpositive_le' in |- *.
 case (Qpositive_i w'); case (Qpositive_i w); intros p q p' q'.
-elim (le_or_lt (p * q') (p' * q)); auto with arith.
+elim (Nat.le_gt_cases (p * q') (p' * q)); auto with arith.
 Qed.
  
 Theorem not_Qpositive_le_not_eq :

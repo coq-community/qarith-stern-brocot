@@ -13,7 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
 Require Export Qpositive_le.
 Require Export Qpositive_plus_mult.
 
@@ -29,7 +28,6 @@ Ltac expand a b c d p q Heq Heq1 Heq2 :=
    | try (simpl in |- *; auto with arith; fail)
    | auto ].
 
- 
 Theorem Qpositive_le_add :
  forall w w' w'' : Qpositive,
  Qpositive_le w w' ->
@@ -49,22 +47,22 @@ expand (S p * S q'' + S p'' * S q) (S q * S q'')
 expand (S p' * S q'' + S p'' * S q') (S q' * S q'')
  (S p' * S q'' + S p'' * S q' + S q' * S q'') ipattern:(d') ipattern:(p4)
  ipattern:(q4) ipattern:(Heq4) ipattern:(Heq5) ipattern:(Heq6).
-intros Hle; apply mult_S_le_reg_l with d; rewrite (mult_comm (S p3));
- repeat rewrite (mult_comm (S d)); repeat rewrite <- mult_assoc.
+intros Hle; apply Nat.mul_le_mono_pos_l with (S d); auto with arith; rewrite (Nat.mul_comm (S p3));
+ repeat rewrite (Nat.mul_comm (S d)); repeat rewrite <- Nat.mul_assoc.
 rewrite <- Heq1; rewrite <- Heq2.
-apply mult_S_le_reg_l with d'; repeat rewrite mult_assoc;
- repeat rewrite (mult_comm (S d')).
+apply Nat.mul_le_mono_pos_l with (S d'); auto with arith; repeat rewrite Nat.mul_assoc;
+ repeat rewrite (Nat.mul_comm (S d')).
 rewrite <- Heq5; rewrite <- Heq6.
-rewrite mult_plus_distr_l; repeat rewrite mult_plus_distr_r.
+rewrite Nat.mul_add_distr_l; repeat rewrite Nat.mul_add_distr_r.
 match goal with
 |  |- (_ + ?X1 <= _ + ?X2) =>
-    replace X1 with X2; [ try apply plus_le_compat_r | ring ]
+    replace X1 with X2; [ try apply Nat.add_le_mono_r | ring ]
 end.
-repeat rewrite <- (mult_comm (S q'')); repeat rewrite <- mult_assoc.
-apply (fun m n p : nat => mult_le_compat_l p n m).
-rewrite mult_assoc; rewrite <- (mult_comm (S q'')); rewrite <- mult_assoc;
- apply (fun m n p : nat => mult_le_compat_l p n m).
-rewrite (mult_comm (S q')); exact Hle.
+repeat rewrite <- (Nat.mul_comm (S q'')); repeat rewrite <- Nat.mul_assoc.
+apply (fun m n p : nat => Nat.mul_le_mono_l p n m).
+rewrite Nat.mul_assoc; rewrite <- (Nat.mul_comm (S q'')); rewrite <- Nat.mul_assoc;
+ apply (fun m n p : nat => Nat.mul_le_mono_l p n m).
+rewrite (Nat.mul_comm (S q')); exact Hle.
 Qed.
  
 Theorem Qpositive_le_mult :
@@ -84,15 +82,15 @@ expand (S p * S p'') (S q * S q'') (S p * S p'' + S q * S q'') ipattern:(d)
 expand (S p' * S p'') (S q' * S q'') (S p' * S p'' + S q' * S q'')
  ipattern:(d') ipattern:(p4) ipattern:(q4) ipattern:(Heq4) ipattern:(Heq5)
  ipattern:(Heq6).
-intros Hle; apply mult_S_le_reg_l with d; rewrite (mult_comm (S p3));
- repeat rewrite (mult_comm (S d)); repeat rewrite <- mult_assoc.
+intros Hle; apply Nat.mul_le_mono_pos_l with (S d); auto with arith; rewrite (Nat.mul_comm (S p3));
+ repeat rewrite (Nat.mul_comm (S d)); repeat rewrite <- Nat.mul_assoc.
 rewrite <- Heq1; rewrite <- Heq2.
-apply mult_S_le_reg_l with d'; repeat rewrite mult_assoc;
- repeat rewrite (mult_comm (S d')); rewrite <- Heq5; 
+apply Nat.mul_le_mono_pos_l with (S d'); auto with arith; repeat rewrite Nat.mul_assoc;
+ repeat rewrite (Nat.mul_comm (S d')); rewrite <- Heq5; 
  rewrite <- Heq6.
 replace (S q' * S q'' * S p * S p'') with (S q'' * S p'' * (S p * S q')).
 replace (S p' * S p'' * S q * S q'') with (S q'' * S p'' * (S p' * S q)).
-apply (fun m n p : nat => mult_le_compat_l p n m); exact Hle.
+apply (fun m n p : nat => Nat.mul_le_mono_l p n m); exact Hle.
 ring.
 ring.
 Qed.
@@ -108,10 +106,10 @@ rewrite Heq; rewrite Heq'.
 expand (S p * S q' + S p' * S q) (S q * S q')
  (S p * S q' + S p' * S q + S q * S q') ipattern:(d) ipattern:(p'') ipattern:(q'')
  ipattern:(Heq2) ipattern:(Heq3) ipattern:(Heq4).
-apply mult_S_le_reg_l with d.
-rewrite (mult_assoc (S d) (S p'')); repeat rewrite (mult_comm (S d));
- rewrite <- (mult_assoc (S p)); rewrite <- Heq3; rewrite <- Heq4.
-rewrite mult_plus_distr_r.
+apply Nat.mul_le_mono_pos_l with (S d); auto with arith.
+rewrite (Nat.mul_assoc (S d) (S p'')); repeat rewrite (Nat.mul_comm (S d));
+ rewrite <- (Nat.mul_assoc (S p)); rewrite <- Heq3; rewrite <- Heq4.
+rewrite Nat.mul_add_distr_r.
 replace (S p * S q' * S q) with (S p * (S q * S q')).
 auto with arith.
 ring.

@@ -111,17 +111,17 @@ Proof.
    destruct (interp_non_zero p) as [p0 [q0 H]].
    destruct (interp_non_zero p') as [p0' [q0' H']].
    rewrite H; rewrite H'; intros H_le_dec_unfolded H_let.
-   assert (H_le_unfold:   (S q0' + p0 * S q0' <= q0 + p0' * S q0)%nat); auto with arith. 
+   assert (H_le_unfold:   (S q0' + p0 * S q0' <= q0 + p0' * S q0)%nat); auto with arith.
    replace (S p0' * S q0 - S p0 * S q0')%nat with (S (q0+p0'*(S q0)- (S q0'+p0*(S q0'))))%nat;
-   [| rewrite (minus_Sn_m _ _ H_le_unfold); auto with arith ].
+   [| rewrite <- (Nat.sub_succ_l _ _ H_le_unfold); auto with arith ].
    replace (S q0' * S q0)%nat with (S (q0+q0'*(S q0)))%nat; auto with arith.
    replace (S p0' * S q0 + S p0 * S q0')%nat with (S (q0+p0'*(S q0)+S (q0'+p0*(S q0'))))%nat; auto with arith.
    set (m':=((q0 + p0' * S q0) + S (q0' + p0 * S q0'))%nat).
    set (m:=((q0 + p0' * S q0) - (S q0' + p0 * S q0'))%nat).
    set (n:=(q0 + q0' * S q0)%nat).
    assert (H_m':(S m + S n <= S m' + S n)%nat);
-    [ subst m m' n; apply plus_le_compat_r; apply le_n_S; apply le_trans with (q0 + p0' * S q0)%nat; auto with arith;
-      apply le_minus |].
+    [ subst m m' n; apply Nat.add_le_mono_r; apply le_n_S; apply Nat.le_trans with (q0 + p0' * S q0)%nat; auto with arith;
+      apply Nat.le_sub_l |].
    destruct (construct_correct2  (S m'+S n) m n H_m') as [factor [H_factor1 H_factor2]].
    generalize H_factor1 H_factor2; clear H_factor1 H_factor2.
    set (P:=(Qpositive_c  (S m) (S n) (S m' + S n))).
@@ -155,15 +155,15 @@ Proof.
    rewrite H; rewrite H'; intros H_le_dec_unfolded H_lt.
    assert (H_le_unfold:   (S q0 + p0' * S q0 <= q0' + p0 * S q0')%nat); auto with arith. 
    replace (S p0 * S q0' - S p0' * S q0)%nat with (S (q0'+p0*(S q0')- (S q0+p0'*(S q0))))%nat;
-   [| rewrite (minus_Sn_m _ _ H_le_unfold); auto with arith ].
+   [| rewrite <- (Nat.sub_succ_l _ _ H_le_unfold); auto with arith ].
    replace (S q0 * S q0')%nat with (S (q0'+q0*(S q0')))%nat; auto with arith.
    replace (S p0 * S q0' + S p0' * S q0)%nat with (S (q0'+p0*(S q0')+S (q0+p0'*(S q0))))%nat; auto with arith.
    set (m':=((q0' + p0 * S q0') + S (q0 + p0' * S q0))%nat).
    set (m:=((q0' + p0 * S q0') - (S q0 + p0' * S q0))%nat).
    set (n:=(q0' + q0 * S q0')%nat).
    assert (H_m':(S m + S n <= S m' + S n)%nat);
-    [ subst m m' n; apply plus_le_compat_r; apply le_n_S; apply le_trans with (q0' + p0 * S q0')%nat; auto with arith;
-      apply le_minus |].
+    [ subst m m' n; apply Nat.add_le_mono_r; apply le_n_S; apply Nat.le_trans with (q0' + p0 * S q0')%nat; auto with arith;
+      apply Nat.le_sub_l |].
    destruct (construct_correct2  (S m'+S n) m n H_m') as [factor [H_factor1 H_factor2]].
    generalize H_factor1 H_factor2; clear H_factor1 H_factor2.
    set (P:=(Qpositive_c  (S m) (S n) (S m' + S n))).
@@ -200,15 +200,15 @@ Proof.
    rewrite H; rewrite H'; intros H_le_dec_unfolded H_let.
    assert (H_le_unfold:   (S q0' + p0 * S q0' <= q0 + p0' * S q0)%nat); auto with arith. 
    replace (S p0' * S q0 - S p0 * S q0')%nat with (S (q0+p0'*(S q0)- (S q0'+p0*(S q0'))))%nat;
-   [| rewrite (minus_Sn_m _ _ H_le_unfold); auto with arith ].
+   [| rewrite <- (Nat.sub_succ_l _ _ H_le_unfold); auto with arith ].
    replace (S q0' * S q0)%nat with (S (q0+q0'*(S q0)))%nat; auto with arith.
    replace (S p0' * S q0 + S p0 * S q0')%nat with (S (q0+p0'*(S q0)+S (q0'+p0*(S q0'))))%nat; auto with arith.
    set (m':=((q0 + p0' * S q0) + S (q0' + p0 * S q0'))%nat).
    set (m:=((q0 + p0' * S q0) - (S q0' + p0 * S q0'))%nat).
    set (n:=(q0 + q0' * S q0)%nat).
    assert (H_m':(S m + S n <= S m' + S n)%nat);
-    [ subst m m' n; apply plus_le_compat_r; apply le_n_S; apply le_trans with (q0 + p0' * S q0)%nat; auto with arith;
-      apply le_minus |].
+    [ subst m m' n; apply Nat.add_le_mono_r; apply le_n_S; apply Nat.le_trans with (q0 + p0' * S q0)%nat; auto with arith;
+      apply Nat.le_sub_l |].
    destruct (construct_correct2  (S m'+S n) m n H_m') as [factor [H_factor1 H_factor2]].
    generalize H_factor1 H_factor2; clear H_factor1 H_factor2.
    set (P:=(Qpositive_c  (S m) (S n) (S m' + S n))).
@@ -242,15 +242,15 @@ Proof.
    rewrite H; rewrite H'; intros H_le_dec_unfolded H_lt.
    assert (H_le_unfold:   (S q0 + p0' * S q0 <= q0' + p0 * S q0')%nat); auto with arith. 
    replace (S p0 * S q0' - S p0' * S q0)%nat with (S (q0'+p0*(S q0')- (S q0+p0'*(S q0))))%nat;
-   [| rewrite (minus_Sn_m _ _ H_le_unfold); auto with arith ].
+   [| rewrite <- (Nat.sub_succ_l _ _ H_le_unfold); auto with arith ].
    replace (S q0 * S q0')%nat with (S (q0'+q0*(S q0')))%nat; auto with arith.
    replace (S p0 * S q0' + S p0' * S q0)%nat with (S (q0'+p0*(S q0')+S (q0+p0'*(S q0))))%nat; auto with arith.
    set (m':=((q0' + p0 * S q0') + S (q0 + p0' * S q0))%nat).
    set (m:=((q0' + p0 * S q0') - (S q0 + p0' * S q0))%nat).
    set (n:=(q0' + q0 * S q0')%nat).
    assert (H_m':(S m + S n <= S m' + S n)%nat);
-    [ subst m m' n; apply plus_le_compat_r; apply le_n_S; apply le_trans with (q0' + p0 * S q0')%nat; auto with arith;
-      apply le_minus |].
+    [ subst m m' n; apply Nat.add_le_mono_r; apply le_n_S; apply Nat.le_trans with (q0' + p0 * S q0')%nat; auto with arith;
+      apply Nat.le_sub_l |].
    destruct (construct_correct2  (S m'+S n) m n H_m') as [factor [H_factor1 H_factor2]].
    generalize H_factor1 H_factor2; clear H_factor1 H_factor2.
    set (P:=(Qpositive_c  (S m) (S n) (S m' + S n))).
