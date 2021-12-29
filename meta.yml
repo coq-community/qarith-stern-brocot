@@ -35,7 +35,7 @@ license:
 
 supported_coq_versions:
   text: 8.14 or later
-  opam: '{(>= "8.14" & < "8.15~") | (= "dev")}'
+  opam: '{(>= "8.14" & < "8.16~") | (= "dev")}'
 
 tested_coq_opam_versions:
 - version: dev
@@ -43,6 +43,7 @@ tested_coq_opam_versions:
 
 tested_coq_nix_versions:
 - coq_version: 'master'
+- coq_version: 'v8.15'
 
 namespace: QArithSternBrocot
 
@@ -63,7 +64,7 @@ documentation: |
   This project contains a rational arithmetic library for Coq. This includes:
 
   - A binary representation for positive rational numbers `Qpositive` and its
-    extension to `Q` by adding sign bit (also known as Stern-Brocot
+    extension to `Q` by adding a sign bit (also known as Stern-Brocot
     tree encoding).
   - Arithmetic operations on `Qpositive` and `Q` defined in an strict way.
   - More efficient arithmetic operations on `Q` defined lazily using
