@@ -15,12 +15,12 @@
 
 (** General Facts About Q and Qpositive, the functions Qpositive_c and Qpositive_i and the operations Qmult, Qpositive, Qlt *)
 
-Require Import FunInd.
-Require Export Qpositive.
-Require Export Q_field.
-Require Export Q_order.
-Require Import Field_Theory_Q. 
-Require Export Zaux.
+From Coq Require Import FunInd.
+From QArithSternBrocot Require Export Qpositive.
+From QArithSternBrocot Require Export Q_field.
+From QArithSternBrocot Require Export Q_order.
+From QArithSternBrocot Require Import Field_Theory_Q. 
+From QArithSternBrocot Require Export Zaux.
 
 (* An auxiliary lemma about [Z] *)
 

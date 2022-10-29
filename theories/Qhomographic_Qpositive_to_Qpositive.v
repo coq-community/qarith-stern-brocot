@@ -13,10 +13,10 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-Require Export general_Q.
-Require Export positive_fraction_encoding.
-Require Import Merge_Order.
-Require Import Wf_nat.
+From QArithSternBrocot Require Export general_Q.
+From QArithSternBrocot Require Export positive_fraction_encoding.
+From QArithSternBrocot Require Import Merge_Order.
+From Coq Require Import Wf_nat.
 
 Definition top_more (a b c d : Z) :=
   (c <= a)%Z /\ (d < b)%Z \/ (c < a)%Z /\ (d <= b)%Z.

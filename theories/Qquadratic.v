@@ -13,8 +13,6 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-
 (**
 -- These are arithmetic operations on signed Stern-Brocot numbers 
 Qplus_lazy :: [Char] -> [Char] -> [Char]
@@ -27,10 +25,9 @@ Qminus_lazy :: [Char] -> [Char] -> [Char]
 Qminus_lazy = Qquadratic 0 1 (-1) 0 0 0 0 1
 *) 
 
-Require Export Qhomographic.
-Require Export quadraticAcc_Qquadratic_sign.
-Require Import general_Q Zaux.
-
+From QArithSternBrocot Require Export Qhomographic.
+From QArithSternBrocot Require Export quadraticAcc_Qquadratic_sign.
+From QArithSternBrocot Require Import general_Q Zaux.
 
 Lemma Qquadratic_sg_denom_nonzero_always :
  forall (k e f g h : Z) (p1 p2 : Qpositive),

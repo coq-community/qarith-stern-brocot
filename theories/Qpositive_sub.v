@@ -13,7 +13,7 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-Require Export Qpositive_order.
+From QArithSternBrocot Require Export Qpositive_order.
 
 Definition Qpositive_sub (w w' : Qpositive) :=
   let (p, q) := Qpositive_i w in

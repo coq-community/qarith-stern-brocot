@@ -13,9 +13,7 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-Require Export Qpositive_sub.
-
+From QArithSternBrocot Require Export Qpositive_sub.
  
 Inductive Q : Set :=
   | Zero : Q

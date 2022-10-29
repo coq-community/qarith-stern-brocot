@@ -13,11 +13,11 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-Require Import ArithRing.
-Require Import Compare_dec.
-Require Import Wf_nat.
-Require Import Arith.
-Require Import Lia.
+From Coq Require Import ArithRing.
+From Coq Require Import Compare_dec.
+From Coq Require Import Wf_nat.
+From Coq Require Import Arith.
+From Coq Require Import Lia.
  
 Theorem minus_minus : forall a b c : nat, a - b - c = a - (b + c).
 intros a; elim a; auto.

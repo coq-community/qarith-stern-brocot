@@ -13,9 +13,9 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-Require Export Qhomographic_sign.
-Require Import ZArithRing Zaux.
+From QArithSternBrocot Require Export Qhomographic_sign.
+From Coq Require Import ZArithRing.
+From QArithSternBrocot Require Import Zaux.
 
 Lemma sg_tuple_equal :
  forall (l1 a1 b1 c1 d1 : Z) (p1 : Qpositive) (l2 a2 b2 c2 d2 : Z)

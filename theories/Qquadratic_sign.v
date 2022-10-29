@@ -13,11 +13,9 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-
-Require Import ZArithRing.
-Require Import Qhomographic_sign.
-Require Import Zaux.
+From Coq Require Import ZArithRing.
+From QArithSternBrocot Require Import Qhomographic_sign.
+From QArithSternBrocot Require Import Zaux.
 
 Definition outside_square (a b c d : Z) :=
   (Z.sgn a + Z.sgn b + Z.sgn c + Z.sgn d)%Z.

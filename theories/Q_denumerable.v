@@ -61,9 +61,9 @@ End Denumerability.
 
 (** We first prove that [Z] is denumerable *)
 
-Require Div2.
-Require Import ZArith.
-Require Import Lia.
+From Coq Require Div2.
+From Coq Require Import ZArith.
+From Coq Require Import Lia.
 
 (** An injection from [Z] to [nat] *)
 Definition Z_to_nat_i (z:Z) :nat :=
@@ -229,7 +229,7 @@ Defined.
 
 (** Next we prove that [Q] and [Z] have the same cardinality *)
 
-Require Import Q_field.
+From QArithSternBrocot Require Import Q_field.
 
 (** Here there is not much to prove, as [Z] and [Q] are isomorphic data-types.*)
 

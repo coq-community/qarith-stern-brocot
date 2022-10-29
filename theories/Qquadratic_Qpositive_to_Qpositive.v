@@ -13,10 +13,8 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-
-Require Import Merge_Order.
-Require Export Qhomographic_Qpositive_to_Qpositive.
+From QArithSternBrocot Require Import Merge_Order.
+From QArithSternBrocot Require Export Qhomographic_Qpositive_to_Qpositive.
 
 Definition quadratic_top_more (a b c d e f g h : Z) :=
   (e <= a)%Z /\ (f <= b)%Z /\ (g <= c)%Z /\ (h < d)%Z \/

@@ -13,12 +13,11 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-Require Export Zaux.
-Require Import ZArithRing.
-Require Export Qpositive.
-Require Export Q_field.
-Require Import FunInd.
+From QArithSternBrocot Require Export Zaux.
+From Coq Require Import ZArithRing.
+From QArithSternBrocot Require Export Qpositive.
+From QArithSternBrocot Require Export Q_field.
+From Coq Require Import FunInd.
 
 Inductive fractionalAcc : Z -> Z -> Prop :=
   | fractionalacc0 : forall m n : Z, m = n -> fractionalAcc m n

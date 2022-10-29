@@ -13,11 +13,9 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-
-Require Export Qhomographic_sign.
-Require Export Qhomographic_Qpositive_to_Qpositive.
-Require Export Qhomographic_sign_properties.
+From QArithSternBrocot Require Export Qhomographic_sign.
+From QArithSternBrocot Require Export Qhomographic_Qpositive_to_Qpositive.
+From QArithSternBrocot Require Export Qhomographic_sign_properties.
 
 Definition new_a (a b c d : Z) (p : Qpositive)
   (H_Qhomographic_sg_denom_nonzero : Qhomographic_sg_denom_nonzero c d p) :=

@@ -8,11 +8,11 @@
 
 (* This file contains various properties of R that are not in the standard library. *)
 
-Require Import Reals.
-Require Import Lra.
-Require Import Fourier.
-Require Import Euclid. 
-Require Import Lia.
+From Coq Require Import Reals.
+From Coq Require Import Lra.
+From Coq Require Import Fourier.
+From Coq Require Import Euclid. 
+From Coq Require Import Lia.
 
 Open Scope R_scope.
 

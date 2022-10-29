@@ -13,12 +13,12 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-Require Export Arith.
-Require Export Compare_dec.
-Require Export ArithRing.
-Require Export Lia.
-Require Export ZArith.
-Require Export ZArithRing.
+From Coq Require Export Arith.
+From Coq Require Export Compare_dec.
+From Coq Require Export ArithRing.
+From Coq Require Export Lia.
+From Coq Require Export ZArith.
+From Coq Require Export ZArithRing.
  
 Ltac CaseEq f := generalize (refl_equal f); pattern f at -1 in |- *; case f.
  

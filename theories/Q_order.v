@@ -13,7 +13,7 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-Require Export Q_field.
+From QArithSternBrocot Require Export Q_field.
  
 Theorem Qmult_sym : forall n m : Q, Qmult n m = Qmult m n.
 intros n m; case m; case n; auto; intros n' m'; simpl in |- *;

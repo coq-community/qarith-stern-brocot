@@ -13,9 +13,9 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-Require Import FunInd.
-Require Import Field_Theory_Q. 
-Require Export Qhomographic_Qpositive_to_Q_properties.
+From Coq Require Import FunInd.
+From QArithSternBrocot Require Import Field_Theory_Q. 
+From QArithSternBrocot Require Export Qhomographic_Qpositive_to_Q_properties.
 
 Definition spec_fraction_encoding (a b : Z) : Q := Qmult a (Qinv b).
 

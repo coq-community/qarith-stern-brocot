@@ -13,12 +13,8 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-
-Require Export homographicAcc_Qhomographic_sign.
-Require Import ZArithRing.
-
-
+From QArithSternBrocot Require Export homographicAcc_Qhomographic_sign.
+From Coq Require Import ZArithRing.
 
 (** note that ~(`c=0`/\`d=0`)<->`c<>0`\/`c<>d` *)
 

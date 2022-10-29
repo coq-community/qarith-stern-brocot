@@ -13,11 +13,10 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-Require Import ZArithRing.
-Require Export Qhomographic_sign.
-Require Export Qquadratic_sign.
-Require Export Qhomographic_sign_properties.
+From Coq Require Import ZArithRing.
+From QArithSternBrocot Require Export Qhomographic_sign.
+From QArithSternBrocot Require Export Qquadratic_sign.
+From QArithSternBrocot Require Export Qhomographic_sign_properties.
 
 Definition same_ratio (a b c d e f g h : Z) :=
   (a * f)%Z = (b * e)%Z /\

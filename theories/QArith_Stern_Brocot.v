@@ -15,12 +15,11 @@ library. If you do not want to use these (classical) real numbers you
 should not import this file. Instead you can use all the other modules
 that are imported here, except Q_to_R.  *)
 
-Require Export Qsyntax.
-Require Export Field_Theory_Q.
-Require Export Q_ordered_field_properties.
-Require Export QArithSternBrocot.Qabs.
-Require Export Qmax_min.
-Require Export Q_Archimedean.
-Require Export Q_denumerable.
-Require Export Q_to_R.
-
+From QArithSternBrocot Require Export Qsyntax.
+From QArithSternBrocot Require Export Field_Theory_Q.
+From QArithSternBrocot Require Export Q_ordered_field_properties.
+From QArithSternBrocot Require Export Qabs.
+From QArithSternBrocot Require Export Qmax_min.
+From QArithSternBrocot Require Export Q_Archimedean.
+From QArithSternBrocot Require Export Q_denumerable.
+From QArithSternBrocot Require Export Q_to_R.

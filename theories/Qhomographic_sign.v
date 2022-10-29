@@ -13,10 +13,8 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-
-Require Export positive_fraction_encoding.
-Require Import ZArithRing.
+From QArithSternBrocot Require Export positive_fraction_encoding.
+From Coq Require Import ZArithRing.
 
 Definition outside_interval (a b : Z) := (Z.sgn a + Z.sgn b)%Z.
 

@@ -13,8 +13,7 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-Require Export general_Q.
+From QArithSternBrocot Require Export general_Q.
 
 Infix "/" := make_Q : Q_scope. 
 

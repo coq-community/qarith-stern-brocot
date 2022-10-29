@@ -6,9 +6,8 @@
 (*                  <http://www.gnu.org/licenses/lgpl-2.1.html>         *)
 (************************************************************************)
 
-
-Require Export Qsyntax.
-Require Export Field_Theory_Q.
+From QArithSternBrocot Require Export Qsyntax.
+From QArithSternBrocot Require Export Field_Theory_Q.
 
 Lemma Qmult_absorb_nonzero_r: forall x y : Q, x * y <> Zero -> y <> Zero.
 Proof.

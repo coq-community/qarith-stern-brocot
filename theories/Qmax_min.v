@@ -6,10 +6,9 @@
 (*                  <http://www.gnu.org/licenses/lgpl-2.1.html>         *)
 (************************************************************************)
 
-Require Export Qsyntax.
-Require Export Field_Theory_Q.
-Require Export Q_ordered_field_properties.
-
+From QArithSternBrocot Require Export Qsyntax.
+From QArithSternBrocot Require Export Field_Theory_Q.
+From QArithSternBrocot Require Export Q_ordered_field_properties.
 
 Definition Qmax p q := if Q_le_lt_dec p q then q else p.
 

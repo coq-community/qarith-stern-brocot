@@ -14,8 +14,8 @@
 (* 02110-1301 USA                                                     *)
 
 
-Require Export quadratic_correctness.
-Require Import Eqdep_dec.
+From QArithSternBrocot Require Export quadratic_correctness.
+From Coq Require Import Eqdep_dec.
 Import Field_Theory_Q.
 
 

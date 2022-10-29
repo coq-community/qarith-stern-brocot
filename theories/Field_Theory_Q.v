@@ -13,11 +13,9 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-
-Require Import Eqdep_dec.
-Require Export Field.
-Require Export Q_order.
-
+From Coq Require Import Eqdep_dec.
+From Coq Require Export Field.
+From QArithSternBrocot Require Export Q_order.
 
 (*###########################################################################*)
 (** The Filed Structure for Field Tactic *)

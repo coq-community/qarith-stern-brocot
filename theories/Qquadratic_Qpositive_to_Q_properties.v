@@ -13,9 +13,9 @@
 (* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
 (* 02110-1301 USA                                                     *)
 
-Require Import FunInd.
-Require Export Qquadratic.
-Require Import homographic_correctness.
+From Coq Require Import FunInd.
+From QArithSternBrocot Require Export Qquadratic.
+From QArithSternBrocot Require Import homographic_correctness.
 
 Lemma fraction_encoding_reduces :
  forall (a b m n : Z) (Hb : b <> 0%Z) (Hn : n <> 0%Z),

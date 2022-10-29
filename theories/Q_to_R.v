@@ -6,13 +6,12 @@
 (*                  <http://www.gnu.org/licenses/lgpl-2.1.html>         *)
 (************************************************************************)
 
-(* This file contains properties of the injection from Q into R. *)
+(** This file contains properties of the injection from Q into R. *)
 
-Require Import Q_ordered_field_properties.
-Require Import R_addenda.
-Require Import Raxioms.
-Require Import RIneq.
-
+From QArithSternBrocot Require Import Q_ordered_field_properties.
+From QArithSternBrocot Require Import R_addenda.
+From Coq Require Import Raxioms.
+From Coq Require Import RIneq.
 
 (** We define the injection from Q into R *)
 
@@ -448,7 +447,6 @@ Proof.
   rewrite Ropp_involutive;
   rewrite Ropp_inv_permute; auto.
 Qed.
-
 
 Lemma Q_to_Rminus: forall x y, Q_to_R (Qminus x y) = (Rminus (Q_to_R x) (Q_to_R y)).
 Proof.
