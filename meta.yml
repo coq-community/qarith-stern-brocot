@@ -4,7 +4,7 @@ shortname: qarith-stern-brocot
 organization: coq-community
 community: true
 action: true
-nix: true
+nix: false
 
 synopsis: Binary rational numbers in Coq
 
@@ -34,14 +34,12 @@ license:
   identifier: LGPL-2.1-or-later
 
 supported_coq_versions:
-  text: 8.14 or later
-  opam: '{(>= "8.14" & < "8.17~") | (= "dev")}'
+  text: 8.18 or later
+  opam: '{>= "8.18"}'
 
 tested_coq_opam_versions:
 - version: dev
-- version: '8.16'
-- version: '8.15'
-- version: '8.14'
+- version: '8.18'
 
 tested_coq_nix_versions:
 - coq_version: 'master'

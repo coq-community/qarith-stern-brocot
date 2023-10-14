@@ -3228,7 +3228,7 @@ Proof.
  (* 1 *)
  rewrite coding_Q.
  unfold spec_fraction_encoding in |- *.
- generalize a0; intros (H1, (H2, (H3, (H4, (H5, H6)))));
+ generalize s; intros (H1, (H2, (H3, (H4, (H5, H6)))));
   repeat
    match goal with
    | id1:(_ = _ :>Z) |- _ =>
@@ -3244,7 +3244,7 @@ Proof.
  (* 2 *)
  rewrite coding_Q.
  unfold spec_fraction_encoding in |- *.
- generalize a0; intros (H1, (H2, (H3, (H4, (H5, H6)))));
+ generalize s; intros (H1, (H2, (H3, (H4, (H5, H6)))));
   repeat
    match goal with
    | id1:(_ = _ :>Z) |- _ =>
@@ -3260,7 +3260,7 @@ Proof.
  (* 3 *)
  rewrite coding_Q.
  unfold spec_fraction_encoding in |- *.
- generalize a0; intros (H1, (H2, (H3, (H4, (H5, H6)))));
+ generalize s; intros (H1, (H2, (H3, (H4, (H5, H6)))));
   repeat
    match goal with
    | id1:(_ = _ :>Z) |- _ =>
@@ -3276,7 +3276,7 @@ Proof.
  (* 4 *)
  rewrite coding_Q.
  unfold spec_fraction_encoding in |- *.
- generalize a0; intros (H1, (H2, (H3, (H4, (H5, H6)))));
+ generalize s; intros (H1, (H2, (H3, (H4, (H5, H6)))));
   repeat
    match goal with
    | id1:(_ = _ :>Z) |- _ =>

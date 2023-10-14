@@ -436,16 +436,16 @@ Proof.
   destruct (interp_non_zero p) as [p0 [q0 H]].
   rewrite (inv_correct p _ _ H); rewrite H.
   repeat rewrite <- INR_IZR_INZ.
-  rewrite Rpower.Rinv_Rdiv; auto.
+  rewrite Rinv_div; auto.
   (* Qneg *)
   unfold Q_to_R, numerator, denominator, decode_Q, Qinv, fst, snd.
   destruct (interp_non_zero p) as [p0 [q0 H]].
   rewrite (inv_correct p _ _ H); rewrite H.
   repeat rewrite Ropp_Ropp_IZR; repeat rewrite <- INR_IZR_INZ.
-  rewrite Rpower.Rinv_Rdiv; auto.
+  rewrite Rinv_div; auto.
   unfold Rdiv; rewrite <- Rmult_opp_opp;
   rewrite Ropp_involutive;
-  rewrite Ropp_inv_permute; auto.
+  rewrite Rinv_opp; auto.
 Qed.
 
 Lemma Q_to_Rminus: forall x y, Q_to_R (Qminus x y) = (Rminus (Q_to_R x) (Q_to_R y)).
