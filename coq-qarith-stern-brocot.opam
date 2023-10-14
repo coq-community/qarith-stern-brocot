@@ -15,8 +15,8 @@ field operations on them in two different ways: strict and lazy.
 
 build: ["dune" "build" "-p" name "-j" jobs]
 depends: [
-  "dune" {>= "2.5"}
-  "coq" {(>= "8.14" & < "8.17~") | (= "dev")}
+  "dune" {>= "3.5"}
+  "coq" {>= "8.18"}
 ]
 
 tags: [

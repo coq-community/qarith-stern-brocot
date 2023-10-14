@@ -819,26 +819,26 @@ Proof.
  (* 1 *)
  rewrite
   (Qquadratic_Qpositive_to_Q_3 _ _ _ _ _ _ _ _ _ _
-     H_Qquadratic_sg_denom_nonzero2 a3 a0); reflexivity.
+     H_Qquadratic_sg_denom_nonzero2 n s); reflexivity.
  (* 2 *)
  rewrite
   (Qquadratic_Qpositive_to_Q_2 _ _ _ _ _ _ _ _ _ _
-     H_Qquadratic_sg_denom_nonzero2 b0 a0); reflexivity.
+     H_Qquadratic_sg_denom_nonzero2 n s); reflexivity.
  (* 3 *) 
  rewrite
   (Qquadratic_Qpositive_to_Q_1 _ _ _ _ _ _ _ _ _ _
-     H_Qquadratic_sg_denom_nonzero2 b0 a0); reflexivity.
+     H_Qquadratic_sg_denom_nonzero2 n s); reflexivity.
  (* 4 *)
  rewrite
   (Qquadratic_Qpositive_to_Q_0 _ _ _ _ _ _ _ _ _ _
-     H_Qquadratic_sg_denom_nonzero2 b0 a0); reflexivity.
+     H_Qquadratic_sg_denom_nonzero2 n s); reflexivity.
  (* 5 *)
  rewrite
   (q_sign_equal a b c d _ _ _ _ _ _ H_Qquadratic_sg_denom_nonzero1
-     H_Qquadratic_sg_denom_nonzero2) in a1;
+     H_Qquadratic_sg_denom_nonzero2) in e2;
   rewrite
    (Qquadratic_Qpositive_to_Q_4 _ _ _ _ _ _ _ _ _ _
-      H_Qquadratic_sg_denom_nonzero2 b0 a1)
+      H_Qquadratic_sg_denom_nonzero2 n e2)
    ; reflexivity.
  (* 6 *)
  Absurd_q_sign_.
@@ -864,15 +864,15 @@ Proof.
         H_Qquadratic_sg_denom_nonzero1); assumption.
    rewrite
     (Qquadratic_Qpositive_to_Q_5 _ _ _ _ _ _ _ _ _ _
-       H_Qquadratic_sg_denom_nonzero2 b0
+       H_Qquadratic_sg_denom_nonzero2 n
        (trans_eq
           (q_sign_equal a b c d _ _ _ _ _ _ H_Qquadratic_sg_denom_nonzero2
-             H_Qquadratic_sg_denom_nonzero1) b1) H
+             H_Qquadratic_sg_denom_nonzero1) e2) H
        (Qquadratic_Qpositive_to_Q_quadraticAcc_pos_1 _ _ _ _ _ _ _ _ _ _
-          H_Qquadratic_sg_denom_nonzero2 b0
+          H_Qquadratic_sg_denom_nonzero2 n
           (trans_eq
              (q_sign_equal a b c d _ _ _ _ _ _ H_Qquadratic_sg_denom_nonzero2
-                H_Qquadratic_sg_denom_nonzero1) b1) H))
+                H_Qquadratic_sg_denom_nonzero1) e2) H))
     ; apply f_equal with Qpositive;
     apply Qquadratic_Qpositive_to_Qpositive_equal_strong;
     [ apply qnew_a_equal
@@ -908,15 +908,15 @@ Proof.
         H_Qquadratic_sg_denom_nonzero1); assumption.
    rewrite
     (Qquadratic_Qpositive_to_Q_6 _ _ _ _ _ _ _ _ _ _
-       H_Qquadratic_sg_denom_nonzero2 b0
+       H_Qquadratic_sg_denom_nonzero2 n
        (trans_eq
           (q_sign_equal a b c d _ _ _ _ _ _ H_Qquadratic_sg_denom_nonzero2
-             H_Qquadratic_sg_denom_nonzero1) b1) H
+             H_Qquadratic_sg_denom_nonzero1) e2) H
        (Qquadratic_Qpositive_to_Q_quadraticAcc_pos_2 _ _ _ _ _ _ _ _ _ _
-          H_Qquadratic_sg_denom_nonzero2 b0
+          H_Qquadratic_sg_denom_nonzero2 n
           (trans_eq
              (q_sign_equal a b c d _ _ _ _ _ _ H_Qquadratic_sg_denom_nonzero2
-                H_Qquadratic_sg_denom_nonzero1) b1) H))
+                H_Qquadratic_sg_denom_nonzero1) e2) H))
     .
    apply f_equal with Qpositive;
     apply Qquadratic_Qpositive_to_Qpositive_equal_strong;
@@ -955,15 +955,15 @@ Proof.
         H_Qquadratic_sg_denom_nonzero1); assumption.
    rewrite
     (Qquadratic_Qpositive_to_Q_7 _ _ _ _ _ _ _ _ _ _
-       H_Qquadratic_sg_denom_nonzero2 b0
+       H_Qquadratic_sg_denom_nonzero2 n
        (trans_eq
           (q_sign_equal a b c d _ _ _ _ _ _ H_Qquadratic_sg_denom_nonzero2
-             H_Qquadratic_sg_denom_nonzero1) b1) H
+             H_Qquadratic_sg_denom_nonzero1) e1) H
        (Qquadratic_Qpositive_to_Q_quadraticAcc_neg_1 _ _ _ _ _ _ _ _ _ _
-          H_Qquadratic_sg_denom_nonzero2 b0
+          H_Qquadratic_sg_denom_nonzero2 n
           (trans_eq
              (q_sign_equal a b c d _ _ _ _ _ _ H_Qquadratic_sg_denom_nonzero2
-                H_Qquadratic_sg_denom_nonzero1) b1) H))
+                H_Qquadratic_sg_denom_nonzero1) e1) H))
     .
    apply f_equal with Qpositive;
     apply Qquadratic_Qpositive_to_Qpositive_equal_strong;
@@ -1001,15 +1001,15 @@ Proof.
         H_Qquadratic_sg_denom_nonzero1); assumption.
    rewrite
     (Qquadratic_Qpositive_to_Q_8 _ _ _ _ _ _ _ _ _ _
-       H_Qquadratic_sg_denom_nonzero2 b0
+       H_Qquadratic_sg_denom_nonzero2 n
        (trans_eq
           (q_sign_equal a b c d _ _ _ _ _ _ H_Qquadratic_sg_denom_nonzero2
-             H_Qquadratic_sg_denom_nonzero1) b1) H
+             H_Qquadratic_sg_denom_nonzero1) e1) H
        (Qquadratic_Qpositive_to_Q_quadraticAcc_neg_2 _ _ _ _ _ _ _ _ _ _
-          H_Qquadratic_sg_denom_nonzero2 b0
+          H_Qquadratic_sg_denom_nonzero2 n
           (trans_eq
              (q_sign_equal a b c d _ _ _ _ _ _ H_Qquadratic_sg_denom_nonzero2
-                H_Qquadratic_sg_denom_nonzero1) b1) H))
+                H_Qquadratic_sg_denom_nonzero1) e1) H))
     .
    apply f_equal with Qpositive;
     apply Qquadratic_Qpositive_to_Qpositive_equal_strong;

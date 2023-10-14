@@ -25,12 +25,11 @@ Lemma fraction_encoding_equal :
 Proof.
  intros m n Hn1.
  unfold fraction_encoding at 2; fold fraction_encoding. 
- functional induction (fraction_encoding m n Hn1); intros Hn2;
- rewrite e;
-   trivial || (
- f_equal;
- apply positive_fraction_encoding_equal).
-Defined. 
+ functional induction (fraction_encoding m n Hn1); intros Hn2.
+ - rewrite e; f_equal; apply positive_fraction_encoding_equal.
+ - rewrite e; f_equal; apply positive_fraction_encoding_equal.
+ - rewrite e0; trivial.
+Defined.
 
 
 Ltac Rewrite_eq_ :=
@@ -399,7 +398,7 @@ generalize
 
  rewrite
   (Qhomographic_Qpositive_to_Q_0 a b c 0 p H_Qhomographic_sg_denom_nonzero2
-     Hc a0 (refl_equal 0%Z)).
+     Hc e (refl_equal 0%Z)).
  apply fraction_encoding_equal.
  Falsum.
 generalize
@@ -409,35 +408,35 @@ generalize
 
  rewrite
   (Qhomographic_Qpositive_to_Q_0 a b c 0 p H_Qhomographic_sg_denom_nonzero2
-     Hc a0 (refl_equal 0%Z)).
+     Hc e (refl_equal 0%Z)).
  apply fraction_encoding_equal.
  Falsum.
 
  (* 2 *)
  rewrite
   (Qhomographic_Qpositive_to_Q_1 a b c d p H_Qhomographic_sg_denom_nonzero2
-     b0 a0).
+     n e).
  apply fraction_encoding_equal.
  (* 3 *)
  clear e0.
  rewrite
   (h_sign_equal a b c d p H_Qhomographic_sg_denom_nonzero1
-     H_Qhomographic_sg_denom_nonzero2) in a1.
+     H_Qhomographic_sg_denom_nonzero2) in e1.
  rewrite
   (Qhomographic_Qpositive_to_Q_2 a b c d p H_Qhomographic_sg_denom_nonzero2
-     b0 a1).
+     n e1).
  reflexivity.
  (* 4 *)
 
  Clear_eq_.
  generalize
   (Qhomographic_Qpositive_to_Q_homographicAcc_pos_1 a b c d p
-     H_Qhomographic_sg_denom_nonzero1 b0 b1 a1).
- assert (l1_eq_one0 := b1).
+     H_Qhomographic_sg_denom_nonzero1 n e1 l).
+ assert (l1_eq_one0 := e1).
  rewrite
   (h_sign_equal a b c d p H_Qhomographic_sg_denom_nonzero1
      H_Qhomographic_sg_denom_nonzero2) in l1_eq_one0.
- assert (z0 := a1).
+ assert (z0 := l).
  rewrite (new_a_equal a b c d p H_Qhomographic_sg_denom_nonzero1
      H_Qhomographic_sg_denom_nonzero2) in z0.
  rewrite
@@ -445,9 +444,9 @@ generalize
      H_Qhomographic_sg_denom_nonzero2) in z0.
  rewrite
   (Qhomographic_Qpositive_to_Q_3 a b c d p H_Qhomographic_sg_denom_nonzero2
-     b0 l1_eq_one0
+     n l1_eq_one0
      (Qhomographic_Qpositive_to_Q_homographicAcc_pos_1 a b c d p
-        H_Qhomographic_sg_denom_nonzero2 b0 l1_eq_one0 z0) z0)
+        H_Qhomographic_sg_denom_nonzero2 n l1_eq_one0 z0) z0)
   .
  intro H_any_homographicAcc.
  apply f_equal with Qpositive.
@@ -472,12 +471,12 @@ generalize
  Clear_eq_.
  generalize
   (Qhomographic_Qpositive_to_Q_homographicAcc_pos_2 a b c d p
-     H_Qhomographic_sg_denom_nonzero1 b0 b1 b2).
- assert (l1_eq_one0 := b1).
+     H_Qhomographic_sg_denom_nonzero1 n e1 l).
+ assert (l1_eq_one0 := e1).
  rewrite
   (h_sign_equal a b c d p H_Qhomographic_sg_denom_nonzero1
      H_Qhomographic_sg_denom_nonzero2) in l1_eq_one0.
- assert (z0 := b2).
+ assert (z0 := l).
  rewrite
   (new_a_equal a b c d p H_Qhomographic_sg_denom_nonzero1
      H_Qhomographic_sg_denom_nonzero2) in z0.
@@ -486,9 +485,9 @@ generalize
      H_Qhomographic_sg_denom_nonzero2) in z0.
  rewrite
   (Qhomographic_Qpositive_to_Q_4 a b c d p H_Qhomographic_sg_denom_nonzero2
-     b0 l1_eq_one0
+     n l1_eq_one0
      (Qhomographic_Qpositive_to_Q_homographicAcc_pos_2 a b c d p
-        H_Qhomographic_sg_denom_nonzero2 b0 l1_eq_one0 z0) z0)
+        H_Qhomographic_sg_denom_nonzero2 n l1_eq_one0 z0) z0)
   .
  intro H_any_homographicAcc.
  apply f_equal with Qpositive.
@@ -512,12 +511,12 @@ generalize
  Clear_eq_.
  generalize
   (Qhomographic_Qpositive_to_Q_homographicAcc_neg_1 a b c d p
-     H_Qhomographic_sg_denom_nonzero1 b0 b1 a0).
- assert (l1_eq__minus_one0 := b1).
+     H_Qhomographic_sg_denom_nonzero1 n e0 l).
+ assert (l1_eq__minus_one0 := e0).
  rewrite
   (h_sign_equal a b c d p H_Qhomographic_sg_denom_nonzero1
      H_Qhomographic_sg_denom_nonzero2) in l1_eq__minus_one0.
- assert (z0 := a0).
+ assert (z0 := l).
  rewrite
   (new_a_equal a b c d p H_Qhomographic_sg_denom_nonzero1
      H_Qhomographic_sg_denom_nonzero2) in z0.
@@ -526,9 +525,9 @@ generalize
      H_Qhomographic_sg_denom_nonzero2) in z0.
  rewrite
   (Qhomographic_Qpositive_to_Q_5 a b c d p H_Qhomographic_sg_denom_nonzero2
-     b0 l1_eq__minus_one0
+     n l1_eq__minus_one0
      (Qhomographic_Qpositive_to_Q_homographicAcc_neg_1 a b c d p
-        H_Qhomographic_sg_denom_nonzero2 b0 l1_eq__minus_one0 z0) z0)
+        H_Qhomographic_sg_denom_nonzero2 n l1_eq__minus_one0 z0) z0)
   .
  intro H_any_homographicAcc.
  apply f_equal with Qpositive.
@@ -552,12 +551,12 @@ generalize
  Clear_eq_.
  generalize
   (Qhomographic_Qpositive_to_Q_homographicAcc_neg_2 a b c d p
-     H_Qhomographic_sg_denom_nonzero1 b0 b1 b2).
- assert (l1_eq__minus_one0 := b1).
+     H_Qhomographic_sg_denom_nonzero1 n e0 l).
+ assert (l1_eq__minus_one0 := e0).
  rewrite
   (h_sign_equal a b c d p H_Qhomographic_sg_denom_nonzero1
      H_Qhomographic_sg_denom_nonzero2) in l1_eq__minus_one0.
- assert (z0:=b2).
+ assert (z0:=l).
  rewrite
   (new_a_equal a b c d p H_Qhomographic_sg_denom_nonzero1
      H_Qhomographic_sg_denom_nonzero2) in z0.
@@ -566,9 +565,9 @@ generalize
      H_Qhomographic_sg_denom_nonzero2) in z0.
  rewrite
   (Qhomographic_Qpositive_to_Q_6 a b c d p H_Qhomographic_sg_denom_nonzero2
-     b0 l1_eq__minus_one0
+     n l1_eq__minus_one0
      (Qhomographic_Qpositive_to_Q_homographicAcc_neg_2 a b c d p
-        H_Qhomographic_sg_denom_nonzero2 b0 l1_eq__minus_one0 z0) z0)
+        H_Qhomographic_sg_denom_nonzero2 n l1_eq__minus_one0 z0) z0)
   .
  intro H_any_homographicAcc.
  apply f_equal with Qpositive.

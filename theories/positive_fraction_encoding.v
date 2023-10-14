@@ -259,7 +259,7 @@ the term (Hyprec m n Hn) has type
 
 Ltac Irreflex :=
   try solve
-   [ elimtype False;
+   [ exfalso;
       match goal with
       | id1:(?X1 <> ?X1) |- _ => apply id1; reflexivity
       | id1:(?X1 < ?X1)%Z |- _ =>
@@ -296,7 +296,6 @@ Proof.
 
    intros; simpl in |- *; case (Z_dec' m0 n0);
     [ intros [H_falsum| H_falsum]; Irreflex | trivial ].
- 
 
    intros; Irreflex.
  
