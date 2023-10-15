@@ -21,15 +21,15 @@
 
 (** We start by some general notions for expressing the bijection *)
 
-Definition identity (A:Type) := fun a:A=> a.
-Definition compose (A B C:Type) (g:B->C) (f:A->B) := fun a:A=>g(f a).
+Definition identity (A:Type) := fun (a:A) => a.
+Definition compose (A B C:Type) (g:B->C) (f:A->B) := fun (a:A) => g(f a).
 
 Section Denumerability.
 
 (** What it means to have the same cardinality *)
 Definition same_cardinality (A:Type) (B:Type) :=
  {f:A->B & { g:B->A | 
-  (forall b,(compose _ _ _ f g) b= (identity B) b) /\
+  (forall b,(compose _ _ _ f g) b = (identity B) b) /\
    forall a,(compose _ _ _ g f) a = (identity A) a}}.
 
 (** What it means to be a denumerable *)
@@ -58,10 +58,8 @@ Defined.
 
 End Denumerability.
 
-
 (** We first prove that [Z] is denumerable *)
 
-From Coq Require Div2.
 From Coq Require Import ZArith.
 From Coq Require Import Lia.
 
@@ -73,11 +71,12 @@ Definition Z_to_nat_i (z:Z) :nat :=
    | Zneg p => pred (Nat.double (nat_of_P p))
    end.
 
-(** Some lemmas about parity. They could be added to [Arith.Div2] *)
-Lemma odd_pred2n: forall n : nat, Even.odd n -> {p : nat | n = pred (Nat.double p)}.
+(** Some lemmas about parity. *)
+Lemma odd_pred2n: forall n : nat, Nat.Odd_alt n -> {p : nat | n = pred (Nat.double p)}.
 Proof.
  intros n H_odd;
- rewrite (Div2.odd_double _ H_odd);
+ apply Nat.Odd_alt_Odd in H_odd;
+ rewrite (Nat.Odd_double _ H_odd);
  exists (S (Nat.div2 n));
  generalize (Nat.div2 n);
  clear n H_odd; intros n;
@@ -86,12 +85,19 @@ Proof.
  reflexivity.
 Defined.
 
+Lemma even_2n : forall n : nat, Nat.Even_alt n -> {p : nat | n = Nat.double p}.
+Proof.
+intros n H_even; exists (Nat.div2 n).
+apply Nat.Even_alt_Even in H_even.
+apply Nat.Even_double; assumption.
+Defined.
+
 Lemma even_odd_exists_dec : forall n, {p : nat | n = Nat.double p} + {p : nat | n = pred (Nat.double p)}.
 Proof. 
  intro n;
- destruct (Even.even_odd_dec n) as [H_parity|H_parity];
- [ left; apply (Div2.even_2n _ H_parity) 
- | right; apply (odd_pred2n _ H_parity)].
+ destruct (Nat.Even_Odd_dec n) as [H_parity|H_parity];
+ [ left; apply Nat.Even_alt_Even in H_parity; apply (even_2n _ H_parity)
+ | right; apply Nat.Odd_alt_Odd in H_parity; apply (odd_pred2n _ H_parity)].
 Defined.
 
 (** An injection from [nat] to [Z] *)
@@ -106,17 +112,20 @@ Proof.
  unfold Nat.double; intros m n; lia.
 Defined.
 
-Lemma parity_mismatch_not_eq:forall m n, Even.even m -> Even.odd n -> ~m=n.
+Lemma parity_mismatch_not_eq:forall m n, Nat.Even_alt m -> Nat.Odd_alt n -> m <> n.
 Proof.
- intros m n H_even H_odd H_eq; subst m;
- apply (Even.not_even_and_odd n); trivial.
+ intros m n H_even H_odd H_eq; subst m.
+ apply Nat.Even_alt_Even in H_even.
+ apply Nat.Odd_alt_Odd in H_odd.
+ apply (Nat.Even_Odd_False n); trivial.
 Defined.
 
-Lemma even_double:forall n, Even.even (Nat.double n).
+Lemma even_double : forall n, Nat.Even_alt (Nat.double n).
 Proof.
  intro n;
  unfold Nat.double;
- replace (n + n) with (2*n); auto with arith; lia.
+ replace (n + n) with (2*n);
+ [apply Nat.Even_alt_Even; exists n; reflexivity | lia].
 Defined.
 
 Lemma double_S_neq_pred:forall m n, ~Nat.double (S m) = pred (Nat.double n).
